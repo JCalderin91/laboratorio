@@ -1,0 +1,12 @@
+.menu .list a{
+	transition: all .3s ease;
+}
+.menu .list a:hover{
+	color: #2196f3 !important;
+}
+.menu .list a span{
+	transition: all .3s ease;
+}
+.menu .list a:hover span{
+	color: #2196f3 !important;
+}

@@ -18,5 +18,6 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/bootstrap-select/css/bootstrap-select.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/waitme/waitMe.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 

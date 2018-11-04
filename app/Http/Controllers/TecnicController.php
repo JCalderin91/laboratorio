@@ -63,7 +63,6 @@ class TecnicController extends Controller{
     public function update(Request $request, $id){
         $tecnic = User::findOrFail($id);
 
-
         $role_user = Role::where('title', 'user')->first();
 
         $tecnic->first_name = $request->get('first_name');
