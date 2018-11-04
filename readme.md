@@ -24,3 +24,13 @@ Si ya tienes una copia de tu proyecto
 - git push origin master
 
 
+Comando a seguir en nuestro trabajo
+
+**$ git fetch origin**
+**$ git merge origin/master**
+
+Desarrollamos el código necesario
+
+**$ git fetch origin**
+**$ git merge origin/master**
+**$ git push origin master**
