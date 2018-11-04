@@ -1,0 +1,36 @@
+<?php
+
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
+
+class CreateHoursTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('hours', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('user_id',8);
+
+            $table->dateTime('hour')->default(NULL);
+            $table->enum('operation',['IN','OUT']);
+            
+            $table->foreign('user_id')->references('id')->on('users'); 
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('hours');
+    }
+}
