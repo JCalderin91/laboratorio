@@ -10,7 +10,7 @@ Si es la primera vez y no tienes una copia del proyecto
 
 Si ya tienes una copia de tu proyecto
 ### Actualiza el proyecto
--git pull
+- git pull
 
 ### Modificar los archivos de su elección
 
