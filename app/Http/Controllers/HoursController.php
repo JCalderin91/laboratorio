@@ -9,15 +9,9 @@ use Carbon\Carbon;;
 
 
 
-class HoursController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
+class HoursController extends Controller{
+
+    public function index(){
         //$date = Carbon::now();
         //dd( $date->format('d-m-Y') );
        /* $users = User::orderBy('id')->get();
@@ -63,23 +57,19 @@ class HoursController extends Controller
         return view('pages.hours', compact('$arrayName = array('' => , );'));
     }
 
-    public function create()
-    {
+    public function create(){
         //
     }
 
-    public function edit($id)
-    {
+    public function edit($id){
         //
     }
 
-    public function update(Request $request, $id)
-    {
-
+    public function update(Request $request, $id){
+        //
     }
 
-    public function destroy($id)
-    {
+    public function destroy($id){
         //
     }
 }

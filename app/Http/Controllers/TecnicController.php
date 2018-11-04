@@ -60,8 +60,7 @@ class TecnicController extends Controller{
     }
 
 
-    public function update(Request $request, $id)
-    {
+    public function update(Request $request, $id){
         $tecnic = User::findOrFail($id);
 
 
