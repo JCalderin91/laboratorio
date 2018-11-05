@@ -24,22 +24,4 @@ Si ya tienes una copia de tu proyecto
 - git push origin master
 
 
-## Comando a seguir en nuestro trabajo
-
-<br>
-**$ git fetch origin**
-<br>
-**$ git merge origin/master**
-<br>
-
-Desarrollamos el código necesario
-
-<br>
-**$ git fetch origin**
-<br>
-**$ git merge origin/master**
-<br>
-**$ git push origin master**
-
-
 ## by: Lineight - 2018
