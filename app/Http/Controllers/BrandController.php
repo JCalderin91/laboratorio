@@ -11,7 +11,7 @@ class BrandController extends Controller{
     }
 
     public function index(){
-        /* OPTENER LAS MARCAS PARA MOSTRARLAS EN LA LISTA DE MARCA */
+        /* OBTENER LAS MARCAS PARA MOSTRARLAS EN LA LISTA DE MARCA */
         $brands = Brand::get();
         return view('pages.brands.index', compact('brands'));
     }
@@ -23,7 +23,7 @@ class BrandController extends Controller{
     }
 
     public function store(Request $request){
-        /*ALMACENAR LA NUECA MARCA*/ 
+        /*ALMACENAR LA NUEVA MARCA*/ 
         $brand = new Brand();
         $brand->title = $request->get('title');
         $brand->save();

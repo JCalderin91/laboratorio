@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use App\Role;
 
@@ -26,7 +28,7 @@ class TecnicController extends Controller{
         return view('pages.tecnics.create');
     }
 
-    public function store(Request $request){
+    public function store(UserStoreRequest $request){
 
         $tecnic = new User();
 
@@ -60,7 +62,7 @@ class TecnicController extends Controller{
     }
 
 
-    public function update(Request $request, $id){
+    public function update(UserUpdateRequest $request, $id){
         $tecnic = User::findOrFail($id);
 
         $role_user = Role::where('title', 'user')->first();
