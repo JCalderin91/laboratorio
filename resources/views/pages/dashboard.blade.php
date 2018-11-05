@@ -3,6 +3,12 @@
 @section('content')
 <!-- Contenido -->
 <!-- Widgets -->
+<button data-toggle="modal" data-target="#add" type="button" class="btn bg-red waves-effect">
+    <i class="material-icons">done</i>
+</button>
+@include('modals.cliente')
+
+
 <div class="row clearfix">
     <div class="col-md-4 col-sm-6 col-xs-12">
         <div class="info-box bg-pink hover-expand-effect">

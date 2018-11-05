@@ -54,7 +54,7 @@ class HoursController extends Controller{
        //dd($array);
 
 
-        return view('pages.hours', compact('$arrayName = array('' => , );'));
+        return view('pages.hours');
     }
 
     public function create(){

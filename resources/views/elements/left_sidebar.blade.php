@@ -26,6 +26,12 @@
                         <span>Registro de tiempos</span>
                     </a>
                 </li> --}}
+                <li class="{{ Request::is('register*') ? 'active' : '' }}">
+                    <a href="">
+                        <i class="material-icons">assignment</i>
+                        <span>Registrar servicio</span>
+                    </a>
+                </li>
                 <li class="{{ Request::is('client*') ? 'active' : '' }}">
                     <a href="{{ route('clients.index') }}">
                         <i class="material-icons">face</i>
