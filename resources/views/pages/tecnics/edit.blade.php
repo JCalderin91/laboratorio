@@ -34,7 +34,7 @@
                 <div class="col-md-12">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" value="{{ $tecnic->id }}" name="id" disabled>
+                            <input type="text" class="form-control" value="{{ $tecnic->id }}" name="id" >
                             <label class="form-label">Dni</label>
                         </div>
                     </div>

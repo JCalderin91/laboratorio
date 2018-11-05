@@ -3,10 +3,10 @@
 @section('content')
 <!-- Contenido -->
 <!-- Widgets -->
-<button data-toggle="modal" data-target="#add" type="button" class="btn bg-red waves-effect">
+{{--<button data-toggle="modal" data-target="#add" type="button" class="btn bg-red waves-effect">
     <i class="material-icons">done</i>
 </button>
-@include('modals.cliente')
+@include('modals.brand')--}}
 
 
 <div class="row clearfix">

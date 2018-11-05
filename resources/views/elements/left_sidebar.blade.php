@@ -62,6 +62,18 @@
                         <span>Categorias</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('categories*') ? 'active' : '' }}">
+                    <a href="{{ route('categories.index') }}">
+                        <i class="material-icons">map</i>
+                        <span>Areas</span>
+                    </a>
+                </li>
+                <li class="{{ Request::is('categories*') ? 'active' : '' }}">
+                    <a href="{{ route('categories.index') }}">
+                        <i class="material-icons">directions</i>
+                        <span>Direcciones</span>
+                    </a>
+                </li>
                 <li>
                     <a href="javascript:void(0);">
                         <i class="material-icons">format_list_bulleted</i>
