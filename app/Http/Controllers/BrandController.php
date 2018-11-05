@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Brand;
+use App\Http\Requests\BrandStoreRequest;
+use App\Http\Requests\BrandUpdateRequest;
 
 class BrandController extends Controller{
     public function __construct(){
@@ -22,12 +25,11 @@ class BrandController extends Controller{
         return view('pages.brands.create');
     }
 
-    public function store(Request $request){
+    public function store(BrandStoreRequest $request){
         /*ALMACENAR LA NUEVA MARCA*/ 
-        $brand = new Brand();
-        $brand->title = $request->get('title');
-        $brand->save();
-        return redirect('brands')->with('success','Brand has been added');
+        $brand = Brand::create($request->all());
+
+        return redirect()->route('pages.brand.index')->with('success','Registro creado satisfactoriamente'
     }
 
     public function show($id){
@@ -35,15 +37,25 @@ class BrandController extends Controller{
     }
 
     public function edit($id){
-        //
+        return view('pages.brands.edit');
     }
 
-    public function update(Request $request, $id){
-        //
+    public function update(BrandUpdateRequest $request, $id){
+
+        $brand = Brand::find($id);
+
+        $brand->fill($request->all())->save();
+
+        return redirect()->route('brands.edit', $brand->id)->with('success','Registro actualizado satisfactoriamente');
+    
     }
 
     public function destroy($id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->status = 'INACTIVE';
+        $brand->save();
+
+        return back()->with('success','Categoría eliminada correctamente');
     }
 }

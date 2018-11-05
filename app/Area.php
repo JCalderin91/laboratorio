@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Area extends Model
 {
+    
+	protected $fillable = [
+		'name', 'status',
+	];
+	
     public function address(){
         return $this->belongsTo('App\Address');
     }

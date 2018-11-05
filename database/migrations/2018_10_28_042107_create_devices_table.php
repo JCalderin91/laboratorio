@@ -15,7 +15,7 @@ class CreateDevicesTable extends Migration
     {
         Schema::create('devices', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('category_id');
+            $table->unsignedInteger('sub_device_id');
             $table->unsignedInteger('brand_id');
             $table->string('client_id',8);
 
@@ -23,7 +23,7 @@ class CreateDevicesTable extends Migration
             $table->string('model')->nullable();
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('sub_device_id')->references('id')->on('sub_devices');
             $table->foreign('brand_id')->references('id')->on('brands');
             $table->foreign('client_id')->references('id')->on('clients');
         });

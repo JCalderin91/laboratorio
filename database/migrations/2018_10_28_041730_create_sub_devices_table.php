@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBrandCategoryTable extends Migration
+class CreateSubDevicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateBrandCategoryTable extends Migration
      */
     public function up()
     {
-        Schema::create('brand_category', function (Blueprint $table) {
+        Schema::create('sub_devices', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('category_id');
 
-            $table->unsignedInteger('brand_id');
+            $table->string('name')->unique();
+            $table->enum('status', ['ACTIVE', 'INACTIVE']);
             $table->timestamps();
             
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->foreign('brand_id')->references('id')->on('brands');
         });
     }
 
@@ -32,6 +32,6 @@ class CreateBrandCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('brand_category');
+        Schema::dropIfExists('sub_devices');
     }
 }

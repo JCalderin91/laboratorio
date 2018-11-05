@@ -18,8 +18,8 @@ class Device extends Model
         return $this->belongsTo('App\Client');
     }
 
-    public function category(){
-        return $this->belongsTo('App\Category','category_id');
+    public function name(){
+        return $this->belongsTo('App\SubDevice');
     }
 
 

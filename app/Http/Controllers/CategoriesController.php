@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\CategoryUpdateRequest;
 use App\Category;
 
 class CategoriesController extends Controller{
@@ -18,15 +20,11 @@ class CategoriesController extends Controller{
     }
 
 
-    public function store(Request $request){
+    public function store(CategoryStoreRequest $request){
 
-        $categories = new Category();
+        $category = Category::create($request->all());
 
-        $categories->name = $request->get('name');
-
-        $categories->save();
-
-        return redirect('categories')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('pages.categories.index')->with('success','Registro creado satisfactoriamente');
     }
 
     public function show($id){
@@ -38,11 +36,21 @@ class CategoriesController extends Controller{
     }
 
 
-    public function update(Request $request, $id){
-        //
+    public function update(CategoryUpdateRequest $request, $id){
+        
+        $category = Category::find($id);
+
+        $category->fill($request->all())->save();
+
+        return redirect()->route('categories.edit', $category->id)->with('success','Registro actualizado satisfactoriamente');
     }
 
     public function destroy($id){
-        //
+        
+        $category = Category::find($id);
+        $category->status = 'INACTIVE';
+        $category->save();
+
+        return back()->with('success','Categoría eliminada correctamente');
     }
 }

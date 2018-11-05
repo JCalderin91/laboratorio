@@ -13,25 +13,25 @@ class DeviceTableSeeder extends Seeder
     public function run()
     {
         $device = new Device();
-        $device->category_id = 3;
+        $device->sub_device_id = 1;
         $device->brand_id = 1;
         $device->client_id = '10196016';
         $device->save();
 
         $device = new Device();
-        $device->category_id = 4;
+        $device->sub_device_id = 2;
         $device->brand_id = 1;
         $device->client_id = '11970867';
         $device->save();
 
         $device = new Device();
-        $device->category_id = 7;
+        $device->sub_device_id = 5;
         $device->brand_id = 6;
         $device->client_id = '26501312';
         $device->save();
 
         $device = new Device();
-        $device->category_id = 8;
+        $device->sub_device_id = 6;
         $device->brand_id = 3;
         $device->client_id = '10196016';
         $device->save();

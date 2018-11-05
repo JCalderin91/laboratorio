@@ -17,6 +17,7 @@ class CreateBrandsTable extends Migration
             $table->increments('id');
 
             $table->string('title')->unique();
+            $table->enum('status', ['ACTIVE', 'INACTIVE']);
             $table->timestamps();
         });
     }

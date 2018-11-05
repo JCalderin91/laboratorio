@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\Client;
+use App\Http\Requests\ClientStoreRequest;
+use App\Http\Requests\ClientUpdateRequest;
+
 
 class ClientController extends Controller{
     public function __construct(){
@@ -19,44 +23,42 @@ class ClientController extends Controller{
         return view('pages.clients.create');
     }
 
-    public function store(Request $request){
-        $this->validate($request,[ 
-            'dni'=>'required',
-            'name'=>'required',
-            'phone'=>'required'
-        ]);
+    public function store(ClientStoreRequest $request){
+
         Client::create($request->all());
 
-        return redirect()->route('pages.client.index')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('pages.clients.index')->with('success','Registro creado satisfactoriamente');
     
     }
 
-    public function show($dni){
-        $clientes=Client::find($dni);
-        return  view('pages.client.show',compact('clientes'));
+    public function show($id){
+
+        $clients = Client::find($id);
+        return  view('pages.clients.show',compact('clients'));
     }
 
-    public function edit($dni){
-        $client=client::find($dni);
-        return view('pages.clients.edit',compact('client'));
+    public function edit($id){
+
+    
+        return view('pages.clients.edit');
     }
 
-    public function update(Request $request, $dni){
-        $this->validate($request,[ 
-            'dni'=>'required',
-            'name'=>'required',
-            'phone'=>'required'
-        ]);
- 
-        client::find($dni)->update($request->all());
+    public function update(ClientUpdateRequest $request, $id){
+        
+        $client = Client::find($id);
+        $client->fill($request->all())->save();
 
-        return redirect()->route('pages.client.index')->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('clients.edit', $client->id)->with('success','Registro actualizado satisfactoriamente');
     
     }
 
-    public function destroy($dni){
-        Client::find($dni)->delete();
-        return redirect()->route('pages.client.index')->with('success','Registro eliminado satisfactoriamente');
+    public function destroy($id){
+
+        $client = Client::find($id);
+        $client->status = 'INACTIVE';
+        $client->save();
+
+        return back()->with('success','Cliente eliminado correctamente');
     
     }
 }

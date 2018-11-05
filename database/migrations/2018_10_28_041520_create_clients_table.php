@@ -20,6 +20,7 @@ class CreateClientsTable extends Migration
             $table->string('first_name',128);
             $table->string('last_name',128);
             $table->string('phone');
+            $table->enum('status', ['ACTIVE', 'INACTIVE']);
             $table->timestamps();
 
             $table->primary('id');

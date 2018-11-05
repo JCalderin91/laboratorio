@@ -6,7 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Client extends Model
 {
-	public $incrementing = false;
+
+    public $incrementing = false;
+
+    protected $fillable = [
+        'id', 'first_name', 'last_name', 'phone', 'area_id', 'status'
+    ];
 
 	public function orders(){
         return $this->hasMany('App\Order');
