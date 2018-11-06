@@ -22,3 +22,8 @@
 
     <!-- DataTable -->
     <script src="{{ asset('assets/plugins/jquery-datatable/data-table.js') }}"></script>
+
+    
+    <!-- Vue-Axios -->
+    <script src="{{ asset('assets/plugins/vue/vue.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/axios/axios.min.js') }}"></script>

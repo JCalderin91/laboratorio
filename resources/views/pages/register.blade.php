@@ -26,37 +26,74 @@
 @endif
 
 
-<div class="card">
+<div id="app" class="card">
     <div class="header">
         <h2>REGISTRO DE ENTRADA Y SALIDA</h2>
         <p>Con el selector podra indicar el tiempo que se encuentre activo en el laboratorio</p>
     </div>
     <div class="body">
+        @{{ message }}
+        <div class="form-group">
+            <input type="text" class="form-control form-line" v-model="users.name">
+        </div>
+        <button title="Desactivar" data-toggle="modal" data-target="#hour" type="button" class="btn bg-red waves-effect">
+            <i class="material-icons">lock_outline</i>
+        </button>
+
+        <pre>@{{users}}</pre>
     </div>        
-</div>
-<!-- IN -->
-<div class="modal fade" id="hour" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content modal-col-green">
-            <form action="{{ route('hours.store') }}" method="POST">
-                @csrf
-                <div class="modal-header ">
-                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input id="password" name="password" type="password" class="form-control">
+    <!-- IN -->
+    <div class="modal fade" id="hour" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content modal-col-green">
+                <form action="" v-on:submit.prevent="getUsers()">
+                    <div class="modal-header ">
+                        <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
                     </div>
-                    <input type="hidden" name="user_id" value="" id="user_id">
-                    <input type="hidden" name="operation" value="" id="operation">
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
-                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
-                </div>
-            </form>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input v-model="users.name" name="password" type="text" class="form-control">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('script')
+
+<script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        users: {
+            name: 'jesus'
+        }
+      },
+      methods:{
+        getUsers(){
+            axios
+            .post('/ajax',
+            {
+                name: 'Fred'
+            })
+            .then(function (response) {
+                this.users = response.data
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+        }
+      }
+    })
+</script>
 
 @endsection
