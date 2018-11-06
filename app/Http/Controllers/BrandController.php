@@ -29,7 +29,7 @@ class BrandController extends Controller{
         /*ALMACENAR LA NUEVA MARCA*/ 
         $brand = Brand::create($request->all());
 
-        return redirect()->route('pages.brand.index')->with('success','Registro creado satisfactoriamente'
+        return redirect()->route('pages.brand.index')->with('success','Registro creado satisfactoriamente');
     }
 
     public function show($id){

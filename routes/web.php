@@ -24,3 +24,4 @@ Route::get('test', function () {
     return view('pages.register');
 });
 
+Route::resource('api', 'testController');

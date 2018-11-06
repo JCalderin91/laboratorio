@@ -41,18 +41,19 @@
         </button>
 
         <pre>@{{users}}</pre>
+        <pre>@{{user}}</pre>
     </div>        
     <!-- IN -->
     <div class="modal fade" id="hour" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content modal-col-green">
-                <form action="" v-on:submit.prevent="getUsers()">
+                <form action="" v-on:submit.prevent="pushUser()">
                     <div class="modal-header ">
                         <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <input v-model="users.name" name="password" type="text" class="form-control">
+                            <input v-model="user_id" name="password" type="text" class="form-control">
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -74,23 +75,33 @@
       el: '#app',
       data: {
         message: 'Hello Vue!',
-        users: {
-            name: 'jesus'
-        }
+        users: '-',
+        user_id: 'Empty',
+        user: ''
       },
       methods:{
         getUsers(){
             axios
-            .post('/ajax',
-            {
-                name: 'Fred'
-            })
-            .then(function (response) {
-                this.users = response.data
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+                .get('/api')
+                .then( (response) => {
+                    this.users = response.data;
+                })
+                .catch( (error) => {
+                    console.log(error);
+                });
+        },
+        pushUser(){
+            axios
+                .post('/api',{
+                    id: this.user_id
+                })
+                .then( (response) => {
+                    this.user = response.data
+                    $('#hour').modal('hide')
+                })
+                .catch( (error) => {
+                    console.log(error);
+                });
         }
       }
     })
