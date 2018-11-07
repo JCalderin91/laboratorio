@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Device extends Model
 {
+    protected $fillable = [
+        'sub_device_id', 'brand_id', 'client_id', 'b_n', 'model',
+    ];
+
     public function orders(){
         return $this->hasMany('App\Order');
     }

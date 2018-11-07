@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Device;
-use App\Category;
 
 class DeviceController extends Controller{
     public function __construct(){

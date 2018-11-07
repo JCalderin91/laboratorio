@@ -31,6 +31,15 @@ class ClientController extends Controller{
     
     }
 
+
+    public function storeWithModal(ClientStoreRequest $request){
+
+        $client = Client::create($request->all());
+
+        return $client;
+    
+    }
+
     public function show($id){
 
         $clients = Client::find($id);

@@ -21,7 +21,7 @@ Route::resource('brands', 'BrandController');
 Route::resource('hours', 'HoursController');
 
 
-Route::view('/register', 'pages.register');
+//Route::view('/register', 'pages.register');
 
 
 

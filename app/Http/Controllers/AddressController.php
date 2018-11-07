@@ -43,6 +43,15 @@ class AddressController extends Controller
 
         return redirect()->route('pages.address.index')->with('success','Registro creado satisfactoriamente');
     }
+    
+
+    public function storeWithModal(AddressStoreRequest $request)
+    {
+        $address = Address::create($request->all());
+
+        return $address;
+    }
+
 
     /**
      * Display the specified resource.

@@ -27,6 +27,13 @@ class CategoriesController extends Controller{
         return redirect()->route('pages.categories.index')->with('success','Registro creado satisfactoriamente');
     }
 
+    public function storeWithModal(CategoryStoreRequest $request){
+
+        $category = Category::create($request->all());
+
+        return $category;
+    }
+
     public function show($id){
         
     }

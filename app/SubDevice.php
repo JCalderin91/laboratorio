@@ -8,7 +8,7 @@ class SubDevice extends Model
 {
     
     protected $fillable = [
-		'name', 'status',
+		'name', 
 	];
 
     public function category(){

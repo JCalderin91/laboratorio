@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
+use App\Devive;
+use Carbon\Carbon;
 
-use App\Area;
-use App\Http\Requests\AreaStoreRequest;
-use App\Http\Requests\AreaUpdateRequest;
-
-class AreaController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas = Area::get();
-        return view('pages.areas.index',compact('areas'));
+        $orders = Order::get();
+        return view('pages.devices.index',compact('orders'));
     }
 
     /**
@@ -28,7 +27,8 @@ class AreaController extends Controller
      */
     public function create()
     {
-        return view('pages.areas.create');
+        return view('pages.devices.create');
+
     }
 
     /**
@@ -37,19 +37,19 @@ class AreaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AreaStoreRequest $request)
+    public function store(Request $request)
     {
-        $area = Area::create($request->all());
+        $device = Device::create($request->all());
 
-        return redirect()->route('pages.areas.index')->with('success','Registro creado satisfactoriamente');
-    }
+        $order = new Order();
+        $order->client_id = $request->get('client_id');
+        $order->user_id = $request->get('user_id');
+        $order->device_id = $device->id;
+        $order->arrival_date = now();
+        $order->description = $request->get('description');
+        $order->save();
 
-
-    public function storeWithModal(AreaStoreRequest $request)
-    {
-        $area = Area::create($request->all());
-
-        return $area;
+        return redirect()->route('pages.devices.index')->with('success','Registro creado satisfactoriamente');
     }
 
     /**
@@ -71,7 +71,7 @@ class AreaController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.areas.edit');
+       return view('pages.devices.edit');
     }
 
     /**
@@ -81,13 +81,12 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AreaUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $area = Area::find($id);
+        $order = Order::find($id);
+        $order->fill($request->all())->save();
 
-        $area->fill($request->all())->save();
-
-        return redirect()->route('areas.edit', $area->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('devices.edit', $order->id)->with('success','Registro actualizado satisfactoriamente');
     }
 
     /**
@@ -98,10 +97,6 @@ class AreaController extends Controller
      */
     public function destroy($id)
     {
-        $area = Area::find($id);
-        $area->status = 'INACTIVE';
-        $area->save();
-
-        return back()->with('success','Categoría eliminada correctamente');
+        //
     }
 }

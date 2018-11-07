@@ -8,7 +8,7 @@ class Brand extends Model
 {
     
 	protected $fillable = [
-		'title', 'status'
+		'title', 
 	];
 
     public function devices(){
