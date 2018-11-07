@@ -88,10 +88,10 @@
                         <tbody>
                             @foreach($orders as $order)
                             <tr>
-                                <td>{{ $order->Device->category->name }}</td>
-                                <td>{{ $order->client->id }}</td>
-                                <td>{{ $order->client->first_name }}</td>
-                                <td>{{ $order->arrival_date }}</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
                                 <td>
                                     @switch($order->status)
                                         @case('PENDING')

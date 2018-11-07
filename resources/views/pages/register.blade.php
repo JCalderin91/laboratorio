@@ -26,37 +26,139 @@
 @endif
 
 
-<div class="card">
+<div id="app" class="card">
     <div class="header">
         <h2>REGISTRO DE ENTRADA Y SALIDA</h2>
         <p>Con el selector podra indicar el tiempo que se encuentre activo en el laboratorio</p>
     </div>
     <div class="body">
+        @{{ message }}
+        <div class="form-group">
+            <input type="text" class="form-control form-line" v-model="users.name">
+        </div>
+        <button title="Registrar" data-toggle="modal" data-target="#hour" type="button" class="btn bg-teal waves-effect">
+            <i class="material-icons">edit</i>
+        </button>
+
+        <pre>@{{client}}</pre>
     </div>        
-</div>
-<!-- IN -->
-<div class="modal fade" id="hour" tabindex="-1" role="dialog">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content modal-col-green">
-            <form action="{{ route('hours.store') }}" method="POST">
-                @csrf
-                <div class="modal-header ">
-                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <input id="password" name="password" type="password" class="form-control">
+    <!-- IN -->
+    <div class="modal fade" id="hour" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form action="" v-on:submit.prevent="">
+                    <div class="modal-header ">
+                        <h2 class="modal-title" id="deleteLabel">Registrar nuevo usuario</h2>
                     </div>
-                    <input type="hidden" name="user_id" value="" id="user_id">
-                    <input type="hidden" name="operation" value="" id="operation">
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
-                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
-                </div>
-            </form>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input v-model="client.id" name="id" type="text" class="form-control" placeholder="Ingrese la cedula" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select v-model="client.area_id" name="area_id" class="form-control" required>
+                                            <option value="" required>Seleccione</option>
+                                            <option value="1">Informatica</option>
+                                            <option value="2">Turismo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="fomr-line">
+                                        <input v-model="client.first_name" name="first_name" type="text" class="form-control" placeholder="Nombres" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="from-line">
+                                        <input v-model="client.last_name" name="last_name" type="text" class="form-control" placeholder="Apellidos" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="from-line">
+                                        <input v-model="client.phone" name="phone" type="text" class="form-control" placeholder="Telefono" required>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select v-model="client.status" name="status" class="form-control" required>
+                                        <option value="" required>Seleccione</option>
+                                        <option value="ACTIVE">Activo</option>
+                                        <option value="INACTIVE">Inactivo</option>
+                                    </select> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('script')
+
+<script>
+    var app = new Vue({
+      el: '#app',
+      data: {
+        message: 'Hello Vue!',
+        users: '-',
+        user_id: 'Empty',
+        user: '',
+        client: {
+            id: '',
+            area_id: '',
+            first_name: '',
+            last_name: '',
+            phone: '',
+            status: ''
+        }
+      },
+      methods:{
+        getUsers(){
+            axios
+                .get('/api')
+                .then( (response) => {
+                    this.users = response.data;
+                })
+                .catch( (error) => {
+                    console.log(error);
+                });
+        },
+        pushUser(){
+            axios
+                .post('/api',{
+                    id: this.user_id
+                })
+                .then( (response) => {
+                    this.user = response.data
+                    $('#hour').modal('hide')
+                })
+                .catch( (error) => {
+                    console.log(error);
+                });
+        }
+      }
+    })
+</script>
 
 @endsection

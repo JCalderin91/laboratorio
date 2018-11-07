@@ -1,13 +1,12 @@
 <?php
 
-Route::get('/ajax', function () {
+Route::post('/ajax', function () {
+
 	$data = (object) [
-            'pendientes' => 2,
-            'reparados' => 1,
-            'entregados' => 4,
+            'name' => $_GET['name']
           ];
     return json_encode($data);
-})->name('ho-ras');
+});
 
 Auth::routes();
 
@@ -21,8 +20,15 @@ Route::resource('brands', 'BrandController');
 Route::resource('hours', 'HoursController');
 
 
-//Route::view('/register', 'pages.register');
+/*<<<<<<< HEAD
+Route::view('/register', 'pages.register');
 
 
 
+=======
+Route::get('test', function () {
+    return view('pages.register');
+});
+>>>>>>> 8376cd67c4a18af9cae572382121d9a86f6f84cb
 
+Route::resource('api', 'testController');*/
