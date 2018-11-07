@@ -36,24 +36,70 @@
         <div class="form-group">
             <input type="text" class="form-control form-line" v-model="users.name">
         </div>
-        <button title="Desactivar" data-toggle="modal" data-target="#hour" type="button" class="btn bg-red waves-effect">
-            <i class="material-icons">lock_outline</i>
+        <button title="Registrar" data-toggle="modal" data-target="#hour" type="button" class="btn bg-teal waves-effect">
+            <i class="material-icons">edit</i>
         </button>
 
-        <pre>@{{users}}</pre>
-        <pre>@{{user}}</pre>
+        <pre>@{{client}}</pre>
     </div>        
     <!-- IN -->
     <div class="modal fade" id="hour" tabindex="-1" role="dialog">
-        <div class="modal-dialog modal-sm" role="document">
-            <div class="modal-content modal-col-green">
-                <form action="" v-on:submit.prevent="pushUser()">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form action="" v-on:submit.prevent="">
                     <div class="modal-header ">
-                        <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
+                        <h2 class="modal-title" id="deleteLabel">Registrar nuevo usuario</h2>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <input v-model="user_id" name="password" type="text" class="form-control">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <input v-model="client.id" name="id" type="text" class="form-control" placeholder="Ingrese la cedula" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="form-line">
+                                        <select v-model="client.area_id" name="area_id" class="form-control" required>
+                                            <option value="" required>Seleccione</option>
+                                            <option value="1">Informatica</option>
+                                            <option value="2">Turismo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="fomr-line">
+                                        <input v-model="client.first_name" name="first_name" type="text" class="form-control" placeholder="Nombres" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="from-line">
+                                        <input v-model="client.last_name" name="last_name" type="text" class="form-control" placeholder="Apellidos" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="from-line">
+                                        <input v-model="client.phone" name="phone" type="text" class="form-control" placeholder="Telefono" required>
+                                    </div>
+                                </div>  
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <select v-model="client.status" name="status" class="form-control" required>
+                                        <option value="" required>Seleccione</option>
+                                        <option value="ACTIVE">Activo</option>
+                                        <option value="INACTIVE">Inactivo</option>
+                                    </select> 
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -77,7 +123,15 @@
         message: 'Hello Vue!',
         users: '-',
         user_id: 'Empty',
-        user: ''
+        user: '',
+        client: {
+            id: '',
+            area_id: '',
+            first_name: '',
+            last_name: '',
+            phone: '',
+            status: ''
+        }
       },
       methods:{
         getUsers(){
