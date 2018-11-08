@@ -26,9 +26,9 @@ Route::view('/register', 'pages.register');
 
 
 =======
-Route::get('test', function () {
-    return view('pages.register');
-});
 >>>>>>> 8376cd67c4a18af9cae572382121d9a86f6f84cb
 
 Route::resource('api', 'testController');*/
+Route::get('test', function () {
+    return view('pages.register');
+});
