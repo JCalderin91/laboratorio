@@ -16,13 +16,14 @@
 </div>
 @endif
 @if(Session::has('success'))
-    <div data-notify="container" class="bootstrap-notify-container alert alert-dismissible bg-green p-r-35 animated fadeInDown" role="alert" data-notify-position="top-center" style="display: inline-block; position: absolute; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; left: 50%; transform: translateX(-50%);">
-        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 1033;">×</button>
-        <span data-notify="icon"></span>
-        <span data-notify="title"></span>
-        <span data-notify="message">{{Session::get('success')}}</span>
-        <a href="#" target="_blank" data-notify="url"></a>
-    </div>
+<div data-notify="container" class="bootstrap-notify-container alert alert-dismissible bg-green p-r-35 animated fadeInDown"
+    role="alert" data-notify-position="top-center" style="display: inline-block; position: absolute; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; left: 50%; transform: translateX(-50%);">
+    <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 1033;">×</button>
+    <span data-notify="icon"></span>
+    <span data-notify="title"></span>
+    <span data-notify="message">{{Session::get('success')}}</span>
+    <a href="#" target="_blank" data-notify="url"></a>
+</div>
 @endif
 
 
@@ -32,16 +33,73 @@
         <p>Con el selector podra indicar el tiempo que se encuentre activo en el laboratorio</p>
     </div>
     <div class="body">
-        @{{ message }}
-        <div class="form-group">
-            <input type="text" class="form-control form-line" v-model="users.name">
-        </div>
-        <button title="Registrar" data-toggle="modal" data-target="#hour" type="button" class="btn bg-teal waves-effect">
-            <i class="material-icons">edit</i>
-        </button>
+        <div class="row">
+            <div class="col-10 col-md-5">
+                <div class="form-group">
+                    <select name="status" data-live-search="true" class="form-control" required>
+                        <option value="" required>Seleccione</option>
+                        <option value="ACTIVE">22998438</option>
+                        <option value="INACTIVE">26082103</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-2 col-md-1">
+                <button title="Registrar" data-toggle="modal" data-target="#hour" type="button" class="btn bg-teal waves-effect">
+                    <i class="material-icons">add_circle_outline</i>
+                </button>
+            </div>
 
-        <pre>@{{client}}</pre>
-    </div>        
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input v-model="client.id" name="id" type="text" class="form-control" disabled required>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input v-model="client.area_id" name="id" type="text" class="form-control" disabled required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input v-model="client.first_name" name="id" type="text" class="form-control" disabled required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input v-model="client.last_name" name="id" type="text" class="form-control" disabled required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input v-model="client.phone" name="id" type="text" class="form-control" disabled required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="form-line">
+                        <input v-model="client.status" name="id" type="text" class="form-control" disabled required>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
     <!-- IN -->
     <div class="modal fade" id="hour" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-lg" role="document">
@@ -55,14 +113,15 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <input v-model="client.id" name="id" type="text" class="form-control" placeholder="Ingrese la cedula" required>
+                                        <input v-model="client.id" name="id" type="text" class="form-control"
+                                            placeholder="Ingrese la cedula" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="form-line">
-                                        <select v-model="client.area_id" name="area_id" class="form-control" required>
+                                        <select v-model="client.area_id" name="area_id" class="form-control" data-live-search="true" required>
                                             <option value="" required>Seleccione</option>
                                             <option value="1">Informatica</option>
                                             <option value="2">Turismo</option>
@@ -73,23 +132,26 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="fomr-line">
-                                        <input v-model="client.first_name" name="first_name" type="text" class="form-control" placeholder="Nombres" required>
+                                        <input v-model="client.first_name" name="first_name" type="text" class="form-control"
+                                            placeholder="Nombres" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="from-line">
-                                        <input v-model="client.last_name" name="last_name" type="text" class="form-control" placeholder="Apellidos" required>
+                                        <input v-model="client.last_name" name="last_name" type="text" class="form-control"
+                                            placeholder="Apellidos" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <div class="from-line">
-                                        <input v-model="client.phone" name="phone" type="text" class="form-control" placeholder="Telefono" required>
+                                        <input v-model="client.phone" name="phone" type="text" class="form-control"
+                                            placeholder="Telefono" required>
                                     </div>
-                                </div>  
+                                </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -97,7 +159,7 @@
                                         <option value="" required>Seleccione</option>
                                         <option value="ACTIVE">Activo</option>
                                         <option value="INACTIVE">Inactivo</option>
-                                    </select> 
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -118,47 +180,47 @@
 
 <script>
     var app = new Vue({
-      el: '#app',
-      data: {
-        message: 'Hello Vue!',
-        users: '-',
-        user_id: 'Empty',
-        user: '',
-        client: {
-            id: '',
-            area_id: '',
-            first_name: '',
-            last_name: '',
-            phone: '',
-            status: ''
-        }
-      },
-      methods:{
-        getUsers(){
-            axios
-                .get('/api')
-                .then( (response) => {
-                    this.users = response.data;
-                })
-                .catch( (error) => {
-                    console.log(error);
-                });
+        el: '#app',
+        data: {
+            users: '-',
+            user_id: 'Empty',
+            user: '',
+            client: {
+                id: '',
+                area_id: '',
+                first_name: '',
+                last_name: '',
+                phone: '',
+                status: ''
+            }
         },
-        pushUser(){
-            axios
-                .post('/api',{
-                    id: this.user_id
-                })
-                .then( (response) => {
-                    this.user = response.data
-                    $('#hour').modal('hide')
-                })
-                .catch( (error) => {
-                    console.log(error);
-                });
+        methods: {
+            getUsers() {
+                axios
+                    .get('/api')
+                    .then((response) => {
+                        this.users = response.data;
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            },
+            pushUser() {
+                axios
+                    .post('/api', {
+                        id: this.user_id
+                    })
+                    .then((response) => {
+                        this.user = response.data
+                        $('#hour').modal('hide')
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    });
+            }
         }
-      }
     })
+
 </script>
 
 @endsection
