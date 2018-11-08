@@ -10,7 +10,7 @@
 	@include('assets.styles')
     @yield('styles')
 </head>
-<body class="theme-blue">
+<body class="theme-green">
     @include('elements.loader')
     @include('elements.search')
     @include('elements.top_bar')    
