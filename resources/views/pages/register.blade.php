@@ -5,8 +5,8 @@
 @section('content')
 	<div class="card">
 		<div class="header">
-			<h2 class="panel-title">Nuevo Cliente</h2>
-			<p>Registre los datos de un nuevo cliente en nuestro sistema</p>
+			<h2 class="panel-title">Nueva Orden de Servicio</h2>
+			<p>Registre los datos de una nueva Orden de Servicio en nuestro sistema</p>
 		</div>
 		<div class="body">
 			<form method="POST" action="{{ route('clients.store') }}"  role="form">
@@ -15,7 +15,7 @@
 				{{-- datos del  cliente --}}
 				<div class="row">
 					<div class="col-md-12">
-						<h3>Datos del Cliente</h3>
+						<h4>Datos del Cliente <span><i class="caret"></i></span></h4>
 					</div>
 					<div class="col-md-6">
 						<div class="form-group form-float">
@@ -89,6 +89,51 @@
 
 				{{-- datos del equipo --}}
 
+				<div class="row">
+					<div class="col-md-12">
+						<h4>Datos del Equipo <span><i class="caret"></i></span></h4>
+					</div>
+					<div class="col-md-6">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="text" class="form-control" name="brand_id" required>
+								<label class="form-label">Marca</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="text" class="form-control" name="last_name" required>
+								<label class="form-label">Modelo</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6" style="padding-right: 0;">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="text" class="form-control" name="area_name" required>
+								<label class="form-label">Serial</label>
+							</div>
+						</div>
+					</div>
+					
+					<div class="col-md-6">
+						<div class="form-group form-float">
+							<div class="form-line">
+								<input type="text" class="form-control" name="phone" required>
+								<label class="form-label">Bien Nacional</label>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-md-6">
+						<input type="radio"><label for="">Propio</label>
+						<input type="radio"><label for="">UDONE</label>
+					</div>
+				</div>
 				{{-- fin datos del equipo --}}
 				
 				{{-- botones --}}
