@@ -16,3 +16,22 @@
     right: 20px;
     z-index: 999999;
 }
+
+.dropdown-menu {
+    width: 513px;
+    position: absolute;
+    top: 73px;
+    padding: 5;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    text-align: left;
+    color: black;
+}
+
+.dropdown-item:hover{
+    background-color: grey;
+}
