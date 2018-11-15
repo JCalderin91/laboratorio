@@ -36,6 +36,15 @@
         <div class="form-group">
             <input type="text" class="form-control form-line" v-model="users.name">
         </div>
+        <div class="form-group">
+            <div class="form-line">
+                <select v-model="client.area_id" name="area_id" class="form-control" required>
+                    <option value="" required>Seleccione</option>
+                    <option v-on:click="loadUser('fdf')" value="1">Informatica</option>
+                    <option v-on:click="loadUser('fdf')" value="2">Turismo</option>
+                </select>
+            </div>
+        </div>
         <button title="Registrar" data-toggle="modal" data-target="#hour" type="button" class="btn bg-teal waves-effect">
             <i class="material-icons">edit</i>
         </button>
@@ -156,6 +165,9 @@
                 .catch( (error) => {
                     console.log(error);
                 });
+        },
+        loadUSer:function(message){
+            this.message = message
         }
       }
     })
