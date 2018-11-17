@@ -37,7 +37,7 @@
 <div class="card">
     <div class="header">
         @if(Auth::user()->role_id == 1)
-        <a href="{{ route('tecnics.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nuevo cliente">
+        <a href="{{ route('users.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nuevo cliente">
             <i class="material-icons">add_circle_outline</i>
         </a>
         @endif
@@ -105,7 +105,7 @@
                         @endif
                         @if(Auth::user()->role_id == 1)
                         <td>
-                            <a title="Editar" href="{{ route('tecnics.edit', $tecnic->id) }}" class="btn bg-blue waves-effect">
+                            <a title="Editar" href="{{ route('users.edit', $tecnic->id) }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
                             </a>
                             @if($tecnic->status == 'ACTIVE')
@@ -133,7 +133,7 @@
 <div class="modal fade" id="disable" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content modal-col-red">
-            <form action="{{ route('tecnics.destroy','test') }}" method="POST">
+            <form action="{{ route('users.destroy','test') }}" method="POST">
                 {{method_field('delete')}}
                 @csrf
                 <div class="modal-header ">
@@ -155,7 +155,7 @@
 <div class="modal fade" id="enable" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content modal-col-green">
-            <form action="{{ route('tecnics.destroy','test') }}" method="POST">
+            <form action="{{ route('users.destroy','test') }}" method="POST">
                 {{method_field('delete')}}
                 @csrf
                 <div class="modal-header ">

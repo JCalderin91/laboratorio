@@ -48,7 +48,7 @@ class UserController extends Controller{
 
         $tecnic->save();
 
-        return redirect('tecnics')->with('success','Registro creado satisfactoriamente');
+        return redirect('users')->with('success','Registro creado satisfactoriamente');
     }
 
     public function show($id){
@@ -78,7 +78,7 @@ class UserController extends Controller{
         $tecnic->update();
 
 
-        return redirect('tecnics')->with('success','Registro actualizado satisfactoriamente');
+        return redirect('users')->with('success','Registro actualizado satisfactoriamente');
     }
 
     public function destroy(Request $request, $id){
@@ -91,7 +91,7 @@ class UserController extends Controller{
         }        
 
         $tecnic->update();
-        return redirect('tecnics')->with('success','Registro desactivado satisfactoriamente');
+        return redirect('users')->with('success','Registro desactivado satisfactoriamente');
     
     }
 }
