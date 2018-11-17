@@ -50,26 +50,20 @@
                         <span>Marcas</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('tecnics*') ? 'active' : '' }}">
-                    <a href="{{ route('tecnics.index') }}">
+                <li class="{{ Request::is('users*') ? 'active' : '' }}">
+                    <a href="{{ route('users.index') }}">
                         <i class="material-icons">person</i>
                         <span>Técnicos</span>
                     </a>
                 </li>
                 <li class="{{ Request::is('categories*') ? 'active' : '' }}">
-                    <a href="{{ route('categories.index') }}">
-                        <i class="material-icons">star</i>
-                        <span>Categorias</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('categories*') ? 'active' : '' }}">
-                    <a href="{{ route('categories.index') }}">
+                    <a href="">
                         <i class="material-icons">map</i>
                         <span>Areas</span>
                     </a>
                 </li>
                 <li class="{{ Request::is('categories*') ? 'active' : '' }}">
-                    <a href="{{ route('categories.index') }}">
+                    <a href="">
                         <i class="material-icons">directions</i>
                         <span>Direcciones</span>
                     </a>
