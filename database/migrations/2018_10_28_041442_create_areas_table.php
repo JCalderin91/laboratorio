@@ -18,7 +18,7 @@ class CreateAreasTable extends Migration
             $table->unsignedInteger('address_id');
 
             $table->string('name',128);
-            $table->enum('status', ['ACTIVE', 'INACTIVE']);
+            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->timestamps();
             
             $table->foreign('address_id')->references('id')->on('addresses');

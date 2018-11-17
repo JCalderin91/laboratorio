@@ -17,7 +17,7 @@ class CreateSubDevicesTable extends Migration
             $table->increments('id');
 
             $table->string('name',128)->unique();
-            $table->enum('status', ['ACTIVE', 'INACTIVE']);
+            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->timestamps();
             
         });
