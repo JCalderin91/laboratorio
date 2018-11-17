@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Lista de areas @endsection
+
 @section('content')
 
 
