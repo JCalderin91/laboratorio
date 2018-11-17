@@ -9,7 +9,7 @@
 			<p>Registre un nuevo técnico en nuestro sistema</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('tecnics.store') }}"  role="form">
+			<form method="POST" action="{{ route('users.store') }}"  role="form">
 				{{ csrf_field() }}
 				<div class="row">
 					<div class="col-md-12">
@@ -68,7 +68,7 @@
 					</div>
 					<div class="col-md-12">
                     <div class="form-group justify-between">
-                        <a href="{{ route('tecnics.index') }}" class="btn btn-primary waves-effect">
+                        <a href="{{ route('users.index') }}" class="btn btn-primary waves-effect">
 							<i class="material-icons">undo</i>
 							<span>VOLVER</span>	
 						</a>

@@ -23,11 +23,11 @@
 
 <div class="card">
     <div class="header">
-        <h2 class="panel-title">Nuevo técnico</h2>
+        <h2 class="panel-title">Editar Tecnico</h2>
         <p>Registre los datos de un nuevo cliente en nuestro sistema</p>
     </div>
     <div class="body">
-        <form method="POST" action="{{ route('tecnics.update', $tecnic->id) }}" role="form">
+        <form method="POST" action="{{ route('users.update', $tecnic->id) }}" role="form">
             @csrf
             <input name="_method" type="hidden" value="PATCH">
             <div class="row">
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group justify-between">
-                        <a href="{{ route('tecnics.index') }}" class="btn btn-primary waves-effect">
+                        <a href="{{ route('users.index') }}" class="btn btn-primary waves-effect">
 							<i class="material-icons">undo</i>
 							<span>VOLVER</span>	
 						</a>
