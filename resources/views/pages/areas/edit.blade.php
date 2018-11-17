@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
+
+@section('title')| Editar area @endsection
+
 @section('content')
 
 	@if (count($errors) > 0)

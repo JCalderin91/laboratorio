@@ -2,14 +2,6 @@
 
 @section('content')
 
-<script>
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(1000, function(){
-            $(this).remove();
-        });
-    }, 3500);
-</script>
-
 @if (count($errors) > 0)
 <div class="alert bg-red alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -24,12 +16,9 @@
 </div>
 @endif
 @if(Session::has('success'))
-    <div data-notify="container" class="bootstrap-notify-container alert alert-dismissible bg-green p-r-35 animated fadeInDown" role="alert" data-notify-position="top-center" style="display: inline-block; position: absolute; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; left: 50%; transform: translateX(-50%);">
-        <button type="button" aria-hidden="true" class="close" data-notify="dismiss" style="position: absolute; right: 10px; top: 5px; z-index: 1033;">×</button>
-        <span data-notify="icon"></span>
-        <span data-notify="title"></span>
-        <span data-notify="message">{{Session::get('success')}}</span>
-        <a href="#" target="_blank" data-notify="url"></a>
+    <div class="alert bg-green alert-dismissible" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        El tecnico ha sido almacenado satisfactoriamente
     </div>
 @endif
 
