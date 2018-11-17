@@ -17,7 +17,7 @@ class CreateAreasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('address_id');
 
-            $table->string('name');
+            $table->string('name',128);
             $table->enum('status', ['ACTIVE', 'INACTIVE']);
             $table->timestamps();
             

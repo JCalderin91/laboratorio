@@ -15,13 +15,11 @@ class CreateSubDevicesTable extends Migration
     {
         Schema::create('sub_devices', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('category_id');
 
-            $table->string('name')->unique();
+            $table->string('name',128)->unique();
             $table->enum('status', ['ACTIVE', 'INACTIVE']);
             $table->timestamps();
             
-            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
