@@ -62,8 +62,8 @@
                         <span>Areas</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('categories*') ? 'active' : '' }}">
-                    <a href="">
+                <li class="{{ Request::is('address') ? 'active' : '' }}">
+                    <a href="{{ route('addresses.index') }}">
                         <i class="material-icons">directions</i>
                         <span>Direcciones</span>
                     </a>

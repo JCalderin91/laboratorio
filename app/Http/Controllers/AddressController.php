@@ -41,7 +41,7 @@ class AddressController extends Controller
     {
         $address = Address::create($request->all());
 
-        return redirect()->route('pages.address.index')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('addresses.index')->with('success','Registro creado satisfactoriamente');
     }
     
 
@@ -72,7 +72,9 @@ class AddressController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.address.edit');
+
+        $address = Address::findOrFail($id);
+        return view('pages.address.edit', compact('address'));
     }
 
     /**
@@ -88,7 +90,7 @@ class AddressController extends Controller
 
         $address->fill($request->all())->save();
 
-        return redirect()->route('address.edit', $address->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('addresses.index', $address->id)->with('success','Registro actualizado satisfactoriamente');
     }
 
     /**

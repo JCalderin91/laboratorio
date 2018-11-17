@@ -50,7 +50,7 @@
             <table class="table table-striped table-hover text-center datatable">
                 <thead class="bg-blue">
                     <tr>
-                        <th data-priority="2" class="text-center">DNI</th>
+                        <th data-priority="2" class="text-center">Cedula</th>
                         <th data-priority="3" class="text-center">Nombres</th>
                         <th data-priority="6" class="text-center">Apellidos</th>
                         <th data-priority="7" class="text-center">Genero</th>
@@ -63,7 +63,7 @@
                 </thead>
                 <tfoot>
                     <tr class="text-center">
-                        <th class="text-center">DNI</th>
+                        <th class="text-center">Cedula</th>
                         <th class="text-center">Nombres</th>
                         <th class="text-center">Apellidos</th>
                         <th class="text-center">Genero</th>
