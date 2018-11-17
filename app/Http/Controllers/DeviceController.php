@@ -13,12 +13,12 @@ class DeviceController extends Controller{
 
     public function index(){
         $devices = Device::get();
-        return view('pages.devices.index', compact(['devices','categorys']));
+        return view('pages.devices.index', compact(['devices','categories']));
     }
 
     public function create(){
-        $categorys = Category::get();
-        return view('pages.devices.create', compact(['devices','categorys']));
+        $categories = Category::get();
+        return view('pages.devices.create', compact(['devices','categories']));
     }
 
     public function store(Request $request){

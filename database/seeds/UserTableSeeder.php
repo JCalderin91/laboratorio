@@ -38,5 +38,16 @@ class UserTableSeeder extends Seeder
         $user->password = bcrypt('123');
         $user->save();
 
+        $user = new User();
+        $user->id = '23591319';
+        $user->first_name = 'Miguel';
+        $user->last_name = 'Maestre';
+        $user->status = 'ACTIVE';
+        $user->gender = 'M';
+        $user->avatar = '001-man.png';
+        $user->role_id = $role_admin->id;
+        $user->password = bcrypt('secret');
+        $user->save();
+
     }
 }
