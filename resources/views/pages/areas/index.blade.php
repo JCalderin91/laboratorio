@@ -6,14 +6,14 @@
 @if(Session::has('success'))
     <div class="alert bg-green alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        La marca ha sido almacenada satisfactoriamente
+        El area ha sido almacenada satisfactoriamente
     </div>
 @endif
 
 
 <div class="card">
 	<div class="header">
-		<a href="{{ route('areas.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nueva marca">
+		<a href="{{ route('areas.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nueva area">
 			<i class="material-icons">add_circle</i>
 		</a>
 		<h3>Lista de areas o dependencias</h3>
@@ -31,21 +31,33 @@
                 <tfoot >
                     <tr class="text-center">
                         <th class="text-center">Nombre</th>
+                        @if(Auth::user()->role_id == 1)
                         <th class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach($areas as $area)
                     <tr>
-                        <td>{{ $area->title }}</td>
+                        <td>{{ $area->name }}</td>
+                        @if(Auth::user()->role_id == 1)
                         <td>
-                        	<button title="Editar" type="button" class="btn bg-blue waves-effect">
+                            <a title="Editar" href="{{ route('areas.edit', $area->id) }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
-                            </button>
-                            <button title="Borrar" data-toggle="modal" data-target="#delete" type="button" class="btn bg-red waves-effect">
-                                <i class="material-icons">delete</i>
-                            </button>
+                            </a>
+                            @if($area->status == 'ACTIVE')
+                                <button data-title="{{ $area->name }}" data-id="{{ $area->id }}" title="Desactivar"
+                                    data-toggle="modal" data-target="#disable" type="button" class="btn bg-red waves-effect">
+                                    <i class="material-icons">lock_outline</i>
+                                </button>
+                            @else
+                                <button data-title="{{ $area->name }}" data-id="{{ $area->id }}" title="Hablitar"
+                                    data-toggle="modal" data-target="#enable" type="button" class="btn bg-green waves-effect">
+                                    <i class="material-icons">lock_open</i>
+                                </button>
+                            @endif
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

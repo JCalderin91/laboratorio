@@ -57,7 +57,7 @@
                     </a>
                 </li>
                 <li class="{{ Request::is('categories*') ? 'active' : '' }}">
-                    <a href="">
+                    <a href="{{ route('areas.index') }}">
                         <i class="material-icons">map</i>
                         <span>Areas</span>
                     </a>

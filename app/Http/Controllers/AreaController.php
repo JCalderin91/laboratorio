@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Area;
+use App\Address;
 use App\Http\Requests\AreaStoreRequest;
 use App\Http\Requests\AreaUpdateRequest;
 
@@ -28,7 +29,8 @@ class AreaController extends Controller
      */
     public function create()
     {
-        return view('pages.areas.create');
+        $addresses = Address::get();
+        return view('pages.areas.create',compact('addresses'));
     }
 
     /**
@@ -39,9 +41,10 @@ class AreaController extends Controller
      */
     public function store(AreaStoreRequest $request)
     {
-        $area = Area::create($request->all());
 
-        return redirect()->route('pages.areas.index')->with('success','Registro creado satisfactoriamente');
+        $area = Area::create($request->all());
+        return redirect()->route('areas.index')->with('success','Registro creado satisfactoriamente');
+
     }
 
 
