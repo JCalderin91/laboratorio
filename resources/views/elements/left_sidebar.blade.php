@@ -27,7 +27,7 @@
                     </a>
                 </li> --}}
                 <li class="{{ Request::is('register*') ? 'active' : '' }}">
-                    <a href="">
+                    <a href="{{  url('/test') }}">
                         <i class="material-icons">assignment</i>
                         <span>Registrar servicio</span>
                     </a>
