@@ -3,6 +3,19 @@
 @section('content')
 
 
+@if (count($errors) > 0)
+<div class="alert bg-red alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Error!</strong> Revise los campos obligatorios.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 @if(Session::has('success'))
     <div class="alert bg-green alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
