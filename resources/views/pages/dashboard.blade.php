@@ -54,13 +54,6 @@
         <div class="card">
             <div class="header">
                 <h2>LISTA DE EQUIPOS</h2>
-                <ul class="header-dropdown m-r--5">
-                    <li class="dropdown">
-                        <a href="javascript:void(0);" title="Restablecer">
-                            <i class="material-icons">cached</i>
-                        </a>
-                    </li>
-                </ul>
             </div>
             <div class="body">
                 <div class="table-responsive">
@@ -93,38 +86,12 @@
                                 <td>--</td>
                                 <td>--</td>
                                 <td>
-                                    @switch($order->status)
-                                        @case('PENDING')
-                                        <div class="badge bg-red">Pendiente</div>
-                                        @break
-
-                                        @case('REVISED')
                                         <div class="badge bg-blue">Reparado</div>
-                                        @break
-
-                                        @default
-                                        <div class="badge bg-green">Entregado</div>
-                                    @endswitch
                                 </td>
                                 <td>
-                                    @switch($order->status)
-                                        @case('PENDING')
                                         <button title="Reparar" type="button" class="btn bg-orange waves-effect">
                                             <i class="material-icons">build</i>
                                         </button>
-                                        @break
-
-                                        @case('REVISED')
-                                        <button title="Entregar" type="button" class="btn bg-green waves-effect">
-                                            <i class="material-icons">send</i>
-                                        </button>
-                                        @break
-
-                                        @default
-                                        <button title="Ver" type="button" class="btn bg-blue waves-effect">
-                                            <i class="material-icons">remove_red_eye</i>
-                                        </button>
-                                    @endswitch
                                 </td>
                             </tr>
                             @endforeach
