@@ -9,7 +9,7 @@ use Carbon\Carbon;;
 
 
 
-class HoursController extends Controller{
+class HourController extends Controller{
 
     public function index(){
         //$date = Carbon::now();

@@ -8,7 +8,7 @@ use App\Http\Requests\UserUpdateRequest;
 use App\User;
 use App\Role;
 
-class TecnicController extends Controller{
+class UserController extends Controller{
     
     public function __construct(){
         $this->middleware('auth');

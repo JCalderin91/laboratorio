@@ -47,9 +47,9 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach($address as $addres)
+                    @foreach($addresses as $address)
                     <tr>
-                        <td>{{ $brand->title }}</td>
+                        <td>{{ $address->name }}</td>
                         <td>
                         	<button title="Editar" type="button" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>

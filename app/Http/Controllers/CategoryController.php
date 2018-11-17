@@ -7,7 +7,7 @@ use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Category;
 
-class CategoriesController extends Controller{
+class CategoryController extends Controller{
 
     public function index(){
         $categories = Category::get();
@@ -24,7 +24,7 @@ class CategoriesController extends Controller{
 
         $category = Category::create($request->all());
 
-        return redirect()->route('pages.categories.index')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('categories.index')->with('success','Registro creado satisfactoriamente');
     }
 
     public function storeWithModal(CategoryStoreRequest $request){
@@ -57,6 +57,7 @@ class CategoriesController extends Controller{
         $category = Category::find($id);
         $category->status = 'INACTIVE';
         $category->save();
+
 
         return back()->with('success','Categoría eliminada correctamente');
     }

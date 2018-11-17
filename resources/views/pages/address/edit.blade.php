@@ -27,7 +27,7 @@
 			<p>Relize cambios en los datos que usted necesite</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('brand.store') }}"  role="form">
+			<form method="POST" action="{{ route('brands.store') }}"  role="form">
 				{{ csrf_field() }}
 		        <div class="row">
 					<div class="col-md-12">
