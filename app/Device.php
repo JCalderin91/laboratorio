@@ -22,7 +22,7 @@ class Device extends Model
         return $this->belongsTo('App\Client');
     }
 
-    public function name(){
+    public function subDevice(){
         return $this->belongsTo('App\SubDevice');
     }
 

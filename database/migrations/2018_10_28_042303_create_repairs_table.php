@@ -18,7 +18,7 @@ class CreateRepairsTable extends Migration
             $table->unsignedInteger('order_id');
 
             $table->string('description');
-            $table->enum('status',['REPAIRED', 'WITHOUT REPAIR'])->default('ACTIVE');
+            $table->enum('status',['REPAIRED', 'WITHOUT REPAIR'])->default('REPAIRED');
             $table->dateTime('created');
             
             $table->primary('order_id');

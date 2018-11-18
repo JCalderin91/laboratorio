@@ -12,40 +12,32 @@ class SubDeviceTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-
-    	
+    {   	
 
         //Equipos
         $device = new SubDevice();
         $device->name = 'Licuadora';
         $device->save();
          
-
         $device = new SubDevice();
         $device->name = 'Plancha';
-        $device->save();  
-         
+        $device->save();           
 
         $device = new SubDevice();
         $device->name = 'TV';
-        $device->save();
-        ;   
+        $device->save();         
 
         $device = new SubDevice();
         $device->name = 'Teclado';
-        $device->save();
-         
+        $device->save();         
 
         $device = new SubDevice();
         $device->name = 'Auriculares';
-        $device->save();
-        
+        $device->save();        
 
         $device = new SubDevice();
         $device->name = 'Mouse';
-        $device->save();
-          
+        $device->save();          
         
     }
 }

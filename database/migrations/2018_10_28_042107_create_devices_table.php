@@ -22,6 +22,7 @@ class CreateDevicesTable extends Migration
             $table->string('b_n')->nullable();
             $table->string('model')->nullable();
             $table->timestamps();
+            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
 
             $table->foreign('sub_device_id')->references('id')->on('sub_devices');
             $table->foreign('brand_id')->references('id')->on('brands');

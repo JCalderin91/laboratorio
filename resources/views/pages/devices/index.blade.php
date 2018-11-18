@@ -56,9 +56,9 @@
                 <tbody>
                     @foreach($devices as $device)    
                     <tr>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
+                        <td>{{ $device->id }}</td>
+                        <td>{{ $device->brand->title }}</td>
+                        <td>{{ $device->subDevice->name }}</td>
                         @if(Auth::user()->role_id == 1)
                         <td>
                             @if($device->status == 'ACTIVE')
@@ -68,19 +68,16 @@
                             @endif
                         </td>
                         <td>
-                            <button title="Reparar" type="button" class="btn bg-orange waves-effect">
-                                <i class="material-icons">build</i>
-                            </button>
-                            <button title="Editar" type="button" class="btn bg-blue waves-effect">
+                            <a title="Editar" href="{{ route('devices.edit', $device->id) }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
-                            </button>
+                            </a>
                             @if($device->status == 'ACTIVE')
-                                <button data-title="-" data-id="-" title="Desactivar"
+                                <button data-title="-" data-id="{{ $device->id }}" title="Desactivar"
                                     data-toggle="modal" data-target="#disable" type="button" class="btn bg-red waves-effect">
                                     <i class="material-icons">lock_outline</i>
                                 </button>
                             @else
-                                <button data-title="-" data-id="-" title="Hablitar"
+                                <button data-title="-" data-id="{{ $device->id }}" title="Hablitar"
                                     data-toggle="modal" data-target="#enable" type="button" class="btn bg-green waves-effect">
                                     <i class="material-icons">lock_open</i>
                                 </button>
@@ -95,20 +92,47 @@
 	</div>
 </div>
 
-<!-- Small Size -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog">
+<!-- DISABLE -->
+<div class="modal fade" id="disable" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content modal-col-red">
-            <div class="modal-header ">
-                <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
-            </div>
-            <div class="modal-body">
-                Esta seguro de querer eliminar este registro?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect">CONTINUAR</button>
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
-            </div>
+            <form action="{{ route('devices.destroy','test') }}" method="POST">
+                {{method_field('delete')}}
+                @csrf
+                <div class="modal-header ">
+                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer deshabilitar este dispositivo?
+                    <input type="hidden" name="id" value="" id="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ENABLE -->
+<div class="modal fade" id="enable" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content modal-col-green">
+            <form action="{{ route('devices.destroy','test') }}" method="POST">
+                {{method_field('delete')}}
+                @csrf
+                <div class="modal-header ">
+                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer hablitar este dispositivo?
+                    <input type="hidden" name="id" value="" id="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -138,7 +162,6 @@
                     "previous": "Anterior"
                 }
             },
-            responsive: true,
             order: [[ 1, 'asc' ]],
             ordering: true,
             lengthChange: false

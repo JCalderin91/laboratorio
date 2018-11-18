@@ -22,31 +22,53 @@
 		{{Session::get('success')}}
 	</div>
 	@endif
-
 	<div class="card">
 		<div class="header">
 			<h2 class="panel-title">Modifique los datos del dispositivo</h2>
 			<p>Relize cambios en los datos que usted necesita</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('client.store') }}"  role="form">
+			<form method="POST" action="{{ route('devices.store') }}"  role="form">
 				{{ csrf_field() }}
 				<div class="row">
 					<div class="col-md-6">
 				        <div class="form-group form-float">
-				            <select name="category_id"  class="form-control show-tick" data-live-search="true" required> 
+				            <select name="brand_id"  class="form-control show-tick" data-live-search="true" required> 
 				            	<option value="">Seleccione</option>
+				            	@foreach($brands as $brand)
+				            	<option value="">{{ $brand->title }}</option>
+				            	@endforeach
+							</select> 
+				        </div>
+					</div>
+					<div class="col-md-6">
+				        <div class="form-group form-float">
+				            <select name="brand_id"  class="form-control show-tick" data-live-search="true" required> 
+				            	<option value="">Seleccione</option>
+				            	@foreach($subdevices as $subdevice)
+				            	<option value="">{{ $subdevice->name }}</option>
+				            	@endforeach
 							</select> 
 				        </div>
 					</div>
 					<div class="col-md-6">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="name" value="Auriculares" required>
-				                <label class="form-label">Nombre</label>
+				                <input type="text" class="form-control" name="name" value="{{ $device->model }}" required>
+				                <label class="form-label">Modelo</label>
 				            </div>
 				        </div>
 					</div>
+					@if($device->b_n)
+					<div class="col-md-6">
+				        <div class="form-group form-float">
+				            <div class="form-line">
+				                <input type="text" class="form-control" name="name" value="{{ $device->b_n }}" required>
+				                <label class="form-label">Bien nacional</label>
+				            </div>
+				        </div>
+					</div>
+					@endif
 					<div class="col-md-12">
 	                    <div class="form-group justify-between">
 	                        <a href="{{ route('devices.index') }}" class="btn btn-primary waves-effect">
