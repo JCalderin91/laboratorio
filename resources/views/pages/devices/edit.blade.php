@@ -36,7 +36,11 @@
 				            <select name="brand_id"  class="form-control show-tick" data-live-search="true" required> 
 				            	<option value="">Seleccione</option>
 				            	@foreach($brands as $brand)
-				            	<option value="">{{ $brand->title }}</option>
+				            		@if($device->brand->title === $brand->title )
+				            			<option selected value="{{ $brand->id }}">{{ $brand->title }}</option>
+				            		@else
+				            			<option value="{{ $brand->id }}">{{ $brand->title }}</option>
+				            		@endif				            	
 				            	@endforeach
 							</select> 
 				        </div>
@@ -46,7 +50,11 @@
 				            <select name="brand_id"  class="form-control show-tick" data-live-search="true" required> 
 				            	<option value="">Seleccione</option>
 				            	@foreach($subdevices as $subdevice)
-				            	<option value="">{{ $subdevice->name }}</option>
+				            		@if($device->subDevice->name === $subdevice->name )
+				            			<option selected value="{{ $subdevice->id }}">{{ $subdevice->name }}</option>
+				            		@else
+				            			<option value="{{ $subdevice->id }}">{{ $subdevice->name }}</option>
+				            		@endif
 				            	@endforeach
 							</select> 
 				        </div>
