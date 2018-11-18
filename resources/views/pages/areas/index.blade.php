@@ -40,12 +40,14 @@
                 <thead class="bg-blue">
                     <tr>
                         <th class="text-center">Nombre</th>
+                        <th class="text-center">Dirección</th>
                         <th class="text-center">Acción</th>
                     </tr>
                 </thead>
                 <tfoot >
                     <tr class="text-center">
                         <th class="text-center">Nombre</th>
+                        <th class="text-center">Dirección</th>
                         @if(Auth::user()->role_id == 1)
                         <th class="text-center">Acción</th>
                         @endif
@@ -55,6 +57,7 @@
                     @foreach($areas as $area)
                     <tr>
                         <td>{{ $area->name }}</td>
+                        <td>{{ $area->address->name }}</td>
                         @if(Auth::user()->role_id == 1)
                         <td>
                             <a title="Editar" href="{{ route('areas.edit', $area->id) }}" class="btn bg-blue waves-effect">

@@ -2,14 +2,6 @@
 
 @section('content')
 
-<script>
-    window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(1000, function(){
-            $(this).remove();
-        });
-    }, 3500);
-</script>
-
 @if (count($errors) > 0)
 <div class="alert bg-red alert-dismissible" role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
