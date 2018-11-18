@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Lista de categorias @endsection
+
 @section('content')
 
 
@@ -17,8 +19,8 @@
 </div>
 @endif
 @if(Session::has('success'))
-<div class="alert alert-success">
-    {{Session::get('success')}}
+<div class="alert alert-success notification">
+    <span>{{Session::get('success')}}</span>   
 </div>
 @endif
 

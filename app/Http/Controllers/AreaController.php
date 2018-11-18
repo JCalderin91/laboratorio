@@ -74,7 +74,8 @@ class AreaController extends Controller
      */
     public function edit($id)
     {
-        return view('pages.areas.edit');
+        $area = Area::findOrFail($id);
+        return view('pages.areas.edit', compact('area') );
     }
 
     /**
@@ -88,9 +89,9 @@ class AreaController extends Controller
     {
         $area = Area::find($id);
 
-        $area->fill($request->all())->save();
+        $area->fill($request->all())->update();
 
-        return redirect()->route('areas.edit', $area->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('areas.index', $area->id)->with('success','Registro actualizado satisfactoriamente');
     }
 
     /**
@@ -99,12 +100,16 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $area = Area::find($id);
-        $area->status = 'INACTIVE';
-        $area->save();
+    public function destroy(Request $request, $id){
+        $area = Area::findOrFail($request->id);
+        
+        if($area->status === 'ACTIVE'){
+            $area->status = 'INACTIVE';
+        }else{
+            $area->status = 'ACTIVE';
+        }        
 
-        return back()->with('success','Categoría eliminada correctamente');
+        $area->update();
+        return redirect()->route('areas.index')->with('success','Cambio de status realizado efectivamente');   
     }
 }

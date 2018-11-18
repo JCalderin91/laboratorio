@@ -99,12 +99,18 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        $address = Address::find($id);
-        $address->status = 'INACTIVE';
-        $address->save();
+    public function destroy(Request $request, $id){
+        $address = Address::findOrFail($request->id);
+        
+        if($address->status === 'ACTIVE'){
+            $address->status = 'INACTIVE';
+        }else{
+            $address->status = 'ACTIVE';
+        }        
 
-        return back()->with('success','Categoría eliminada correctamente');
+        $address->update();
+        return redirect()->route('addresses.index')->with('success','Cambio de status realizado efectivamente');    
     }
+
+
 }

@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
-
-@section('title')| Crear nueva area @endsection
+@section('title')| Registrar una nueva area @endsection
 
 @section('content')
 

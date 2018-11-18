@@ -1,6 +1,27 @@
 @extends('layouts.app')
 
+@section('title')| Lista de clientes @endsection
+
 @section('content')
+
+@if (count($errors) > 0)
+<div class="alert bg-red alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <strong>Error!</strong> Revise los campos obligatorios.<br><br>
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+@if(Session::has('success'))
+<div class="alert alert-success notification">
+    <span>{{Session::get('success')}}</span>   
+</div>
+@endif
 
 <div class="card">
 	<div class="header">
@@ -15,7 +36,7 @@
             <table class="table table-striped table-hover text-center datatable">
                 <thead class="bg-blue">
                     <tr>
-                        <th class="text-center">DNI</th>
+                        <th class="text-center">Cedula</th>
                         <th class="text-center">Nombres</th>
                         <th class="text-center">Apellidos</th>
                         <th class="text-center">Teléfono</th>
@@ -26,7 +47,7 @@
                 </thead>
                 <tfoot >
                     <tr class="text-center">
-                        <th class="text-center">DNI</th>
+                        <th class="text-center">Cedula</th>
                         <th class="text-center">Nombres</th>
                         <th class="text-center">Apellidos</th>
                         <th class="text-center">Teléfono</th>

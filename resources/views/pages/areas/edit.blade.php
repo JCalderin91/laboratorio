@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('title')| Editar area @endsection
 
 @section('content')
@@ -30,13 +29,14 @@
 			<p>Relize cambios en los datos que usted necesita</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('areas.store') }}"  role="form">
-				{{ csrf_field() }}
+			<form method="POST" action="{{ route('areas.update', $area->id) }}"   role="form">
+			{{ csrf_field() }}
+          	<input name="_method" type="hidden" value="PATCH">
 		        <div class="row">
 					<div class="col-md-12">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" value="Logitech" name="dni" required>
+				                <input type="text" class="form-control" value="{{ $area->name }}" name="name" required>
 				                <label class="form-label">Nombre</label>
 				            </div>
 				        </div>

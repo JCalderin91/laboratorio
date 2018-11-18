@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
-@section('content')
+@section('title')| Registrar un nuevo dispositivo @endsection
 
+@section('content')
 
 	<div class="card">
 		<div class="header">

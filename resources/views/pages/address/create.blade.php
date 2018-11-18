@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Registrar una nueva dirección @endsection
+
 @section('content')
 
 	@if (count($errors) > 0)

@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Lista de dispositivos @endsection
+
 @section('content')
 
 @if (count($errors) > 0)
@@ -16,11 +18,10 @@
 </div>
 @endif
 @if(Session::has('success'))
-<div class="alert alert-info">
-    {{Session::get('success')}}
+<div class="alert alert-success notification">
+    <span>{{Session::get('success')}}</span>   
 </div>
 @endif
-
 
 <div class="card">
 	<div class="header">

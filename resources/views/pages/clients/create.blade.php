@@ -1,5 +1,6 @@
 @extends('layouts.app')
-@extends('layouts.app')
+
+@section('title')| Registrar un nuevo cliente @endsection
 
 @section('content')
 

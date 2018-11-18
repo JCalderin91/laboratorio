@@ -29,7 +29,7 @@ class BrandController extends Controller{
         /*ALMACENAR LA NUEVA MARCA*/ 
         $brand = Brand::create($request->all());
 
-        return redirect()->route('pages.brand.index')->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('brands.index')->with('success','Registro creado satisfactoriamente');
     }
 
     public function storeWithModal(BrandStoreRequest $request){
@@ -45,25 +45,30 @@ class BrandController extends Controller{
     }
 
     public function edit($id){
-        return view('pages.brands.edit');
+        $brand = Brand::findOrFail($id);
+        return view('pages.brands.edit', compact('brand') );
     }
 
     public function update(BrandUpdateRequest $request, $id){
 
-        $brand = Brand::find($id);
+        $brand = Brand::findOrFail($id);
 
-        $brand->fill($request->all())->save();
+        $brand->fill($request->all())->update();
 
-        return redirect()->route('brands.edit', $brand->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('brands.index', $brand->id)->with('success','Registro actualizado satisfactoriamente');
     
     }
 
-    public function destroy($id)
-    {
-        $brand = Brand::find($id);
-        $brand->status = 'INACTIVE';
-        $brand->save();
+    public function destroy(Request $request, $id){
+        $brand = Brand::findOrFail($request->id);
+        
+        if($brand->status === 'ACTIVE'){
+            $brand->status = 'INACTIVE';
+        }else{
+            $brand->status = 'ACTIVE';
+        }        
 
-        return back()->with('success','Categoría eliminada correctamente');
+        $brand->update();
+        return redirect()->route('brands.index')->with('success','Cambio de status realizado efectivamente');   
     }
 }

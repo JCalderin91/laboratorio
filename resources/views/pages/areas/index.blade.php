@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')| Lista de areas @endsection
+@section('title')| Lista de areas o dependencias @endsection
 
 @section('content')
 
@@ -19,10 +19,9 @@
 </div>
 @endif
 @if(Session::has('success'))
-    <div class="alert bg-green alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        El area ha sido almacenada satisfactoriamente
-    </div>
+<div class="alert alert-success notification">
+    <span>{{Session::get('success')}}</span>   
+</div>
 @endif
 
 
@@ -41,7 +40,10 @@
                     <tr>
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Dirección</th>
+                        @if(Auth::user()->role_id == 1)
+                        <th class="text-center">Estado</th>
                         <th class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </thead>
                 <tfoot >
@@ -49,6 +51,7 @@
                         <th class="text-center">Nombre</th>
                         <th class="text-center">Dirección</th>
                         @if(Auth::user()->role_id == 1)
+                        <th class="text-center">Estado</th>
                         <th class="text-center">Acción</th>
                         @endif
                     </tr>
@@ -59,6 +62,13 @@
                         <td>{{ $area->name }}</td>
                         <td>{{ $area->address->name }}</td>
                         @if(Auth::user()->role_id == 1)
+                        <td>
+                            @if($area->status == 'ACTIVE')
+                            <div class="badge bg-green">Activo</div>
+                            @else
+                            <div class="badge bg-gray">Inactivo</div>
+                            @endif
+                        </td>
                         <td>
                             <a title="Editar" href="{{ route('areas.edit', $area->id) }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
@@ -84,20 +94,47 @@
 	</div>
 </div>
 
-<!-- Small Size -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog">
+<!-- DISABLE -->
+<div class="modal fade" id="disable" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content modal-col-red">
-            <div class="modal-header ">
-                <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
-            </div>
-            <div class="modal-body">
-                Esta seguro de querer eliminar este registro?
-            </div>
-            <div class="modal-footer">
-                <button type="button" onclick="delete();" class="btn btn-link waves-effect">CONTINUAR</button>
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
-            </div>
+            <form action="{{ route('areas.destroy','test') }}" method="POST">
+                {{method_field('delete')}}
+                @csrf
+                <div class="modal-header ">
+                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer deshabilitar esta area?
+                    <input type="hidden" name="id" value="" id="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ENABLE -->
+<div class="modal fade" id="enable" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content modal-col-green">
+            <form action="{{ route('areas.destroy','test') }}" method="POST">
+                {{method_field('delete')}}
+                @csrf
+                <div class="modal-header ">
+                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer hablitar esta area?
+                    <input type="hidden" name="id" value="" id="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

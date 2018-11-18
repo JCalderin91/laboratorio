@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Registrar una nueva categoria @endsection
+
 @section('content')
 
 	<div class="card">

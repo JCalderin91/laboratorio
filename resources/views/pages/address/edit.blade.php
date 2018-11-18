@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Editar una dirreción @endsection
+
 @section('content')
 
 	@if (count($errors) > 0)
@@ -28,9 +30,9 @@
 		</div>
 		<div class="body">
 			<form method="POST" action="{{ route('addresses.update', $address->id) }}"  role="form">
-				{{ csrf_field() }}
+			{{ csrf_field() }}
+          	<input name="_method" type="hidden" value="PATCH">
 		    <div class="row">
-          <input name="_method" type="hidden" value="PATCH">
 					<div class="col-md-12">
 				        <div class="form-group form-float">
 				            <div class="form-line">

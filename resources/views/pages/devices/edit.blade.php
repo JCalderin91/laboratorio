@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Editar un dispositivo @endsection
+
 @section('content')
 
 	@if (count($errors) > 0)

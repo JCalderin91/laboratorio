@@ -91,7 +91,6 @@ class UserController extends Controller{
         }        
 
         $tecnic->update();
-        return redirect('users')->with('success','Registro desactivado satisfactoriamente');
-    
+        return redirect()->route('users.index')->with('success','Cambio de status realizado efectivamente');   
     }
 }

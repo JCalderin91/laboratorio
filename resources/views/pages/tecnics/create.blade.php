@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Registrar nuevo técnico @endsection
+
 @section('content')
 
 

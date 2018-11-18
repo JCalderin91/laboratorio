@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Lista de tecnicos @endsection
+
 @section('content')
 
 @if (count($errors) > 0)
@@ -16,10 +18,9 @@
 </div>
 @endif
 @if(Session::has('success'))
-    <div class="alert bg-green alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        El tecnico ha sido almacenado satisfactoriamente
-    </div>
+<div class="alert alert-success notification">
+    <span>{{Session::get('success')}}</span>   
+</div>
 @endif
 
 
@@ -43,8 +44,8 @@
                         <th data-priority="3" class="text-center">Nombres</th>
                         <th data-priority="6" class="text-center">Apellidos</th>
                         <th data-priority="7" class="text-center">Genero</th>
-                        <th data-priority="4" class="text-center">Estado</th>
                         @if(Auth::user()->role_id == 1)
+                        <th data-priority="4" class="text-center">Estado</th>
                          <th data-priority="5" class="text-center">Rol</th>
                          <th data-priority="1" class="text-center">Acción</th>
                         @endif
@@ -56,8 +57,8 @@
                         <th class="text-center">Nombres</th>
                         <th class="text-center">Apellidos</th>
                         <th class="text-center">Genero</th>
-                        <th class="text-center">Estado</th>
                         @if(Auth::user()->role_id == 1)
+                        <th class="text-center">Estado</th>
                          <th class="text-center">Rol</th>
                          <th class="text-center">Acción</th>
                         @endif
@@ -76,6 +77,7 @@
                             Femenino
                             @endif
                         </td>
+                        @if(Auth::user()->role_id == 1) 
                         <td>
                             @if($tecnic->status == 'ACTIVE')
                             <div class="badge bg-green">Activo</div>
@@ -83,7 +85,6 @@
                             <div class="badge bg-gray">Inactivo</div>
                             @endif
                         </td>
-                        @if(Auth::user()->role_id == 1)
                         <td>
                             @if($tecnic->role_id == 1)
                                 <div class="badge bg-orange">Profesor</div>
@@ -91,8 +92,6 @@
                                 <div class="badge bg-blue">Técnico</div>
                             @endif
                         </td>
-                        @endif
-                        @if(Auth::user()->role_id == 1)
                         <td>
                             <a title="Editar" href="{{ route('users.edit', $tecnic->id) }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>

@@ -56,13 +56,13 @@
                         <span>Técnicos</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('categories*') ? 'active' : '' }}">
+                <li class="{{ Request::is('areas*') ? 'active' : '' }}">
                     <a href="{{ route('areas.index') }}">
                         <i class="material-icons">map</i>
                         <span>Areas</span>
                     </a>
                 </li>
-                <li class="{{ Request::is('address') ? 'active' : '' }}">
+                <li class="{{ Request::is('addresses') ? 'active' : '' }}">
                     <a href="{{ route('addresses.index') }}">
                         <i class="material-icons">directions</i>
                         <span>Direcciones</span>

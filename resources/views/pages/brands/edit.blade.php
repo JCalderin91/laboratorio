@@ -1,5 +1,7 @@
 @extends('layouts.app')
 
+@section('title')| Editar una marca @endsection
+
 @section('content')
 
 	@if (count($errors) > 0)
@@ -27,13 +29,14 @@
 			<p>Relize cambios en los datos que usted necesita</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('brand.store') }}"  role="form">
-				{{ csrf_field() }}
+			<form method="POST" action="{{ route('brands.update', $brand->id) }}"  role="form">
+				@csrf
+            	<input name="_method" type="hidden" value="PATCH">
 		        <div class="row">
 					<div class="col-md-12">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" value="Logitech" name="dni" required>
+				                <input type="text" class="form-control" value="{{ $brand->title }}" name="title" required>
 				                <label class="form-label">Nombre</label>
 				            </div>
 				        </div>

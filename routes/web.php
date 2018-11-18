@@ -62,5 +62,5 @@ Route::view('/register', 'pages.register');
 
 Route::resource('api', 'testController');*/
 Route::get('test', function () {
-	return 'Hay que hacer esta vista';
+	return view('pages.register');
 });
