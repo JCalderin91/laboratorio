@@ -41,7 +41,8 @@ class AddressController extends Controller
     {
         $address = Address::create($request->all());
 
-        return redirect()->route('addresses.index')->with('success','Registro creado satisfactoriamente');
+        return back()->with('success','Registro creado satisfactoriamente');
+        //return redirect()->route('addresses.index')->with('success','Registro creado satisfactoriamente');
     }
     
 

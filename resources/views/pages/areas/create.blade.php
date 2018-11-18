@@ -34,13 +34,15 @@
 				<div class="row">
 
 					<div class="col-md-6">
-				        <div class="form-group form-float">
-				            <select name="address_id"  class="form-control show-tick" data-live-search="true" required> 
-				            	@foreach($addresses as $address)
-				            	<option value="{{ $address->id }}">{{ $address->name }}</option>
-				            	@endforeach
-							</select> 
-				        </div>
+		        <div class="form-group form-float">
+		            <select name="address_id"  class="form-control show-tick" data-live-search="true" required>
+		            	<option selected="true" value="">Seleccione una Direcci&oacute;n</option>
+		            	@foreach($addresses as $address)
+		            	<option value="{{ $address->id }}">{{ $address->name }}</option>
+		            	@endforeach
+		            	<option value="new_address">Nueva Direcci&oacute;n</option> 
+								</select> 
+		        </div>
 					</div>
 					<div class="col-md-6">
 				        <div class="form-group form-float">
@@ -66,7 +68,14 @@
 			</form>
 		</div>
 	</div>
+@endsection
 
-	
-
+@section("script")
+<script type="text/javascript">
+	document.querySelector("select").addEventListener("change", (e) => {
+		if (e.target.value == "new_address") {
+			window.location = "/addresses/create"
+		}
+	})
+</script>
 @endsection
