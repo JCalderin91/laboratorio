@@ -8,7 +8,7 @@ class Area extends Model
 {
     
 	protected $fillable = [
-		'name', 
+		'name', 'address_id',
 	];
 	
     public function address(){
