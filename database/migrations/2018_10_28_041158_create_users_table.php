@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('avatar');
             $table->unsignedInteger('role_id');
-            $table->enum('status', ['ACTIVE', 'INACTIVE']);
+            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->rememberToken();
             $table->timestamps();    
             $table->foreign('role_id')->references('id')->on('roles');  

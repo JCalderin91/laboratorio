@@ -22,7 +22,7 @@ class CreateOrdersTable extends Migration
             $table->dateTime('arrival_date');
             $table->dateTime('delivery_date')->nullable();
             $table->string('description')->nullable();
-            $table->enum('status', ['PENDING', 'REVISED', 'DELIVERED']);
+            $table->enum('status', ['PENDING', 'REVISED', 'DELIVERED'])->default('ACTIVE');
             
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('user_id')->references('id')->on('users');

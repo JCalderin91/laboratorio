@@ -35,7 +35,7 @@
                     <div class="form-group form-float">
                         <div class="form-line">
                             <input type="text" class="form-control" value="{{ $tecnic->id }}" name="id" >
-                            <label class="form-label">Dni</label>
+                            <label class="form-label">Cedula</label>
                         </div>
                     </div>
                 </div>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group justify-between">
-                        <a href="{{ route('users.index') }}" class="btn btn-primary waves-effect">
+                        <a href="{{ route('addresses.index') }}" class="btn btn-primary waves-effect">
 							<i class="material-icons">undo</i>
 							<span>VOLVER</span>	
 						</a>

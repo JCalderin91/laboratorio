@@ -8,7 +8,11 @@ class Area extends Model
 {
     
 	protected $fillable = [
+<<<<<<< HEAD
 		'name', 'address_id',
+=======
+		'name', 'address_id'
+>>>>>>> refs/remotes/origin/master
 	];
 	
     public function address(){

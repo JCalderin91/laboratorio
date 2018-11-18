@@ -27,28 +27,29 @@
 			<p>Relize cambios en los datos que usted necesite</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('brands.store') }}"  role="form">
+			<form method="POST" action="{{ route('addresses.update', $address->id) }}"  role="form">
 				{{ csrf_field() }}
-		        <div class="row">
+		    <div class="row">
+          <input name="_method" type="hidden" value="PATCH">
 					<div class="col-md-12">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" value="Logitech" name="dni" required>
+				                <input type="text" class="form-control" value="{{ $address->name}}" name="name" required>
 				                <label class="form-label">Nombre</label>
 				            </div>
 				        </div>
 					</div>
 					<div class="col-md-12">
-		                <div class="form-group justify-between">
-		                    <a href="{{ route('brands.index') }}" class="btn btn-primary waves-effect">
+            <div class="form-group justify-between">
+              <a href="{{ route('addresses.index') }}" class="btn btn-primary waves-effect">
 								<i class="material-icons">undo</i>
 								<span>VOLVER</span>	
 							</a>
-		                    <button class="btn btn-success waves-effect" type="submit">
+              <button class="btn btn-success waves-effect" type="submit">
 								<i class="material-icons">save</i>
 								<span>GUARDAR</span>
 							</button>
-		                </div>
+						</div>
 					</div>
 				</div>
 			</form>

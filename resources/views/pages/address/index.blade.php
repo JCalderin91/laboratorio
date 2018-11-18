@@ -25,7 +25,7 @@
 
 <div class="card">
 	<div class="header">
-		<a href="{{ route('brands.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nueva marca">
+		<a href="{{ route('addresses.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nueva marca">
 			<i class="material-icons">add_circle</i>
 		</a>
 		<h3>Lista de direcciones</h3>
@@ -51,9 +51,9 @@
                     <tr>
                         <td>{{ $address->name }}</td>
                         <td>
-                        	<button title="Editar" type="button" class="btn bg-blue waves-effect">
+                        	<a href="{{route('addresses.edit', $address->id)}}" title="Editar" type="button" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
-                            </button>
+                            </a>
                             <button title="Borrar" data-toggle="modal" data-target="#delete" type="button" class="btn bg-red waves-effect">
                                 <i class="material-icons">delete</i>
                             </button>

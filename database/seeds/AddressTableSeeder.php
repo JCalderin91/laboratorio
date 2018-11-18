@@ -16,7 +16,7 @@ class AddressTableSeeder extends Seeder
         $address->name = 'Edif de Informatica';
         $address->save();
 
-                $address = new Address();
+        $address = new Address();
         $address->name = 'Edif de Turismo';
         $address->save();
     }

@@ -21,3 +21,10 @@ $('#hour').on('show.bs.modal',function(event){
   modal.find('.modal-body #user_id').val(id);
   modal.find('.modal-body #operation').val(op);
 });
+
+
+window.setTimeout(function() {
+  $(".alert").fadeTo(500, 0).slideUp(1000, function(){
+      $(this).remove();
+  });
+}, 5000);
