@@ -14,12 +14,11 @@ class DeviceController extends Controller{
 
     public function index(){
         $devices = Device::get();
-        return view('pages.devices.index', compact(['devices','categorys']));
+        return view('pages.devices.index', compact('devices'));
     }
 
     public function create(){
-        $categorys = Category::get();
-        return view('pages.devices.create', compact(['devices','categorys']));
+        
     }
 
     public function store(Request $request){
@@ -31,14 +30,16 @@ class DeviceController extends Controller{
     }
 
     public function edit($id){
-        $brands = Brand::get();
-        $subdevices = SubDevice::get();
         $device = Device::findOrFail($id);
-        return view('pages.devices.edit', compact(['brands','subdevices','device']) );
+        return view('pages.devices.edit', compact('device') );
     }
 
     public function update(Request $request, $id){
-        //
+ 
+        $device = Device::findOrFail($id);
+        $device->fill($request->all())->update();
+
+        return redirect()->route('devices.index', $device->id)->with('success','Registro actualizado satisfactoriamente');
     }
 
     public function destroy(Request $request, $id){
