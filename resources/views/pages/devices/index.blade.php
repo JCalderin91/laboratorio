@@ -33,9 +33,10 @@
             <table class="table table-striped table-hover text-center datatable">
                 <thead class="bg-blue">
                     <tr>
-                        <th class="text-center">Codigo</th>
                         <th class="text-center">Marca</th>
+                        <th class="text-center">Nombre</th>
                         <th class="text-center">Modelo</th>
+                        <th class="text-center">Bien nacional</th>
                         @if(Auth::user()->role_id == 1)
                         <th class="text-center">Estado</th>
                         <th data-priority="1" class="text-center">Acción</th>
@@ -44,9 +45,10 @@
                 </thead>
                 <tfoot >
                     <tr class="text-center">
-                        <th class="text-center">Codigo</th>
                         <th class="text-center">Marca</th>
+                        <th class="text-center">Nombre</th>
                         <th class="text-center">Modelo</th>
+                        <th class="text-center">Bien nacional</th>
                         @if(Auth::user()->role_id == 1)
                         <th class="text-center">Estado</th>
                         <th class="text-center">Acción</th>
@@ -56,9 +58,16 @@
                 <tbody>
                     @foreach($devices as $device)    
                     <tr>
-                        <td>{{ $device->id }}</td>
                         <td>{{ $device->brand->title }}</td>
                         <td>{{ $device->subDevice->name }}</td>
+                        <td>{{ $device->model }}</td>
+                        <td>
+                            @if($device->b_n)
+                                {{$device->b_n}}
+                            @else
+                                No
+                            @endif
+                        </td>
                         @if(Auth::user()->role_id == 1)
                         <td>
                             @if($device->status == 'ACTIVE')
