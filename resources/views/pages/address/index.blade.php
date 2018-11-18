@@ -23,10 +23,9 @@
 </div>
 @endif
 
-
 <div class="card">
 	<div class="header">
-		<a href="{{ route('addresses.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nueva marca">
+		<a href="{{ route('addresses.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nueva dirección">
 			<i class="material-icons">add_circle</i>
 		</a>
 		<h3>Lista de direcciones</h3>
@@ -38,21 +37,26 @@
                 <thead class="bg-blue">
                     <tr>
                         <th class="text-center">Nombre</th>
+                        @if(Auth::user()->role_id == 1)
                         <th class="text-center">Estado</th>
                         <th class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </thead>
                 <tfoot >
                     <tr class="text-center">
                         <th class="text-center">Nombre</th>
+                        @if(Auth::user()->role_id == 1)
                         <th class="text-center">Estado</th>
                         <th class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach($addresses as $address)
                     <tr>
                         <td>{{ $address->name }}</td>
+                        @if(Auth::user()->role_id == 1)
                         <td>
                             @if($address->status == 'ACTIVE')
                             <div class="badge bg-green">Activo</div>
@@ -76,6 +80,7 @@
                                 </button>
                             @endif
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

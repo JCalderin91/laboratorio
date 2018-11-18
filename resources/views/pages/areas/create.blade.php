@@ -40,8 +40,8 @@
 		            	@foreach($addresses as $address)
 		            	<option value="{{ $address->id }}">{{ $address->name }}</option>
 		            	@endforeach
-		            	<option value="new_address">Nueva Direcci&oacute;n</option> 
-								</select> 
+		            	{{-- <option value="new_address">Nueva Direcci&oacute;n</option>  --}}
+					</select> 
 		        </div>
 					</div>
 					<div class="col-md-6">

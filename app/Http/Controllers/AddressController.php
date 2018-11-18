@@ -39,10 +39,11 @@ class AddressController extends Controller
      */
     public function store(AddressStoreRequest $request)
     {
+        dd( $request );
         $address = Address::create($request->all());
 
-        return back()->with('success','Registro creado satisfactoriamente');
-        //return redirect()->route('addresses.index')->with('success','Registro creado satisfactoriamente');
+        //return back()->back()->with('success','Registro creado satisfactoriamente');
+        return redirect()->route('addresses.index')->with('success','Registro creado satisfactoriamente');
     }
     
 

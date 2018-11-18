@@ -150,7 +150,7 @@
                     <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
                 </div>
                 <div class="modal-body">
-                    Esta seguro de querer hablitar este técnico?
+                    Esta seguro de querer hablitar <span id="title"></span>?
                     <input type="hidden" name="id" value="" id="id">
                 </div>
                 <div class="modal-footer">
