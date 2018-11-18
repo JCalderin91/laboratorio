@@ -25,9 +25,6 @@
 
 <div class="card">
 	<div class="header">
-		<a href="{{ route('clients.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nuevo cliente">
-			<i class="material-icons">add_circle</i>
-		</a>
 		<h3>Lista de clientes</h3>
 		<p>Lista de nuestros distinguidos clientes</p>
 	</div>
@@ -42,7 +39,10 @@
                         <th class="text-center">Teléfono</th>
                         <th class="text-center">Area</th>
                         <th class="text-center">Dirección</th>
+                        @if(Auth::user()->role_id == 1)
+                        <th class="text-center">Estatus</th>
                         <th data-priority="1" class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </thead>
                 <tfoot >
@@ -53,7 +53,10 @@
                         <th class="text-center">Teléfono</th>
                         <th class="text-center">Area</th>
                         <th class="text-center">Dirección</th>
+                        @if(Auth::user()->role_id == 1)
+                        <th class="text-center">Estatus</th>
                         <th class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </tfoot>
                 <tbody>
@@ -65,14 +68,31 @@
                         <td>{{$client->phone}}</td>
                         <td>{{$client->area->name}}</td>
                         <td>{{$client->area->address->name}}</td>
+                        @if(Auth::user()->role_id == 1)
+                        <td>
+                            @if($client->status == 'ACTIVE')
+                            <div class="badge bg-green">Activo</div>
+                            @else
+                            <div class="badge bg-gray">Inactivo</div>
+                            @endif
+                        </td>
                         <td>
                         	<a title="Editar" href="{{ route('clients.edit','clien_id') }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
                             </a>
-                            <button title="Borrar" data-toggle="modal" data-target="#delete" type="button" class="btn bg-red waves-effect">
-                                <i class="material-icons">delete</i>
-                            </button>
+                            @if($client->status == 'ACTIVE')
+                                <button data-title="{{ $client->name }}" data-id="{{ $client->id }}" title="Desactivar"
+                                    data-toggle="modal" data-target="#disable" type="button" class="btn bg-red waves-effect">
+                                    <i class="material-icons">lock_outline</i>
+                                </button>
+                            @else
+                                <button data-title="{{ $client->name }}" data-id="{{ $client->id }}" title="Hablitar"
+                                    data-toggle="modal" data-target="#enable" type="button" class="btn bg-green waves-effect">
+                                    <i class="material-icons">lock_open</i>
+                                </button>
+                            @endif
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>
@@ -81,20 +101,47 @@
 	</div>
 </div>
 
-<!-- Small Size -->
-<div class="modal fade" id="delete" tabindex="-1" role="dialog">
+<!-- DISABLE -->
+<div class="modal fade" id="disable" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-sm" role="document">
         <div class="modal-content modal-col-red">
-            <div class="modal-header ">
-                <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
-            </div>
-            <div class="modal-body">
-                Esta seguro de querer eliminar este registro?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-link waves-effect">CONTINUAR</button>
-                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
-            </div>
+            <form action="{{ route('clients.destroy','test') }}" method="POST">
+                {{method_field('delete')}}
+                @csrf
+                <div class="modal-header ">
+                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer deshabilitar este técnico?
+                    <input type="hidden" name="id" value="" id="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- ENABLE -->
+<div class="modal fade" id="enable" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content modal-col-green">
+            <form action="{{ route('clients.destroy','test') }}" method="POST">
+                {{method_field('delete')}}
+                @csrf
+                <div class="modal-header ">
+                    <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
+                </div>
+                <div class="modal-body">
+                    Esta seguro de querer hablitar este técnico?
+                    <input type="hidden" name="id" value="" id="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-link waves-effect">CONTINUAR</button>
+                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CANCELAR</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

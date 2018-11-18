@@ -25,9 +25,6 @@
 
 <div class="card">
 	<div class="header">
-		<a href="{{ route('devices.create') }}" class="btn btn-primary waves-effect pull-right" title="Agregar nuevo equipo">
-			<i class="material-icons">add_circle</i>
-		</a>
 		<h3>Lista de Equipos</h3>
 		<p>Lista de los equipos en el sistema</p>
 	</div>
@@ -39,8 +36,10 @@
                         <th class="text-center">Codigo</th>
                         <th class="text-center">Marca</th>
                         <th class="text-center">Modelo</th>
+                        @if(Auth::user()->role_id == 1)
                         <th class="text-center">Estado</th>
                         <th data-priority="1" class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </thead>
                 <tfoot >
@@ -48,18 +47,25 @@
                         <th class="text-center">Codigo</th>
                         <th class="text-center">Marca</th>
                         <th class="text-center">Modelo</th>
+                        @if(Auth::user()->role_id == 1)
                         <th class="text-center">Estado</th>
                         <th class="text-center">Acción</th>
+                        @endif
                     </tr>
                 </tfoot>
                 <tbody>
                     @foreach($devices as $device)    
                     <tr>
-                        <td>{{ $device->category->name }}</td>
-                        <td>{{ $device->brand->title }}</td>
-                        <td>{{ $device->client->first_name }}</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td>-</td>
+                        @if(Auth::user()->role_id == 1)
                         <td>
-                            <span class="badge bg-red">Pendiente</span>
+                            @if($device->status == 'ACTIVE')
+                            <div class="badge bg-green">Activo</div>
+                            @else
+                            <div class="badge bg-gray">Inactivo</div>
+                            @endif
                         </td>
                         <td>
                             <button title="Reparar" type="button" class="btn bg-orange waves-effect">
@@ -68,10 +74,19 @@
                             <button title="Editar" type="button" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
                             </button>
-                            <button title="Borrar" data-toggle="modal" data-target="#delete" type="button" class="btn bg-red waves-effect">
-                                <i class="material-icons">delete</i>
-                            </button>
+                            @if($device->status == 'ACTIVE')
+                                <button data-title="-" data-id="-" title="Desactivar"
+                                    data-toggle="modal" data-target="#disable" type="button" class="btn bg-red waves-effect">
+                                    <i class="material-icons">lock_outline</i>
+                                </button>
+                            @else
+                                <button data-title="-" data-id="-" title="Hablitar"
+                                    data-toggle="modal" data-target="#enable" type="button" class="btn bg-green waves-effect">
+                                    <i class="material-icons">lock_open</i>
+                                </button>
+                            @endif
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

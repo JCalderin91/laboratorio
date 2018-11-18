@@ -61,13 +61,16 @@ class ClientController extends Controller{
     
     }
 
-    public function destroy($id){
+    public function destroy(Request $request, $id){
+        $client = Client::findOrFail($request->id);
+        
+        if($client->status === 'ACTIVE'){
+            $client->status = 'INACTIVE';
+        }else{
+            $client->status = 'ACTIVE';
+        }        
 
-        $client = Client::find($id);
-        $client->status = 'INACTIVE';
-        $client->save();
-
-        return back()->with('success','Cliente eliminado correctamente');
-    
+        $client->update();
+        return redirect()->route('clients.index')->with('success','Cambio de status realizado efectivamente');   
     }
 }
