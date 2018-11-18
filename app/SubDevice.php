@@ -11,7 +11,5 @@ class SubDevice extends Model
 		'name', 
 	];
 
-    public function category(){
-    	return $this->belongsTo('App\Category');
-    }
+    
 }
