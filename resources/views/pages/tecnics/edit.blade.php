@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title')| Editar un técnico @endsection
+@section('title')| Editar un usuario @endsection
 
 @section('content')
 
@@ -17,16 +17,11 @@
     </ul>
 </div>
 @endif
-@if(Session::has('success'))
-<div class="alert alert-info">
-    {{Session::get('success')}}
-</div>
-@endif
 
 <div class="card">
     <div class="header">
-        <h2 class="panel-title">Editar Tecnico</h2>
-        <p>Registre los datos de un nuevo cliente en nuestro sistema</p>
+        <h2 class="panel-title">Editar usuario</h2>
+        <p>Registre los datos de un nuevo usuario en nuestro sistema</p>
     </div>
     <div class="body">
         <form method="POST" action="{{ route('users.update', $tecnic->id) }}" role="form">

@@ -10,7 +10,7 @@
 .menu .list a:hover span{
 	color: #2196f3 !important;
 }
-.notification{
+.alert{
     position: absolute;
     top: 10px;
     left: 50%;
