@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title')| Lista de tecnicos @endsection
+@section('title')| Lista de usuarios @endsection
 
 @section('content')
 
 @if (count($errors) > 0)
-<div class="alert bg-red alert-dismissible" role="alert">
+<div class="alert bg-red alert-dismissible " role="alert">
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
     </button>
@@ -32,8 +32,8 @@
         </a>
         @endif
 
-        <h3>Lista de técnicos</h3>
-        <p>Lista de nuestros distinguidos técnicos</p>
+        <h3>Lista de usuarios</h3>
+        <p>Lista de nuestros distinguidos usuarios</p>
     </div>
     <div class="body">
         <div class="table-responsive">
@@ -128,7 +128,7 @@
                     <h2 class="modal-title" id="deleteLabel">Advertencia</h2>
                 </div>
                 <div class="modal-body">
-                    Esta seguro de querer deshabilitar este técnico?
+                    Esta seguro de querer deshabilitar este usuario?
                     <input type="hidden" name="id" value="" id="id">
                 </div>
                 <div class="modal-footer">
@@ -185,7 +185,6 @@
                 "previous": "Anterior"
             }
         },
-        responsive: true,
         order: [[ 1, 'asc' ]],
         ordering: true,
         lengthChange: false

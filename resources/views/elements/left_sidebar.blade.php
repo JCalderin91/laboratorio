@@ -53,7 +53,7 @@
                 <li class="{{ Request::is('users*') ? 'active' : '' }}">
                     <a href="{{ route('users.index') }}">
                         <i class="material-icons">person</i>
-                        <span>Técnicos</span>
+                        <span>Usuarios</span>
                     </a>
                 </li>
                 <li class="{{ Request::is('areas*') ? 'active' : '' }}">
