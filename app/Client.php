@@ -7,10 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
 
-    public $incrementing = false;
-
     protected $fillable = [
-        'id', 'first_name', 'last_name', 'phone', 'area_id', 
+        'ci', 'first_name', 'last_name', 'phone', 'area_id', 
     ];
 
 	public function orders(){

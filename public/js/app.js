@@ -24,7 +24,7 @@ $('#hour').on('show.bs.modal', function(event) {
 
 
 window.setTimeout(function() {
-    $(".alert").fadeTo(500, 0).slideUp(1000, function() {
-        $(this).remove();
-    });
-}, 5000);
+  $(".alert").fadeTo(500, 0).slideUp(1000, function(){
+      $(this).remove();
+  });
+}, 8000);

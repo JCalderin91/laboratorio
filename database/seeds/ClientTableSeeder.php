@@ -13,7 +13,7 @@ class ClientTableSeeder extends Seeder
     public function run()
     {
         $client = new Client();
-        $client->id = '10196016';
+        $client->ci = '10196016';
         $client->area_id = 1;
         $client->first_name = 'William';
         $client->last_name = 'Hurtado'; 
@@ -22,7 +22,7 @@ class ClientTableSeeder extends Seeder
        
 
         $client = new Client();
-        $client->id = '11970867';
+        $client->ci = '11970867';
         $client->area_id = 1;
         $client->first_name = 'Aurora';
         $client->last_name = 'Marcano'; 
@@ -31,7 +31,7 @@ class ClientTableSeeder extends Seeder
         
 
         $client = new Client();
-        $client->id = '26501312';
+        $client->ci = '26501312';
         $client->area_id = 2;
         $client->first_name = 'William';
         $client->last_name = 'Hurtado'; 

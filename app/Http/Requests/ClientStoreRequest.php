@@ -24,7 +24,7 @@ class ClientStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'         => 'required|unique:clients,id|max:8',
+            'ci'         => 'required|unique:clients,ci|max:8',
             'first_name' => 'required|max:128',
             'last_name'  => 'required|max:128',
             'phone'      => 'max:11',

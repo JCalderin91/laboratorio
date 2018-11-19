@@ -17,7 +17,7 @@ class CreateDevicesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('sub_device_id');
             $table->unsignedInteger('brand_id');
-            $table->string('client_id',8);
+            $table->unsignedInteger('client_id');
 
             $table->string('b_n')->nullable();
             $table->string('model')->nullable();

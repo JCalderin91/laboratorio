@@ -65,13 +65,13 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach ($tecnics as $tecnic)
+                    @foreach ($users as $user)
                     <tr>
-                        <td>{{ $tecnic->id }}</td>
-                        <td>{{ $tecnic->first_name }}</td>
-                        <td>{{ $tecnic->last_name }}</td>
+                        <td>{{ $user->ci }}</td>
+                        <td>{{ $user->first_name }}</td>
+                        <td>{{ $user->last_name }}</td>
                         <td>
-                            @if($tecnic->gender == 'M')
+                            @if($user->gender == 'M')
                             Masculino
                             @else
                             Femenino
@@ -79,30 +79,30 @@
                         </td>
                         @if(Auth::user()->role_id == 1) 
                         <td>
-                            @if($tecnic->status == 'ACTIVE')
+                            @if($user->status == 'ACTIVE')
                             <div class="badge bg-green">Activo</div>
                             @else
                             <div class="badge bg-gray">Inactivo</div>
                             @endif
                         </td>
                         <td>
-                            @if($tecnic->role_id == 1)
+                            @if($user->role_id == 1)
                                 <div class="badge bg-orange">Profesor</div>
                             @else
                                 <div class="badge bg-blue">Técnico</div>
                             @endif
                         </td>
                         <td>
-                            <a title="Editar" href="{{ route('users.edit', $tecnic->id) }}" class="btn bg-blue waves-effect">
+                            <a title="Editar" href="{{ route('users.edit', $user->id) }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
                             </a>
-                            @if($tecnic->status == 'ACTIVE')
-                                <button data-title="{{ $tecnic->name }}" data-id="{{ $tecnic->id }}" title="Desactivar"
+                            @if($user->status == 'ACTIVE')
+                                <button data-title="{{ $user->name }}" data-id="{{ $user->id }}" title="Desactivar"
                                     data-toggle="modal" data-target="#disable" type="button" class="btn bg-red waves-effect">
                                     <i class="material-icons">lock_outline</i>
                                 </button>
                             @else
-                                <button data-title="{{ $tecnic->name }}" data-id="{{ $tecnic->id }}" title="Hablitar"
+                                <button data-title="{{ $user->name }}" data-id="{{ $user->id }}" title="Hablitar"
                                     data-toggle="modal" data-target="#enable" type="button" class="btn bg-green waves-effect">
                                     <i class="material-icons">lock_open</i>
                                 </button>

@@ -16,28 +16,28 @@ class DeviceTableSeeder extends Seeder
         $device->sub_device_id = 1;
         $device->brand_id = 1;
         $device->model = 'x-313331313';
-        $device->client_id = '10196016';
+        $device->client_id = 1;
         $device->save();
 
         $device = new Device();
         $device->sub_device_id = 2;
         $device->brand_id = 1;
         $device->model = 'x-564647613';
-        $device->client_id = '11970867';
+        $device->client_id = 2;
         $device->save();
 
         $device = new Device();
         $device->sub_device_id = 5;
         $device->brand_id = 6;
         $device->model = 'x-1234564564';
-        $device->client_id = '26501312';
+        $device->client_id = 3;
         $device->save();
 
         $device = new Device();
         $device->sub_device_id = 6;
         $device->brand_id = 3;
         $device->model = 'x-2346456';
-        $device->client_id = '10196016';
+        $device->client_id = 1;
         $device->save();
     }
 }

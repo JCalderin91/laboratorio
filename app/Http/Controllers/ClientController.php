@@ -51,7 +51,8 @@ class ClientController extends Controller{
 
         $client = Client::find($id);
         $areas = Area::get();
-        return view('pages.clients.edit',compact(['client','areas']));
+
+        return view('pages.clients.edit',compact(['client', 'areas']));
     }
 
     public function update(ClientUpdateRequest $request, $id){
@@ -59,7 +60,7 @@ class ClientController extends Controller{
         $client = Client::find($id);
         $client->fill($request->all())->save();
 
-        return redirect()->route('clients.edit', $client->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('clients.index', $client->id)->with('success','Registro actualizado satisfactoriamente');
     
     }
 

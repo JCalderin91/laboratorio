@@ -15,7 +15,7 @@ class CreateHoursTable extends Migration
     {
         Schema::create('hours', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('user_id',8);
+            $table->unsignedInteger('user_id');
 
             $table->dateTime('hour')->default(NULL);
             $table->enum('operation',['IN','OUT'])->default('IN');

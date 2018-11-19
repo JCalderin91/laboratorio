@@ -89,7 +89,7 @@ class AreaController extends Controller
     {
         $area = Area::find($id);
 
-        $area->fill($request->all())->update();
+        $area->fill($request->all())->save();
 
         return redirect()->route('areas.index', $area->id)->with('success','Registro actualizado satisfactoriamente');
     }

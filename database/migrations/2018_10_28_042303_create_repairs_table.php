@@ -14,7 +14,7 @@ class CreateRepairsTable extends Migration
     public function up()
     {
         Schema::create('repairs', function (Blueprint $table) {
-            $table->string('user_id',8);
+            $table->unsignedInteger('user_id');
             $table->unsignedInteger('order_id');
 
             $table->string('description');

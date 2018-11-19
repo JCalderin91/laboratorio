@@ -39,7 +39,7 @@ class DeviceController extends Controller{
     public function update(Request $request, $id){
  
         $device = Device::findOrFail($id);
-        $device->fill($request->all())->update();
+        $device->fill($request->all())->save();
 
         return redirect()->route('devices.index')->with('success','Registro actualizado satisfactoriamente');
     }

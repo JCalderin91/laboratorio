@@ -24,14 +24,14 @@
         <p>Registre los datos de un nuevo usuario en nuestro sistema</p>
     </div>
     <div class="body">
-        <form method="POST" action="{{ route('users.update', $tecnic->id) }}" role="form">
+        <form method="POST" action="{{ route('users.update', $user->id) }}" role="form">
             @csrf
             <input name="_method" type="hidden" value="PATCH">
             <div class="row">
                 <div class="col-md-12">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" value="{{ $tecnic->id }}" name="id" >
+                            <input type="text" class="form-control" value="{{ $user->ci }}" name="ci" >
                             <label class="form-label">Cedula</label>
                         </div>
                     </div>
@@ -39,7 +39,7 @@
                 <div class="col-md-6">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="first_name" value="{{ $tecnic->first_name }}">
+                            <input type="text" class="form-control" name="first_name" value="{{ $user->first_name }}">
                             <label class="form-label">Nombres</label>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                 <div class="col-md-6">
                     <div class="form-group form-float">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="last_name" value="{{ $tecnic->last_name }}">
+                            <input type="text" class="form-control" name="last_name" value="{{ $user->last_name }}">
                             <label class="form-label">Apellidos</label>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                         <div class="form-line">
                             <label class="form-label">Genero</label>
                             <select name="gender" class="form-control" required>
-								@if($tecnic->gender === 'M')
+								@if($user->gender === 'M')
 									<option value="M">Masculino</option>
 									<option value="F">Femenino</option>
 								@else
@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-md-12">
                     <div class="form-group justify-between">
-                        <a href="{{ route('addresses.index') }}" class="btn btn-primary waves-effect">
+                        <a href="{{ route('users.index') }}" class="btn btn-primary waves-effect">
 							<i class="material-icons">undo</i>
 							<span>VOLVER</span>	
 						</a>
