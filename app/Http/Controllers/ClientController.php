@@ -60,7 +60,7 @@ class ClientController extends Controller{
         $client = Client::find($id);
         $client->fill($request->all())->save();
 
-        return redirect()->route('clients.edit', $client->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('clients.index', $client->id)->with('success','Registro actualizado satisfactoriamente');
     
     }
 
