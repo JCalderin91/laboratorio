@@ -31,7 +31,9 @@ class DeviceController extends Controller{
 
     public function edit($id){
         $device = Device::findOrFail($id);
-        return view('pages.devices.edit', compact('device') );
+        $brands = Brand::get();
+        $subdevices = SubDevice::get();
+        return view('pages.devices.edit', compact(['device', 'brands', 'subdevices']));
     }
 
     public function update(Request $request, $id){
@@ -39,7 +41,7 @@ class DeviceController extends Controller{
         $device = Device::findOrFail($id);
         $device->fill($request->all())->update();
 
-        return redirect()->route('devices.index', $device->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('devices.index')->with('success','Registro actualizado satisfactoriamente');
     }
 
     public function destroy(Request $request, $id){

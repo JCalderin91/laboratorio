@@ -18,7 +18,7 @@ class CreateHoursTable extends Migration
             $table->string('user_id',8);
 
             $table->dateTime('hour')->default(NULL);
-            $table->enum('operation',['IN','OUT'])->default('ACTIVE');
+            $table->enum('operation',['IN','OUT'])->default('IN');
             
             $table->foreign('user_id')->references('id')->on('users'); 
         });

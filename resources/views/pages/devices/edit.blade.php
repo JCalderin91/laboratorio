@@ -28,8 +28,9 @@
 			<p>Relize cambios en los datos que usted necesita</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('devices.store') }}"  role="form">
-				{{ csrf_field() }}
+			<form method="POST" action="{{ route('devices.update', $device->id) }}"  role="form">
+				@csrf
+            	<input name="_method" type="hidden" value="PATCH">
 				<div class="row">
 					<div class="col-md-6">
 				        <div class="form-group form-float">
@@ -47,7 +48,7 @@
 					</div>
 					<div class="col-md-6">
 				        <div class="form-group form-float">
-				            <select name="brand_id"  class="form-control show-tick" data-live-search="true" required> 
+				            <select name="sub_device_id"  class="form-control show-tick" data-live-search="true" required> 
 				            	<option value="">Seleccione</option>
 				            	@foreach($subdevices as $subdevice)
 				            		@if($device->subDevice->name === $subdevice->name )
@@ -62,7 +63,7 @@
 					<div class="col-md-6">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="name" value="{{ $device->model }}" required>
+				                <input type="text" class="form-control" name="model" value="{{ $device->model }}">
 				                <label class="form-label">Modelo</label>
 				            </div>
 				        </div>
@@ -71,7 +72,7 @@
 					<div class="col-md-6">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="name" value="{{ $device->b_n }}" required>
+				                <input type="text" class="form-control" name="b_n" value="{{ $device->b_n }}">
 				                <label class="form-label">Bien nacional</label>
 				            </div>
 				        </div>
