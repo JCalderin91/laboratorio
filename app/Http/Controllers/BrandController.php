@@ -53,9 +53,9 @@ class BrandController extends Controller{
 
         $brand = Brand::findOrFail($id);
 
-        $brand->fill($request->all())->update();
+        $brand->fill($request->all())->save();
 
-        return redirect()->route('brands.index', $brand->id)->with('success','Registro actualizado satisfactoriamente');
+        return redirect()->route('brands.index')->with('success','Registro actualizado satisfactoriamente');
     
     }
 

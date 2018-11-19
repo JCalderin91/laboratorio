@@ -13,7 +13,7 @@ class RepairTableSeeder extends Seeder
     public function run()
     {
         $repair = new Repair();
-        $repair->user_id = '22998438';
+        $repair->user_id = 2;
         $repair->order_id = 4;
         $repair->description = 'Cambio de motor';
         $repair->created = new \DateTime('2018-10-02 11:10:15'); 

@@ -51,7 +51,8 @@ class ClientController extends Controller{
 
         $client = Client::find($id);
         $areas = Area::get();
-        return view('pages.clients.edit',compact(['client','areas']));
+
+        return view('pages.clients.edit',compact(['client', 'areas']));
     }
 
     public function update(ClientUpdateRequest $request, $id){

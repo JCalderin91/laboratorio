@@ -17,7 +17,7 @@ class UserTableSeeder extends Seeder
         $role_user = Role::where('title', 'user')->first();
 
         $user = new User();
-        $user->id = '26082103';
+        $user->ci = '26082103';
         $user->first_name = 'Wendy';
         $user->last_name = 'Hurtado';
         $user->gender = 'F';
@@ -28,7 +28,7 @@ class UserTableSeeder extends Seeder
         $user->save();
 
         $user = new User();
-        $user->id = '22998438';
+        $user->ci = '22998438';
         $user->first_name = 'Jesus';
         $user->last_name = 'Calderin';
         $user->status = 'ACTIVE';
@@ -39,7 +39,7 @@ class UserTableSeeder extends Seeder
         $user->save();
 
         $user = new User();
-        $user->id = '23591319';
+        $user->ci = '23591319';
         $user->first_name = 'Miguel';
         $user->last_name = 'Maestre';
         $user->status = 'ACTIVE';

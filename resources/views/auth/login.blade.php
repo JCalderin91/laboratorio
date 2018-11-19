@@ -17,7 +17,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input id="id" type="text" class="form-control{{ $errors->has('id') ? ' is-invalid' : '' }}" name="id" placeholder="Numero de identificación personal" value="{{ old('id') }}" required autofocus>
+                            <input id="ci" type="text" class="form-control{{ $errors->has('ci') ? ' is-invalid' : '' }}" name="ci" placeholder="Numero de identificación personal" value="{{ old('ci') }}" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">

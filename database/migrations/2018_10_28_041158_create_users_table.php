@@ -15,8 +15,9 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
 
-            $table->string('id',8)->primary();
-            
+            $table->increments('id');
+
+            $table->string('ci',8)->unique();
             $table->string('first_name',128);
             $table->string('last_name',128);
             $table->enum('gender', ['F', 'M']);
@@ -26,6 +27,7 @@ class CreateUsersTable extends Migration
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->rememberToken();
             $table->timestamps();    
+            
             $table->foreign('role_id')->references('id')->on('roles');  
             
         });

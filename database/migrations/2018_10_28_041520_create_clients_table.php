@@ -14,16 +14,16 @@ class CreateClientsTable extends Migration
     public function up()
     {
         Schema::create('clients', function (Blueprint $table) {
-            $table->string('id',8);
+            $table->increments('id');
             $table->unsignedInteger('area_id');
 
+            $table->string('ci',8)->unique();
             $table->string('first_name',128);
             $table->string('last_name',128);
             $table->string('phone');
             $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->timestamps();
 
-            $table->primary('id');
             $table->foreign('area_id')->references('id')->on('areas');
         });
     }

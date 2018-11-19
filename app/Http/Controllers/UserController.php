@@ -32,7 +32,7 @@ class UserController extends Controller{
 
         $tecnic = new User();
 
-        $tecnic->id = $request->get('id');
+        $tecnic->ci = $request->get('ci');
         $tecnic->first_name = $request->get('first_name');
         $tecnic->last_name = $request->get('last_name');
 

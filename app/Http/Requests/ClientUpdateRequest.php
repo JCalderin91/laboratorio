@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ClientUpdateRequest extends FormRequest
 {
@@ -24,7 +25,8 @@ class ClientUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id'         => 'required|unique:clients,id|max:8,' . $this->client,
+         
+            'ci'         => ['required', Rule::unique('clients')->ignore($this->client)],
             'first_name' => 'required|max:128',
             'last_name'  => 'required|max:128',
             'phone'      => 'max:11',

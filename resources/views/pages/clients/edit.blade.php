@@ -36,7 +36,7 @@
 					<div class="col-md-6">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="id" value="{{ $client->id }}" required>
+				                <input type="text" class="form-control" name="ci" value="{{ $client->ci }}" required>
 				                <label class="form-label">Cedula</label>
 				            </div>
 				        </div>
