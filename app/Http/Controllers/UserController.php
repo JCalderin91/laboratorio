@@ -16,37 +16,37 @@ class UserController extends Controller{
 
     public function index(){   
         if(\Auth::user()->role_id == 1){
-            $tecnics = User::get();
+            $users = User::get();
         }else{
-            $tecnics = User::where('role_id', 2 )->where('status','ACTIVE')->get();
+            $users = User::where('role_id', 2 )->where('status','ACTIVE')->get();
         }
 
-        return view('pages.tecnics.index', compact('tecnics') );
+        return view('pages.users.index', compact('users') );
     }
 
     public function create(){
-        return view('pages.tecnics.create');
+        return view('pages.users.create');
     }
 
     public function store(UserStoreRequest $request){
 
-        $tecnic = new User();
+        $user = new User();
 
-        $tecnic->ci = $request->get('ci');
-        $tecnic->first_name = $request->get('first_name');
-        $tecnic->last_name = $request->get('last_name');
+        $user->ci = $request->get('ci');
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
 
         if($request->get('gender')==='M'){
-            $tecnic->avatar = '001-man.png';
+            $user->avatar = '001-man.png';
         }else{
-            $tecnic->avatar = '002-girl.png';
+            $user->avatar = '002-girl.png';
         }
-        $tecnic->role_id = $request->get('role_id');
-        $tecnic->gender = $request->get('gender');
-        $tecnic->status = 'ACTIVE';
-        $tecnic->password = bcrypt($request->get('password'));
+        $user->role_id = $request->get('role_id');
+        $user->gender = $request->get('gender');
+        $user->status = 'ACTIVE';
+        $user->password = bcrypt($request->get('password'));
 
-        $tecnic->save();
+        $user->save();
 
         return redirect('users')->with('success','Registro creado satisfactoriamente');
     }
@@ -57,40 +57,40 @@ class UserController extends Controller{
 
 
     public function edit($id){
-        $tecnic = User::findOrFail($id);
-        return view('pages.tecnics.edit', compact('tecnic') );
+        $user = User::findOrFail($id);
+        return view('pages.users.edit', compact('user') );
     }
 
 
     public function update(UserUpdateRequest $request, $id){
-        $tecnic = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
         $role_user = Role::where('title', 'user')->first();
 
-        $tecnic->first_name = $request->get('first_name');
-        $tecnic->last_name = $request->get('last_name');
-        $tecnic->gender = $request->get('gender');
+        $user->first_name = $request->get('first_name');
+        $user->last_name = $request->get('last_name');
+        $user->gender = $request->get('gender');
 
         if($request->get('password') != ''){
-            $tecnic->password = bcrypt($request->get('password'));
+            $user->password = bcrypt($request->get('password'));
         }
 
-        $tecnic->update();
+        $user->update();
 
 
         return redirect('users')->with('success','Registro actualizado satisfactoriamente');
     }
 
     public function destroy(Request $request, $id){
-        $tecnic = User::findOrFail($request->id);
+        $user = User::findOrFail($request->id);
         
-        if($tecnic->status === 'ACTIVE'){
-            $tecnic->status = 'INACTIVE';
+        if($user->status === 'ACTIVE'){
+            $user->status = 'INACTIVE';
         }else{
-            $tecnic->status = 'ACTIVE';
+            $user->status = 'ACTIVE';
         }        
 
-        $tecnic->update();
+        $user->update();
         return redirect()->route('users.index')->with('success','Cambio de status realizado efectivamente');   
     }
 }
