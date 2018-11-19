@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Client;
+use App\Area;
 use App\Http\Requests\ClientStoreRequest;
 use App\Http\Requests\ClientUpdateRequest;
 
@@ -48,8 +49,9 @@ class ClientController extends Controller{
 
     public function edit($id){
 
-    
-        return view('pages.clients.edit');
+        $client = Client::find($id);
+        $areas = Area::get();
+        return view('pages.clients.edit',compact(['client','areas']));
     }
 
     public function update(ClientUpdateRequest $request, $id){

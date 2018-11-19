@@ -29,13 +29,14 @@
 			<p>Relize cambios en los datos que usted necesita</p>
 		</div>
 		<div class="body">
-			<form method="POST" action="{{ route('clients.store') }}"  role="form">
-				{{ csrf_field() }}
+			<form method="POST" action="{{ route('clients.update', $client->id) }}"  role="form">
+			{{ csrf_field() }}
+          	<input name="_method" type="hidden" value="PATCH">
 				<div class="row">
 					<div class="col-md-6">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="dni" required>
+				                <input type="text" class="form-control" name="id" value="{{ $client->id }}" required>
 				                <label class="form-label">Cedula</label>
 				            </div>
 				        </div>
@@ -45,6 +46,13 @@
 				            <div class="form-line">
 				                <select name="area_id"  class="form-control show-tick" data-live-search="true" required> 
 					            	<option value="">Seleccione</option>
+					            	@foreach($areas as $area)
+					            		@if($client->area->name === $area->name )
+					            			<option selected value="{{ $area->id }}">{{ $area->name }}</option>
+					            		@else
+					            			<option value="{{ $area->id }}">{{ $area->name }}</option>
+					            		@endif				            	
+					            	@endforeach
 								</select> 
 				            </div>
 				        </div>
@@ -52,7 +60,7 @@
 					<div class="col-md-6">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="first_name" required>
+				                <input type="text" class="form-control" name="first_name" value="{{ $client->first_name }}" required>
 				                <label class="form-label">Nombres</label>
 				            </div>
 				        </div>
@@ -60,7 +68,7 @@
 					<div class="col-md-6">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="last_name" required>
+				                <input type="text" class="form-control" name="last_name" value="{{ $client->last_name }}" required>
 				                <label class="form-label">Apellidos</label>
 				            </div>
 				        </div>
@@ -68,7 +76,7 @@
 					<div class="col-md-12">
 				        <div class="form-group form-float">
 				            <div class="form-line">
-				                <input type="text" class="form-control" name="phone" required>
+				                <input type="text" class="form-control" name="phone" value="{{ $client->phone }}" required>
 				                <label class="form-label">Teléfono</label>
 				            </div>
 				        </div>

@@ -77,7 +77,7 @@
                             @endif
                         </td>
                         <td>
-                        	<a title="Editar" href="{{ route('clients.edit','clien_id') }}" class="btn bg-blue waves-effect">
+                        	<a title="Editar" href="{{ route('clients.edit',$client->id) }}" class="btn bg-blue waves-effect">
                                 <i class="material-icons">create</i>
                             </a>
                             @if($client->status == 'ACTIVE')
@@ -172,7 +172,6 @@
                     "previous": "Anterior"
                 }
             },
-            responsive: true,
             order: [[ 1, 'asc' ]],
             ordering: true,
             lengthChange: false
