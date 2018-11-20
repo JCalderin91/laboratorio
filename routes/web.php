@@ -65,10 +65,10 @@ Route::view('/register', 'pages.register');
 
 Route::resource('api', 'testController');*/
 Route::get('test', function () {
-  $orders = App\Order::get();
+  $clients = App\Client::get();
   $cis = [];
-  foreach($orders as $order){
-    array_push($cis,$order->client->ci);
+  foreach($clients as $client){
+    array_push($cis,$client->ci);
   }
   $cis = json_encode($cis);
 	return view('pages.register',compact('cis'));

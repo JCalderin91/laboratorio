@@ -24,7 +24,7 @@
                     <h4>Datos del Cliente</h4>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line autocomplete">
                             <input id="myInput" class="form-control" type="text" name="myCountry">
                             <label class="form-label">Cedula</label>
@@ -34,7 +34,7 @@
             </div>
             <div class="row">
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="first_name" required>
                             <label class="form-label">Nombre</label>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="last_name" required>
                             <label class="form-label">Apellido</label>
@@ -52,7 +52,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="col-xs-10" style="padding-right: 0;">
-                        <div class="form-group ">
+                        <div class="form-group form-float ">
                             <div class="form-line">
                                 <input type="text" class="form-control" name="area_name" required>
                                 <label class="form-label">Area</label>
@@ -78,7 +78,7 @@
 
 
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="phone" required>
                             <label class="form-label">Direcci&oacute;n</label>
@@ -87,7 +87,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="phone" required>
                             <label class="form-label">Teléfono de Contacto</label>
@@ -104,7 +104,7 @@
                     <h4>Datos del Equipo</h4>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="brand_id" required>
                             <label class="form-label">Marca</label>
@@ -113,7 +113,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="last_name" required>
                             <label class="form-label">Modelo</label>
@@ -122,7 +122,7 @@
                 </div>
 
                 <div class="col-md-6" style="padding-right: 0;">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="area_name" required>
                             <label class="form-label">Serial</label>
@@ -131,7 +131,7 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group ">
+                    <div class="form-group form-float ">
                         <div class="form-line">
                             <input type="text" class="form-control" name="phone" required>
                             <label class="form-label">Bien Nacional</label>
@@ -144,7 +144,7 @@
             {{-- botones --}}
             <div class="row">
                 <div class="col-md-12">
-                    <div class="form-group justify-between">
+                    <div class="form-group form-float justify-between">
                         <a href="{{ route('clients.index') }}" class="btn btn-primary waves-effect">
                             <i class="material-icons">undo</i>
                             <span>VOLVER</span>
