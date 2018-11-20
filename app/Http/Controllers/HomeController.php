@@ -16,7 +16,7 @@ class HomeController extends Controller{
     public function index()
     {   
         
-        $orders = App\Order::get();
+        $orders = Order::get();
         
         $data = (object) [
             'pendientes' => Order::where('status', 'PENDING')->count() ,
