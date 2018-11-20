@@ -88,12 +88,12 @@
                                 <td>--</td>
                                 <td>--</td>
                                 <td>
-                                        <div class="badge bg-blue">Reparado</div>
+                                  <div class="badge bg-blue">Reparado</div>
                                 </td>
                                 <td>
-                                        <button title="Reparar" type="button" class="btn bg-orange waves-effect">
-                                            <i class="material-icons">build</i>
-                                        </button>
+                                  <button title="Reparar" type="button" class="btn bg-orange waves-effect">
+                                      <i class="material-icons">build</i>
+                                  </button>
                                 </td>
                             </tr>
                             @endforeach
@@ -129,7 +129,7 @@
 
 
 <script>
-    
+
     $('.count-to').countTo();
 
     var ctx = document.getElementById("equipos").getContext('2d');
@@ -218,7 +218,6 @@
                 "previous": "Anterior"
             }
         },
-        responsive: true,
         order: [[ 1, 'asc' ]],
         ordering: true,
         lengthChange: false
