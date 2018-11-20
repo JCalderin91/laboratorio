@@ -83,17 +83,41 @@
                         <tbody>
                             @foreach($orders as $order)
                             <tr>
-                                <td>--</td>
-                                <td>--</td>
+                                <td>{{$order->device->subDevice->name}}</td>
+                                <td>{{$order->client->ci}}</td>
                                 <td>--</td>
                                 <td>--</td>
                                 <td>
+                                @switch($order->status)
+                                    @case('PENDING')
+                                        <div class="badge bg-red">Pendiente</div>
+                                        @break
+                                    @case('REVISED')
                                         <div class="badge bg-blue">Reparado</div>
+                                        @break
+                                    @case('DELIVERED')
+                                        <div class="badge bg-green">Entregado</div>
+                                        @break
+                                @endswitch                                        
                                 </td>
                                 <td>
-                                        <button title="Reparar" type="button" class="btn bg-orange waves-effect">
+                                @switch($order->status)
+                                    @case('PENDING')  
+                                        <button title="Reparar" type="button" class="btn bg-blue waves-effect">
                                             <i class="material-icons">build</i>
                                         </button>
+                                        @break
+                                    @case('REVISED')  
+                                        <button title="Entregar" type="button" class="btn bg-green waves-effect">
+                                            <i class="material-icons">send</i>
+                                        </button>
+                                        @break
+                                    @case('DELIVERED')  
+                                        <button title="Detalles" type="button" class="btn bg-orange waves-effect">
+                                            <i class="material-icons">remove_red_eye</i>
+                                        </button>
+                                        @break
+                                @endswitch
                                 </td>
                             </tr>
                             @endforeach

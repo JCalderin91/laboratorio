@@ -1,5 +1,8 @@
 <?php
 
+use App\Exports\AreasExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 Route::post('/ajax', function () {
 
 	$data = (object) [
@@ -62,5 +65,17 @@ Route::view('/register', 'pages.register');
 
 Route::resource('api', 'testController');*/
 Route::get('test', function () {
-	return view('pages.register');
+  $orders = App\Order::get();
+  $cis = [];
+  foreach($orders as $order){
+    array_push($cis,$order->client->ci);
+  }
+  $cis = json_encode($cis);
+	return view('pages.register',compact('cis'));
+});
+
+
+// Prueba para exportar los resportes en pdf y excel
+Route::get('excel', function () {
+	return Excel::download(new AreasExport, 'users.xlsx');
 });
