@@ -68,6 +68,7 @@ Route::get('test', function () {
   $areas = App\Area::get();
   $clients = App\Client::get();
   $brands = App\Brand::get();
+  $users = App\User::get();
 
   $areas_name = [];
   foreach($areas as $area) array_push($areas_name,$area->name);  
@@ -83,7 +84,7 @@ Route::get('test', function () {
 
 
 
-	return view('pages.register',compact(['cis','areas_name','brands_name']));
+	return view('pages.register',compact(['cis','areas_name','brands_name','users']));
 });
 
 

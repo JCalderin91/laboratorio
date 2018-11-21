@@ -23,18 +23,13 @@
                 <div class="col-md-12">
                     <h4>Datos del Cliente</h4>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-6">
                     <div class="form-group form-float ">
                         <div class="form-line autocomplete">
                             <input id="ci" class="form-control" type="text" name="ci">
                             <label class="form-label">Cedula</label>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-1">
-                    <a id="search" href="#" class="btn btn-info waves-effect" title="Buscar">
-                        <i class="material-icons">search</i>
-                    </a>
                 </div>
             </div>
             <div class="row">
@@ -86,7 +81,6 @@
             {{-- fin datos del cliente --}}
 
             {{-- datos del equipo --}}
-
             <div class="row">
                 <div class="col-md-12">
                     <h4>Datos del Equipo</h4>
@@ -129,6 +123,33 @@
             </div>
             {{-- fin datos del equipo --}}
 
+            {{-- Observaciones de orden --}}
+            <div class="row clearfix">
+                <div class="col-md-12">
+                    <h4>Observaciones</h4>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group form-float ">
+                        <div class="form-line">
+                            <textarea rows="4" class="form-control no-resize" placeholder="Observaciones preliminares"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- fin Observaciones de orden --}}
+
+            <div class="row">
+                <div class="col-md-12">
+                    <select class="form-control show-tick">
+                        <option value="">-- Seleccione --</option>
+                        @foreach($users as $user)
+                        <option value="{{ $user->ci }}">{{ $user->ci }} - {{ $user->first_name }} {{ $user->last_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </div>
+
             {{-- botones --}}
             <div class="row">
                 <div class="col-md-12">
@@ -151,11 +172,11 @@
 @endsection
 @section('script')
 <script>
-    autocomplete(document.getElementById("ci"), {!! $cis !!});
+    autocomplete(document.getElementById("ci"), {!!$cis!!});
 
-    autocomplete(document.getElementById("area_name"), {!! $areas_name !!});
+    autocomplete(document.getElementById("area_name"), {!!$areas_name!!});
 
-    autocomplete(document.getElementById("brand"), {!! $brands_name !!});
-    
+    autocomplete(document.getElementById("brand"), {!!$brands_name!!});
+
 </script>
 @endsection
