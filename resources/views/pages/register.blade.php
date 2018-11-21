@@ -53,18 +53,18 @@
 
                 <div class="col-md-6">
                     <div class="form-group form-float ">
-                        <div class="form-line autocomplete">
-                            <input id="area_name" class="form-control" type="text" name="area_name">
-                            <label class="form-label">Area</label>
+                        <div class="form-line">
+                            <input type="text" class="form-control" id="address" name="address" required>
+                            <label class="form-label">Direcci&oacute;n</label>
                         </div>
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div class="form-group form-float ">
-                        <div class="form-line">
-                            <input type="text" class="form-control" id="address" name="address" required>
-                            <label class="form-label">Direcci&oacute;n</label>
+                        <div class="form-line autocomplete">
+                            <input id="area_name" class="form-control" type="text" name="area_name">
+                            <label class="form-label">Area</label>
                         </div>
                     </div>
                 </div>
@@ -139,6 +139,7 @@
             </div>
             {{-- fin Observaciones de orden --}}
 
+            {{-- Selecionar usuario --}}
             <div class="row">
                 <div class="col-md-12">
                     <select class="form-control show-tick">
@@ -149,6 +150,7 @@
                     </select>
                 </div>
             </div>
+            {{-- Fin selecionar usuario --}}
 
             {{-- botones --}}
             <div class="row">
@@ -178,5 +180,6 @@
 
     autocomplete(document.getElementById("brand"), {!!$brands_name!!});
 
+    autocomplete(document.getElementById("address"), {!!$addresses_name!!});
 </script>
 @endsection

@@ -199,6 +199,10 @@ function getUser(user) {
         });
 }
 
+$('#address').on('input', function(){
+    console.log($('#address')[0].value);
+})
+
 
 function clearAll() {
     clear($('#first_name'));

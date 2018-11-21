@@ -34,7 +34,6 @@ class ClientController extends Controller{
 
 
     public function findClient($ci){
-
         $client = Client::where('ci', $ci)->first();
         $area = Area::where('id', $client->area->id)->first();
         $data = array(
@@ -44,9 +43,7 @@ class ClientController extends Controller{
                     'phone' => $client->phone,
                     'area' => $client->area->name,
                     'address' => $area->address->name );
-
-        return json_encode($data);
-    
+        return json_encode($data);    
     }
 
     public function show($id){
