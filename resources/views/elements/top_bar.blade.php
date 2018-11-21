@@ -12,7 +12,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a title="Cerrar sesión" href="" data-toggle="modal" data-target="#logout">
+                        <a title="Cerrar sesión" href="javascript:void(0);" data-toggle="modal" data-target="#logout">
                             <i class="material-icons">power_settings_new</i>
                         </a>                        
                     </li>
