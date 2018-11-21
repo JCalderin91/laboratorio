@@ -21,7 +21,7 @@ Route::post('/addresses/store', 'AddressController@storeWithModal')->name('addre
 Route::resource('/addresses',   'AddressController');
 
 //Clientes
-Route::post('/clients/store',   'ClientController@storeWithModal')->name('clients.modal');
+Route::get('/clients/{ci}',     'ClientController@findClient')->name('clients.json');
 Route::resource('/clients',     'ClientController');
 
 //Equipos

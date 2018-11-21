@@ -33,9 +33,9 @@ class ClientController extends Controller{
     }
 
 
-    public function storeWithModal(ClientStoreRequest $request){
+    public function findClient($ci){
 
-        $client = Client::create($request->all());
+        $client = Client::where('ci', $ci)->get()->toJson();
 
         return $client;
     
