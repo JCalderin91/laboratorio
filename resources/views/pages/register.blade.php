@@ -36,7 +36,7 @@
                 <div class="col-md-6">
                     <div class="form-group form-float ">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="first_name" required>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
                             <label class="form-label">Nombre</label>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                 <div class="col-md-6">
                     <div class="form-group form-float ">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="last_name" required>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
                             <label class="form-label">Apellido</label>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                 <div class="col-md-6">
                     <div class="form-group form-float ">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="phone" required>
+                            <input type="text" class="form-control" id="address" name="address" required>
                             <label class="form-label">Direcci&oacute;n</label>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                 <div class="col-md-6">
                     <div class="form-group form-float ">
                         <div class="form-line">
-                            <input type="text" class="form-control" name="phone" required>
+                            <input type="text" class="form-control" id="phone" name="phone" required>
                             <label class="form-label">Teléfono de Contacto</label>
                         </div>
                     </div>
@@ -151,5 +151,6 @@
     autocomplete(document.getElementById("area_name"), {!! $areas_name !!});
 
     autocomplete(document.getElementById("brand"), {!! $brands_name !!});
+    
 </script>
 @endsection

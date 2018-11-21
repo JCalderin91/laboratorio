@@ -65,6 +65,7 @@ function autocomplete(inp, arr) {
             b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
             /*execute a function when someone clicks on the item value (DIV element):*/
             b.addEventListener("click", function(e) {
+                getUser(this.getElementsByTagName("input")[0].value);
                 /*insert the value for the autocomplete text field:*/
                 inp.value = this.getElementsByTagName("input")[0].value;
                 /*close the list of autocompleted values,
@@ -131,4 +132,23 @@ function autocomplete(inp, arr) {
         closeAllLists(e.target);
     });
   }
+
+ 
   
+function getUser(user){
+  axios.get('/clients/'+user)
+  .then(function (response) {
+    // handle success
+    let user = response.data[0];
+    $('#first_name')[0].value = user.first_name;
+    $('#last_name')[0].value = user.last_name;
+    $('#phone')[0].value = user.phone;
+  })
+  .catch(function (error) {
+    // handle error
+    console.log(error);
+  })
+  .then(function () {
+    // always executed
+  });
+}
