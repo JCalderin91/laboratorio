@@ -69,10 +69,12 @@ function autocomplete(inp, arr) {
                 b.addEventListener("click", function (e) {
                     //getUser(this.getElementsByTagName("input")[0].value);
                     /*insert the value for the autocomplete text field:*/
+                    $('#ci').parent().addClass('focused');
                     inp.value = this.getElementsByTagName("input")[0].value;
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
+                    getAreas($('#address')[0].value);
                 });
                 a.appendChild(b);
             }
@@ -142,25 +144,36 @@ function autocomplete(inp, arr) {
 // $('#ci').attr('disabled','disabled')
 
 // Desbloquear
-// $('#ci').removeAttr('disabled')
-// $('#search').click(function(ev){
-//    ev.preventDefault();
-//   if (!$('#ci')[0].value) return;
-//  getUser($('#ci')[0].value);
-// });
-$('#ci').keyup(function (ev) {
+//$('#ci').removeAttr('disabled')
+
+$('#search').click(function (ev) {
+    ev.preventDefault();
+    if ($('#ci')[0].value) {
+        getUser($('#ci')[0].value);
+    } else {
+        $('#ci').parent().addClass('error');
+        $('#ci').parent().addClass('focused');
+    }
+});
+
+$('#address').keyup(function (ev) {
     if (ev.which == 13) {
-        if ($('#ci')[0].value) {
-            getUser($('#ci')[0].value);
-        }else {
-          $('#ci').parent().addClass('error');
-      }
-    } 
+        if ($('#address')[0].value) {
+            getAreas($('#address')[0].value);
+        } else {
+            $('#address').parent().addClass('error');
+        }
+    }
 })
 
 $('#ci').on('input', function () {
-  $('#ci').parent().removeClass('error');
+    $('#ci').parent().removeClass('error');
+    $('#ci').parent().removeClass('focused');
     clearAll();
+});
+
+$('#address').on('input', function () {
+    $('#area_name')[0].value = ''
 });
 
 function getUser(user) {
@@ -199,10 +212,22 @@ function getUser(user) {
         });
 }
 
-$('#address').on('input', function(){
-    console.log($('#address')[0].value);
-})
-
+function getAreas(address) {
+    axios
+        .get('/addresses/' + address)
+        .then(function (response) {
+            // handle success
+            let areas = response.data;
+            autocomplete(document.getElementById("area_name"), areas);
+        })
+        .catch(function (error) {
+            console.log('No existe area');
+            //$('#ci').parent().addClass('error');
+        })
+        .then(function () {
+            // always executed
+        });
+}
 
 function clearAll() {
     clear($('#first_name'));
@@ -216,6 +241,9 @@ function clearAll() {
     $('#area_name').removeAttr('disabled')
     $('#address').removeAttr('disabled')
     $('#phone').removeAttr('disabled')
+    if($('#ci')[0].value != ''){
+        $('#ci').parent().addClass('focused');
+    }
 }
 
 
