@@ -192,6 +192,7 @@ function getUser(user) {
         .catch(function (error) {
             clearAll();
             alert('No existe este usuario');
+            $('#ci').parent().addClass('error');
         })
         .then(function () {
             // always executed
