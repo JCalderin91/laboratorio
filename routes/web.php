@@ -65,13 +65,25 @@ Route::view('/register', 'pages.register');
 
 Route::resource('api', 'testController');*/
 Route::get('test', function () {
+  $areas = App\Area::get();
   $clients = App\Client::get();
+  $brands = App\Brand::get();
+
+  $areas_name = [];
+  foreach($areas as $area) array_push($areas_name,$area->name);  
+  $areas_name = json_encode($areas_name);
+
   $cis = [];
-  foreach($clients as $client){
-    array_push($cis,$client->ci);
-  }
+  foreach($clients as $client) array_push($cis,$client->ci);
   $cis = json_encode($cis);
-	return view('pages.register',compact('cis'));
+
+  $brands_name = [];
+  foreach($brands as $brand) array_push($brands_name,$brand->title);
+  $brands_name = json_encode($brands_name);
+
+
+
+	return view('pages.register',compact(['cis','areas_name','brands_name']));
 });
 
 

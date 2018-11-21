@@ -26,7 +26,7 @@
                 <div class="col-md-6">
                     <div class="form-group form-float ">
                         <div class="form-line autocomplete">
-                            <input id="myInput" class="form-control" type="text" name="myCountry">
+                            <input id="ci" class="form-control" type="text" name="ci">
                             <label class="form-label">Cedula</label>
                         </div>
                     </div>
@@ -50,32 +50,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="col-xs-10" style="padding-right: 0;">
-                        <div class="form-group form-float ">
-                            <div class="form-line">
-                                <input type="text" class="form-control" name="area_name" required>
-                                <label class="form-label">Area</label>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-xs-2" style="padding: 0;">
-                        <div class="dropdown">
-                            <button class="btn btn-block btn-default wave-efect dropdown-toggle" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="caret"></i>
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                            </div>
+                <div class="col-md-6">
+                    <div class="form-group form-float ">
+                        <div class="form-line autocomplete">
+                            <input id="area_name" class="form-control" type="text" name="area_name">
+                            <label class="form-label">Area</label>
                         </div>
                     </div>
                 </div>
-
 
                 <div class="col-md-6">
                     <div class="form-group form-float ">
@@ -105,8 +88,8 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group form-float ">
-                        <div class="form-line">
-                            <input type="text" class="form-control" name="brand_id" required>
+                        <div class="form-line autocomplete">
+                            <input id="brand" class="form-control" type="text" name="brand">
                             <label class="form-label">Marca</label>
                         </div>
                     </div>
@@ -163,7 +146,10 @@
 @endsection
 @section('script')
 <script>
-  var cis = {!! $cis !!};  
-    autocomplete(document.getElementById("myInput"), cis);
+    autocomplete(document.getElementById("ci"), {!! $cis !!});
+
+    autocomplete(document.getElementById("area_name"), {!! $areas_name !!});
+
+    autocomplete(document.getElementById("brand"), {!! $brands_name !!});
 </script>
 @endsection
