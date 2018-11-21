@@ -165,6 +165,13 @@ $('#address').keyup(function (ev) {
         }
     }
 })
+$('#ci').on('blur',function(ev){
+    if($('#ci')[0].value != '') getUser($('#ci')[0].value);
+})
+
+$('#address').on('blur',function(ev){
+    if($('#address')[0].value != '') getUser($('#address')[0].value);
+})
 
 $('#ci').on('input', function () {
     $('#ci').parent().removeClass('error');
@@ -252,3 +259,5 @@ function clear(item) {
     item.removeAttr('disabled');
     item.parent().removeClass('focused');
 }
+
+
