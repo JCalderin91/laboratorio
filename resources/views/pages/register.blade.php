@@ -23,7 +23,7 @@
                 <div class="col-md-12">
                     <h4>Datos del Cliente</h4>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="form-group form-float ">
                         <div class="form-line autocomplete">
                             <input id="ci" class="form-control" type="text" name="ci">
@@ -31,12 +31,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-1">
+                    <a id="search" href="#" class="btn btn-info waves-effect" title="Buscar">
+                        <i class="material-icons">search</i>
+                    </a>
+                </div>
             </div>
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group form-float ">
                         <div class="form-line">
-                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required disabled>
                             <label class="form-label">Nombre</label>
                         </div>
                     </div>

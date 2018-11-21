@@ -35,9 +35,17 @@ class ClientController extends Controller{
 
     public function findClient($ci){
 
-        $client = Client::where('ci', $ci)->get()->toJson();
+        $client = Client::where('ci', $ci)->first();
+        $area = Area::where('id', $client->area->id)->first();
+        $data = array(
+                    'ci' => $client->ci, 
+                    'first_name' => $client->first_name, 
+                    'last_name' => $client->last_name,
+                    'phone' => $client->phone,
+                    'area' => $client->area->name,
+                    'address' => $area->address->name );
 
-        return $client;
+        return json_encode($data);
     
     }
 
