@@ -13,7 +13,7 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li>
                         <a title="Cerrar sesión" href="" data-toggle="modal" data-target="#logout">
-                            <i class="material-icons">input</i>
+                            <i class="material-icons">power_settings_new</i>
                         </a>                        
                     </li>
                 </ul>
