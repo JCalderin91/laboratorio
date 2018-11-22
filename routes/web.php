@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 //Direcciones
-Route::post('/addresses/store', 'AddressController@storeWithModal')->name('addresses.modal');
+Route::get('/addresses/{ad}', 'AddressController@findAreas')->name('addresses.areas');
 Route::resource('/addresses',   'AddressController');
 
 //Clientes

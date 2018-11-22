@@ -47,11 +47,11 @@ class AddressController extends Controller
     }
     
 
-    public function storeWithModal(AddressStoreRequest $request)
+    public function findAreas($ad)
     {
-        $address = Address::create($request->all());
+        $address = Address::where('name', $ad)->first();
 
-        return $address;
+        return $address->areas()->get()->pluck('name')->toArray();
     }
 
 
