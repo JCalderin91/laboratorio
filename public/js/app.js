@@ -141,8 +141,11 @@ function getUser(user){
     // handle success
     let user = response.data[0];
     $('#first_name')[0].value = user.first_name;
+    $('#first_name').parent().addClass('focused');
     $('#last_name')[0].value = user.last_name;
+    $('#last_name').parent().addClass('focused');
     $('#phone')[0].value = user.phone;
+    $('#phone').parent().addClass('focused');
   })
   .catch(function (error) {
     // handle error
