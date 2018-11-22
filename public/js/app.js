@@ -65,7 +65,7 @@ function autocomplete(inp, arr) {
             b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
             /*execute a function when someone clicks on the item value (DIV element):*/
             b.addEventListener("click", function(e) {
-                getUser(this.getElementsByTagName("input")[0].value);
+                //getUser(this.getElementsByTagName("input")[0].value);
                 /*insert the value for the autocomplete text field:*/
                 inp.value = this.getElementsByTagName("input")[0].value;
                 /*close the list of autocompleted values,
@@ -133,25 +133,51 @@ function autocomplete(inp, arr) {
     });
   }
 
- 
+// Bloquear
+// $('#ci').attr('disabled','disabled')
+
+// Desbloquear
+// $('#ci').removeAttr('disabled')
+ $('#search').click(function(ev){
+    ev.preventDefault();
+    getUser($('#ci')[0].value);
+ })
   
 function getUser(user){
   axios.get('/clients/'+user)
   .then(function (response) {
     // handle success
     let user = response.data[0];
-    $('#first_name')[0].value = user.first_name;
-    $('#first_name').parent().addClass('focused');
-    $('#last_name')[0].value = user.last_name;
-    $('#last_name').parent().addClass('focused');
-    $('#phone')[0].value = user.phone;
-    $('#phone').parent().addClass('focused');
+    if(user){
+      $('#first_name')[0].value = user.first_name;
+      $('#first_name').parent().addClass('focused');
+      $('#first_name').attr('disabled','disabled')
+      $('#last_name')[0].value = user.last_name;
+      $('#last_name').parent().addClass('focused');
+      $('#last_name').attr('disabled','disabled')
+      $('#phone')[0].value = user.phone;
+      $('#phone').parent().addClass('focused');
+      $('#phone').attr('disabled','disabled')
+    }else{
+      clear($('#first_name'));
+      clear($('#last_name'));
+      clear($('#phone'));
+      $('#first_name').removeAttr('disabled')
+      $('#last_name').removeAttr('disabled')
+      $('#phone').removeAttr('disabled')
+    }
   })
   .catch(function (error) {
-    // handle error
+    // handle error    
     console.log(error);
   })
   .then(function () {
     // always executed
   });
+}
+
+function clear(item){
+    item[0].value = '';
+    item.removeAttr('disabled');
+    item.parent().removeClass('focused');
 }
