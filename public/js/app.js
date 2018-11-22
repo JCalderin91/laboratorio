@@ -147,29 +147,40 @@ function getUser(user){
   axios.get('/clients/'+user)
   .then(function (response) {
     // handle success
-    let user = response.data[0];
-    if(user){
+    let user = response.data; 
+
       $('#first_name')[0].value = user.first_name;
       $('#first_name').parent().addClass('focused');
       $('#first_name').attr('disabled','disabled')
+
       $('#last_name')[0].value = user.last_name;
       $('#last_name').parent().addClass('focused');
       $('#last_name').attr('disabled','disabled')
+
+      $('#area_name')[0].value = user.area;
+      $('#area_name').parent().addClass('focused');
+      $('#area_name').attr('disabled','disabled')
+
+      $('#address')[0].value = user.address;
+      $('#address').parent().addClass('focused');
+      $('#address').attr('disabled','disabled')
+
       $('#phone')[0].value = user.phone;
       $('#phone').parent().addClass('focused');
-      $('#phone').attr('disabled','disabled')
-    }else{
-      clear($('#first_name'));
-      clear($('#last_name'));
-      clear($('#phone'));
-      $('#first_name').removeAttr('disabled')
-      $('#last_name').removeAttr('disabled')
-      $('#phone').removeAttr('disabled')
-    }
+      $('#phone').attr('disabled','disabled')    
   })
   .catch(function (error) {
-    // handle error    
-    console.log(error);
+      clear($('#first_name'));
+      clear($('#last_name'));
+      clear($('#area_name'));
+      clear($('#address'));
+      clear($('#phone'));
+
+      $('#first_name').removeAttr('disabled')
+      $('#last_name').removeAttr('disabled')
+      $('#area_name').removeAttr('disabled')
+      $('#address').removeAttr('disabled')
+      $('#phone').removeAttr('disabled')
   })
   .then(function () {
     // always executed
