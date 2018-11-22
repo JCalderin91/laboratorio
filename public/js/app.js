@@ -142,7 +142,10 @@ function autocomplete(inp, arr) {
     ev.preventDefault();
     getUser($('#ci')[0].value);
  })
-  
+ $('#ci').on('input',function(){
+  clearAll();
+ })
+
 function getUser(user){
   axios.get('/clients/'+user)
   .then(function (response) {
@@ -170,22 +173,28 @@ function getUser(user){
       $('#phone').attr('disabled','disabled')    
   })
   .catch(function (error) {
-      clear($('#first_name'));
-      clear($('#last_name'));
-      clear($('#area_name'));
-      clear($('#address'));
-      clear($('#phone'));
-
-      $('#first_name').removeAttr('disabled')
-      $('#last_name').removeAttr('disabled')
-      $('#area_name').removeAttr('disabled')
-      $('#address').removeAttr('disabled')
-      $('#phone').removeAttr('disabled')
+    clearAll();
   })
   .then(function () {
     // always executed
   });
 }
+
+
+function clearAll(){
+  clear($('#first_name'));
+  clear($('#last_name'));
+  clear($('#area_name'));
+  clear($('#address'));
+  clear($('#phone'));
+
+  $('#first_name').removeAttr('disabled')
+  $('#last_name').removeAttr('disabled')
+  $('#area_name').removeAttr('disabled')
+  $('#address').removeAttr('disabled')
+  $('#phone').removeAttr('disabled')
+}
+
 
 function clear(item){
     item[0].value = '';
