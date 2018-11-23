@@ -83,13 +83,7 @@ Route::get('test', function () {
   foreach($brands as $brand) array_push($brands_name,$brand->title);
   $brands_name = json_encode($brands_name);
 
-  $addresses_name = [];
-  foreach($addresses as $address) array_push($addresses_name,$address->name);
-  $addresses_name = json_encode($addresses_name);
-
-
-
-	return view('pages.register',compact(['cis','areas_name','brands_name','users','addresses_name']));
+	return view('pages.register',compact(['cis','areas_name','brands_name','users','addresses']));
 });
 
 

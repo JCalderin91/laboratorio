@@ -30,10 +30,7 @@ window.setTimeout(function () {
 }, 8000);
 
 
-
 // autocomplete field
-
-
 
 function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
@@ -67,14 +64,13 @@ function autocomplete(inp, arr) {
                 b.innerHTML += "<input type='hidden' value='" + arr[i] + "'>";
                 /*execute a function when someone clicks on the item value (DIV element):*/
                 b.addEventListener("click", function (e) {
-                    //getUser(this.getElementsByTagName("input")[0].value);
+                    getUser(this.getElementsByTagName("input")[0].value);
                     /*insert the value for the autocomplete text field:*/
                     $('#ci').parent().addClass('focused');
                     inp.value = this.getElementsByTagName("input")[0].value;
                     /*close the list of autocompleted values,
                     (or any other open lists of autocompleted values:*/
                     closeAllLists();
-                    getAreas($('#address')[0].value);
                 });
                 a.appendChild(b);
             }
@@ -148,7 +144,7 @@ function autocomplete(inp, arr) {
 
 $('#search').click(function (ev) {
     ev.preventDefault();
-    if ($('#ci')[0].value) {
+    if ($('#ci')[0].value != '') {
         getUser($('#ci')[0].value);
     } else {
         $('#ci').parent().addClass('error');
@@ -156,21 +152,13 @@ $('#search').click(function (ev) {
     }
 });
 
-$('#address').keyup(function (ev) {
-    if (ev.which == 13) {
-        if ($('#address')[0].value) {
-            getAreas($('#address')[0].value);
-        } else {
-            $('#address').parent().addClass('error');
-        }
-    }
-})
+
 $('#ci').on('blur',function(ev){
     if($('#ci')[0].value != '') getUser($('#ci')[0].value);
 })
 
 $('#address').on('blur',function(ev){
-    if($('#address')[0].value != '') getUser($('#address')[0].value);
+    if($('#address')[0].value != '') getAreas($('#address')[0].value);
 })
 
 $('#ci').on('input', function () {
@@ -225,7 +213,13 @@ function getAreas(address) {
         .then(function (response) {
             // handle success
             let areas = response.data;
-            autocomplete(document.getElementById("area_name"), areas);
+            let options = '<select class="form-control show-tick"><option value="">-- Areas --</option>';
+            areas.forEach( function(valor, indice, array) {
+                options += '<option value="'+valor+'">'+valor+'</option>';
+            });
+            options += '</select>';
+            $('#areas').html(options); 
+            console.log(options);          
         })
         .catch(function (error) {
             console.log('No existe area');
@@ -261,3 +255,6 @@ function clear(item) {
 }
 
 
+$('#address').change(function(ev){
+    getAreas(ev.target.value);
+});
