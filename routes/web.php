@@ -17,7 +17,7 @@ Route::get('/', 'HomeController@index')->name('home');
 
 
 //Direcciones
-Route::get('/addresses/{ad}', 'AddressController@findAreas')->name('addresses.areas');
+Route::get('/addresses/{ad}',   'AddressController@findAreas')->name('addresses.areas');
 Route::resource('/addresses',   'AddressController');
 
 //Clientes
@@ -53,8 +53,6 @@ Route::resource('/sub-devices',   'SubDeviceController');
 
 
 
-
-
 /*<<<<<<< HEAD
 Route::view('/register', 'pages.register');
 
@@ -83,13 +81,7 @@ Route::get('test', function () {
   foreach($brands as $brand) array_push($brands_name,$brand->title);
   $brands_name = json_encode($brands_name);
 
-  $addresses_name = [];
-  foreach($addresses as $address) array_push($addresses_name,$address->name);
-  $addresses_name = json_encode($addresses_name);
-
-
-
-	return view('pages.register',compact(['cis','areas_name','brands_name','users','addresses_name']));
+    return view('pages.register',compact(['cis','areas_name','brands_name','users','addresses']));
 });
 
 
