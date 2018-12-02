@@ -57,22 +57,15 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="form-group form-float ">
-                        <div class="form-line">
-                            <input type="text" class="form-control" id="address" name="address" required>
-                            <label class="form-label">Direcci&oacute;n</label>
-                        </div>
-                    </div>
+                    <select id="address" class="form-control show-tick">
+                        <option value="">-- Dirección --</option>
+                        @foreach($addresses as $address)
+                        <option value="{{ $address->name }}">{{ $address->name }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
-                <div class="col-md-6">
-                    <div class="form-group form-float ">
-                        <div class="form-line autocomplete">
-                            <input id="area_name" class="form-control" type="text" name="area_name">
-                            <label class="form-label">Area</label>
-                        </div>
-                    </div>
-                </div>
+                <div id="areas" class="col-md-6"></div>
 
                 <div class="col-md-6">
                     <div class="form-group form-float ">
@@ -147,7 +140,7 @@
             {{-- Selecionar usuario --}}
             <div class="row">
                 <div class="col-md-12">
-                    <select class="form-control show-tick">
+                    <select  class="form-control show-tick">
                         <option value="">-- Seleccione --</option>
                         @foreach($users as $user)
                         <option value="{{ $user->ci }}">{{ $user->ci }} - {{ $user->first_name }} {{ $user->last_name }}</option>
@@ -179,10 +172,8 @@
 @endsection
 @section('script')
 <script>
-    autocomplete(document.getElementById("ci"), {!!$cis!!});
+    //autocomplete(document.getElementById("ci"), {!!$cis!!});
 
     autocomplete(document.getElementById("brand"), {!!$brands_name!!});
-
-    autocomplete(document.getElementById("address"), {!!$addresses_name!!});
 </script>
 @endsection
