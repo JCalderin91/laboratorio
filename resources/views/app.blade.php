@@ -5,14 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Laravel</title>
+  <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
 
 </head>
 <body>
 	<div id="app">
-		<container />
+		<container></container>
 	</div>
 
-
+	<script src="{{asset('js/jquery.min.js')}}"></script>
+	<script src="{{asset('js/materialize.js')}}"></script>
 	<script src="{{asset('js/app.js')}}"></script>
+	<script src="{{asset('js/script.js')}}"></script>
 </body>
 </html>
