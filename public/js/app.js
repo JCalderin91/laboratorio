@@ -11740,11 +11740,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 		name: 'Container',
+		data: function data() {
+				return {
+						msg: 'Drop Me!',
+						datos: [{ item: '1' }, { item: '2' }, { item: '3' }, { item: '4' }, { item: '5' }, { item: '6' }, { item: '7' }, { item: '8' }]
+				};
+		},
 		mounted: function mounted() {
 				console.log('Component mounted.');
 		}
@@ -11758,57 +11762,40 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v("Componente contenedor")]),
-      _vm._v(" "),
+  return _c("div", { staticClass: "container" }, [
+    _c("h1", [_vm._v("Componente contenedor")]),
+    _vm._v(" "),
+    _c(
+      "a",
+      {
+        staticClass: "dropdown-trigger btn",
+        attrs: { href: "#", "data-target": "dropdown1" }
+      },
+      [_vm._v(_vm._s(_vm.msg))]
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "input-field col s12" }, [
       _c(
-        "a",
-        {
-          staticClass: "dropdown-trigger btn",
-          attrs: { href: "#", "data-target": "dropdown1" }
-        },
-        [_vm._v("Drop Me!")]
-      ),
-      _vm._v(" "),
-      _c(
-        "ul",
-        { staticClass: "dropdown-content", attrs: { id: "dropdown1" } },
+        "select",
         [
-          _c("li", [_c("a", { attrs: { href: "#!" } }, [_vm._v("one")])]),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#!" } }, [_vm._v("two")])]),
-          _vm._v(" "),
-          _c("li", { staticClass: "divider", attrs: { tabindex: "-1" } }),
-          _vm._v(" "),
-          _c("li", [_c("a", { attrs: { href: "#!" } }, [_vm._v("three")])]),
-          _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "#!" } }, [
-              _c("i", { staticClass: "material-icons" }, [
-                _vm._v("view_module")
-              ]),
-              _vm._v("four")
-            ])
+          _c("option", { attrs: { value: "", disabled: "", selected: "" } }, [
+            _vm._v("Choose your option")
           ]),
           _vm._v(" "),
-          _c("li", [
-            _c("a", { attrs: { href: "#!" } }, [
-              _c("i", { staticClass: "material-icons" }, [_vm._v("cloud")]),
-              _vm._v("five")
+          _vm._l(_vm.datos, function(dato) {
+            return _c("option", { attrs: { value: "1" } }, [
+              _vm._v("Option " + _vm._s(dato.item))
             ])
-          ])
-        ]
-      )
+          })
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("label", [_vm._v("Materialize Select")])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
