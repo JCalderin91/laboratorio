@@ -7,22 +7,26 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}">
     <title>Laboratorio @yield('title')</title>
+  <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
 	@include('assets.styles')
     @yield('styles')
 </head>
 <body class="theme-blue">
-    @include('elements.loader')
-    @include('elements.search')
-    @include('elements.top_bar')    
-    <section>
-        @include('elements.left_sidebar')
-    </section>
-    <section class="content">
-        <div class="container-fluid">
-   			@yield('content')
-        </div>
-    </section>
+   @include('elements.navbar')
+   @include('elements.sidebar')
+    
+    <div style="padding: 20px;">
+   	  @yield('content')
+    </div>
+
+    <script src="{{asset('js/jquery.min.js')}}"></script>
+    <script src="{{asset('js/materialize.js')}}"></script>
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/script.js')}}"></script>
     @include('assets.scripts')
+    <script>
+      $('.sidenav').sidenav();
+    </script>
     @yield('script')
 </body>
 </html>

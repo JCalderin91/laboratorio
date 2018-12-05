@@ -90,6 +90,6 @@ Route::get('test', function () {
 
 
 // Prueba para exportar los resportes en pdf y excel
-Route::get('excel', function () {
-	return Excel::download(new AreasExport, 'users.xlsx');
+Route::get('vistas', function () {
+	return view('pages.dashboard');
 });
