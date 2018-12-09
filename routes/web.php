@@ -93,3 +93,8 @@ Route::get('test', function () {
 Route::get('vistas', function () {
 	return view('pages.dashboard');
 });
+
+Route::post('auth', function () {
+  $token = array( "to" => 5, "token"=>"esta es la letra b", "c" => 15);
+  return $token;
+});

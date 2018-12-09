@@ -15,3 +15,4 @@ mix.js('resources/js/app.js', 'public/js/app.js')
    .sass('resources/sass/app.scss', 'public/css/app.css');
 
 mix.copy('node_modules/jquery/dist/jquery.min.js','public/js/jquery.min.js');
+mix.copy('node_modules/axios/dist/axios.min.js','public/js/axios.min.js');
