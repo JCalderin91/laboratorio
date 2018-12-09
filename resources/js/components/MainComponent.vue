@@ -18,28 +18,33 @@ export default {
   name: 'Login',
   data () {
     return {
-      email: '',
-      password: '',
+      email: 'jesuscaldeirn@gmail.com',
+      password: '123',
       error: false
     }
   },
-  updated () {
+  mounted () {
     if (localStorage.token) {
-      this.$router.replace(this.$route.query.redirect || '/authors')
+      //this.$router.replace(this.$route.query.redirect || '/authors')
+      console.log('Ya esta logueado')
     }
   },
   methods: {
     login() { 
     	axios.post('/auth', { user: this.email, password: this.password })
-		  .then(function (response) {
+		  .then(response => (
 		    this.loginSuccessful(response)
-		  })
+		  	)
+		  )
 		  .catch(function (error) {
 		    this.loginFailed()
 		  });
     },
     loginSuccessful(req) {
-     	console.log('Chamo, esto no se ejecuta')
+      if (!req.data.token) {
+        this.loginFailed()
+        return
+      }
       this.error = false
       localStorage.token = req.data.token
       //this.$router.replace(this.$route.query.redirect || '/authors')
