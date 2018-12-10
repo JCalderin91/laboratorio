@@ -19,7 +19,7 @@ import Vue from 'vue';
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
-import Container from './components/MainComponent.vue';
+import Container from './components/dashboard.vue';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
