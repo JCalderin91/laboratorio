@@ -5,9 +5,18 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+import routes from './routes.js'
+
+const router = new VueRouter({
+	mode: 'history',
+	routes
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,7 +29,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+import App from './components/MainComponent.vue';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,5 +38,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
+    components: {
+    	App
+    }
 });
