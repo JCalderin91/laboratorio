@@ -13,6 +13,35 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+//Direcciones
+
+Route::apiResource('/addresses', 'AddressController');
+Route::apiResource('/addresses.areas', 'AddressAreaController', ['only' => ['index']]);
+
+//Clientes
+
+Route::apiResource('/clients', 'ClientController');
+
+//Equipos
+Route::apiResource('/devices', 'DeviceController');
+
+//Usuarios-Tecnicos
+Route::apiResource('/users', 'UserController');
+
+//Marcas
+Route::apiResource('/brands', 'BrandController');
+
+//Horas
+Route::apiResource('/hours', 'HourController');
+
+//Ordenes
+Route::apiResource('/orders', 'OrderController');
+
+//Reparaciones
+Route::apiResource('/repairs', 'RepairController');
+
+//Areas
+Route::apiResource('/areas', 'AreaController');
+
+ //Sub-equipos
+Route::apiResource('/sub-devices', 'SubDeviceController'); 

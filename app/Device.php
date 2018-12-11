@@ -2,12 +2,25 @@
 
 namespace App;
 
+use App\Transformers\DeviceTransformer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Device extends Model
 {
+    
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+    public $transformer = DeviceTransformer::class;
+    
     protected $fillable = [
-        'sub_device_id', 'brand_id', 'client_id', 'b_n', 'model',
+        'sub_device_id', 
+        'brand_id', 
+        'client_id', 
+        'b_n', 
+        'model',
     ];
 
     public function orders(){

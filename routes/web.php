@@ -20,40 +20,7 @@ Route::get('/', function () {
 });
 
 
-//Direcciones
-Route::get('/addresses/{ad}',   'AddressController@findAreas')->name('addresses.areas');
-Route::resource('/addresses',   'AddressController');
 
-//Clientes
-Route::get('/clients/{ci}',     'ClientController@findClient')->name('clients.json');
-Route::resource('/clients',     'ClientController');
-
-//Equipos
-Route::resource('/devices',     'DeviceController');
-
-//Usuarios-Tecnicos
-Route::resource('/users',       'UserController');
-
-//Marcas
-Route::post('/brands/store',    'BrandController@storeWithModal')->name('brands.modal');
-Route::resource('/brands',      'BrandController');
-
-//Horas
-Route::resource('/hours',       'HourController');
-
-//Ordenes
-Route::resource('/orders',      'OrderController');
-
-//Reparaciones
-Route::resource('/repairs',     'RepairController');
-
-//Areas
-Route::post('/areas/store',     'AreaController@storeWithModal')->name('areas.modal');
-Route::resource('/areas',       'AreaController');
-
- //Sub-equipos
-Route::post('/sub-devices/store', 'SubDeviceController@storeWithModal')->name('sub-devices.modal');
-Route::resource('/sub-devices',   'SubDeviceController'); 
 
 
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Repair;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class ClientUpdateRequest extends FormRequest
+class RepairStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +25,10 @@ class ClientUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-         
-            'ci'         => Rule::unique('clients')->ignore($this->client),
-            'first_name' => 'required|max:128',
-            'last_name'  => 'required|max:128',
-            'phone'      => 'required|max:11',
-            'area_id'    => 'required',
+            'user_id' => 'required|integer', 
+            'order_id' => 'required|integer', 
+            'status' => 'in:' . Repair::ORDER_REPAIRED . ',' . Repair::ORDER_WITHOUT_REPAIR, 
+            'description' => 'string', 
         ];
     }
 }

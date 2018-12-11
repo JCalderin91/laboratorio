@@ -21,8 +21,8 @@ class CreateClientsTable extends Migration
             $table->string('first_name',128);
             $table->string('last_name',128);
             $table->string('phone');
-            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
             $table->timestamps();
+            $table->softDeletes();   
 
             $table->foreign('area_id')->references('id')->on('areas');
         });

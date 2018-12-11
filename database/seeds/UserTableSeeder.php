@@ -21,9 +21,7 @@ class UserTableSeeder extends Seeder
         $user->first_name = 'Wendy';
         $user->last_name = 'Hurtado';
         $user->gender = 'F';
-        $user->status = 'ACTIVE';
-        $user->avatar = '002-girl.png';
-        $user->role_id = $role_user->id;
+        $user->admin = User::USER_REGULAR;
         $user->password = bcrypt('123');
         $user->save();
 
@@ -31,10 +29,8 @@ class UserTableSeeder extends Seeder
         $user->ci = '22998438';
         $user->first_name = 'Jesus';
         $user->last_name = 'Calderin';
-        $user->status = 'ACTIVE';
         $user->gender = 'M';
-        $user->avatar = '001-man.png';
-        $user->role_id = $role_admin->id;
+        $user->admin = User::USER_ADMIN;
         $user->password = bcrypt('123');
         $user->save();
 
@@ -42,10 +38,8 @@ class UserTableSeeder extends Seeder
         $user->ci = '23591319';
         $user->first_name = 'Miguel';
         $user->last_name = 'Maestre';
-        $user->status = 'ACTIVE';
         $user->gender = 'M';
-        $user->avatar = '001-man.png';
-        $user->role_id = $role_admin->id;
+        $user->admin = User::USER_ADMIN;
         $user->password = bcrypt('123');
         $user->save();
 

@@ -2,10 +2,31 @@
 
 namespace App;
 
+use App\Transformers\OrderTransformer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Order extends Model
 {
+    use SoftDeletes;
+
+    const ORDER_PENDING = 'pending';
+    const ORDER_REVISED = 'revised';
+    const ORDER_DELIVERED = 'delivered';
+
+    protected $dates = ['deleted_at'];
+
+    public $transformer = OrderTransformer::class;
+    
+    protected $filleable = [
+        'client_id',
+        'device_id',
+        'user_id',
+        'arrival_date',
+        'description',
+        'status',
+    ];
+    
     public function client(){
         return $this->belongsTo('App\Client');
     }
@@ -22,6 +43,19 @@ class Order extends Model
         return $this->hasOne('App\Repair');
     }
 
+    public function isPending (){
+        return $this->status == Order::ORDER_PENDING;
+    }
+
+    public function isRevised (){
+        return $this->status == Order::ORDER_REVISED;
+    }
+
+    public function isDelivered (){
+        return $this->status == Order::ORDER_DELIVERED;
+    }
+
     public $timestamps = false;
+ 
 
 }

@@ -2,35 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Address;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
+use App\Transformers\AddressTransformer;
 use App\Http\Requests\AddressStoreRequest;
 use App\Http\Requests\AddressUpdateRequest;
 
-class AddressController extends Controller
+class AddressController extends ApiController
 {
+    public function __construct(){
+        //parent::__construct();
+
+        $this->middleware('transform.input:' . AddressTransformer::class)->only(['store', 'update']);
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $addresses = Address::get();
-        return view('pages.address.index',compact('addresses'));
+    {  
+        $addresses = Address::all();
+
+        return $this->showAll($addresses);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('pages.address.create');
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -39,46 +40,23 @@ class AddressController extends Controller
      */
     public function store(AddressStoreRequest $request)
     {
-        dd( $request );
+       
         $address = Address::create($request->all());
 
-        //return back()->back()->with('success','Registro creado satisfactoriamente');
-        return redirect()->route('addresses.index')->with('success','Registro creado satisfactoriamente');
+        return $this->showOne($address, 201);
     }
     
-
-    public function findAreas($ad)
-    {
-        $address = Address::where('name', $ad)->first();
-
-        return $address->areas()->get()->pluck('name')->toArray();
-    }
-
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Address $address)
     {
-        //
+        return $this->showOne($address);
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-
-        $address = Address::findOrFail($id);
-        return view('pages.address.edit', compact('address'));
-    }
-
+    
     /**
      * Update the specified resource in storage.
      *
@@ -86,13 +64,20 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AddressUpdateRequest $request, $id)
+    public function update(AddressUpdateRequest $request, Address $address)
     {
-        $address = Address::find($id);
+        
+        if($request->has('name')){
+            $address->name = $request->name;
+        }
 
-        $address->fill($request->all())->save();
+        if(!$address->isDirty()){
+            return $this->errorResponse('Se debe especificar un valor diferente para actualizar' , 422);
+        }
 
-        return redirect()->route('addresses.index', $address->id)->with('success','Registro actualizado satisfactoriamente');
+        $address->save();
+
+        return $this->showOne($address);
     }
 
     /**
@@ -101,17 +86,12 @@ class AddressController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id){
-        $address = Address::findOrFail($request->id);
-        
-        if($address->status === 'ACTIVE'){
-            $address->status = 'INACTIVE';
-        }else{
-            $address->status = 'ACTIVE';
-        }        
+    public function destroy(Address $address)
+    {
+        $address->delete();
 
-        $address->update();
-        return redirect()->route('addresses.index')->with('success','Cambio de status realizado efectivamente');    
+        return $this->showOne($address);
+    
     }
 
 

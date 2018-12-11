@@ -2,58 +2,62 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Device;
-use App\Brand;
-use App\SubDevice;
+use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
+use App\Transformers\DeviceTransformer;
+use App\Http\Requests\DeviceStoreRequest;
+use App\Http\Requests\DeviceUpdateRequest;
 
-class DeviceController extends Controller{
+
+class DeviceController extends ApiController{
+    
+
     public function __construct(){
-        $this->middleware('auth');
-    }
+        //parent::__construct();
 
+        $this->middleware('transform.input:' . DeviceTransformer::class)->only(['store', 'update']);
+    }
+    
     public function index(){
-        $devices = Device::get();
-        return view('pages.devices.index', compact('devices'));
-    }
 
-    public function create(){
+        $devices = Device::all();
+
+        return $this->showAll($devices);
         
     }
 
-    public function store(Request $request){
-        //
+    
+    public function store(DeviceStoreRequest $request){
+        
+        $device = Device::create($request->all());
+
+        return $this->showOne($device, 201);
     }
 
     public function show($id){
         //
     }
 
-    public function edit($id){
-        $device = Device::findOrFail($id);
-        $brands = Brand::get();
-        $subdevices = SubDevice::get();
-        return view('pages.devices.edit', compact(['device', 'brands', 'subdevices']));
+    
+
+    public function update(DeviceUpdateRequest $request, Device $device){
+     
+        $device->fill($request->all());
+
+        if(!$device->isDirty()){
+            return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar' , 422);    
+        }
+
+        $device->save();
+
+        return $this->showOne($device);
     }
 
-    public function update(Request $request, $id){
- 
-        $device = Device::findOrFail($id);
-        $device->fill($request->all())->save();
+    public function destroy(Device $device){
 
-        return redirect()->route('devices.index')->with('success','Registro actualizado satisfactoriamente');
-    }
+        $device->delete();
 
-    public function destroy(Request $request, $id){
-        $device = Device::findOrFail($request->id);
-        
-        if($device->status === 'ACTIVE'){
-            $device->status = 'INACTIVE';
-        }else{
-            $device->status = 'ACTIVE';
-        }        
-
-        $device->update();
-        return redirect()->route('devices.index')->with('success','Cambio de status realizado efectivamente');   
+        return $this->showOne($device);
     }
 }

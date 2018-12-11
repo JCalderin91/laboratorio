@@ -17,7 +17,7 @@ class RepairTableSeeder extends Seeder
         $repair->order_id = 4;
         $repair->description = 'Cambio de motor';
         $repair->created = new \DateTime('2018-10-02 11:10:15'); 
-        $repair->status = 'REPAIRED';
+        $repair->status = Repair::ORDER_REPAIRED;
         $repair->save();
     }
 }

@@ -2,15 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Area;
+
 use App\Address;
+use Illuminate\Http\Request;
+use App\Transformers\AreaTransformer;
+use App\Http\Controllers\ApiController;
 use App\Http\Requests\AreaStoreRequest;
 use App\Http\Requests\AreaUpdateRequest;
 
-class AreaController extends Controller
+class AreaController extends ApiController
 {
+    public function __construct(){
+        //parent::__construct();
+
+        $this->middleware('transform.input:' . AreaTransformer::class)->only(['store', 'update']);
+    }
+    
+    
     /**
      * Display a listing of the resource.
      *
@@ -18,21 +27,11 @@ class AreaController extends Controller
      */
     public function index()
     {
-        $areas = Area::get();
-        return view('pages.areas.index',compact('areas'));
-    }
+        $areas = Area::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $addresses = Address::get();
-        return view('pages.areas.create',compact('addresses'));
+        return $this->showAll($areas);
     }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -43,17 +42,11 @@ class AreaController extends Controller
     {
 
         $area = Area::create($request->all());
-        return redirect()->route('areas.index')->with('success','Registro creado satisfactoriamente');
+
+        return $this->showOne($area);
 
     }
 
-
-    public function storeWithModal(AreaStoreRequest $request)
-    {
-        $area = Area::create($request->all());
-
-        return $area;
-    }
 
     /**
      * Display the specified resource.
@@ -66,17 +59,7 @@ class AreaController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $area = Area::findOrFail($id);
-        return view('pages.areas.edit', compact('area') );
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -85,13 +68,20 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(AreaUpdateRequest $request, $id)
+    public function update(AreaUpdateRequest $request, Area $area)
     {
-        $area = Area::find($id);
+        
+        if($request->has('name')){
+            $area->name = $request->name;
+        }
 
-        $area->fill($request->all())->save();
+        if(!$area->isDirty()){
+            return $this->errorResponse( 'Se debe especificar un valor diferente para actualizar' , 422);
+        }
 
-        return redirect()->route('areas.index', $area->id)->with('success','Registro actualizado satisfactoriamente');
+        $area->save();
+
+        return $this->showOne($area);
     }
 
     /**
@@ -100,16 +90,11 @@ class AreaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request, $id){
-        $area = Area::findOrFail($request->id);
+    public function destroy(Area $area){
         
-        if($area->status === 'ACTIVE'){
-            $area->status = 'INACTIVE';
-        }else{
-            $area->status = 'ACTIVE';
-        }        
+        $area->delete();
 
-        $area->update();
-        return redirect()->route('areas.index')->with('success','Cambio de status realizado efectivamente');   
+        return $this->showOne($area);
+           
     }
 }

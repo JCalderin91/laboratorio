@@ -2,13 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Order;
-use App\Devive;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
+use App\Transformers\OrderTransformer;
+use App\Http\Controllers\ApiController;
 
-class OrderController extends Controller
+class OrderController extends ApiController
 {
+   
+    public function __construct(){
+        
+        //parent::__construct();
+
+        $this->middleware('transform.input:' . OrderTransformer::class)->only(['store', 'update']);
+    }
+   
+   
     /**
      * Display a listing of the resource.
      *
@@ -16,21 +26,13 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $orders = Order::get();
-        return view('pages.devices.index',compact('orders'));
+        $orders = Order::all();
+
+        return $this->showAll($orders);
+       
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('pages.devices.create');
-
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      *
@@ -39,17 +41,7 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $device = Device::create($request->all());
-
-        $order = new Order();
-        $order->client_id = $request->get('client_id');
-        $order->user_id = $request->get('user_id');
-        $order->device_id = $device->id;
-        $order->arrival_date = now();
-        $order->description = $request->get('description');
-        $order->save();
-
-        return redirect()->route('pages.devices.index')->with('success','Registro creado satisfactoriamente');
+        
     }
 
     /**
@@ -63,16 +55,7 @@ class OrderController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-       return view('pages.devices.edit');
-    }
+   
 
     /**
      * Update the specified resource in storage.
@@ -83,10 +66,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::find($id);
-        $order->fill($request->all())->save();
-
-        return redirect()->route('devices.edit', $order->id)->with('success','Registro actualizado satisfactoriamente');
+       
     }
 
     /**

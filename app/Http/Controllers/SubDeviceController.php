@@ -2,25 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\SubDevice;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
+use App\Transformers\SubDeviceTransformer;
 
-class SubDeviceController extends Controller
+class SubDeviceController extends ApiController
 {
+    public function __construct(){
+        //parent::__construct();
+
+        $this->middleware('transform.input:' . SubDeviceTransformer::class)->only(['store', 'update']);
+    }
+    
+    
     public function index()
     {
-        
+        $subDevices = SubDevice::all();
+
+        return $this->showAll($subDevices);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-       
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -29,16 +32,11 @@ class SubDeviceController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $subDevices = SubDevice::create($request->all());
+
+        return $this->showOne($subDevice, 201);
     }
     
-
-    public function storeWithModal(Request $request)
-    {
-       
-    }
-
-
     /**
      * Display the specified resource.
      *
@@ -50,16 +48,7 @@ class SubDeviceController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -68,9 +57,20 @@ class SubDeviceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, SubDevice $subDevice)
     {
         
+        if($request->has('name')){
+            $subDevice->name = $request->name;
+        }
+
+        if(!$subDevice->isDirty()){
+            return $this->errorResponse('Se debe especificar  un valor diferente para actualizar' , 422);        
+        }
+
+        $subDevice->save();
+
+        return $this->showOne($subDevice);
     }
 
     /**
@@ -79,8 +79,12 @@ class SubDeviceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        
+    public function destroy(SubDevice $subDevice)
+    {     
+
+        $subDevice->delete();
+
+        return $this->showOne($subDevice);
+    
     }
 }

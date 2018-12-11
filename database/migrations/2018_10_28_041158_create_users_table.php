@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -22,13 +23,9 @@ class CreateUsersTable extends Migration
             $table->string('last_name',128);
             $table->enum('gender', ['F', 'M']);
             $table->string('password');
-            $table->string('avatar');
-            $table->unsignedInteger('role_id');
-            $table->enum('status', ['ACTIVE', 'INACTIVE'])->default('ACTIVE');
-            $table->rememberToken();
-            $table->timestamps();    
-            
-            $table->foreign('role_id')->references('id')->on('roles');  
+            $table->string('admin')->default(User::USER_REGULAR);
+            $table->timestamps(); 
+            $table->softDeletes();   
             
         });
     }

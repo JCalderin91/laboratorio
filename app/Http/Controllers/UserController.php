@@ -2,95 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use App\Transformers\UserTransformer;
+use App\Http\Controllers\ApiController;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
-use App\User;
-use App\Role;
 
-class UserController extends Controller{
+
+class UserController extends ApiController{
     
+
     public function __construct(){
-        $this->middleware('auth');
-    }
+        //parent::__construct();
 
+        $this->middleware('transform.input:' . UserTransformer::class)->only(['store', 'update']);
+    }
+    
+    
     public function index(){   
-        if(\Auth::user()->role_id == 1){
-            $users = User::get();
-        }else{
-            $users = User::where('role_id', 2 )->where('status','ACTIVE')->get();
-        }
+        
+        $users = User::all();
 
-        return view('pages.users.index', compact('users') );
+        return $this->showAll($users);
     }
 
-    public function create(){
-        return view('pages.users.create');
-    }
-
+   
     public function store(UserStoreRequest $request){
 
-        $user = new User();
+        $user = new User;
 
-        $user->ci = $request->get('ci');
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
+        $user->fill($request->except(['admin', 'password']));
 
-        if($request->get('gender')==='M'){
-            $user->avatar = '001-man.png';
-        }else{
-            $user->avatar = '002-girl.png';
-        }
-        $user->role_id = $request->get('role_id');
-        $user->gender = $request->get('gender');
-        $user->status = 'ACTIVE';
-        $user->password = bcrypt($request->get('password'));
+        $user->admin = User::USER_REGULAR;
+
+        $user->password = bcrypt($request->password);
 
         $user->save();
 
-        return redirect('users')->with('success','Registro creado satisfactoriamente');
+        return $this->showOne($user, 201);
+       
     }
 
     public function show($id){
-        //
-    }
-
-
-    public function edit($id){
+        
         $user = User::findOrFail($id);
-        return view('pages.users.edit', compact('user') );
+
+        return $this->showOne($user);
     }
 
 
     public function update(UserUpdateRequest $request, $id){
+        
         $user = User::findOrFail($id);
 
-        $role_user = Role::where('title', 'user')->first();
+        $user->fill($request->except(['password']));
 
-        $user->first_name = $request->get('first_name');
-        $user->last_name = $request->get('last_name');
-        $user->gender = $request->get('gender');
-
-        if($request->get('password') != ''){
-            $user->password = bcrypt($request->get('password'));
+        if($request->has('password')){
+            $user->password = bcrypt($request->password);
         }
 
-        $user->update();
+        if(!$user->isDirty()){
+            return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar' , 422);     
+        }
 
+        $user->save();
 
-        return redirect('users')->with('success','Registro actualizado satisfactoriamente');
+        return $this->showOne($user);
+
     }
 
-    public function destroy(Request $request, $id){
-        $user = User::findOrFail($request->id);
-        
-        if($user->status === 'ACTIVE'){
-            $user->status = 'INACTIVE';
-        }else{
-            $user->status = 'ACTIVE';
-        }        
+    public function destroy($id){
 
-        $user->update();
-        return redirect()->route('users.index')->with('success','Cambio de status realizado efectivamente');   
+        $user = User::findOrFail($id);     
+
+        $user->delete();
+
+        return $this->showOne($user);
+        
+           
     }
 }

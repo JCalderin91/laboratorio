@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class ClientUpdateRequest extends FormRequest
+class DeviceStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,12 +24,11 @@ class ClientUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-         
-            'ci'         => Rule::unique('clients')->ignore($this->client),
-            'first_name' => 'required|max:128',
-            'last_name'  => 'required|max:128',
-            'phone'      => 'required|max:11',
-            'area_id'    => 'required',
+            'sub_device_id' => 'required|integer'  
+            'brand_id'      => 'required|integer'
+            'client_id'     => 'required|integer'
+            'b_n'           => 'string|nullable'
+            'model'         => 'string|nullable'
         ];
     }
 }

@@ -2,73 +2,66 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Brand;
+
+use Illuminate\Http\Request;
+use App\Transformers\BrandTransformer;
+use App\Http\Controllers\ApiController;
 use App\Http\Requests\BrandStoreRequest;
 use App\Http\Requests\BrandUpdateRequest;
 
-class BrandController extends Controller{
+class BrandController extends ApiController{
+   
+
     public function __construct(){
-        $this->middleware('auth');
-    }
+        //parent::__construct();
 
+        $this->middleware('transform.input:' . BrandTransformer::class)->only(['store', 'update']);
+    }
+    
+    
     public function index(){
-        /* OBTENER LAS MARCAS PARA MOSTRARLAS EN LA LISTA DE MARCA */
-        $brands = Brand::get();
-        return view('pages.brands.index', compact('brands'));
+
+        $brands = Brand::all();
+
+        return $this->showAll($brands);
     }
 
 
-    public function create(){
-        /* IR A LA VISTA PARAR CREAR LA NUEVA MARCA */
-        return view('pages.brands.create');
-    }
 
     public function store(BrandStoreRequest $request){
-        /*ALMACENAR LA NUEVA MARCA*/ 
+        
         $brand = Brand::create($request->all());
 
-        return redirect()->route('brands.index')->with('success','Registro creado satisfactoriamente');
+        return $this->showOne($brand, 201);
     }
 
-    public function storeWithModal(BrandStoreRequest $request){
-        /*ALMACENAR LA NUEVA MARCA*/ 
-        $brand = Brand::create($request->all());
-
-        return $brand;
-    }
-
-
+    
     public function show($id){
         //
     }
 
-    public function edit($id){
-        $brand = Brand::findOrFail($id);
-        return view('pages.brands.edit', compact('brand') );
-    }
 
-    public function update(BrandUpdateRequest $request, $id){
+    public function update(BrandUpdateRequest $request, Brand $brand){
+        
+        if($request->has('title')){
+            $brand->title = $request->title;
+        }
 
-        $brand = Brand::findOrFail($id);
+        if(!$brand->isDirty()){
+            return $this->errorResponse('Se debe especificar un valor diferente para actualizar' , 422);       
+        }
 
-        $brand->fill($request->all())->save();
+        $brand->save();
 
-        return redirect()->route('brands.index')->with('success','Registro actualizado satisfactoriamente');
+        return $this->showOne($brand);
     
     }
 
-    public function destroy(Request $request, $id){
-        $brand = Brand::findOrFail($request->id);
-        
-        if($brand->status === 'ACTIVE'){
-            $brand->status = 'INACTIVE';
-        }else{
-            $brand->status = 'ACTIVE';
-        }        
+    public function destroy(Brand $brand){
+           
+        $brand->delete();
 
-        $brand->update();
-        return redirect()->route('brands.index')->with('success','Cambio de status realizado efectivamente');   
+        return $this->showOne($brand);
     }
 }

@@ -2,11 +2,19 @@
 
 namespace App;
 
+use App\Transformers\ClientTransformer;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Client extends Model
 {
 
+    use SoftDeletes;
+
+    protected $dates = ['deleted_at'];
+
+    public $transformer = ClientTransformer::class;
+   
     protected $fillable = [
         'ci', 'first_name', 'last_name', 'phone', 'area_id', 
     ];

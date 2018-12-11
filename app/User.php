@@ -2,21 +2,35 @@
 
 namespace App;
 
+use App\Transformers\UserTransformer;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
+    const USER_ADMIN = 'true';
+    const USER_REGULAR = 'false';
+
+    protected $dates = ['deleted_at'];
+
+    public $transformer = UserTransformer::class;
+    
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'ci', 
+        'firstName', 
+        'lastName',
+        'gender',
+        'password',
+        'admin',
     ];
 
     /**
@@ -25,6 +39,39 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
     ];
+
+    public function isAdmin(){
+
+        return $this->admin == User::USER_ADMIN;
+    }
+
+    public function orders(){
+        return $this->hasMany('App\Order');
+    }
+
+    public function repairs(){
+        return $this->hasMany('App\Repair');
+    }
+
+    public function setFirstNameAttribute($value){
+        $this->attributes['first_name'] = strtolower($value);
+    }
+
+    public function getFirstNameAttribute($value){
+        return ucwords($value);
+    }
+
+    public function setLastNameAttribute($value){
+        $this->attributes['last_name'] = strtolower($value);
+    }
+
+    public function getLastNameAttribute($value){
+        return ucwords($value);
+    }
+
+
+    
+
 }

@@ -1,5 +1,5 @@
 <?php
-
+use App\Order;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -20,10 +20,10 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id');
 
             $table->dateTime('arrival_date');
-            $table->dateTime('delivery_date')->nullable();
             $table->string('description')->nullable();
-            $table->enum('status', ['PENDING', 'REVISED', 'DELIVERED'])->default('PENDING');
-            
+            $table->enum('status', [Order::ORDER_PENDING, Order::ORDER_REVISED, Order::ORDER_DELIVERED ])->default(Order::ORDER_PENDING);
+            $table->softDeletes();   
+
             $table->foreign('client_id')->references('id')->on('clients');
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('device_id')->references('id')->on('devices');

@@ -24,7 +24,7 @@ class AreaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:areas,name,' . $this->area,
+            'name' => 'unique:areas,name,' . $this->area,
         ];
     }
 }

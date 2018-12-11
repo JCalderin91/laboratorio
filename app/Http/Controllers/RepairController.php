@@ -2,24 +2,30 @@
 
 namespace App\Http\Controllers;
 
+use App\Repair;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
+use App\Transformers\RepairTransformer;
+use App\Http\Requests\RepairStoreRequest;
 
-class RepairController extends Controller
+class RepairController extends ApiController
 {
+    public function __construct(){
+       // parent::__construct();
+
+        $this->middleware('transform.input:' . RepairTransformer::class)->only(['store', 'update']);
+    }
+    
+    
     public function index()
     {
-        
+        $repairs = Repair::all();
+
+        return $this->showAll($repairs);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-       
-    }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -27,9 +33,23 @@ class RepairController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(RepairStoreRequest $request)
     {
+        $repair = new Repair;
         
+        $repair->fill($request->except('created'));
+
+        if($request->has('created')){
+
+            $dateTime = Carbon::parse($request->created);
+            $repair->created = $dateTime->format('Y-m-d H:i:s');
+        }else{
+            $repair->created = Carbon::now();
+        }
+
+        $repair->save();
+
+        return $this->showOne($repair, 201);
     }
 
     /**
@@ -43,16 +63,6 @@ class RepairController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        
-    }
 
     /**
      * Update the specified resource in storage.
@@ -61,9 +71,24 @@ class RepairController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RepairUpdateRequest $request, Repair $repair)
     {
         
+        $repair->fill($request->except('created'));
+        
+        if($request->has('created')){
+
+            $dateTime = Carbon::parse($request->created);
+            $repair->created = $dateTime->format('Y-m-d H:i:s');
+        }
+
+        if(!$repair->isDirty()){
+            return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar' , 422);        
+        }
+
+        $repair->save();
+
+        return $this->showOne($repair);
     }
 
     /**
@@ -72,8 +97,11 @@ class RepairController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy(Repair $repair)
+    {  
         
+        $repair->delete();
+
+        return $this->showOne($repair);
     }
 }

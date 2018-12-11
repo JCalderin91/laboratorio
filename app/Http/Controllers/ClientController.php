@@ -2,83 +2,70 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Client;
-use App\Area;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
+use App\Transformers\ClientTransformer;
 use App\Http\Requests\ClientStoreRequest;
 use App\Http\Requests\ClientUpdateRequest;
 
 
-class ClientController extends Controller{
+class ClientController extends ApiController{
+    
+
     public function __construct(){
-        $this->middleware('auth');
-    }
+        //parent::__construct();
 
+        $this->middleware('transform.input:' . ClientTransformer::class)->only(['store', 'update']);
+    }
+    
     public function index(){
-        $clients = Client::get();
-        return view('pages.clients.index',compact('clients')); 
+       
+        $clients = Client::with('area')->get();
+
+        return $this->showAll($clients);
     }
 
-    public function create(){
-        return view('pages.clients.create');
-    }
+    
 
     public function store(ClientStoreRequest $request){
 
-        Client::create($request->all());
+        $client = Client::create($request->all());
 
-        return redirect()->route('pages.clients.index')->with('success','Registro creado satisfactoriamente');
+        return $this->showOne($client, 201);
     
-    }
-
-
-    public function findClient($ci){
-        $client = Client::where('ci', $ci)->first();
-        $area = Area::where('id', $client->area->id)->first();
-        $data = array(
-                    'ci' => $client->ci, 
-                    'first_name' => $client->first_name, 
-                    'last_name' => $client->last_name,
-                    'phone' => $client->phone,
-                    'area' => $client->area->name,
-                    'address' => $area->address->name );
-        return json_encode($data);    
     }
 
     public function show($id){
 
-        $clients = Client::find($id);
-        return  view('pages.clients.show',compact('clients'));
+        
     }
 
-    public function edit($id){
-
-        $client = Client::find($id);
-        $areas = Area::get();
-
-        return view('pages.clients.edit',compact(['client', 'areas']));
-    }
+   
 
     public function update(ClientUpdateRequest $request, $id){
         
-        $client = Client::find($id);
-        $client->fill($request->all())->save();
+        $client = Client::findOrFail($id);
+        
+        $client->fill($request->all());
+        
 
-        return redirect()->route('clients.index', $client->id)->with('success','Registro actualizado satisfactoriamente');
+        if(!$client->isDirty()){
+            return $this->errorResponse( 'Se debe especificar al menos un valor diferente para actualizar' , 422);      
+        }
+
+        $client->save();
+
+        return $this->showOne($client);
     
     }
 
-    public function destroy(Request $request, $id){
-        $client = Client::findOrFail($request->id);
+    public function destroy($id){
+        $client = Client::findOrFail($id);
         
-        if($client->status === 'ACTIVE'){
-            $client->status = 'INACTIVE';
-        }else{
-            $client->status = 'ACTIVE';
-        }        
+        $client->delete();
 
-        $client->update();
-        return redirect()->route('clients.index')->with('success','Cambio de status realizado efectivamente');   
+        return $this->showOne($client);
     }
 }
