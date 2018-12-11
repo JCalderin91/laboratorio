@@ -7,6 +7,16 @@
 
 
 import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
+
+import routes from './routes.js'
+
+const router = new VueRouter({
+	mode: 'history',
+	routes
+});
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,7 +29,7 @@ import Vue from 'vue';
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key)))
 
-import Container from './components/dashboard.vue';
+import App from './components/MainComponent.vue';
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -29,7 +39,8 @@ import Container from './components/dashboard.vue';
 
 const app = new Vue({
     el: '#app',
+    router,
     components: {
-    	Container
+    	App
     }
 });

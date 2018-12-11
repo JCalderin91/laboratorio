@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="app">
-		<container></container>
+		<App/>
 	</div>
 
 	<script src="{{asset('js/jquery.min.js')}}"></script>
