@@ -19,13 +19,13 @@
 </template>
 
 <script>
-	export default {
-		name: 'sidebar',
-		props: ['name', 'email', 'avatarUrl'],
-    mounted () {
-      $('.sidenav').sidenav()
-    }
-	}	
+export default {
+	name: 'sidebar',
+	props: ['name', 'email', 'avatarUrl'],
+	mounted () {
+		$('.sidenav').sidenav()
+	}
+}	
 </script>
 
 <style lang="css">

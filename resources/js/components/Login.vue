@@ -6,22 +6,22 @@
           <img src="assets/favicon.png" alt="logo-proyecto" height="25px">
           <h4>Please sign in</h4>
         </div>
-        <label for="email">Email:</label>
+        <label for="ci">Email:</label>
         <input
-          id="email"
-          name="email"
+          id="ci"
+          name="ci"
           type="text"
           placeholder="ejemplo@gmail.com"
-          v-model="email"
+          v-model="cedula"
           required
         >
-        <label for="password">Contraseña:</label>
+        <label for="contraseña">Contraseña:</label>
         <input
-          id="password"
-          name="password"
+          id="contraseña"
+          name="contraseña"
           type="text"
           placeholder="password"
-          v-model="password"
+          v-model="contraseña"
           required
         >
         <div class="card-action">
@@ -30,7 +30,7 @@
             class="btn btn-primary btn-block"
             style="margin: auto;"
             value="Iniciar Sesíon"
-            @click="login"
+            @click.prevent="login"
           >
         </div>
         <div class="card-action center">
@@ -47,27 +47,30 @@ export default {
   data() {
     return {
       error: false,
-      email: "",
-      password: ""
+      cedula: "",
+      contraseña: ""
     };
   },
   methods: {
     login() {
       axios
-        .post("/auth", { user: this.email, password: this.password })
-        .then(response => this.loginSuccessful(response))
-        .catch(function(error) {
+        .post("/auth/login", {
+          cedula: this.cedula,
+          contraseña: this.contraseña
+        })
+        .then(response => this.loginSuccessful(response.data))
+        .catch(error => {
+          console.error(error);
           this.loginFailed();
         });
     },
-    loginSuccessful(req) {
-      if (req.data.token) {
-        this.loginFailed();
-        return;
-      }
-      this.error = false;
-      //localStorage.token = req.data.token
-      this.$router.replace(this.$route.query.redirect || '/dashboard')
+    loginSuccessful(data) {
+      this.$session.start()
+      this.$session.set('ci', this.cedula)
+      this.$session.set('password', this.contraseña)
+      this.$session.set('token', data.access_token)
+      this.$session.set('name', data.user.original.data.nombre + ' ' + data.user.original.data.apellido)
+      window.location = '/'
     },
     loginFailed() {
       this.error = "Login failed!";
