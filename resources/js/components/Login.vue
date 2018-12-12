@@ -61,13 +61,13 @@ export default {
         });
     },
     loginSuccessful(req) {
-      if (!req.data.token) {
+      if (req.data.token) {
         this.loginFailed();
         return;
       }
       this.error = false;
       //localStorage.token = req.data.token
-      //this.$router.replace(this.$route.query.redirect || '/authors')
+      this.$router.replace(this.$route.query.redirect || '/dashboard')
     },
     loginFailed() {
       this.error = "Login failed!";

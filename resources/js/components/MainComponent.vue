@@ -1,6 +1,5 @@
 <template>
-  <Login v-if="checkSession()"/>
-  <Dashboard v-else /> <!-- poner nombre mas apropiado a este componente-->
+  <Dashboard /> <!-- poner nombre mas apropiado a este componente-->
 </template>
 
 <script>
