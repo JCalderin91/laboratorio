@@ -3,8 +3,10 @@
     <Navbar />
     <Sidebar 
       :name="name"
-      :email="email"/>
-    <router-view></router-view>
+      :email="email"/>        
+      <div style="padding: 10px">
+        <router-view></router-view>
+      </div>
   </div>
 </template>
 
