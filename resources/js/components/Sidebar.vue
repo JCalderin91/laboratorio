@@ -13,8 +13,8 @@
 	  <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
 	  <li><a href="#!">Second Link</a></li>
 	  <li><div class="divider"></div></li>
-	  <li><router-link to="/areas">Areas</router-link></li>
-	  <li><router-link to="/">Test</router-link></li>
+	  <li class="sidenav-close" ><router-link to="/areas">Direciones</router-link></li>
+	  <li class="sidenav-close" ><router-link to="/">Test</router-link></li>
   </ul>
 </template>
 
@@ -24,7 +24,7 @@
 		props: ['name', 'email', 'avatarUrl'],
     mounted () {
       $('.sidenav').sidenav()
-    },
+    }
 	}	
 </script>
 
