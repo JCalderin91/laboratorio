@@ -33,6 +33,7 @@ class UserTransformer extends TransformerAbstract
             'cedula' => 'ci',
             'nombre' => 'first_name',
             'apellido' => 'last_name',
+            'password' => 'contraseña',
             'esAdministrador' => 'admin',
             'sexo' => 'gender',
         ];

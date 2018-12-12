@@ -13,35 +13,59 @@ use Illuminate\Http\Request;
 |
 */
 
-//Direcciones
+Route::group([
 
-Route::apiResource('/addresses', 'AddressController');
-Route::apiResource('/addresses.areas', 'AddressAreaController', ['only' => ['index']]);
+    'middleware' => 'api',
+    'prefix' => 'auth'
 
-//Clientes
+], function ($router) {
 
-Route::apiResource('/clients', 'ClientController');
+    Route::post('login', 'AuthController@login');
+    Route::post('logout', 'AuthController@logout');
+    Route::post('refresh', 'AuthController@refresh');
+    Route::post('me', 'AuthController@me');
 
-//Equipos
-Route::apiResource('/devices', 'DeviceController');
+});
 
-//Usuarios-Tecnicos
-Route::apiResource('/users', 'UserController');
+Route::group([
+    
+    'middleware' => 'jwt.auth',
+    'prefix' => 'api'
 
-//Marcas
-Route::apiResource('/brands', 'BrandController');
 
-//Horas
-Route::apiResource('/hours', 'HourController');
+], function() {
 
-//Ordenes
-Route::apiResource('/orders', 'OrderController');
+    //Direcciones
 
-//Reparaciones
-Route::apiResource('/repairs', 'RepairController');
+    Route::apiResource('/addresses', 'AddressController');
+    Route::apiResource('/addresses.areas', 'AddressAreaController', ['only' => ['index']]);
 
-//Areas
-Route::apiResource('/areas', 'AreaController');
+    //Clientes
 
- //Sub-equipos
-Route::apiResource('/sub-devices', 'SubDeviceController'); 
+    Route::apiResource('/clients', 'ClientController');
+
+    //Equipos
+    Route::apiResource('/devices', 'DeviceController');
+
+    //Usuarios-Tecnicos
+    Route::apiResource('/users', 'UserController');
+
+    //Marcas
+    Route::apiResource('/brands', 'BrandController');
+
+    //Horas
+    Route::apiResource('/hours', 'HourController');
+
+    //Ordenes
+    Route::apiResource('/orders', 'OrderController');
+
+    //Reparaciones
+    Route::apiResource('/repairs', 'RepairController');
+
+    //Areas
+    Route::apiResource('/areas', 'AreaController');
+
+    //Sub-equipos
+    Route::apiResource('/sub-devices', 'SubDeviceController'); 
+
+});
