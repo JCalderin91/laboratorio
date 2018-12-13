@@ -15642,7 +15642,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.main{\n  padding: 10px;\n  margin-top: 60px;\n}\n", ""]);
+exports.push([module.i, "\n.main{\n  padding: 10px 10px 10px 270px;\n}\n", ""]);
 
 // exports
 
@@ -15657,9 +15657,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Navbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Sidebar__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Sidebar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Sidebar__);
-//
-//
-//
 //
 //
 //
@@ -15794,7 +15791,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar',
@@ -15814,7 +15810,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("4")])
+  return _c("div")
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -15912,7 +15908,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n#logout {\n\tcursor: pointer !important;\n}\n", ""]);
 
 // exports
 
@@ -16063,52 +16059,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'sidebar',
 	props: ['name', 'email', 'avatarUrl'],
-	mounted: function mounted() {
-		$('.sidenav').sidenav();
+	mounted: function mounted() {},
+
+	methods: {
+		logout: function logout() {
+			this.$session.destroy();
+			window.location = '/';
+		}
 	}
 });
 
@@ -16120,54 +16081,41 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "page-wrapper chiller-theme toggled" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("nav", { staticClass: "sidebar-wrapper", attrs: { id: "sidebar" } }, [
-        _c("div", { staticClass: "sidebar-content" }, [
+  return _c(
+    "nav",
+    { staticClass: "sidebar-wrapper", attrs: { id: "sidebar" } },
+    [
+      _c("div", { staticClass: "sidebar-content" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "sidebar-header" }, [
           _vm._m(1),
           _vm._v(" "),
-          _c("div", { staticClass: "sidebar-header" }, [
-            _vm._m(2),
+          _c("div", { staticClass: "user-info" }, [
+            _c("span", { staticClass: "user-name" }, [
+              _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.name) + "\n\t\t\t\t")
+            ]),
             _vm._v(" "),
-            _c("div", { staticClass: "user-info" }, [
-              _c("span", { staticClass: "user-name" }, [
-                _vm._v(
-                  "\n                            " +
-                    _vm._s(_vm.name) +
-                    "\n                        "
-                )
-              ]),
-              _vm._v(" "),
-              _c("span", { staticClass: "user-role" }, [
-                _vm._v("Administrator")
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _vm._m(3)
-        ])
-      ]),
-      _vm._v(" "),
-      _vm._m(4)
-    ])
-  ])
+            _c("span", { staticClass: "user-role" }, [_vm._v("Administrator")])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "text-center text-white",
+            attrs: { id: "logout" },
+            on: { click: _vm.logout }
+          },
+          [_vm._v("cerrar sesion")]
+        )
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "btn btn-sm btn-dark",
-        attrs: { id: "show-sidebar", href: "#" }
-      },
-      [_c("i", { staticClass: "fas fa-bars" })]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -16216,9 +16164,7 @@ var staticRenderFns = [
             _c("ul", [
               _c("li", [
                 _c("a", { attrs: { href: "#" } }, [
-                  _vm._v(
-                    "Dashboard 1\n                                            "
-                  ),
+                  _vm._v("Dashboard 1\n\t\t\t\t\t\t\t\t\t"),
                   _c(
                     "span",
                     { staticClass: "badge badge-pill badge-success" },
@@ -16249,7 +16195,7 @@ var staticRenderFns = [
             _c("ul", [
               _c("li", [
                 _c("a", { attrs: { href: "#" } }, [
-                  _vm._v("Products\n\n                                        ")
+                  _vm._v("Products\n\n\t\t\t\t\t\t\t\t")
                 ])
               ]),
               _vm._v(" "),
@@ -16335,14 +16281,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("main", { staticClass: "page-content" }, [
-      _c("h2", [_vm._v("Main")])
-    ])
   }
 ]
 render._withStripped = true
@@ -16367,16 +16305,7 @@ var render = function() {
     [
       _c("Sidebar", { attrs: { name: _vm.name } }),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticStyle: { "padding-left": "300px" } },
-        [
-          _c("Navbar"),
-          _vm._v(" "),
-          _c("div", { staticClass: "main" }, [_c("router-view")], 1)
-        ],
-        1
-      )
+      _c("div", { staticClass: "main" }, [_c("router-view")], 1)
     ],
     1
   )

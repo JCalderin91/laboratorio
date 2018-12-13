@@ -1,11 +1,8 @@
 <template>
   <div>
     <Sidebar :name="name"/>
-    <div style="padding-left: 300px">
-      <Navbar/>
-      <div class="main">
-        <router-view></router-view>
-      </div>
+    <div class="main">    
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -37,7 +34,6 @@ export default {
 
 <style lang="css">
   .main{
-    padding: 10px;
-    margin-top: 60px;
+    padding: 10px 10px 10px 270px;
   }
 </style>
