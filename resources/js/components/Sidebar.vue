@@ -1,3 +1,4 @@
+		
 <template>
 		<nav id="sidebar" class="sidebar-wrapper">
 			<div class="sidebar-content">
@@ -132,9 +133,34 @@
 					</ul>
 				</div>
 				<!-- sidebar-menu  -->
-				<p id="logout" class="text-center text-white" @click="logout">Cerrar Sesión</p>
+				<a 
+					data-toggle="modal"
+					data-target="#logOut"
+					id="logout"
+					class="text-center text-white pb-2"><i class="fa fa-sign-out-alt "></i> Cerrar sesion</a>
 			</div>
 			<!-- sidebar-content  -->
+
+			<!-- Modal Cerrar Sesión -->
+			<div class="modal fade" id="logOut" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalCenterTitle">¿Desea salir del sistema?</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+			        <button type="button" class="btn btn-primary" @click="logout" >Salir</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
 
 		</nav>
 </template>
@@ -157,7 +183,15 @@
 	height: 100%;
 }
 
+div.modal-backdrop.fade.show {
+	z-index: 1;
+}
+
 #logout {
 	cursor: pointer !important;
+	position: fixed;
+	bottom: 0;
+	width: 260px;
+
 }
 </style>

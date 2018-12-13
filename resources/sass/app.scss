@@ -85,7 +85,8 @@ body {
 
 @media screen and (min-width: 768px) {
   .page-wrapper.toggled .page-content {
-    padding-left: 300px;
+    padding-left: 280px;
+    padding-right: 10px;
   }
 }
 /*----------------show sidebar button----------------*/
@@ -353,8 +354,7 @@ body {
 .page-wrapper .page-content {
   display: inline-block;
   width: 100%;
-  padding-left: 0px;
-  padding-top: 20px;
+  padding:20px 30px 0px 30px;
 }
 
 .page-wrapper .page-content > div {
@@ -486,4 +486,7 @@ body {
 
 .chiller-theme .mCSB_scrollTools .mCSB_draggerRail {
     background-color: transparent;
+}
+.mainFull{
+  margin-left: 0px !important;
 }

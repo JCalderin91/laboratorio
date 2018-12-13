@@ -4,9 +4,9 @@
       <i class="fas fa-bars"></i>
     </a>
     <Sidebar :name="name"/>
-    <main class="page-content">    
+    <div id="main" class="page-content">    
       <router-view></router-view>
-    </main>
+    </div>
   </div>
 </template>
 
