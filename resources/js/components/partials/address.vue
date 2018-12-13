@@ -63,7 +63,7 @@
     methods:{
     	list(){
     		axios
-	        .get("/areas")
+	        .get("/api/areas")
 	        .then(response => (
 	        		this.addresses = response.data.data
 	        	))

@@ -15020,7 +15020,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     list: function list() {
       var _this = this;
 
-      axios.get("/areas").then(function (response) {
+      axios.get("/api/areas").then(function (response) {
         return _this.addresses = response.data.data;
       }).catch(function (error) {
         return console.log(error);
@@ -15183,7 +15183,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.login-wrapper[data-v-6bdc8b8e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  min-height: 100vh;\n  width: 100vw;\n  background-color: whitesmoke;\n}\n.card-action[data-v-6bdc8b8e] {\n  border-top: 0px;\n}\n.pssw-rec[data-v-6bdc8b8e] {\n  margin-right: 0 !important;\n  color: teal !important;\n}\n.pssw-rec[data-v-6bdc8b8e]:hover {\n  text-decoration: underline;\n}\n", ""]);
+exports.push([module.i, "\n.login-wrapper[data-v-6bdc8b8e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  min-height: 100vh;\n  width: 100vw;\n  \n  background: #22c1c3;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\n  background: -webkit-gradient(linear, left top, right top, from(#fdbb2d), to(#22c1c3));\n  background: linear-gradient(to right, #fdbb2d, #22c1c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n}\n.card[data-v-6bdc8b8e]{\n  width: 400px;\n  max-width: 99%;\n}\n.card-action[data-v-6bdc8b8e] {\n  border-top: 0px;\n}\n.pssw-rec[data-v-6bdc8b8e] {\n  margin-right: 0 !important;\n  color: teal !important;\n}\n.pssw-rec[data-v-6bdc8b8e]:hover {\n  text-decoration: underline;\n}\n", ""]);
 
 // exports
 
@@ -15268,8 +15268,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "login",
@@ -15291,11 +15289,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         return _this.loginSuccessful(response.data);
       }).catch(function (error) {
+        console.log('Error');
         console.error(error);
         _this.loginFailed();
       });
     },
     loginSuccessful: function loginSuccessful(data) {
+      console.log(data);
       this.$session.start();
       this.$session.set('ci', this.cedula);
       this.$session.set('password', this.contraseña);
@@ -15319,7 +15319,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "login-wrapper" }, [
-    _c("div", { staticClass: "card", staticStyle: { width: "25%" } }, [
+    _c("div", { staticClass: "card" }, [
       _c(
         "form",
         {
@@ -15334,7 +15334,9 @@ var render = function() {
         [
           _vm._m(0),
           _vm._v(" "),
-          _c("label", { attrs: { for: "ci" } }, [_vm._v("Email:")]),
+          _c("h5", [_vm._v(_vm._s(_vm.error))]),
+          _vm._v(" "),
+          _c("label", { attrs: { for: "ci" } }, [_vm._v("Cedula:")]),
           _vm._v(" "),
           _c("input", {
             directives: [
@@ -15349,7 +15351,7 @@ var render = function() {
               id: "ci",
               name: "ci",
               type: "text",
-              placeholder: "ejemplo@gmail.com",
+              placeholder: "00000000",
               required: ""
             },
             domProps: { value: _vm.cedula },
@@ -15379,8 +15381,8 @@ var render = function() {
             attrs: {
               id: "contraseña",
               name: "contraseña",
-              type: "text",
-              placeholder: "password",
+              type: "password",
+              placeholder: "*******",
               required: ""
             },
             domProps: { value: _vm.contraseña },
@@ -15406,9 +15408,7 @@ var render = function() {
                 }
               }
             })
-          ]),
-          _vm._v(" "),
-          _vm._m(1)
+          ])
         ]
       )
     ])
@@ -15428,17 +15428,7 @@ var staticRenderFns = [
         }
       }),
       _vm._v(" "),
-      _c("h4", [_vm._v("Please sign in")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-action center" }, [
-      _c("a", { staticClass: "pssw-rec", attrs: { href: "#" } }, [
-        _vm._v("Recuperar contraseña")
-      ])
+      _c("h4", [_vm._v("Iniciar sesión")])
     ])
   }
 ]
@@ -15632,7 +15622,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15669,10 +15659,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   computed: {
     name: function name() {
-      return this.$session.get('name');
+      return this.$session.get("name");
     },
     email: function email() {
-      return this.$session.get('email');
+      return this.$session.get("email");
     }
   },
   methods: {},
