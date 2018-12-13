@@ -1,7 +1,7 @@
 <template>
   <div>
     <Sidebar :name="name"/>
-    <div class="main">    
+    <div id="main" class="page-content">    
       <router-view></router-view>
     </div>
   </div>
@@ -33,7 +33,5 @@ export default {
 </script>
 
 <style lang="css">
-  .main{
-    padding: 10px 10px 10px 270px;
-  }
+
 </style>

@@ -15667,7 +15667,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.main{\n  padding: 10px 10px 10px 270px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15816,6 +15816,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'navbar',
@@ -15933,7 +15934,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n#logout {\n\tcursor: pointer !important;\n}\n", ""]);
+exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n#logout {\n\tcursor: pointer !important;\n\tposition: fixed;\n\tbottom: 0;\n\twidth: 260px;\n}\n", ""]);
 
 // exports
 
@@ -15944,6 +15945,34 @@ exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n#logout {\n\tcu
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16106,10 +16135,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    { staticClass: "sidebar-wrapper", attrs: { id: "sidebar" } },
-    [
+  return _c("div", [
+    _c("nav", { staticClass: "sidebar-wrapper", attrs: { id: "sidebar" } }, [
       _c("div", { staticClass: "sidebar-content" }, [
         _vm._m(0),
         _vm._v(" "),
@@ -16118,7 +16145,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "user-info" }, [
             _c("span", { staticClass: "user-name" }, [
-              _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.name) + "\n\t\t\t\t")
+              _vm._v("\n\t\t\t\t\t\t" + _vm._s(_vm.name) + "\n\t\t\t\t\t")
             ]),
             _vm._v(" "),
             _c("span", { staticClass: "user-role" }, [_vm._v("Administrator")])
@@ -16127,18 +16154,63 @@ var render = function() {
         _vm._v(" "),
         _vm._m(2),
         _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "text-center text-white",
-            attrs: { id: "logout" },
-            on: { click: _vm.logout }
-          },
-          [_vm._v("cerrar sesion")]
-        )
+        _vm._m(3)
       ])
-    ]
-  )
+    ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "logOut",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalCenterTitle",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v("\n\t        ...\n\t      ")
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cancelar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.logout }
+                  },
+                  [_vm._v("Salir")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -16189,7 +16261,7 @@ var staticRenderFns = [
             _c("ul", [
               _c("li", [
                 _c("a", { attrs: { href: "#" } }, [
-                  _vm._v("Dashboard 1\n\t\t\t\t\t\t\t\t\t"),
+                  _vm._v("Dashboard 1\n\t\t\t\t\t\t\t\t\t\t"),
                   _c(
                     "span",
                     { staticClass: "badge badge-pill badge-success" },
@@ -16220,7 +16292,7 @@ var staticRenderFns = [
             _c("ul", [
               _c("li", [
                 _c("a", { attrs: { href: "#" } }, [
-                  _vm._v("Products\n\n\t\t\t\t\t\t\t\t")
+                  _vm._v("Products\n\n\t\t\t\t\t\t\t\t\t")
                 ])
               ]),
               _vm._v(" "),
@@ -16306,6 +16378,54 @@ var staticRenderFns = [
         ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "text-center text-white pb-2",
+        attrs: {
+          "data-toggle": "modal",
+          "data-target": "#logOut",
+          id: "logout"
+        }
+      },
+      [
+        _c("i", { staticClass: "fa fa-sign-out-alt " }),
+        _vm._v(" Cerrar sesion")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        {
+          staticClass: "modal-title",
+          attrs: { id: "exampleModalCenterTitle" }
+        },
+        [_vm._v("¿Desea salir del sistema?")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
   }
 ]
 render._withStripped = true
@@ -16330,7 +16450,12 @@ var render = function() {
     [
       _c("Sidebar", { attrs: { name: _vm.name } }),
       _vm._v(" "),
-      _c("div", { staticClass: "main" }, [_c("router-view")], 1)
+      _c(
+        "div",
+        { staticClass: "page-content", attrs: { id: "main" } },
+        [_c("router-view")],
+        1
+      )
     ],
     1
   )
