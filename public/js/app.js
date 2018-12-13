@@ -15642,7 +15642,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.main{\n  padding: 10px 10px 10px 270px;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15657,6 +15657,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Navbar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Navbar__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Sidebar__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Sidebar___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Sidebar__);
+//
+//
+//
 //
 //
 //
@@ -15908,7 +15911,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n#logout {\n\tcursor: pointer !important;\n}\n", ""]);
+exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n", ""]);
 
 // exports
 
@@ -16058,19 +16061,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'sidebar',
-	props: ['name', 'email', 'avatarUrl'],
-	mounted: function mounted() {},
-
-	methods: {
-		logout: function logout() {
-			this.$session.destroy();
-			window.location = '/';
-		}
-	}
+	props: ['name', 'email', 'avatarUrl']
 });
 
 /***/ }),
@@ -16100,17 +16094,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(2),
-        _vm._v(" "),
-        _c(
-          "p",
-          {
-            staticClass: "text-center text-white",
-            attrs: { id: "logout" },
-            on: { click: _vm.logout }
-          },
-          [_vm._v("cerrar sesion")]
-        )
+        _vm._m(2)
       ])
     ]
   )
@@ -16302,15 +16286,32 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
+    { staticClass: "page-wrapper chiller-theme toggled" },
     [
+      _vm._m(0),
+      _vm._v(" "),
       _c("Sidebar", { attrs: { name: _vm.name } }),
       _vm._v(" "),
-      _c("div", { staticClass: "main" }, [_c("router-view")], 1)
+      _c("main", { staticClass: "page-content" }, [_c("router-view")], 1)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "btn btn-sm btn-dark",
+        attrs: { id: "show-sidebar", href: "#" }
+      },
+      [_c("i", { staticClass: "fas fa-bars" })]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {

@@ -1,9 +1,12 @@
 <template>
-  <div>
+  <div class="page-wrapper chiller-theme toggled">
+    <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
+      <i class="fas fa-bars"></i>
+    </a>
     <Sidebar :name="name"/>
-    <div class="main">    
+    <main class="page-content">    
       <router-view></router-view>
-    </div>
+    </main>
   </div>
 </template>
 
@@ -33,7 +36,4 @@ export default {
 </script>
 
 <style lang="css">
-  .main{
-    padding: 10px 10px 10px 270px;
-  }
 </style>

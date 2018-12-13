@@ -10,13 +10,9 @@
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 </head>
-<body>
-		<div id="app" class="page-wrapper chiller-theme toggled">
-			<a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
-				<i class="fas fa-bars"></i>
-			</a>
-			<App/>
-		</div>
+<body >
+	<div id="app">
+		<App/>
 	</div>
 
 	<script src="{{asset('js/jquery.min.js')}}"></script>
