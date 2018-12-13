@@ -6,7 +6,8 @@
 
   <title>Laravel</title>
   <link rel="stylesheet" href="{{ asset('css/font-awesome/css/all.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/materialize.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 </head>
 <body>
@@ -16,7 +17,7 @@
 
 	<script src="{{asset('js/jquery.min.js')}}"></script>
 	<script src="{{asset('js/axios.min.js')}}"></script>
-	<script src="{{asset('js/materialize.js')}}"></script>
+	<script src="{{asset('js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/script.js')}}"></script>
 </body>

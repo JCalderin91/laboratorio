@@ -3,7 +3,9 @@
     <Sidebar :name="name"/>
     <div style="padding-left: 300px">
       <Navbar/>
-      <router-view></router-view>
+      <div class="main">
+        <router-view></router-view>
+      </div>
     </div>
   </div>
 </template>
@@ -34,4 +36,8 @@ export default {
 </script>
 
 <style lang="css">
+  .main{
+    padding: 10px;
+    margin-top: 60px;
+  }
 </style>

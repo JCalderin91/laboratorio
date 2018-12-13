@@ -1,12 +1,5 @@
 <template>
-  <nav class="teal"> 
-    <div class="nav-wrapper">
-      <a href="#!" style="display: block" class="sidenav-trigger brand-logo">Laboratorio</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li @click="logout"><a href="#">Cerrar Sesión</a></li>
-      </ul>
-    </div>
-  </nav>
+  <div>4</div>
 </template>
 
 <script>
@@ -21,4 +14,14 @@ export default {
 }
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+  nav{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+  }
+  .sidenav{
+    margin-top: 60px;
+  }
+</style>
