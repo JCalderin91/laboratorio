@@ -2,42 +2,50 @@
   <div class="login-wrapper">
     <div class="card">
       <form class="card-content" @submit.prevent="login">
-        <div class="card-title center">
+        <div class="card-header d-flex justify-content-between aalign-items-center">
+          <h4 class="m-0 text-primary">Iniciar sesión</h4>
           <img src="assets/favicon.png" alt="logo-proyecto" height="25px">
-          <h4>Iniciar sesión</h4>
         </div>  
-        <p class="alert alert-danger" v-if="error">{{error}}</p>
-        <label for="ci">Cedula:</label>
-        <input
-          id="ci"
-          name="ci"
-          type="text"
-          placeholder="00000000"
-          v-model="cedula"
-          required
-        >
-        <label for="contraseña">Contraseña:</label>
-        <input 
-          id="contraseña"
-          name="contraseña"
-          type="password"
-          placeholder="*******"
-          v-model="contraseña"
-          required
-        >
-        <div class="card-action">
-          <input
-            type="submit"
-            class="btn btn-primary btn-block"
-            style="margin: auto;"
-            value="Iniciar Sesíon"
-            @click.prevent="login"
-          >
+        <div class="card-body">
+          <p class="alert alert-danger" v-if="error">{{error}}</p>
+          <div class="form-group">
+            <label for="ci">Cedula:</label>
+            <input
+              class="form-control"
+              id="ci"
+              name="ci"
+              type="text"
+              placeholder="00000000"
+              v-model="cedula"
+              required>
+          </div>
+          <div class="form-group">
+            <label for="contraseña">Contraseña:</label>
+            <input 
+              class="form-control" 
+              id="contraseña"
+              name="contraseña"
+              type="password"
+              placeholder="*******"
+              v-model="contraseña"
+              required>
+          </div>
+            
+          <div class="card-action">
+            <input
+              type="submit"
+              class="btn btn-primary btn-block"
+              style="margin: auto;"
+              value="Iniciar Sesíon"
+              @click.prevent="login"
+            >
+        </div>
         </div>
       </form>
     </div>
   </div>
 </template>
+          
 
 <script>
 export default {
@@ -89,9 +97,10 @@ export default {
   min-height: 100vh;
   width: 100vw;
   
-  background: #22c1c3;  /* fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #fdbb2d, #22c1c3);  /* Chrome 10-25, Safari 5.1-6 */
-  background: linear-gradient(to right, #fdbb2d, #22c1c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: #232526;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #414345, #232526);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 
 
 
@@ -114,12 +123,4 @@ export default {
   text-decoration: underline;
 }
 
-.alert-danger {
-  color: #721c24;
-  background-color: #f8d7da;
-  padding: 10px;
-  border: 1px solid #f5c6cb;
-  border-radius: 8px;
-  text-align: center;
-}
 </style>

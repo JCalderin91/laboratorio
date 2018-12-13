@@ -15199,7 +15199,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.login-wrapper[data-v-6bdc8b8e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  min-height: 100vh;\n  width: 100vw;\n  \n  background: #22c1c3;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\n  background: -webkit-gradient(linear, left top, right top, from(#fdbb2d), to(#22c1c3));\n  background: linear-gradient(to right, #fdbb2d, #22c1c3); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n}\n.card[data-v-6bdc8b8e]{\n  width: 400px;\n  max-width: 99%;\n}\n.card-action[data-v-6bdc8b8e] {\n  border-top: 0px;\n}\n.pssw-rec[data-v-6bdc8b8e] {\n  margin-right: 0 !important;\n  color: teal !important;\n}\n.pssw-rec[data-v-6bdc8b8e]:hover {\n  text-decoration: underline;\n}\n.alert-danger[data-v-6bdc8b8e] {\n  color: #721c24;\n  background-color: #f8d7da;\n  padding: 10px;\n  border: 1px solid #f5c6cb;\n  border-radius: 8px;\n  text-align: center;\n}\n", ""]);
+exports.push([module.i, "\n.login-wrapper[data-v-6bdc8b8e] {\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-orient: vertical;\n  -webkit-box-direction: normal;\n      -ms-flex-direction: column;\n          flex-direction: column;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  min-height: 100vh;\n  width: 100vw;\n  \nbackground: #232526;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\nbackground: -webkit-gradient(linear, left top, right top, from(#414345), to(#232526));\nbackground: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n}\n.card[data-v-6bdc8b8e]{\n  width: 400px;\n  max-width: 99%;\n}\n.card-action[data-v-6bdc8b8e] {\n  border-top: 0px;\n}\n.pssw-rec[data-v-6bdc8b8e] {\n  margin-right: 0 !important;\n  color: teal !important;\n}\n.pssw-rec[data-v-6bdc8b8e]:hover {\n  text-decoration: underline;\n}\n\n", ""]);
 
 // exports
 
@@ -15243,6 +15243,14 @@ module.exports = function listToStyles (parentId, list) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15350,84 +15358,92 @@ var render = function() {
         [
           _vm._m(0),
           _vm._v(" "),
-          _vm.error
-            ? _c("p", { staticClass: "alert alert-danger" }, [
-                _vm._v(_vm._s(_vm.error))
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "ci" } }, [_vm._v("Cedula:")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.cedula,
-                expression: "cedula"
-              }
-            ],
-            attrs: {
-              id: "ci",
-              name: "ci",
-              type: "text",
-              placeholder: "00000000",
-              required: ""
-            },
-            domProps: { value: _vm.cedula },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "card-body" }, [
+            _vm.error
+              ? _c("p", { staticClass: "alert alert-danger" }, [
+                  _vm._v(_vm._s(_vm.error))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "ci" } }, [_vm._v("Cedula:")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.cedula,
+                    expression: "cedula"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "ci",
+                  name: "ci",
+                  type: "text",
+                  placeholder: "00000000",
+                  required: ""
+                },
+                domProps: { value: _vm.cedula },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.cedula = $event.target.value
+                  }
                 }
-                _vm.cedula = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("label", { attrs: { for: "contraseña" } }, [
-            _vm._v("Contraseña:")
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.contraseña,
-                expression: "contraseña"
-              }
-            ],
-            attrs: {
-              id: "contraseña",
-              name: "contraseña",
-              type: "password",
-              placeholder: "*******",
-              required: ""
-            },
-            domProps: { value: _vm.contraseña },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "contraseña" } }, [
+                _vm._v("Contraseña:")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.contraseña,
+                    expression: "contraseña"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: "contraseña",
+                  name: "contraseña",
+                  type: "password",
+                  placeholder: "*******",
+                  required: ""
+                },
+                domProps: { value: _vm.contraseña },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.contraseña = $event.target.value
+                  }
                 }
-                _vm.contraseña = $event.target.value
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "card-action" }, [
-            _c("input", {
-              staticClass: "btn btn-primary btn-block",
-              staticStyle: { margin: "auto" },
-              attrs: { type: "submit", value: "Iniciar Sesíon" },
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.login($event)
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-action" }, [
+              _c("input", {
+                staticClass: "btn btn-primary btn-block",
+                staticStyle: { margin: "auto" },
+                attrs: { type: "submit", value: "Iniciar Sesíon" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.login($event)
+                  }
                 }
-              }
-            })
+              })
+            ])
           ])
         ]
       )
@@ -15439,17 +15455,26 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-title center" }, [
-      _c("img", {
-        attrs: {
-          src: "assets/favicon.png",
-          alt: "logo-proyecto",
-          height: "25px"
-        }
-      }),
-      _vm._v(" "),
-      _c("h4", [_vm._v("Iniciar sesión")])
-    ])
+    return _c(
+      "div",
+      {
+        staticClass:
+          "card-header d-flex justify-content-between aalign-items-center"
+      },
+      [
+        _c("h4", { staticClass: "m-0 text-primary" }, [
+          _vm._v("Iniciar sesión")
+        ]),
+        _vm._v(" "),
+        _c("img", {
+          attrs: {
+            src: "assets/favicon.png",
+            alt: "logo-proyecto",
+            height: "25px"
+          }
+        })
+      ]
+    )
   }
 ]
 render._withStripped = true
