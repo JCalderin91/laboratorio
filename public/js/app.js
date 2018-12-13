@@ -15936,7 +15936,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n#logout {\n\tcursor: pointer !important;\n}\n", ""]);
 
 // exports
 
@@ -16086,10 +16086,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'sidebar',
-	props: ['name', 'email', 'avatarUrl']
+	props: ['name', 'email', 'avatarUrl'],
+	methods: {
+		logout: function logout() {
+			this.$session.destroy();
+			window.location = '/';
+		}
+	}
 });
 
 /***/ }),
@@ -16119,7 +16127,17 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(2)
+        _vm._m(2),
+        _vm._v(" "),
+        _c(
+          "p",
+          {
+            staticClass: "text-center text-white",
+            attrs: { id: "logout" },
+            on: { click: _vm.logout }
+          },
+          [_vm._v("Cerrar Sesión")]
+        )
       ])
     ]
   )

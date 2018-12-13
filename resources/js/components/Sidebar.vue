@@ -132,8 +132,10 @@
 					</ul>
 				</div>
 				<!-- sidebar-menu  -->
+				<p id="logout" class="text-center text-white" @click="logout">Cerrar Sesión</p>
 			</div>
 			<!-- sidebar-content  -->
+
 		</nav>
 </template>
 
@@ -141,11 +143,21 @@
 	export default {
 		name: 'sidebar',
 		props: ['name', 'email', 'avatarUrl'],
+		methods: {
+			logout() {
+				this.$session.destroy();
+				window.location = '/';
+			}
+		}
 	}	
 </script>
 
 <style lang="css">
 .background img{
 	height: 100%;
+}
+
+#logout {
+	cursor: pointer !important;
 }
 </style>
