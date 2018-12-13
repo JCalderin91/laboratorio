@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Navbar/>
     <Sidebar :name="name"/>
-    <div style="padding: 10px">
+    <div style="padding-left: 300px">
+      <Navbar/>
       <router-view></router-view>
     </div>
   </div>

@@ -1,5 +1,5 @@
 import Test from './components/partials/test'
-import Address from './components/partials/address'
+import AddressList from './components/partials/AddressList'
 import Login from './components/Login'
 
 const routes = [
@@ -16,7 +16,7 @@ const routes = [
 	{
 		path: '/areas',
 		name: 'addresses',
-		component: Address,
+		component: AddressList,
 	},
 ];
 

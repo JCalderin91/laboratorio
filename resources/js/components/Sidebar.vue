@@ -1,9 +1,9 @@
 <template>
-  <ul id="slide-out" class="sidenav">
+  <ul id="slide-out" class="sidenav sidenav-fixed">
 	  <li>
 	  	<div class="user-view">
 		    <div class="background">
-		      <img :src="avatarUrl || 'assets/img/background.jpg'">
+		      <img :src="'assets/img/background.jpg'">
 		    </div>
 		    <a href="#user"><img class="circle" src="assets/avatars/001-man.png" style="margin: auto;"></a>
 		    <a href="#name" class="center"><span class="white-text name">{{ name }}</span></a>

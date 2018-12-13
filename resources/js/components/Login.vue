@@ -6,7 +6,7 @@
           <img src="assets/favicon.png" alt="logo-proyecto" height="25px">
           <h4>Iniciar sesión</h4>
         </div>  
-        <h5>{{error}}</h5>
+        <p class="alert alert-danger" v-if="error">{{error}}</p>
         <label for="ci">Cedula:</label>
         <input
           id="ci"
@@ -112,5 +112,14 @@ export default {
 
 .pssw-rec:hover {
   text-decoration: underline;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  padding: 10px;
+  border: 1px solid #f5c6cb;
+  border-radius: 8px;
+  text-align: center;
 }
 </style>
