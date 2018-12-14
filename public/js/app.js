@@ -15667,7 +15667,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15937,7 +15937,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\ndiv.modal-backdrop.fade.show {\n\tz-index: 1;\n}\n#logout {\n\tcursor: pointer !important;\n\tposition: fixed;\n\tbottom: 0;\n\twidth: 260px;\n}\n", ""]);
+exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\n#logout-link {\n\tcursor: pointer !important;\n\tposition: fixed;\n\tbottom: 0;\n\twidth: 260px;\n}\n.fade-enter-active, .fade-leave-active {\n  -webkit-transition: opacity .5s;\n  transition: opacity .5s;\n}\n.fade-enter, .fade-leave-to {\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -15948,24 +15948,8 @@ exports.push([module.i, "\n.background img{\n\theight: 100%;\n}\ndiv.modal-backd
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Modal__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Modal__);
 //
 //
 //
@@ -16116,14 +16100,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'sidebar',
 	props: ['name', 'email', 'avatarUrl'],
+	data: function data() {
+		return {
+			showModal: false
+		};
+	},
+
 	methods: {
 		logout: function logout() {
 			this.$session.destroy();
 			window.location = '/';
+		},
+		toggleModal: function toggleModal(event) {
+			event.preventDefault();
+			this.showModal = false;
 		}
+	},
+	components: {
+		Modal: __WEBPACK_IMPORTED_MODULE_0__Modal___default.a
 	}
 });
 
@@ -16156,62 +16154,44 @@ var render = function() {
         _vm._v(" "),
         _vm._m(2),
         _vm._v(" "),
-        _vm._m(3)
+        _c(
+          "a",
+          {
+            staticClass: "text-center text-white pb-2",
+            attrs: { id: "logout-link" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.showModal = true
+              }
+            }
+          },
+          [
+            _c("i", { staticClass: "fa fa-sign-out-alt" }),
+            _vm._v(" Cerrar sesion")
+          ]
+        )
       ]),
       _vm._v(" "),
       _c(
-        "div",
-        {
-          staticClass: "modal fade",
-          attrs: {
-            id: "logOut",
-            tabindex: "-1",
-            role: "dialog",
-            "aria-labelledby": "exampleModalCenterTitle",
-            "aria-hidden": "true"
-          }
-        },
+        "transition",
+        { attrs: { name: "fade" } },
         [
-          _c(
-            "div",
-            {
-              staticClass: "modal-dialog modal-dialog-centered",
-              attrs: { role: "document" }
-            },
-            [
-              _c("div", { staticClass: "modal-content" }, [
-                _vm._m(4),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-body" }, [
-                  _vm._v("\n\t        ...\n\t      ")
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "modal-footer" }, [
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-secondary",
-                      attrs: { type: "button", "data-dismiss": "modal" }
-                    },
-                    [_vm._v("Cancelar")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "btn btn-primary",
-                      attrs: { type: "button" },
-                      on: { click: _vm.logout }
-                    },
-                    [_vm._v("Salir")]
-                  )
-                ])
-              ])
-            ]
-          )
-        ]
+          _vm.showModal
+            ? _c("Modal", {
+                attrs: {
+                  title: "Cerrar session",
+                  content: "¿Deseas salir del sistema?",
+                  acceptHandler: _vm.logout,
+                  closeHandler: _vm.toggleModal
+                }
+              })
+            : _vm._e()
+        ],
+        1
       )
-    ]
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -16380,54 +16360,6 @@ var staticRenderFns = [
         ])
       ])
     ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "text-center text-white pb-2",
-        attrs: {
-          "data-toggle": "modal",
-          "data-target": "#logOut",
-          id: "logout"
-        }
-      },
-      [
-        _c("i", { staticClass: "fa fa-sign-out-alt " }),
-        _vm._v(" Cerrar sesion")
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "modal-header" }, [
-      _c(
-        "h5",
-        {
-          staticClass: "modal-title",
-          attrs: { id: "exampleModalCenterTitle" }
-        },
-        [_vm._v("¿Desea salir del sistema?")]
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "close",
-          attrs: {
-            type: "button",
-            "data-dismiss": "modal",
-            "aria-label": "Close"
-          }
-        },
-        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-      )
-    ])
   }
 ]
 render._withStripped = true
@@ -16514,6 +16446,233 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(50)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(48)
+/* template */
+var __vue_template__ = __webpack_require__(52)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-53ab54d2"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/Modal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-53ab54d2", Component.options)
+  } else {
+    hotAPI.reload("data-v-53ab54d2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'modal',
+	props: ['title', 'content', 'acceptHandler', 'closeHandler'],
+	mounted: function mounted() {}
+});
+
+/***/ }),
+/* 49 */,
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(51);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(1)("054e958a", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-53ab54d2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-53ab54d2\",\"scoped\":true,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.modal-wrapper[data-v-53ab54d2] {\n\theight: 100vh;\n\twidth: 100vw;\n\tbackground: rgba(0,0,0,0.3);\n\tz-index: 100;\n\tposition: fixed;\n\ttop: 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "modal-wrapper" }, [
+    _c(
+      "div",
+      {
+        staticClass: "modal",
+        staticStyle: { display: "block" },
+        attrs: { id: "modal-component", tabindex: "-1", role: "dialog" }
+      },
+      [
+        _c(
+          "div",
+          {
+            staticClass: "modal-dialog modal-dialog-centered",
+            attrs: { role: "document" }
+          },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-header" }, [
+                _c(
+                  "h5",
+                  {
+                    staticClass: "modal-title",
+                    attrs: { id: "exampleModalCenterTitle" }
+                  },
+                  [_vm._v(_vm._s(_vm.title))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: { id: "close-modal1", type: "button" },
+                    on: { click: _vm.closeHandler }
+                  },
+                  [_c("span", [_vm._v("×")])]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _vm._v(
+                  "\n\t\t\t\t\t" + _vm._s(_vm.content || "...") + "\n\t\t\t\t"
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { id: "close-modal2", type: "button" },
+                    on: { click: _vm.closeHandler }
+                  },
+                  [_vm._v("Cancelar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.acceptHandler }
+                  },
+                  [_vm._v("Salir")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-53ab54d2", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
