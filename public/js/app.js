@@ -14792,8 +14792,8 @@ module.exports = VueSession;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_partials_test__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_partials_test___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_partials_test__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_partials_Dashboard__ = __webpack_require__(47);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_partials_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_partials_Dashboard__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_partials_AddressList__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_partials_AddressList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_partials_AddressList__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Login__ = __webpack_require__(4);
@@ -14809,7 +14809,7 @@ var routes = [{
 }, {
 	path: '/',
 	name: 'dashboard',
-	component: __WEBPACK_IMPORTED_MODULE_0__components_partials_test___default.a
+	component: __WEBPACK_IMPORTED_MODULE_0__components_partials_Dashboard___default.a
 }, {
 	path: '/areas',
 	name: 'addresses',
@@ -14819,88 +14819,9 @@ var routes = [{
 /* harmony default export */ __webpack_exports__["a"] = (routes);
 
 /***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(15)
-/* template */
-var __vue_template__ = __webpack_require__(16)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/partials/test.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-646d55b4", Component.options)
-  } else {
-    hotAPI.reload("data-v-646d55b4", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'test'
-});
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("test")])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-646d55b4", module.exports)
-  }
-}
-
-/***/ }),
+/* 14 */,
+/* 15 */,
+/* 16 */,
 /* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -16073,48 +15994,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'sidebar',
@@ -16154,7 +16033,132 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(2),
+        _c("div", { staticClass: "sidebar-menu" }, [
+          _c("ul", [
+            _vm._m(2),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/" } }, [
+                  _c("i", { staticClass: "fa fa-tachometer-alt" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Principal")]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "badge badge-pill badge-danger" }, [
+                    _vm._v("New")
+                  ])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-file-invoice " }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Registrar servicio")])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-users" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Clientes")])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-laptop" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Equipos")])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-tachometer-alt" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Marcas")])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-id-badge " }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Usuarios")])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-directions" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Areas & Direcciones")])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-tachometer-alt" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Reportes")])
+                ])
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "sidebar" },
+              [
+                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
+                  _c("i", { staticClass: "fa fa-cogs" }),
+                  _vm._v(" "),
+                  _c("span", [_vm._v("Configuraciones")])
+                ])
+              ],
+              1
+            )
+          ])
+        ]),
         _vm._v(" "),
         _vm._m(3)
       ]),
@@ -16242,143 +16246,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sidebar-menu" }, [
-      _c("ul", [
-        _c("li", { staticClass: "header-menu" }, [
-          _c("span", [_vm._v("Menu")])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "sidebar-dropdown" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-tachometer-alt" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Principal")]),
-            _vm._v(" "),
-            _c("span", { staticClass: "badge badge-pill badge-danger" }, [
-              _vm._v("New")
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "sidebar-submenu" }, [
-            _c("ul", [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _vm._v("Dashboard 1\n\t\t\t\t\t\t\t\t\t"),
-                  _c(
-                    "span",
-                    { staticClass: "badge badge-pill badge-success" },
-                    [_vm._v("Pro")]
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Dashboard 2")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Dashboard 3")])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "sidebar-dropdown" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-shopping-cart" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("E-commerce")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "sidebar-submenu" }, [
-            _c("ul", [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [
-                  _vm._v("Products\n\n\t\t\t\t\t\t\t\t")
-                ])
-              ]),
-              _vm._v(" "),
-              _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Orders")])]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Credit cart")])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "sidebar-dropdown" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "far fa-gem" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Components")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "sidebar-submenu" }, [
-            _c("ul", [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("General")])
-              ]),
-              _vm._v(" "),
-              _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Panels")])]),
-              _vm._v(" "),
-              _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Tables")])]),
-              _vm._v(" "),
-              _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Icons")])]),
-              _vm._v(" "),
-              _c("li", [_c("a", { attrs: { href: "#" } }, [_vm._v("Forms")])])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "sidebar-dropdown" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-chart-line" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Charts")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "sidebar-submenu" }, [
-            _c("ul", [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Pie chart")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Line chart")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Bar chart")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Histogram")])
-              ])
-            ])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "sidebar-dropdown" }, [
-          _c("a", { attrs: { href: "#" } }, [
-            _c("i", { staticClass: "fa fa-globe" }),
-            _vm._v(" "),
-            _c("span", [_vm._v("Maps")])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "sidebar-submenu" }, [
-            _c("ul", [
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Google maps")])
-              ]),
-              _vm._v(" "),
-              _c("li", [
-                _c("a", { attrs: { href: "#" } }, [_vm._v("Open street map")])
-              ])
-            ])
-          ])
-        ])
-      ])
+    return _c("li", { staticClass: "header-menu" }, [
+      _c("span", [_vm._v("Menu")])
     ])
   },
   function() {
@@ -16514,6 +16383,198 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(50)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(48)
+/* template */
+var __vue_template__ = __webpack_require__(49)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/partials/Dashboard.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e6f0dc7c", Component.options)
+  } else {
+    hotAPI.reload("data-v-e6f0dc7c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'dashboard'
+});
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _vm._m(0)
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "widget pendientes rounded" }, [
+            _c("div", { staticClass: "cover" }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fa fa-exclamation-triangle  text-white" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "h2 text-white" }, [_vm._v("08")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "widget revisados rounded" }, [
+            _c("div", { staticClass: "cover" }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fa fa-wrench  text-white" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "h2 text-white" }, [_vm._v("12")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "widget entregados rounded" }, [
+            _c("div", { staticClass: "cover" }),
+            _vm._v(" "),
+            _c("i", { staticClass: "fa fa-check-double text-white" }),
+            _vm._v(" "),
+            _c("span", { staticClass: "h2 text-white" }, [_vm._v("09")])
+          ])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e6f0dc7c", module.exports)
+  }
+}
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(51);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("4a4f4eb2", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e6f0dc7c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-e6f0dc7c\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Dashboard.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.widget.pendientes{\n\tbackground-color: var(--danger);\n}\n.widget.revisados{\n\tbackground-color: var(--primary);\n}\n.widget.entregados{\n\tbackground-color: var(--success);\n}\n.widget{\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-pack: end;\n\t    -ms-flex-pack: end;\n\t        justify-content: flex-end;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\tposition: relative;\n\toverflow: hidden;\n}\n.widget .fa{\n\tposition: absolute;\n\ttop: 50%;\n\tleft: 10px;\n\t-webkit-transform: translateY(-50%);\n\t        transform: translateY(-50%);\n\tfont-size: 5rem;\n\topacity: .5;\n}\n.widget .fa:hover{\n}\n.widget span{\n\tpadding: 30px;\n\tbackground-color: rgba(0,0,0,.3);\n\tmargin-bottom: 0;\n}\n.cover{\n\tcontent:\"\";\n\tposition: absolute;\n\ttop:0;\n\tleft:-21%;\n\twidth: 0%;\n\theight: 100%;\n\tbackground-color:rgba(0,0,0,.2);\n\t-webkit-transform: skewX(-45deg);\n\t        transform: skewX(-45deg);\n\t-webkit-transition: all .5s ease;\n\ttransition: all .5s ease;\n}\n.widget:hover > .cover{\n\twidth:141%;\n}\n\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

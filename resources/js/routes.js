@@ -1,4 +1,4 @@
-import Test from './components/partials/test'
+import Dashboard from './components/partials/Dashboard'
 import AddressList from './components/partials/AddressList'
 import Login from './components/Login'
 
@@ -11,7 +11,7 @@ const routes = [
 	{
 		path: '/',
 		name: 'dashboard',
-		component: Test,
+		component: Dashboard,
 	},
 	{
 		path: '/areas',
