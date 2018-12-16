@@ -30,10 +30,12 @@ export default {
   methods: {},
   components: {
     Navbar,
-    Sidebar
+    Sidebar,
   }
 };
 </script>
 
 <style lang="css">
+
+
 </style>
