@@ -33,7 +33,7 @@
 </script>
 
 
-<style>
+<style scoped>
 	.widget.pendientes{
 		background-color: var(--danger);
 	}
