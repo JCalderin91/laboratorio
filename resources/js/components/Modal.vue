@@ -14,7 +14,7 @@
 						</button>
 					</div>
 					<div class="modal-body">
-						{{content || '...'}}
+						<slot></slot>
 					</div>
 					<div class="modal-footer">
 						<button id="close-modal2" type="button" class="btn btn-secondary" @click="closeHandler">Cancelar</button>

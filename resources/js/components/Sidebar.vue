@@ -97,10 +97,11 @@
 			<transition name="fade">
 				<Modal 
 					title="Cerrar session" 
-					content="¿Deseas salir del sistema?" 
 					:acceptHandler="logout" 
 					:closeHandler="toggleModal"
-					v-if="showModal"/>
+					v-if="showModal">
+					<p>¿Desea salír del Sistema?</p>
+				</Modal>
 			</transition>
 		</nav>
 </template>

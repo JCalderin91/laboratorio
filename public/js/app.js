@@ -16164,6 +16164,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -16369,11 +16370,7 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "modal-body" }, [
-                _vm._v(
-                  "\n\t\t\t\t\t" + _vm._s(_vm.content || "...") + "\n\t\t\t\t"
-                )
-              ]),
+              _c("div", { staticClass: "modal-body" }, [_vm._t("default")], 2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c(
@@ -16591,14 +16588,17 @@ var render = function() {
         { attrs: { name: "fade" } },
         [
           _vm.showModal
-            ? _c("Modal", {
-                attrs: {
-                  title: "Cerrar session",
-                  content: "¿Deseas salir del sistema?",
-                  acceptHandler: _vm.logout,
-                  closeHandler: _vm.toggleModal
-                }
-              })
+            ? _c(
+                "Modal",
+                {
+                  attrs: {
+                    title: "Cerrar session",
+                    acceptHandler: _vm.logout,
+                    closeHandler: _vm.toggleModal
+                  }
+                },
+                [_c("p", [_vm._v("¿Desea salír del Sistema?")])]
+              )
             : _vm._e()
         ],
         1
