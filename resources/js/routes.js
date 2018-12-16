@@ -1,6 +1,11 @@
-import Dashboard from './components/views/Dashboard'
 import Address from './components/views/Address'
+import Areas from './components/views/Areas'
+import Brands from './components/views/Brands'
+import Clients from './components/views/Clients'
+import Dashboard from './components/views/Dashboard'
+import Devices from './components/views/Devices'
 import Login from './components/views/Login'
+import Users from './components/views/Users'
 
 const routes = [
 	{
@@ -15,8 +20,33 @@ const routes = [
 	},
 	{
 		path: '/areas',
+		name: 'areas',
+		component: Address,
+	},
+	{
+		path: '/marcas',
+		name: 'brands',
+		component: Brands
+	},
+	{
+		path: '/clientes',
+		name: 'clients',
+		component: Clients,
+	},
+	{
+		path: '/direcciones',
 		name: 'addresses',
 		component: Address,
+	},
+	{
+		path: '/dispositivos',
+		name: 'devices',
+		component: Devices,
+	},
+	{
+		path: '/usuarios',
+		name: 'users',
+		component: Users,
 	},
 ];
 

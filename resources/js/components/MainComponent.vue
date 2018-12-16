@@ -17,7 +17,7 @@
 
 <script>
 
-  import Navbar from "./partials/Navbar";
+  //import Navbar from "./partials/Navbar";
   import Sidebar from "./partials/Sidebar";
   import Dashboard from "./views/Dashboard";
   import Login from "./views/Login";

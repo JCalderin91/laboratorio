@@ -40,28 +40,28 @@
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/areas">
+							<router-link tag="a" to="/clientes">
 								<i class="fa fa-users"></i>
 							  <span>Clientes</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/areas">
+							<router-link tag="a" to="/dispositivos">
 								<i class="fa fa-laptop"></i>
 							  <span>Equipos</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/areas">
+							<router-link tag="a" to="/marcas">
 								<i class="fa fa-tachometer-alt"></i>
 							  <span>Marcas</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/areas">
+							<router-link tag="a" to="/usuarios">
 								<i class="fa fa-id-badge "></i>
 							  <span>Usuarios</span>
 							</router-link>
@@ -75,14 +75,14 @@
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/areas">
+							<router-link tag="a" to="/reportes">
 								<i class="fa fa-tachometer-alt"></i>
 							  <span>Reportes</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/areas">
+							<router-link tag="a" to="/conf">
 								<i class="fa fa-cogs"></i>
 							  <span>Configuraciones</span>
 							</router-link>
