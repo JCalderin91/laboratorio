@@ -110,10 +110,10 @@
 	import Modal from './Modal'
 	export default {
 		name: 'sidebar',
-		props: ['name', 'email', 'avatarUrl'],
 		data() {
 			return {
-				showModal: false
+				showModal: false,
+				name: this.$session.get('name')
 			}
 		},
 		methods: {

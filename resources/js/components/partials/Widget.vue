@@ -1,34 +1,19 @@
 <template>
-	<div>
-		<div class="row">
-			<div class="col-md-4">
-				<div class="widget pendientes rounded">
-					<div class="cover"></div>
-					<i class="fa fa-exclamation-triangle  text-white"></i>
-					<span class="h2 text-white">08</span>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="widget revisados rounded">
-					<div class="cover"></div>
-					<i class="fa fa-wrench  text-white"></i>
-					<span class="h2 text-white">12</span>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="widget entregados rounded">
-					<div class="cover"></div>
-					<i class="fa fa-check-double text-white"></i>
-					<span class="h2 text-white">09</span>
-				</div>
-			</div>
+	<div class="col-md-4">
+		<div :class="'widget rounded '+ type">
+			<div class="cover"></div>
+			<i :class="'fa fa-'+icon+' text-white'"></i>
+			<span class="h2 text-white">08</span>
 		</div>
 	</div>
 </template>
 
 <script>
+	// wrench
+	// check-double
 	export default {
-		name: 'dashboard'
+		name: 'widget',
+		props: ['type', 'icon']
 	}
 </script>
 

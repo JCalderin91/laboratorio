@@ -1,6 +1,6 @@
-import Dashboard from './components/partials/Dashboard'
-import AddressList from './components/partials/AddressList'
-import Login from './components/Login'
+import Dashboard from './components/views/Dashboard'
+import Address from './components/views/Address'
+import Login from './components/views/Login'
 
 const routes = [
 	{
@@ -16,7 +16,7 @@ const routes = [
 	{
 		path: '/areas',
 		name: 'addresses',
-		component: AddressList,
+		component: Address,
 	},
 ];
 
