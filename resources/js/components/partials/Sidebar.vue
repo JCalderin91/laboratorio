@@ -132,7 +132,7 @@
 	}	
 </script>
 
-<style lang="css">
+<style scoped>
 .background img{
 	height: 100%;
 }

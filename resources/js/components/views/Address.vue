@@ -6,12 +6,11 @@
       <h4 class>Lista de las direcciones</h4>
     </div>
     <a 
-      v-on:click="newAddress = !newAddress"
+      @click="newAddress = !newAddress"
       v-if="!newAddress"
-      class="waves-effect blue waves-light btn-small">
+      class="btn btn-primary text-white my-2">
       <i class="fas fa-plus"></i>
     </a>
-    <small style="margin-left: 10px;">Se muestra una lista de las direcciones disponibles</small>
     
     <new-address v-if="newAddress" :newAddress="toggleForm"></new-address>
     

@@ -2,7 +2,7 @@
 	<div class="login-wrapper">
 		<div class="card">
 			<form class="card-content" @submit.prevent="login">
-				<div class="card-header d-flex justify-content-between aalign-items-center">
+				<div class="card-header d-flex justify-content-between align-items-center">
 					<h4 class="m-0 text-primary">Iniciar sesión</h4>
 					<img src="assets/favicon.png" alt="logo-proyecto" height="25px">
 				</div>  

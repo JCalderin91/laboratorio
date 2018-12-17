@@ -1,5 +1,5 @@
 <template>
-	<div class="row">
+	<div class="row .t-4">
 		<div class="form-group col-6">
 			<input type="text" class="form-control" placeholder="Nombre del area">
 		</div>
