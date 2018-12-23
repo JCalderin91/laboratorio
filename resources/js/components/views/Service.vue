@@ -77,9 +77,21 @@
             </div>
           </div><!-- Area -->
 
+          <div v-if="newClient" class="col-6"><!-- Direcciones -->
+            <div class="form-group">
+              <label>Direcciones</label>
+              <select class="form-control">
+                <option>Selecione una dirección</option>
+                <option value="">Dirección 1</option>
+                <option value="">Dirección 2</option>
+                <option value="">Dirección 3</option>
+                <option value="">Dirección 4</option>
+                <option value="">Dirección 5</option>
+              </select>
+            </div>
+          </div><!-- Direcciones -->
 
-
-          <div v-if="!newClient" class="col-6"><!-- Dirección -->
+          <div v-else class="col-6"><!-- Dirección -->
             <div class="form-group">
               <label>Dirección</label>
               <input :disabled="!newClient" v-model="client.address" type="text" class="form-control">
@@ -118,12 +130,12 @@
         this.client.phone = '+112 212121 54'
         this.client.area = '+112 212121 54'
         this.client.address = '+112 212121 54'
-        // axios
-        // .get("/auth/clients")
-        // .then(response => console.log(response.data))
-        // .catch(error => {
-        //   console.log('Error')
-        // });
+        axios
+        .get("/api/clients/"+this.client.ci)
+        .then(response => console.log(response.data))
+        .catch(error => {
+          console.log('Error')
+        });
       },
       resetForm(){
         this.client.first_name = ''
