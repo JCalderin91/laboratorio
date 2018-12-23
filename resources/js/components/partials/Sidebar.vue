@@ -33,7 +33,7 @@
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/areas">
+							<router-link tag="a" to="/servicio">
 								<i class="fa fa-file-invoice "></i>
 							  <span>Registrar servicio</span>
 							</router-link>
