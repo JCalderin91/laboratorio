@@ -39,7 +39,10 @@ class ClientController extends ApiController{
 
     public function show($id){
 
-        
+        $client = Client::where('ci', $id)->first();
+
+        return $this->showOne($client);
+
     }
 
    

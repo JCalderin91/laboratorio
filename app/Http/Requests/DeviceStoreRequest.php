@@ -24,11 +24,11 @@ class DeviceStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'sub_device_id' => 'required|integer'  
-            'brand_id'      => 'required|integer'
-            'client_id'     => 'required|integer'
-            'b_n'           => 'string|nullable'
-            'model'         => 'string|nullable'
+            'sub_device_id' => 'required|integer',  
+            'brand_id'      => 'required|integer',
+            'client_id'     => 'required|integer',
+            'b_n'           => 'string|nullable',
+            'model'         => 'string|nullable',
         ];
     }
 }
