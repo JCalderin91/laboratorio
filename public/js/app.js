@@ -15436,7 +15436,7 @@ var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("74d65bf4", content, false, {});
+var update = __webpack_require__(2)("5faa0360", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -15595,7 +15595,7 @@ var content = __webpack_require__(32);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("01f4b2be", content, false, {});
+var update = __webpack_require__(2)("b0d2bef2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -15721,7 +15721,7 @@ var content = __webpack_require__(37);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("f8405e30", content, false, {});
+var update = __webpack_require__(2)("2523d87c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -15796,7 +15796,7 @@ var content = __webpack_require__(41);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("52a16240", content, false, {});
+var update = __webpack_require__(2)("15b8433a", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -15914,7 +15914,7 @@ var content = __webpack_require__(45);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("31a856d1", content, false, {});
+var update = __webpack_require__(2)("0f0b5f9e", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -16092,7 +16092,7 @@ var content = __webpack_require__(51);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("07ca367a", content, false, {});
+var update = __webpack_require__(2)("71587954", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -16167,7 +16167,7 @@ var content = __webpack_require__(55);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("1515ff4b", content, false, {});
+var update = __webpack_require__(2)("a1a99eb6", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -16191,7 +16191,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.login-wrapper[data-v-a0ceb926] {\r\n\tdisplay: -webkit-box;\r\n\tdisplay: -ms-flexbox;\r\n\tdisplay: flex;\r\n\t-webkit-box-orient: vertical;\r\n\t-webkit-box-direction: normal;\r\n\t    -ms-flex-direction: column;\r\n\t        flex-direction: column;\r\n\t-webkit-box-pack: center;\r\n\t    -ms-flex-pack: center;\r\n\t        justify-content: center;\r\n\t-webkit-box-align: center;\r\n\t    -ms-flex-align: center;\r\n\t        align-items: center;\r\n\tmin-height: 100vh;\r\n\twidth: 100vw;\r\n\r\n\tbackground: #232526;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\r\n\tbackground: -webkit-gradient(linear, left top, right top, from(#414345), to(#232526));\r\n\tbackground: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n}\n.card[data-v-a0ceb926]{\r\n\twidth: 400px;\r\n\tmax-width: 99%;\n}\n.card-action[data-v-a0ceb926] {\r\n\tborder-top: 0px;\n}\n.pssw-rec[data-v-a0ceb926] {\r\n\tmargin-right: 0 !important;\r\n\tcolor: teal !important;\n}\n.pssw-rec[data-v-a0ceb926]:hover {\r\n\ttext-decoration: underline;\n}\r\n\r\n", ""]);
+exports.push([module.i, "\n.login-wrapper[data-v-a0ceb926] {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-pack: center;\n\t    -ms-flex-pack: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\tmin-height: 100vh;\n\twidth: 100vw;\n\n\tbackground: #232526;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\n\tbackground: -webkit-gradient(linear, left top, right top, from(#414345), to(#232526));\n\tbackground: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n}\n.card[data-v-a0ceb926]{\n\twidth: 400px;\n\tmax-width: 99%;\n}\n.card-action[data-v-a0ceb926] {\n\tborder-top: 0px;\n}\n.pssw-rec[data-v-a0ceb926] {\n\tmargin-right: 0 !important;\n\tcolor: teal !important;\n}\n.pssw-rec[data-v-a0ceb926]:hover {\n\ttext-decoration: underline;\n}\n\n", ""]);
 
 // exports
 
@@ -16519,7 +16519,7 @@ var content = __webpack_require__(60);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-var update = __webpack_require__(2)("090b4f50", content, false, {});
+var update = __webpack_require__(2)("d4e0ec9c", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -16645,15 +16645,7 @@ var content = __webpack_require__(65);
 if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
-<<<<<<< HEAD
 var update = __webpack_require__(2)("6d65bfdf", content, false, {});
-=======
-<<<<<<< HEAD
-var update = __webpack_require__(2)("e8fbc1e0", content, false, {});
-=======
-var update = __webpack_require__(2)("c2215ca0", content, false, {});
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
@@ -16677,15 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-<<<<<<< HEAD
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-=======
-<<<<<<< HEAD
-exports.push([module.i, "\n.background img[data-v-438bbc0a]{\r\n\theight: 100%;\n}\n#logout-link[data-v-438bbc0a] {\r\n\tcursor: pointer !important;\r\n\tposition: fixed;\r\n\tbottom: 0;\r\n\twidth: 260px;\n}\n.fade-enter-active[data-v-438bbc0a], .fade-leave-active[data-v-438bbc0a] {\r\n  -webkit-transition: opacity .5s;\r\n  transition: opacity .5s;\n}\n.fade-enter[data-v-438bbc0a], .fade-leave-to[data-v-438bbc0a] {\r\n  opacity: 0;\n}\r\n", ""]);
-=======
-exports.push([module.i, "\n.background img[data-v-438bbc0a]{\n\theight: 100%;\n}\n#logout-link[data-v-438bbc0a] {\n\tcursor: pointer !important;\n\tposition: fixed;\n\tbottom: 0;\n\twidth: 260px;\n}\n.fade-enter-active[data-v-438bbc0a], .fade-leave-active[data-v-438bbc0a] {\n  -webkit-transition: opacity .5s;\n  transition: opacity .5s;\n}\n.fade-enter[data-v-438bbc0a], .fade-leave-to[data-v-438bbc0a] {\n  opacity: 0;\n}\n", ""]);
->>>>>>> refs/remotes/origin/master
->>>>>>> refs/remotes/origin/master
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16696,6 +16680,8 @@ exports.push([module.i, "\n.background img[data-v-438bbc0a]{\n\theight: 100%;\n}
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
 //
 //
 //
@@ -16821,18 +16807,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
   methods: {
     searchClient: function searchClient(ci) {
-      console.log('Buscar: ' + ci);
+      var _this = this;
 
-      this.client.ci = '22998438';
-      this.client.first_name = 'Jesus';
-      this.client.last_name = 'Calderin';
-      this.client.phone = '+112 212121 54';
-      this.client.area = '+112 212121 54';
-      this.client.address = '+112 212121 54';
-      axios.get("/api/clients/" + this.client.ci).then(function (response) {
-        return console.log(response.data);
+      axios.get("/api/clients/" + this.client.ci, {
+        headers: {
+          'Authorization': 'Bearer ' + this.$session.get('token')
+        }
+      }).then(function (response) {
+        console.log(response.data.data);
+        _this.client.first_name = response.data.data.nombres;
+        _this.client.last_name = response.data.data.apellidos;
+        _this.client.phone = response.data.data.telefono;
+        _this.client.address = response.data.data.direccion;
+        _this.client.area = response.data.data.area;
       }).catch(function (error) {
-        console.log('Error');
+        return console.log(error);
       });
     },
     resetForm: function resetForm() {
@@ -16847,93 +16836,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-<<<<<<< HEAD
 /* 67 */
-=======
-/* 70 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(71);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("230e1640", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6afba85b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-6afba85b\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Modal.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 71 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.modal-wrapper[data-v-6afba85b] {\r\n\theight: 100vh;\r\n\twidth: 100vw;\r\n\tbackground: rgba(0,0,0,0.3);\r\n\tz-index: 100;\r\n\tposition: fixed;\r\n\ttop: 0;\n}\r\n", ""]);
-
-// exports
-
-
-/***/ }),
-/* 72 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'modal',
-	props: ['title', 'content', 'acceptHandler', 'closeHandler'],
-	mounted: function mounted() {}
-});
-
-/***/ }),
-/* 73 */
->>>>>>> refs/remotes/origin/master
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -16952,6 +16855,23 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-12 mb-3" }, [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-outline-primary",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.newClient = !_vm.newClient
+                  }
+                }
+              },
+              [_vm._v(_vm._s(_vm.newClient ? "Buscar" : "Nuevo"))]
+            )
+          ]),
+          _vm._v(" "),
           _vm.newClient
             ? _c("div", { staticClass: "col-6" }, [
                 _c("label", [_vm._v("Cedula")]),
@@ -16974,15 +16894,12 @@ var render = function() {
                     },
                     domProps: { value: _vm.client.ci },
                     on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.client, "ci", $event.target.value)
-                        },
-                        _vm.resetForm
-                      ]
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.client, "ci", $event.target.value)
+                      }
                     }
                   })
                 ])
@@ -17028,15 +16945,9 @@ var render = function() {
                         staticClass: "btn btn-outline-success",
                         attrs: { type: "button", id: "btnBuscarCedula" },
                         on: {
-                          click: [
-                            function($event) {
-                              _vm.searchClient(_vm.client.ci)
-                            },
-                            function($event) {
-                              $event.preventDefault()
-                              _vm.newClient = !_vm.newClient
-                            }
-                          ]
+                          click: function($event) {
+                            _vm.searchClient(_vm.client.ci)
+                          }
                         }
                       },
                       [_vm._v("Buscar")]
@@ -17103,7 +17014,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Telefno")]),
+              _c("label", [_vm._v("Teléfono")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
@@ -17259,312 +17170,7 @@ if (false) {
 }
 
 /***/ }),
-<<<<<<< HEAD
 /* 68 */
-=======
-/* 74 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "nav",
-    { staticClass: "sidebar-wrapper", attrs: { id: "sidebar" } },
-    [
-      _c("div", { staticClass: "sidebar-content" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "sidebar-header" }, [
-          _vm._m(1),
-          _vm._v(" "),
-          _c("div", { staticClass: "user-info" }, [
-            _c("span", { staticClass: "user-name" }, [
-              _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.name) + "\n\t\t\t\t")
-            ]),
-            _vm._v(" "),
-            _c("span", { staticClass: "user-role" }, [_vm._v("Administrator")])
-          ])
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "sidebar-menu" }, [
-          _c("ul", [
-            _vm._m(2),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/" } }, [
-                  _c("i", { staticClass: "fa fa-tachometer-alt" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Principal")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "badge badge-pill badge-danger" }, [
-                    _vm._v("New")
-                  ])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/servicio" } }, [
-                  _c("i", { staticClass: "fa fa-file-invoice " }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Registrar servicio")])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/clientes" } }, [
-                  _c("i", { staticClass: "fa fa-users" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Clientes")])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c(
-                  "router-link",
-                  { attrs: { tag: "a", to: "/dispositivos" } },
-                  [
-                    _c("i", { staticClass: "fa fa-laptop" }),
-                    _vm._v(" "),
-                    _c("span", [_vm._v("Equipos")])
-                  ]
-                )
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/marcas" } }, [
-                  _c("i", { staticClass: "fa fa-tachometer-alt" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Marcas")])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/usuarios" } }, [
-                  _c("i", { staticClass: "fa fa-id-badge " }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Usuarios")])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
-                  _c("i", { staticClass: "fa fa-directions" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Areas & Direcciones")])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/reportes" } }, [
-                  _c("i", { staticClass: "fa fa-tachometer-alt" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Reportes")])
-                ])
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/conf" } }, [
-                  _c("i", { staticClass: "fa fa-cogs" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Configuraciones")])
-                ])
-              ],
-              1
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "text-center text-white pb-2",
-            attrs: { id: "logout-link" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.showModal = true
-              }
-            }
-          },
-          [
-            _c("i", { staticClass: "fa fa-sign-out-alt" }),
-            _vm._v(" Cerrar sesion")
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "transition",
-        { attrs: { name: "fade" } },
-        [
-          _vm.showModal
-            ? _c(
-                "Modal",
-                {
-                  attrs: {
-                    title: "Cerrar session",
-                    acceptHandler: _vm.logout,
-                    closeHandler: _vm.toggleModal
-                  }
-                },
-                [_c("p", [_vm._v("¿Desea salír del Sistema?")])]
-              )
-            : _vm._e()
-        ],
-        1
-      )
-    ],
-    1
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "sidebar-brand" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("laboratorio")]),
-      _vm._v(" "),
-      _c("div", { attrs: { id: "close-sidebar" } }, [
-        _c("i", { staticClass: "fas fa-times" })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "user-pic" }, [
-      _c("img", {
-        staticClass: "img-responsive img-rounded",
-        attrs: { src: "assets/avatars/001-man.png", alt: "User picture" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "header-menu" }, [
-      _c("span", [_vm._v("Menu")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-438bbc0a", module.exports)
-  }
-}
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return !_vm.logged
-    ? _c("Login")
-    : _c("div", [
-        _c(
-          "div",
-          { staticClass: "page-wrapper chiller-theme toggled" },
-          [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-sm btn-dark",
-                attrs: { id: "show-sidebar", href: "#" }
-              },
-              [_c("i", { staticClass: "fas fa-bars" })]
-            ),
-            _vm._v(" "),
-            _c("Sidebar"),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "page-content", attrs: { id: "main" } },
-              [_c("router-view")],
-              1
-            )
-          ],
-          1
-        )
-      ])
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-3ee370e9", module.exports)
-  }
-}
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-<<<<<<< HEAD
-=======
-/***/ }),
-/* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */
->>>>>>> refs/remotes/origin/master
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -18423,6 +18029,5 @@ if (false) {
 
 // removed by extract-text-webpack-plugin
 
->>>>>>> refs/remotes/origin/master
 /***/ })
 /******/ ]);

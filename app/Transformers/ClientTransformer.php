@@ -18,8 +18,8 @@ class ClientTransformer extends TransformerAbstract
         return [
             'identificador' => (int)$client->id,
             'cedula' => (string)$client->ci,
-            'nombre' => (string)$client->first_name,
-            'apellido' => (string)$client->last_name,
+            'nombres' => (string)$client->first_name,
+            'apellidos' => (string)$client->last_name,
             'telefono' => (string)$client->phone,
             'area' => (string)$client->area->name,
             'direccion' => (string)$client->area->address->name,
@@ -33,8 +33,8 @@ class ClientTransformer extends TransformerAbstract
         $attributes = [
             'identificador' => 'id',
             'cedula' => 'ci',
-            'nombre' => 'first_name',
-            'apellido' => 'last_name',
+            'nombres' => 'first_name',
+            'apellidos' => 'last_name',
             'telefono' => 'phone',
             'area' =>  'area_id',
         ];
@@ -47,8 +47,8 @@ class ClientTransformer extends TransformerAbstract
         $attributes = [
             'id' => 'id',
             'ci' => 'cedula',
-            'first_name' => 'nombre',
-            'last_name' => 'apellido',
+            'first_name' => 'nombres',
+            'last_name' => 'apellidos',
             'phone' => 'telefono',
             'area_id' =>  'area',
         ];

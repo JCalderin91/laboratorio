@@ -11,11 +11,14 @@
       </div>
       <div class="card-body">
         <div class="row">
+          <div class="col-12 mb-3">
+            <a href="#" v-on:click.prevent="newClient = !newClient" class="btn btn-outline-primary">{{ newClient ? 'Buscar' : 'Nuevo' }}</a>
+          </div>
 
           <div v-if="newClient" class="col-6"><!-- Cedula Nuevo Cliente -->
             <label>Cedula</label>
             <div class="input-group">
-              <input v-model="client.ci" type="text" class="form-control" placeholder="Cedula del cliente" aria-label="Cedula del cliente" @input="resetForm">
+              <input v-model="client.ci" type="text" class="form-control" placeholder="Cedula del cliente" aria-label="Cedula del cliente">
             </div>
           </div><!-- Cedula Nuevo Cliente -->
 
@@ -29,7 +32,6 @@
                   class="btn btn-outline-success"
                   type="button"
                   id="btnBuscarCedula"
-                  v-on:click.prevent="newClient = !newClient"
                 >Buscar</button>
               </div>
             </div>
@@ -49,12 +51,12 @@
             </div>
           </div><!-- Apellidos -->
 
-          <div class="col-6"><!-- Telefno -->
+          <div class="col-6"><!-- Teléfono -->
             <div class="form-group">
-              <label>Telefno</label>
+              <label>Teléfono</label>
               <input :disabled="!newClient" v-model="client.phone" type="text" class="form-control">
             </div>
-          </div><!-- Telefno -->
+          </div><!-- Teléfono -->
 
           <div v-if="newClient" class="col-6"><!-- Area -->
             <div class="form-group">
@@ -122,20 +124,23 @@
     },
     methods: {
       searchClient(ci){
-        console.log('Buscar: '+ci)
-
-        this.client.ci = '22998438'
-        this.client.first_name = 'Jesus'
-        this.client.last_name = 'Calderin'
-        this.client.phone = '+112 212121 54'
-        this.client.area = '+112 212121 54'
-        this.client.address = '+112 212121 54'
         axios
-        .get("/api/clients/"+this.client.ci)
-        .then(response => console.log(response.data))
-        .catch(error => {
-          console.log('Error')
-        });
+        .get("/api/clients/"+this.client.ci, {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+        .then(response => {
+            console.log(response.data.data)
+            this.client.first_name = response.data.data.nombres
+            this.client.last_name = response.data.data.apellidos
+            this.client.phone = response.data.data.telefono
+            this.client.address = response.data.data.direccion
+            this.client.area = response.data.data.area
+          })
+        .catch(error => (
+            console.log(error)
+          ));
       },
       resetForm(){
         this.client.first_name = ''
