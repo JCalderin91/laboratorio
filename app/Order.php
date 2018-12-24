@@ -18,7 +18,7 @@ class Order extends Model
 
     public $transformer = OrderTransformer::class;
     
-    protected $filleable = [
+    protected $fillable = [
         'client_id',
         'device_id',
         'user_id',
