@@ -15,7 +15,7 @@
 						id="ci"
 						name="ci"
 						type="text"
-						placeholder="00000000"
+						placeholder="Ingrese su cedula"
 						v-model="cedula"
 						required
 						:disabled="loading">
@@ -27,7 +27,7 @@
 						id="contraseña"
 						name="contraseña"
 						type="password"
-						placeholder="*******"
+						placeholder="Ingrese su contraseña"
 						v-model="contraseña"
 						required
 						:disabled="loading">

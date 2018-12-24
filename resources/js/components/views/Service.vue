@@ -85,7 +85,117 @@
         </div>
       </div>
     </div>
+
+    <div class="card mt-3">
+      <div class="card-header bg-dark">
+        <h6 class="m-0 text-white">
+          Datos del dispositivo 
+        </h6>
+      </div>
+
+      <div class="card-body">
+        <div class="row">
+
+          <div class="col-md-6"><!-- Nombre del dispositivo -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="nameRegister" v-model="checkNameDevice">
+              <label class="custom-control-label" for="nameRegister">Nuevo nombre</label>
+            </div>
+            <div class="form-group">
+              <label>Nombre</label>
+
+              <input v-if="checkNameDevice" v-model="device.name" type="text" class="form-control">
+
+              <select v-else class="custom-select" v-model="device.name">
+                <option value="">Selecione un dispositivo</option>
+                <option v-for="name in nameDevices" :value="name.identificador" >{{ name.nombre }}</option>
+              </select>
+
+            </div>
+          </div><!-- Nombre del dispositivo -->
+
+          <div class="col-md-6"><!-- Marca -->
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="brandRegister" v-model="checkBrand">
+              <label class="custom-control-label" for="brandRegister">Nueva marca</label>
+            </div>
+            <div class="form-group">
+              <label>Marca</label>
+
+              <input v-if="checkBrand" v-model="device.brand" type="text" class="form-control">
+
+              <select v-else class="custom-select" v-model="device.brand">
+                <option value="">Selecione una marca</option>
+                <option v-for="brand in brands" :value="brand.identificador" >{{ brand.nombre }}</option>
+              </select>
+
+            </div>
+          </div><!-- Marca -->
+
+          <div class="col-md-6"><!-- Modelo -->
+            <div class="form-group">
+              <label>Modelo</label>
+              <input v-model="device.model" type="text" class="form-control">
+            </div>
+          </div><!-- Modelo -->
+
+          <div class="col-md-6"><!-- Codigo de bien nacional -->
+            <div class="form-group">
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="bn" v-model="checkBn">
+                <label class="custom-control-label" for="bn">Bien nacional</label>
+              </div>
+              <input v-if="checkBn" v-model="device.bn" type="text" class="form-control" style="margin-top: 6px">
+            </div>
+          </div><!-- Codigo de bien nacional -->
+
+          <div class="col-12">
+            <div class="form-group">
+              <label for="observaciones">Observaciones de recepción</label>
+              <textarea class="form-control" id="observaciones" rows="3"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>       
+
+    </div>
+
+    <div class="card mt-3">
+      <div class="card-header bg-dark">
+        <h6 class="m-0 text-white">
+          Datos del técnico 
+        </h6>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12">
+            <div class="form-group">
+              <label>Cedula</label>
+
+              <select class="custom-select" v-model="device.name">
+                <option value="">Selecione una cedula</option>
+                <option v-for="name in nameDevices" :value="name.identificador" >{{ name.nombre }}</option>
+              </select>
+
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label>Datos</label>
+              <input disabled type="text" class="form-control" value="Jesus Rafael Caldeirin Anton">   
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="card-footer">
+        <a href="#" class="btn btn-outline-success float-right">Registrar orden de servicio</a>
+      </div>  
+    </div>
+
     <pre>{{ $data }}</pre>
+
   </div>
 </template>
 
@@ -102,15 +212,31 @@
           area: '',
           address: '',
         },
+        device: {
+          name: '',
+          brand: '',
+          model: '',
+          bn: '',
+        },
         newClient: true,
+        checkNameDevice: false,
+        checkBrand: false,
+        checkBn: false,
         addresses:'',
         areas:'',
+        nameDevices:'',
+        brands:'',
       }
     },
+
     mounted(){
       this.getAddress()
+      this.getSubDevice()
+      this.getBrands()
     },
+
     methods: {
+
       searchClient(ci){
         axios
         .get("/api/clients/"+this.client.ci, {
@@ -131,6 +257,7 @@
             console.log(error)
           ));
       },
+
       resetForm(){
         this.client.first_name = ''
         this.client.last_name = ''
@@ -139,8 +266,8 @@
         this.client.address = ''
         this.newClient= true
       },
+
       getAreas(area){
-        console.log(area)
        axios
         .get("api/addresses/"+area+"/areas", {
             headers: {
@@ -155,6 +282,7 @@
                         this.areas = []
                       });
       },
+
       getAddress(){
         axios
         .get("/api/addresses", {
@@ -168,7 +296,39 @@
           .catch(error => (
               console.log(error)
             ));
-      }
+      },
+
+      getSubDevice(){
+        axios
+        .get("/api/sub-devices", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => {
+              this.nameDevices = response.data.data
+              console.log(this.nameDevices)
+            })
+          .catch(error => (
+              console.log(error)
+            ));
+      },
+
+      getBrands(){
+        axios
+        .get("/api/brands", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => {
+              this.brands = response.data.data
+              console.log(this.brands)
+            })
+          .catch(error => (
+              console.log(error)
+            ));
+      },
     }
   }
 
