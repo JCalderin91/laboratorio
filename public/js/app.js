@@ -17048,7 +17048,9 @@ var render = function() {
                       }
                     },
                     [
-                      _c("option", [_vm._v("Selecione una dirección")]),
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Selecione una dirección")
+                      ]),
                       _vm._v(" "),
                       _vm._l(_vm.addresses, function(address) {
                         return _c(
@@ -17092,39 +17094,57 @@ var render = function() {
           _vm._v(" "),
           _vm.newClient
             ? _c("div", { staticClass: "col-6" }, [
-                _c(
-                  "div",
-                  {
-                    staticClass: "form-group",
-                    model: {
-                      value: _vm.client.area,
-                      callback: function($$v) {
-                        _vm.$set(_vm.client, "area", $$v)
-                      },
-                      expression: "client.area"
-                    }
-                  },
-                  [
-                    _c("label", [_vm._v("Área")]),
-                    _vm._v(" "),
-                    _c(
-                      "select",
-                      { staticClass: "custom-select" },
-                      [
-                        _c("option", [_vm._v("Selecione una area")]),
-                        _vm._v(" "),
-                        _vm._l(_vm.areas, function(area) {
-                          return _c(
-                            "option",
-                            { domProps: { value: area.identificador } },
-                            [_vm._v(_vm._s(area.nombre))]
-                          )
-                        })
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Área")]),
+                  _vm._v(" "),
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.client.area,
+                          expression: "client.area"
+                        }
                       ],
-                      2
-                    )
-                  ]
-                )
+                      staticClass: "custom-select",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.client,
+                            "area",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "" } }, [
+                        _vm._v("Selecione una area")
+                      ]),
+                      _vm._v(" "),
+                      _vm._l(_vm.areas, function(area) {
+                        return _c(
+                          "option",
+                          { domProps: { value: area.identificador } },
+                          [_vm._v(_vm._s(area.nombre))]
+                        )
+                      })
+                    ],
+                    2
+                  )
+                ])
               ])
             : _c("div", { staticClass: "col-6" }, [
                 _c("div", { staticClass: "form-group" }, [

@@ -52,7 +52,7 @@
             <div class="form-group">
               <label>Direcciones</label>
               <select class="custom-select" v-model="client.address" @change="getAreas(client.address)">
-                <option>Selecione una dirección</option>
+                <option value="">Selecione una dirección</option>
                 <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre }}</option>
               </select>
             </div>
@@ -66,11 +66,11 @@
           </div><!-- Dirección -->
          
           <div v-if="newClient" class="col-6"><!-- Area -->
-            <div class="form-group" v-model="client.area">
+            <div class="form-group" >
               <label>Área</label>
-              <select class="custom-select">
-                <option>Selecione una area</option>
-                <option v-for="area in areas" :value="area.identificador" >{{ area.nombre }}</option>
+              <select class="custom-select" v-model="client.area">
+                <option value="">Selecione una area</option>
+                <option v-for="area in areas" :value="area.identificador">{{ area.nombre }}</option>
               </select>
             </div>
           </div><!-- Area -->
