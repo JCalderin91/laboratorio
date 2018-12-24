@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16680,6 +16680,44 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -16893,7 +16931,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         last_name: '',
         phone: '',
         area: '',
-        address: ''
+        address: '',
+        devices: ''
       },
       device: {
         name: '',
@@ -16925,21 +16964,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     searchClient: function searchClient(ci) {
       var _this = this;
 
-      axios.get("/api/clients/" + this.client.ci, {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
-        _this.newClient = false;
-        console.log(response.data.data);
-        _this.client.first_name = response.data.data.nombres;
-        _this.client.last_name = response.data.data.apellidos;
-        _this.client.phone = response.data.data.telefono;
-        _this.client.address = response.data.data.direccion;
-        _this.client.area = response.data.data.area;
-      }).catch(function (error) {
-        return console.log(error);
-      });
+      if (ci != '') {
+        axios.get("/api/clients/" + this.client.ci, {
+          headers: {
+            'Authorization': 'Bearer ' + this.$session.get('token')
+          }
+        }).then(function (response) {
+          _this.newClient = false;
+          _this.client.first_name = response.data.data.nombres;
+          _this.client.last_name = response.data.data.apellidos;
+          _this.client.phone = response.data.data.telefono;
+          _this.client.address = response.data.data.direccion;
+          _this.client.area = response.data.data.area;
+          _this.getClientDevices(response.data.data.identificador);
+        }).catch(function (error) {
+          return console.log(error);
+        });
+      }
     },
     resetForm: function resetForm() {
       this.client.first_name = '';
@@ -16985,7 +17026,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (response) {
         _this4.nameDevices = response.data.data;
-        console.log(_this4.nameDevices);
       }).catch(function (error) {
         return console.log(error);
       });
@@ -17012,6 +17052,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (response) {
         _this6.users = response.data.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    getClientDevices: function getClientDevices(clientId) {
+      var _this7 = this;
+
+      axios.get("api/clients/" + clientId + "/devices", {
+        headers: {
+          'Authorization': 'Bearer ' + this.$session.get('token')
+        }
+      }).then(function (response) {
+        _this7.client.devices = response.data.data;
       }).catch(function (error) {
         return console.log(error);
       });
@@ -17348,7 +17401,26 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card mt-3" }, [
-      _vm._m(1),
+      _c("div", { staticClass: "card-header bg-dark" }, [
+        _c("h6", { staticClass: "mt-2 text-white d-inline-block" }, [
+          _vm._v("\n          Datos del dispositivo \n        ")
+        ]),
+        _vm._v(" "),
+        !_vm.newClient
+          ? _c(
+              "a",
+              {
+                staticClass: "btn btn-primary float-right btn-sm",
+                attrs: {
+                  "data-toggle": "modal",
+                  "data-target": "#clientDevices",
+                  href: "#"
+                }
+              },
+              [_vm._v("Mis dispositivos")]
+            )
+          : _vm._e()
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
@@ -17708,13 +17780,13 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(2)
+          _vm._m(1)
         ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card mt-3" }, [
-      _vm._m(3),
+      _vm._m(2),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
@@ -17805,8 +17877,46 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(4)
+      _vm._m(3)
     ]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal",
+        attrs: { id: "clientDevices", tabindex: "-1", role: "dialog" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body p-0" }, [
+                _c("table", { staticClass: "table text-center" }, [
+                  _vm._m(5),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.client.devices, function(device) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(_vm._s(device.nombre))]),
+                        _vm._v(" "),
+                        _c("td", [_vm._v(_vm._s(device.marca))]),
+                        _vm._v(" "),
+                        _vm._m(6, true)
+                      ])
+                    })
+                  )
+                ])
+              ])
+            ])
+          ]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("pre", [_vm._v(_vm._s(_vm.$data))])
   ])
@@ -17818,27 +17928,8 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
-        _vm._v("\n        Datos del cliente \n      ")
+        _vm._v("\n          Datos del cliente \n        ")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-header bg-dark" }, [
-      _c("h6", { staticClass: "mt-2 text-white d-inline-block" }, [
-        _vm._v("\n        Datos del dispositivo \n      ")
-      ]),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-primary float-right btn-sm",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Mis dispositivos")]
-      )
     ])
   },
   function() {
@@ -17864,7 +17955,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
-        _vm._v("\n        Datos del técnico \n      ")
+        _vm._v("\n          Datos del técnico \n        ")
       ])
     ])
   },
@@ -17880,6 +17971,53 @@ var staticRenderFns = [
           attrs: { href: "#" }
         },
         [_vm._v("Registrar orden de servicio")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [_vm._v("Mis dispositivos")]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-dark text-white" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Nombtre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Marca")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acción")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c(
+        "a",
+        { staticClass: "btn btn-outline-success btn-sm", attrs: { href: "#" } },
+        [_c("i", { staticClass: "fas fa-check" })]
       )
     ])
   }

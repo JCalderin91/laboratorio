@@ -91,7 +91,7 @@
         <h6 class="mt-2 text-white d-inline-block">
           Datos del dispositivo 
         </h6>
-        <a href="#" class="btn btn-primary float-right btn-sm">Mis dispositivos</a>
+        <a v-if="!newClient" data-toggle="modal" data-target="#clientDevices" href="#" class="btn btn-primary float-right btn-sm">Mis dispositivos</a>
       </div>
 
       <div class="card-body">
@@ -195,6 +195,44 @@
       </div>  
     </div>
 
+
+<div class="modal" id="clientDevices" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Mis dispositivos</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body p-0">
+        <table class="table text-center">
+          <thead class="bg-dark text-white">
+            <tr>
+              <th>Nombtre</th>
+              <th>Marca</th>
+              <th>Acción</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="device in client.devices">
+              <td>{{device.nombre}}</td>
+              <td>{{device.marca}}</td>
+              <td>
+                <a href="#" class="btn btn-outline-success btn-sm">
+                  <i class="fas fa-check"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+
     <pre>{{ $data }}</pre>
 
   </div>
@@ -212,6 +250,7 @@
           phone: '',
           area: '',
           address: '',
+          devices: ''
         },
         device: {
           name: '',
@@ -242,24 +281,26 @@
     methods: {
 
       searchClient(ci){
-        axios
-        .get("/api/clients/"+this.client.ci, {
+        if (ci != '') {
+          axios
+          .get("/api/clients/"+this.client.ci, {
             headers: {
               'Authorization': `Bearer ${this.$session.get('token')}`
             }
           })
-        .then(response => {
+          .then(response => {
             this.newClient = false
-            console.log(response.data.data)
             this.client.first_name = response.data.data.nombres
             this.client.last_name = response.data.data.apellidos
             this.client.phone = response.data.data.telefono
             this.client.address = response.data.data.direccion
             this.client.area = response.data.data.area
+            this.getClientDevices(response.data.data.identificador)
           })
-        .catch(error => (
+          .catch(error => (
             console.log(error)
           ));
+        }
       },
 
       resetForm(){
@@ -311,7 +352,6 @@
           })
           .then(response => {
               this.nameDevices = response.data.data
-              console.log(this.nameDevices)
             })
           .catch(error => (
               console.log(error)
@@ -347,6 +387,22 @@
               console.log(error)
             ));
       },
+
+      getClientDevices(clientId){
+        axios
+        .get("api/clients/"+clientId+"/devices", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => {
+              this.client.devices = response.data.data
+            })
+          .catch(error => (
+              console.log(error)
+            ));
+      },
+
       setNameUser(user){
         this.nameUser = user.apellido+', '+user.nombre 
       }
