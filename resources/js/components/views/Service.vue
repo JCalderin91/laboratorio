@@ -48,16 +48,29 @@
             </div>
           </div><!-- Teléfono -->
 
-          <div v-if="newClient" class="col-6"><!-- Area -->
+          <div v-if="newClient" class="col-6"><!-- Direcciones -->
             <div class="form-group">
+              <label>Direcciones</label>
+              <select class="form-control" v-model="client.address" @change="getAreas(client.address)">
+                <option>Selecione una dirección</option>
+                <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre }}</option>
+              </select>
+            </div>
+          </div><!-- Direcciones -->
+
+          <div v-else class="col-6"><!-- Dirección -->
+            <div class="form-group">
+              <label>Dirección</label>
+              <input :disabled="!newClient" v-model="client.address" type="text" class="form-control">
+            </div>
+          </div><!-- Dirección -->
+         
+          <div v-if="newClient" class="col-6"><!-- Area -->
+            <div class="form-group" v-model="client.area">
               <label>Área</label>
               <select class="form-control">
                 <option>Selecione una area</option>
-                <option value="">Area 1</option>
-                <option value="">Area 2</option>
-                <option value="">Area 3</option>
-                <option value="">Area 4</option>
-                <option value="">Area 5</option>
+                <option v-for="area in areas" :value="area.identificador" >{{ area.nombre }}</option>
               </select>
             </div>
           </div><!-- Area -->
@@ -69,30 +82,10 @@
             </div>
           </div><!-- Area -->
 
-          <div v-if="newClient" class="col-6"><!-- Direcciones -->
-            <div class="form-group">
-              <label>Direcciones</label>
-              <select class="form-control">
-                <option>Selecione una dirección</option>
-                <option value="">Dirección 1</option>
-                <option value="">Dirección 2</option>
-                <option value="">Dirección 3</option>
-                <option value="">Dirección 4</option>
-                <option value="">Dirección 5</option>
-              </select>
-            </div>
-          </div><!-- Direcciones -->
-
-          <div v-else class="col-6"><!-- Dirección -->
-            <div class="form-group">
-              <label>Dirección</label>
-              <input :disabled="!newClient" v-model="client.address" type="text" class="form-control">
-            </div>
-          </div><!-- Dirección -->
-
         </div>
       </div>
     </div>
+    <pre>{{ $data }}</pre>
   </div>
 </template>
 
@@ -109,8 +102,13 @@
           area: '',
           address: '',
         },
-        newClient: true
+        newClient: true,
+        addresses:'',
+        areas:'',
       }
+    },
+    mounted(){
+      this.getAddress()
     },
     methods: {
       searchClient(ci){
@@ -140,6 +138,34 @@
         this.client.area = ''
         this.client.address = ''
         this.newClient= true
+      },
+      getAreas(area){
+       axios
+        .get("api/addresses/"+area+"/areas", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => (
+              this.areas = response.data.data
+            ))
+          .catch(error => (
+              console.log(error)
+            ));
+      },
+      getAddress(){
+        axios
+        .get("/api/addresses", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => (
+              this.addresses = response.data.data
+            ))
+          .catch(error => (
+              console.log(error)
+            ));
       }
     }
   }

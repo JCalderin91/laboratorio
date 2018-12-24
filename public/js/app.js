@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16680,13 +16680,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -16791,8 +16784,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         area: '',
         address: ''
       },
-      newClient: true
+      newClient: true,
+      addresses: '',
+      areas: ''
     };
+  },
+  mounted: function mounted() {
+    this.getAddress();
   },
 
   methods: {
@@ -16822,6 +16820,32 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.client.area = '';
       this.client.address = '';
       this.newClient = true;
+    },
+    getAreas: function getAreas(area) {
+      var _this2 = this;
+
+      axios.get("api/addresses/" + area + "/areas", {
+        headers: {
+          'Authorization': 'Bearer ' + this.$session.get('token')
+        }
+      }).then(function (response) {
+        return _this2.areas = response.data.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    getAddress: function getAddress() {
+      var _this3 = this;
+
+      axios.get("/api/addresses", {
+        headers: {
+          'Authorization': 'Bearer ' + this.$session.get('token')
+        }
+      }).then(function (response) {
+        return _this3.addresses = response.data.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
     }
   }
 });
@@ -16980,37 +17004,62 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm.newClient
-            ? _c("div", { staticClass: "col-6" }, [_vm._m(1)])
-            : _c("div", { staticClass: "col-6" }, [
+            ? _c("div", { staticClass: "col-6" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Área")]),
+                  _c("label", [_vm._v("Direcciones")]),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.client.area,
-                        expression: "client.area"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { disabled: !_vm.newClient, type: "text" },
-                    domProps: { value: _vm.client.area },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.client.address,
+                          expression: "client.address"
                         }
-                        _vm.$set(_vm.client, "area", $event.target.value)
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.client,
+                              "address",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          },
+                          function($event) {
+                            _vm.getAreas(_vm.client.address)
+                          }
+                        ]
                       }
-                    }
-                  })
+                    },
+                    [
+                      _c("option", [_vm._v("Selecione una dirección")]),
+                      _vm._v(" "),
+                      _vm._l(_vm.addresses, function(address) {
+                        return _c(
+                          "option",
+                          { domProps: { value: address.identificador } },
+                          [_vm._v(_vm._s(address.nombre))]
+                        )
+                      })
+                    ],
+                    2
+                  )
                 ])
-              ]),
-          _vm._v(" "),
-          _vm.newClient
-            ? _c("div", { staticClass: "col-6" }, [_vm._m(2)])
+              ])
             : _c("div", { staticClass: "col-6" }, [
                 _c("div", { staticClass: "form-group" }, [
                   _c("label", [_vm._v("Dirección")]),
@@ -17037,10 +17086,76 @@ var render = function() {
                     }
                   })
                 ])
+              ]),
+          _vm._v(" "),
+          _vm.newClient
+            ? _c("div", { staticClass: "col-6" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "form-group",
+                    model: {
+                      value: _vm.client.area,
+                      callback: function($$v) {
+                        _vm.$set(_vm.client, "area", $$v)
+                      },
+                      expression: "client.area"
+                    }
+                  },
+                  [
+                    _c("label", [_vm._v("Área")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      { staticClass: "form-control" },
+                      [
+                        _c("option", [_vm._v("Selecione una area")]),
+                        _vm._v(" "),
+                        _vm._l(_vm.areas, function(area) {
+                          return _c(
+                            "option",
+                            { domProps: { value: area.identificador } },
+                            [_vm._v(_vm._s(area.nombre))]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ]
+                )
+              ])
+            : _c("div", { staticClass: "col-6" }, [
+                _c("div", { staticClass: "form-group" }, [
+                  _c("label", [_vm._v("Área")]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.client.area,
+                        expression: "client.area"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { disabled: !_vm.newClient, type: "text" },
+                    domProps: { value: _vm.client.area },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.client, "area", $event.target.value)
+                      }
+                    }
+                  })
+                ])
               ])
         ])
       ])
-    ])
+    ]),
+    _vm._v(" "),
+    _c("pre", [_vm._v(_vm._s(_vm.$data))])
   ])
 }
 var staticRenderFns = [
@@ -17051,50 +17166,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
         _vm._v("\n        Datos del cliente \n      ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [_vm._v("Área")]),
-      _vm._v(" "),
-      _c("select", { staticClass: "form-control" }, [
-        _c("option", [_vm._v("Selecione una area")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Area 1")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Area 2")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Area 3")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Area 4")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Area 5")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", [_vm._v("Direcciones")]),
-      _vm._v(" "),
-      _c("select", { staticClass: "form-control" }, [
-        _c("option", [_vm._v("Selecione una dirección")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Dirección 1")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Dirección 2")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Dirección 3")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Dirección 4")]),
-        _vm._v(" "),
-        _c("option", { attrs: { value: "" } }, [_vm._v("Dirección 5")])
       ])
     ])
   }
