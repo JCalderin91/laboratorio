@@ -18,7 +18,7 @@ class SubDeviceController extends ApiController
     
     public function index()
     {
-        $subDevices = SubDevice::all();
+        $subDevices = SubDevice::orderBy('name', 'asc')->get();
 
         return $this->showAll($subDevices);
     }

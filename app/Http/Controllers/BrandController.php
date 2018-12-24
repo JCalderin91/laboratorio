@@ -22,7 +22,7 @@ class BrandController extends ApiController{
     
     public function index(){
 
-        $brands = Brand::all();
+        $brands = Brand::orderBy('title','asc')->get();
 
         return $this->showAll($brands);
     }

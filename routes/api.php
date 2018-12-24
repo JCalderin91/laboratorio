@@ -29,7 +29,7 @@ Route::group([
 
 Route::group([
     
-    'middleware' => 'jwt.auth',
+   // 'middleware' => 'jwt.auth',
     'prefix' => 'api'
 
 
@@ -43,6 +43,7 @@ Route::group([
     //Clientes
 
     Route::apiResource('/clients', 'ClientController');
+    Route::apiResource('/clients.devices', 'ClientDeviceController', ['only' => ['index']]);
 
     //Equipos
     Route::apiResource('/devices', 'DeviceController');
