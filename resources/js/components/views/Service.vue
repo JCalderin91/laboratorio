@@ -105,7 +105,13 @@
             <div class="form-group">
               <label>Nombre</label>
 
-              <input v-if="checkNameDevice" v-model="device.name" type="text" class="form-control">
+              <input
+                @input="resetDevice()"
+                v-if="checkNameDevice"
+                v-model="device.name"
+                type="text"
+                class="form-control"
+              >
 
               <select v-else class="custom-select" v-model="device.name">
                 <option value="">Selecione un dispositivo</option>
@@ -123,7 +129,13 @@
             <div class="form-group">
               <label>Marca</label>
 
-              <input v-if="checkBrand" v-model="device.brand" type="text" class="form-control">
+              <input
+              @input="resetDevice()"
+                v-if="checkBrand"
+                v-model="device.brand"
+                type="text"
+                class="form-control"
+              >
 
               <select v-else class="custom-select" v-model="device.brand">
                 <option value="">Selecione una marca</option>
@@ -153,7 +165,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="observaciones">Observaciones de recepción</label>
-              <textarea class="form-control" id="observaciones" rows="3"></textarea>
+              <textarea v-model="device.observations" class="form-control" id="observaciones" rows="3"></textarea>
             </div>
           </div>
         </div>
@@ -211,6 +223,7 @@
             <tr>
               <th>Nombtre</th>
               <th>Marca</th>
+              <th>Modelo</th>
               <th>Acción</th>
             </tr>
           </thead>
@@ -218,8 +231,9 @@
             <tr v-for="device in client.devices">
               <td>{{device.nombre}}</td>
               <td>{{device.marca}}</td>
+              <td>{{device.modelo}}</td>
               <td>
-                <a href="#" class="btn btn-outline-success btn-sm">
+                <a data-dismiss="modal" @click="selectDevice(device)" href="#" class="btn btn-outline-success btn-sm">
                   <i class="fas fa-check"></i>
                 </a>
               </td>
@@ -244,7 +258,7 @@
     data(){
       return {
         client: {
-          ci: '',
+          ci: '10196016',
           first_name: '',
           last_name: '',
           phone: '',
@@ -257,6 +271,7 @@
           brand: '',
           model: '',
           bn: '',
+          observations: ''
         },
         nameUser:'',
         newClient: true,
@@ -310,6 +325,11 @@
         this.client.area = ''
         this.client.address = ''
         this.newClient= true
+      },
+      resetDevice(){
+        this.device.model = ''
+        this.device.bn = ''
+        this.device.observations = ''
       },
 
       getAreas(area){
@@ -405,6 +425,18 @@
 
       setNameUser(user){
         this.nameUser = user.apellido+', '+user.nombre 
+      },
+
+      selectDevice(device){
+        console.log(device)
+
+        this.device.name =  device.nombre
+        this.device.brand =  device.marca
+        this.device.model =  device.modelo
+        this.device.bn = device.device
+        this.checkNameDevice = true
+        this.checkBrand = true
+
       }
     }
   }

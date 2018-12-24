@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16920,13 +16920,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Service',
   data: function data() {
     return {
       client: {
-        ci: '',
+        ci: '10196016',
         first_name: '',
         last_name: '',
         phone: '',
@@ -16938,7 +16952,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         name: '',
         brand: '',
         model: '',
-        bn: ''
+        bn: '',
+        observations: ''
       },
       nameUser: '',
       newClient: true,
@@ -16989,6 +17004,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.client.area = '';
       this.client.address = '';
       this.newClient = true;
+    },
+    resetDevice: function resetDevice() {
+      this.device.model = '';
+      this.device.bn = '';
+      this.device.observations = '';
     },
     getAreas: function getAreas(area) {
       var _this2 = this;
@@ -17071,6 +17091,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     setNameUser: function setNameUser(user) {
       this.nameUser = user.apellido + ', ' + user.nombre;
+    },
+    selectDevice: function selectDevice(device) {
+      console.log(device);
+
+      this.device.name = device.nombre;
+      this.device.brand = device.marca;
+      this.device.model = device.modelo;
+      this.device.bn = device.device;
+      this.checkNameDevice = true;
+      this.checkBrand = true;
     }
   }
 });
@@ -17492,12 +17522,17 @@ var render = function() {
                     attrs: { type: "text" },
                     domProps: { value: _vm.device.name },
                     on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.device, "name", $event.target.value)
+                        },
+                        function($event) {
+                          _vm.resetDevice()
                         }
-                        _vm.$set(_vm.device, "name", $event.target.value)
-                      }
+                      ]
                     }
                   })
                 : _c(
@@ -17618,12 +17653,17 @@ var render = function() {
                     attrs: { type: "text" },
                     domProps: { value: _vm.device.brand },
                     on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.device, "brand", $event.target.value)
+                        },
+                        function($event) {
+                          _vm.resetDevice()
                         }
-                        _vm.$set(_vm.device, "brand", $event.target.value)
-                      }
+                      ]
                     }
                   })
                 : _c(
@@ -17780,13 +17820,41 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "observaciones" } }, [
+                _vm._v("Observaciones de recepción")
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.device.observations,
+                    expression: "device.observations"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "observaciones", rows: "3" },
+                domProps: { value: _vm.device.observations },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.device, "observations", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ])
         ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card mt-3" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
@@ -17877,7 +17945,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(3)
+      _vm._m(2)
     ]),
     _vm._v(" "),
     _c(
@@ -17892,11 +17960,11 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body p-0" }, [
                 _c("table", { staticClass: "table text-center" }, [
-                  _vm._m(5),
+                  _vm._m(4),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -17906,7 +17974,23 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(device.marca))]),
                         _vm._v(" "),
-                        _vm._m(6, true)
+                        _c("td", [_vm._v(_vm._s(device.modelo))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-outline-success btn-sm",
+                              attrs: { "data-dismiss": "modal", href: "#" },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectDevice(device)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-check" })]
+                          )
+                        ])
                       ])
                     })
                   )
@@ -17929,23 +18013,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
         _vm._v("\n          Datos del cliente \n        ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "observaciones" } }, [
-          _vm._v("Observaciones de recepción")
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          attrs: { id: "observaciones", rows: "3" }
-        })
       ])
     ])
   },
@@ -18005,20 +18072,10 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Marca")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Modelo")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Acción")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "a",
-        { staticClass: "btn btn-outline-success btn-sm", attrs: { href: "#" } },
-        [_c("i", { staticClass: "fas fa-check" })]
-      )
     ])
   }
 ]
