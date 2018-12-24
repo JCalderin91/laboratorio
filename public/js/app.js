@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16680,16 +16680,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -16801,7 +16791,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         area: '',
         address: ''
       },
-      newClient: false
+      newClient: true
     };
   },
 
@@ -16814,6 +16804,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           'Authorization': 'Bearer ' + this.$session.get('token')
         }
       }).then(function (response) {
+        _this.newClient = false;
         console.log(response.data.data);
         _this.client.first_name = response.data.data.nombres;
         _this.client.last_name = response.data.data.apellidos;
@@ -16830,7 +16821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.client.phone = '';
       this.client.area = '';
       this.client.address = '';
-      this.newClient = false;
+      this.newClient = true;
     }
   }
 });
@@ -16847,7 +16838,7 @@ var render = function() {
     _c("h2", [_vm._v("Registro de una nueva orden de servicio")]),
     _vm._v(" "),
     _c("h6", [
-      _vm._v("Registre los datos de un nueo servicio de reparación o revición")
+      _vm._v("Registre los datos de un nuevo servicio de reparación o revición")
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card" }, [
@@ -16855,106 +16846,54 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12 mb-3" }, [
-            _c(
-              "a",
-              {
-                staticClass: "btn btn-outline-primary",
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.newClient = !_vm.newClient
+          _c("div", { staticClass: "col-6" }, [
+            _c("label", [_vm._v("Cédula")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "input-group" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.client.ci,
+                    expression: "client.ci"
                   }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  type: "text",
+                  placeholder: "Cedula del cliente",
+                  "aria-label": "Cedula del cliente"
+                },
+                domProps: { value: _vm.client.ci },
+                on: {
+                  keypress: function($event) {
+                    if (
+                      !("button" in $event) &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    _vm.searchClient(_vm.client.ci)
+                  },
+                  blur: function($event) {
+                    _vm.searchClient(_vm.client.ci)
+                  },
+                  input: [
+                    function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.client, "ci", $event.target.value)
+                    },
+                    function($event) {
+                      _vm.resetForm()
+                    }
+                  ]
                 }
-              },
-              [_vm._v(_vm._s(_vm.newClient ? "Buscar" : "Nuevo"))]
-            )
+              })
+            ])
           ]),
-          _vm._v(" "),
-          _vm.newClient
-            ? _c("div", { staticClass: "col-6" }, [
-                _c("label", [_vm._v("Cedula")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.client.ci,
-                        expression: "client.ci"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Cedula del cliente",
-                      "aria-label": "Cedula del cliente"
-                    },
-                    domProps: { value: _vm.client.ci },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.client, "ci", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ])
-            : _c("div", { staticClass: "col-6" }, [
-                _c("label", [_vm._v("Cedula")]),
-                _vm._v(" "),
-                _c("div", { staticClass: "input-group" }, [
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.client.ci,
-                        expression: "client.ci"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: {
-                      type: "text",
-                      placeholder: "Cedula del cliente",
-                      "aria-label": "Cedula del cliente",
-                      "aria-describedby": "btnBuscarCedula"
-                    },
-                    domProps: { value: _vm.client.ci },
-                    on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.client, "ci", $event.target.value)
-                        },
-                        _vm.resetForm
-                      ]
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "input-group-append" }, [
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-outline-success",
-                        attrs: { type: "button", id: "btnBuscarCedula" },
-                        on: {
-                          click: function($event) {
-                            _vm.searchClient(_vm.client.ci)
-                          }
-                        }
-                      },
-                      [_vm._v("Buscar")]
-                    )
-                  ])
-                ])
-              ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-6" }, [
             _c("div", { staticClass: "form-group" }, [
@@ -17044,7 +16983,7 @@ var render = function() {
             ? _c("div", { staticClass: "col-6" }, [_vm._m(1)])
             : _c("div", { staticClass: "col-6" }, [
                 _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Area")]),
+                  _c("label", [_vm._v("Área")]),
                   _vm._v(" "),
                   _c("input", {
                     directives: [
@@ -17111,7 +17050,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
-        _vm._v("\n        Datos del cliente\n      ")
+        _vm._v("\n        Datos del cliente \n      ")
       ])
     ])
   },
@@ -17120,7 +17059,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "form-group" }, [
-      _c("label", [_vm._v("Area")]),
+      _c("label", [_vm._v("Área")]),
       _vm._v(" "),
       _c("select", { staticClass: "form-control" }, [
         _c("option", [_vm._v("Selecione una area")]),

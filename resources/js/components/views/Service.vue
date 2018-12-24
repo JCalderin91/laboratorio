@@ -1,41 +1,31 @@
 <template>
   <div>
     <h2>Registro de una nueva orden de servicio</h2>
-    <h6>Registre los datos de un nueo servicio de reparación o revición</h6>
+    <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
 
     <div class="card">
       <div class="card-header bg-dark">
         <h6 class="m-0 text-white">
-          Datos del cliente
+          Datos del cliente 
         </h6>
       </div>
       <div class="card-body">
         <div class="row">
-          <div class="col-12 mb-3">
-            <a href="#" v-on:click.prevent="newClient = !newClient" class="btn btn-outline-primary">{{ newClient ? 'Buscar' : 'Nuevo' }}</a>
-          </div>
-
-          <div v-if="newClient" class="col-6"><!-- Cedula Nuevo Cliente -->
-            <label>Cedula</label>
+     
+          <div class="col-6"><!-- Cedula Nuevo Cliente -->
+            <label>Cédula</label>
             <div class="input-group">
-              <input v-model="client.ci" type="text" class="form-control" placeholder="Cedula del cliente" aria-label="Cedula del cliente">
+              <input
+                @keypress.enter="searchClient(client.ci)"
+                @blur="searchClient(client.ci)"
+                @input="resetForm()"
+                v-model="client.ci"
+                type="text"
+                class="form-control"
+                placeholder="Cedula del cliente"
+                aria-label="Cedula del cliente">
             </div>
           </div><!-- Cedula Nuevo Cliente -->
-
-          <div v-else class="col-6"><!-- Cedula -->
-            <label>Cedula</label>
-            <div class="input-group">
-              <input v-model="client.ci" type="text" class="form-control" placeholder="Cedula del cliente" aria-label="Cedula del cliente" aria-describedby="btnBuscarCedula" @input="resetForm">
-              <div class="input-group-append">
-                <button
-                  v-on:click="searchClient(client.ci)"
-                  class="btn btn-outline-success"
-                  type="button"
-                  id="btnBuscarCedula"
-                >Buscar</button>
-              </div>
-            </div>
-          </div><!-- Cedula -->
 
           <div class="col-6"><!-- Nombres -->
             <div class="form-group">
@@ -60,7 +50,7 @@
 
           <div v-if="newClient" class="col-6"><!-- Area -->
             <div class="form-group">
-              <label>Area</label>
+              <label>Área</label>
               <select class="form-control">
                 <option>Selecione una area</option>
                 <option value="">Area 1</option>
@@ -74,7 +64,7 @@
 
           <div v-else class="col-6"><!-- Area -->
             <div class="form-group">
-              <label>Area</label>
+              <label>Área</label>
               <input :disabled="!newClient" v-model="client.area" type="text" class="form-control">
             </div>
           </div><!-- Area -->
@@ -119,7 +109,7 @@
           area: '',
           address: '',
         },
-        newClient: false
+        newClient: true
       }
     },
     methods: {
@@ -131,6 +121,7 @@
             }
           })
         .then(response => {
+            this.newClient = false
             console.log(response.data.data)
             this.client.first_name = response.data.data.nombres
             this.client.last_name = response.data.data.apellidos
@@ -148,7 +139,7 @@
         this.client.phone = ''
         this.client.area = ''
         this.client.address = ''
-        this.newClient= false
+        this.newClient= true
       }
     }
   }
