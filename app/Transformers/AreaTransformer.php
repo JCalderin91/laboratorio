@@ -7,9 +7,9 @@ use League\Fractal\TransformerAbstract;
 
 class AreaTransformer extends TransformerAbstract
 {
-    protected $defaultIncludes = [
+    /* protected $defaultIncludes = [
         'direccion',
-    ];
+    ]; */
     
     /**
      * A Fractal transformer.
@@ -27,12 +27,12 @@ class AreaTransformer extends TransformerAbstract
         ];
     }
 
-    public function includeDireccion(Area $area){
+    /* public function includeDireccion(Area $area){
         
         $address = $area->address;
 
         return $this->item($address, new AddressTransformer);
-    }
+    } */
 
     public static function originalAttribute($index){
         $attributes = [
