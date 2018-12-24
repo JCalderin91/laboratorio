@@ -88,9 +88,10 @@
 
     <div class="card mt-3">
       <div class="card-header bg-dark">
-        <h6 class="m-0 text-white">
+        <h6 class="mt-2 text-white d-inline-block">
           Datos del dispositivo 
         </h6>
+        <a href="#" class="btn btn-primary float-right btn-sm">Mis dispositivos</a>
       </div>
 
       <div class="card-body">
@@ -172,9 +173,9 @@
             <div class="form-group">
               <label>Cedula</label>
 
-              <select class="custom-select" v-model="device.name">
+              <select class="custom-select" v-model="nameUser">
                 <option value="">Selecione una cedula</option>
-                <option v-for="name in nameDevices" :value="name.identificador" >{{ name.nombre }}</option>
+                <option @click="setNameUser(user)" v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
               </select>
 
             </div>
@@ -183,7 +184,7 @@
           <div class="col-12">
             <div class="form-group">
               <label>Datos</label>
-              <input disabled type="text" class="form-control" value="Jesus Rafael Caldeirin Anton">   
+              <input disabled type="text" class="form-control" v-model="nameUser">   
             </div>
           </div>
 
@@ -218,6 +219,7 @@
           model: '',
           bn: '',
         },
+        nameUser:'',
         newClient: true,
         checkNameDevice: false,
         checkBrand: false,
@@ -226,6 +228,7 @@
         areas:'',
         nameDevices:'',
         brands:'',
+        users: '',
       }
     },
 
@@ -233,6 +236,7 @@
       this.getAddress()
       this.getSubDevice()
       this.getBrands()
+      this.getUsers()
     },
 
     methods: {
@@ -323,12 +327,29 @@
           })
           .then(response => {
               this.brands = response.data.data
-              console.log(this.brands)
             })
           .catch(error => (
               console.log(error)
             ));
       },
+
+      getUsers(){
+        axios
+        .get("/api/users", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => {
+              this.users = response.data.data
+            })
+          .catch(error => (
+              console.log(error)
+            ));
+      },
+      setNameUser(user){
+        this.nameUser = user.apellido+', '+user.nombre 
+      }
     }
   }
 

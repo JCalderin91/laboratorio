@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16680,6 +16680,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
 //
 //
 //
@@ -16900,6 +16901,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         model: '',
         bn: ''
       },
+      nameUser: '',
       newClient: true,
       checkNameDevice: false,
       checkBrand: false,
@@ -16907,13 +16909,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       addresses: '',
       areas: '',
       nameDevices: '',
-      brands: ''
+      brands: '',
+      users: ''
     };
   },
   mounted: function mounted() {
     this.getAddress();
     this.getSubDevice();
     this.getBrands();
+    this.getUsers();
   },
 
 
@@ -16995,10 +16999,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (response) {
         _this5.brands = response.data.data;
-        console.log(_this5.brands);
       }).catch(function (error) {
         return console.log(error);
       });
+    },
+    getUsers: function getUsers() {
+      var _this6 = this;
+
+      axios.get("/api/users", {
+        headers: {
+          'Authorization': 'Bearer ' + this.$session.get('token')
+        }
+      }).then(function (response) {
+        _this6.users = response.data.data;
+      }).catch(function (error) {
+        return console.log(error);
+      });
+    },
+    setNameUser: function setNameUser(user) {
+      this.nameUser = user.apellido + ', ' + user.nombre;
     }
   }
 });
@@ -17710,8 +17729,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.device.name,
-                      expression: "device.name"
+                      value: _vm.nameUser,
+                      expression: "nameUser"
                     }
                   ],
                   staticClass: "custom-select",
@@ -17725,13 +17744,9 @@ var render = function() {
                           var val = "_value" in o ? o._value : o.value
                           return val
                         })
-                      _vm.$set(
-                        _vm.device,
-                        "name",
-                        $event.target.multiple
-                          ? $$selectedVal
-                          : $$selectedVal[0]
-                      )
+                      _vm.nameUser = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
                     }
                   }
                 },
@@ -17740,11 +17755,18 @@ var render = function() {
                     _vm._v("Selecione una cedula")
                   ]),
                   _vm._v(" "),
-                  _vm._l(_vm.nameDevices, function(name) {
+                  _vm._l(_vm.users, function(user) {
                     return _c(
                       "option",
-                      { domProps: { value: name.identificador } },
-                      [_vm._v(_vm._s(name.nombre))]
+                      {
+                        domProps: { value: user.identificador },
+                        on: {
+                          click: function($event) {
+                            _vm.setNameUser(user)
+                          }
+                        }
+                      },
+                      [_vm._v(_vm._s(user.cedula))]
                     )
                   })
                 ],
@@ -17753,11 +17775,37 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(4)
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Datos")]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.nameUser,
+                    expression: "nameUser"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { disabled: "", type: "text" },
+                domProps: { value: _vm.nameUser },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.nameUser = $event.target.value
+                  }
+                }
+              })
+            ])
+          ])
         ])
       ]),
       _vm._v(" "),
-      _vm._m(5)
+      _vm._m(4)
     ]),
     _vm._v(" "),
     _c("pre", [_vm._v(_vm._s(_vm.$data))])
@@ -17779,9 +17827,18 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-dark" }, [
-      _c("h6", { staticClass: "m-0 text-white" }, [
+      _c("h6", { staticClass: "mt-2 text-white d-inline-block" }, [
         _vm._v("\n        Datos del dispositivo \n      ")
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-primary float-right btn-sm",
+          attrs: { href: "#" }
+        },
+        [_vm._v("Mis dispositivos")]
+      )
     ])
   },
   function() {
@@ -17808,25 +17865,6 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
         _vm._v("\n        Datos del técnico \n      ")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", [_vm._v("Datos")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control",
-          attrs: {
-            disabled: "",
-            type: "text",
-            value: "Jesus Rafael Caldeirin Anton"
-          }
-        })
       ])
     ])
   },
