@@ -51,7 +51,7 @@
           <div v-if="newClient" class="col-6"><!-- Direcciones -->
             <div class="form-group">
               <label>Direcciones</label>
-              <select class="form-control" v-model="client.address" @change="getAreas(client.address)">
+              <select class="custom-select" v-model="client.address" @change="getAreas(client.address)">
                 <option>Selecione una dirección</option>
                 <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre }}</option>
               </select>
@@ -68,7 +68,7 @@
           <div v-if="newClient" class="col-6"><!-- Area -->
             <div class="form-group" v-model="client.area">
               <label>Área</label>
-              <select class="form-control">
+              <select class="custom-select">
                 <option>Selecione una area</option>
                 <option v-for="area in areas" :value="area.identificador" >{{ area.nombre }}</option>
               </select>
@@ -140,6 +140,7 @@
         this.newClient= true
       },
       getAreas(area){
+        console.log(area)
        axios
         .get("api/addresses/"+area+"/areas", {
             headers: {
@@ -149,9 +150,10 @@
           .then(response => (
               this.areas = response.data.data
             ))
-          .catch(error => (
-              console.log(error)
-            ));
+          .catch(error => {
+                        console.log(error)
+                        this.areas = []
+                      });
       },
       getAddress(){
         axios

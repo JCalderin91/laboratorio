@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16824,6 +16824,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getAreas: function getAreas(area) {
       var _this2 = this;
 
+      console.log(area);
       axios.get("api/addresses/" + area + "/areas", {
         headers: {
           'Authorization': 'Bearer ' + this.$session.get('token')
@@ -16831,7 +16832,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (response) {
         return _this2.areas = response.data.data;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
+        _this2.areas = [];
       });
     },
     getAddress: function getAddress() {
@@ -17019,7 +17021,7 @@ var render = function() {
                           expression: "client.address"
                         }
                       ],
-                      staticClass: "form-control",
+                      staticClass: "custom-select",
                       on: {
                         change: [
                           function($event) {
@@ -17107,7 +17109,7 @@ var render = function() {
                     _vm._v(" "),
                     _c(
                       "select",
-                      { staticClass: "form-control" },
+                      { staticClass: "custom-select" },
                       [
                         _c("option", [_vm._v("Selecione una area")]),
                         _vm._v(" "),
