@@ -211,7 +211,7 @@
       </div>  
     </div>
 
-
+    <pre>{{ $data }}</pre>
     <div class="modal" id="clientDevices" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">

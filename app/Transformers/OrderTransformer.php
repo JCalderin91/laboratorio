@@ -36,7 +36,15 @@ class OrderTransformer extends TransformerAbstract
             'detalle' => ' description',
             'fechaCreacion' => 'arrival_date',
             'equipo' => 'device_id',
-            'cliente' => 'client_id',
+            'nombre_equipo' => 'name',
+            'marca' => 'title',
+            'modelo' => 'model',  	  	
+            'bienNacinal' => 'b_n',
+            'cedula' => 'ci',
+            'nombres' => 'first_name',
+            'apellidos' => 'last_name',
+            'telefono' => 'phone',
+            'area' =>  'area_id',
             'tecnico' => 'user_id',
         ];
 
@@ -48,10 +56,18 @@ class OrderTransformer extends TransformerAbstract
         $attributes = [
             'id' => 'identificador',
             'status' => 'estado',
-            'description' => ' detalle',
+            'description' => 'detalle',
             'arrival_date' => 'fechaCreacion',
             'device_id' => 'equipo',
-            'client_id' => 'cliente',
+            'name' => 'nombre_equipo',
+            'title' => 'marca',
+            'model' => 'modelo',
+            'b_n' => 'bienNacinal',
+            'ci' => 'cedula',
+            'first_name' => 'nombres',
+            'last_name' => 'apellidos',
+            'phone' => 'telefono',
+            'area_id' => 'area',
             'user_id' => 'tecnico',
         ];
 
