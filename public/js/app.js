@@ -17125,7 +17125,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         area_id: this.client.area,
         address: this.client.address,
         // Datos del dispositivo
-        id: this.device.id,
+        device_id: this.device.id,
         name: this.device.name,
         title: this.device.brand,
         model: this.device.model,
