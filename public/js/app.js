@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16680,6 +16680,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
 //
 //
 //
@@ -16949,13 +16953,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         devices: ''
       },
       device: {
+        id: '',
         name: '',
         brand: '',
         model: '',
         bn: '',
-        observations: ''
+        description: ''
       },
       nameUser: '',
+      idUser: '',
       newClient: true,
       checkNameDevice: false,
       checkBrand: false,
@@ -17008,7 +17014,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     resetDevice: function resetDevice() {
       this.device.model = '';
       this.device.bn = '';
-      this.device.observations = '';
+      this.device.description = '';
     },
     getAreas: function getAreas(area) {
       var _this2 = this;
@@ -17090,17 +17096,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     setNameUser: function setNameUser(user) {
+      this.idUser = user.identificador;
       this.nameUser = user.apellido + ', ' + user.nombre;
     },
     selectDevice: function selectDevice(device) {
       console.log(device);
 
+      this.device.id = device.identificador;
       this.device.name = device.nombre;
       this.device.brand = device.marca;
       this.device.model = device.modelo;
       this.device.bn = device.device;
       this.checkNameDevice = true;
       this.checkBrand = true;
+    },
+    saveOrder: function saveOrder() {
+      var _this8 = this;
+
+      axios.post("api/orders", {
+        headers: {
+          'Authorization': 'Bearer ' + this.$session.get('token')
+        },
+        // Datos del cliente
+        ci: this.client.ci,
+        first_name: this.client.first_name,
+        last_name: this.client.last_name,
+        phone: this.client.phone,
+        area_id: this.client.area,
+        address: this.client.address,
+        // Datos del dispositivo
+        id: this.device.id,
+        name: this.device.name,
+        title: this.device.brand,
+        model: this.device.model,
+        bn: this.device.bn,
+        description: this.device.description,
+        // Datos del tecnico
+        user_id: this.idUser
+      }).then(function (response) {
+        console.log(response);
+        _this8.$router.push('/');
+      }).catch(function (error) {
+        return console.log(error);
+      });
     }
   }
 });
@@ -17575,7 +17613,7 @@ var render = function() {
                       _vm._l(_vm.nameDevices, function(name) {
                         return _c(
                           "option",
-                          { domProps: { value: name.identificador } },
+                          { domProps: { value: name.nombre } },
                           [_vm._v(_vm._s(name.nombre))]
                         )
                       })
@@ -17706,7 +17744,7 @@ var render = function() {
                       _vm._l(_vm.brands, function(brand) {
                         return _c(
                           "option",
-                          { domProps: { value: brand.identificador } },
+                          { domProps: { value: brand.nombre } },
                           [_vm._v(_vm._s(brand.nombre))]
                         )
                       })
@@ -17831,19 +17869,19 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.device.observations,
-                    expression: "device.observations"
+                    value: _vm.device.description,
+                    expression: "device.description"
                   }
                 ],
                 staticClass: "form-control",
                 attrs: { id: "observaciones", rows: "3" },
-                domProps: { value: _vm.device.observations },
+                domProps: { value: _vm.device.description },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.$set(_vm.device, "observations", $event.target.value)
+                    _vm.$set(_vm.device, "description", $event.target.value)
                   }
                 }
               })
@@ -17945,7 +17983,21 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _c("div", { staticClass: "card-footer" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-outline-success float-right",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.saveOrder()
+              }
+            }
+          },
+          [_vm._v("Registrar orden de servicio")]
+        )
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -17960,11 +18012,11 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(3),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body p-0" }, [
                 _c("table", { staticClass: "table text-center" }, [
-                  _vm._m(4),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -18024,21 +18076,6 @@ var staticRenderFns = [
       _c("h6", { staticClass: "m-0 text-white" }, [
         _vm._v("\n          Datos del técnico \n        ")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-outline-success float-right",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Registrar orden de servicio")]
-      )
     ])
   },
   function() {
