@@ -18,7 +18,7 @@
               <input
                 @keypress.enter="searchClient(client.ci)"
                 @blur="searchClient(client.ci)"
-                @input="resetForm()"
+                @input="resetClient()"
                 v-model="client.ci"
                 type="text"
                 class="form-control"
@@ -91,7 +91,7 @@
         <h6 class="mt-2 text-white d-inline-block">
           Datos del dispositivo 
         </h6>
-        <a v-if="!newClient" data-toggle="modal" data-target="#clientDevices" href="#" class="btn btn-primary float-right btn-sm">Mis dispositivos</a>
+        <a v-if="device.device" data-toggle="modal" data-target="#clientDevices" href="#" class="btn btn-primary float-right btn-sm">Mis dispositivos</a>
       </div>
 
       <div class="card-body">
@@ -110,7 +110,7 @@
                 v-if="checkNameDevice"
                 v-model="device.name"
                 type="text"
-                class="form-control"
+                class="form-control text-capitalize"
               >
 
               <select v-else class="custom-select" v-model="device.name">
@@ -134,7 +134,7 @@
                 v-if="checkBrand"
                 v-model="device.brand"
                 type="text"
-                class="form-control"
+                class="form-control text-capitalize"
               >
 
               <select v-else class="custom-select" v-model="device.brand">
@@ -165,7 +165,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="observaciones">Observaciones de recepción</label>
-              <textarea v-model="device.description" class="form-control" id="observaciones" rows="3"></textarea>
+              <textarea v-model="device.description" class="form-control text-capitalize" id="observaciones" rows="3"></textarea>
             </div>
           </div>
         </div>
@@ -206,52 +206,51 @@
         <a
         @click="saveOrder()"
           href="#"
-          class="btn btn-outline-success float-right"
+          class="btn btn-success float-right"
         >Registrar orden de servicio</a>
       </div>  
     </div>
 
 
-<div class="modal" id="clientDevices" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Mis dispositivos</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="modal" id="clientDevices" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Mis dispositivos</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-0">
+            <table class="table text-center">
+              <thead class="bg-dark text-white">
+                <tr>
+                  <th>Nombtre</th>
+                  <th>Marca</th>
+                  <th>Modelo</th>
+                  <th>Bien nacional</th>
+                  <th>Acción</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="device in client.devices">
+                  <td>{{device.nombre}}</td>
+                  <td>{{device.marca}}</td>
+                  <td>{{device.modelo}}</td>
+                  <td v-if="device.bienNacinal">{{device.bienNacinal}}</td>
+                  <td v-else>No</td>
+                  <td>
+                    <a title="Seleccionar" data-dismiss="modal" @click="selectDevice(device)" href="#" class="btn btn-outline-success btn-sm">
+                      <i class="fas fa-check"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+           </div>
+        </div>
       </div>
-      <div class="modal-body p-0">
-        <table class="table text-center">
-          <thead class="bg-dark text-white">
-            <tr>
-              <th>Nombtre</th>
-              <th>Marca</th>
-              <th>Modelo</th>
-              <th>Acción</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="device in client.devices">
-              <td>{{device.nombre}}</td>
-              <td>{{device.marca}}</td>
-              <td>{{device.modelo}}</td>
-              <td>
-                <a data-dismiss="modal" @click="selectDevice(device)" href="#" class="btn btn-outline-success btn-sm">
-                  <i class="fas fa-check"></i>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-       </div>
     </div>
-  </div>
-</div>
-
-
-
-    <pre>{{ $data }}</pre>
 
   </div>
 </template>
@@ -276,7 +275,8 @@
           brand: '',
           model: '',
           bn: '',
-          description: ''
+          description: '',
+          device: false
         },
         nameUser:'',
         idUser:'',
@@ -324,13 +324,14 @@
         }
       },
 
-      resetForm(){
+      resetClient(){
         this.client.first_name = ''
         this.client.last_name = ''
         this.client.phone = ''
         this.client.area = ''
         this.client.address = ''
         this.newClient= true
+        this.device.device = false 
       },
       resetDevice(){
         this.device.model = ''
@@ -392,11 +393,11 @@
             }
           })
           .then(response => {
-              this.brands = response.data.data
-            })
+            this.brands = response.data.data
+          })
           .catch(error => (
-              console.log(error)
-            ));
+            console.log(error)
+          ));
       },
 
       getUsers(){
@@ -407,11 +408,11 @@
             }
           })
           .then(response => {
-              this.users = response.data.data
-            })
+            this.users = response.data.data
+          })
           .catch(error => (
-              console.log(error)
-            ));
+            console.log(error)
+          ));
       },
 
       getClientDevices(clientId){
@@ -423,10 +424,12 @@
           })
           .then(response => {
             this.client.devices = response.data.data
+            this.device.device = true
           })
-          .catch(error => (
+          .catch(error => {
             console.log(error)
-          ));
+            this.device.device = false
+          });
       },
 
       setNameUser(user){
@@ -441,7 +444,10 @@
         this.device.name =  device.nombre
         this.device.brand =  device.marca
         this.device.model =  device.modelo
-        this.device.bn = device.device
+        this.device.bn = device.bienNacinal
+        this.device.description = device.bienNacinal
+        if (this.device.bn) this.checkBn = true
+        else this.checkBn = false
         this.checkNameDevice = true
         this.checkBrand = true
 
@@ -461,21 +467,32 @@
             address: this.client.address,
             // Datos del dispositivo
             device_id: this.device.id,
-            name: this.device.name,
-            title: this.device.brand,
+            name: this.device.name.toLowerCase(),
+            title: this.device.brand.toLowerCase(),
             model: this.device.model,
-            bn: this.device.bn,
+            b_n: this.device.bn,
             description: this.device.description,
             // Datos del tecnico
             user_id: this.idUser
           })
           .then(response => {
-            console.log(response)
-            this.$router.push('/');
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos guardados con exito',
+              confirmButtonText: 'Continuar',
+            }).then(() => {
+              this.$router.push('/');
+            })
           })
-          .catch(error => (
-            console.log(error)
-          ));
+          .catch(error => {
+            Swal({
+              type: 'error',
+              title: 'Alerta',
+              text: 'Ha ocurrido un error al guardar',
+              confirmButtonText: 'Continuar',
+            })
+          });
       }
 
     }

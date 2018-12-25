@@ -16,3 +16,7 @@ mix.js('resources/js/app.js', 'public/js/app.js')
 
 mix.copy('node_modules/jquery/dist/jquery.min.js','public/js/jquery.min.js');
 mix.copy('node_modules/axios/dist/axios.min.js','public/js/axios.min.js');
+
+//Sweetalert2
+mix.copy('node_modules/sweetalert2/dist/sweetalert2.min.js','public/js/sweetalert2.min.js');
+mix.copy('node_modules/sweetalert2/dist/sweetalert2.min.css','public/css/sweetalert2.min.css');

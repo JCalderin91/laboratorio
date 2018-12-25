@@ -16669,7 +16669,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16680,7 +16680,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
 //
 //
 //
@@ -16958,7 +16957,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         brand: '',
         model: '',
         bn: '',
-        description: ''
+        description: '',
+        device: false
       },
       nameUser: '',
       idUser: '',
@@ -17003,13 +17003,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       }
     },
-    resetForm: function resetForm() {
+    resetClient: function resetClient() {
       this.client.first_name = '';
       this.client.last_name = '';
       this.client.phone = '';
       this.client.area = '';
       this.client.address = '';
       this.newClient = true;
+      this.device.device = false;
     },
     resetDevice: function resetDevice() {
       this.device.model = '';
@@ -17091,8 +17092,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }).then(function (response) {
         _this7.client.devices = response.data.data;
+        _this7.device.device = true;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
+        _this7.device.device = false;
       });
     },
     setNameUser: function setNameUser(user) {
@@ -17106,7 +17109,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.device.name = device.nombre;
       this.device.brand = device.marca;
       this.device.model = device.modelo;
-      this.device.bn = device.device;
+      this.device.bn = device.bienNacinal;
+      this.device.description = device.bienNacinal;
+      if (this.device.bn) this.checkBn = true;else this.checkBn = false;
       this.checkNameDevice = true;
       this.checkBrand = true;
     },
@@ -17126,18 +17131,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         address: this.client.address,
         // Datos del dispositivo
         device_id: this.device.id,
-        name: this.device.name,
-        title: this.device.brand,
+        name: this.device.name.toLowerCase(),
+        title: this.device.brand.toLowerCase(),
         model: this.device.model,
-        bn: this.device.bn,
+        b_n: this.device.bn,
         description: this.device.description,
         // Datos del tecnico
         user_id: this.idUser
       }).then(function (response) {
-        console.log(response);
-        _this8.$router.push('/');
+        Swal({
+          type: 'success',
+          title: 'Excelente',
+          text: 'Datos guardados con exito',
+          confirmButtonText: 'Continuar'
+        }).then(function () {
+          _this8.$router.push('/');
+        });
       }).catch(function (error) {
-        return console.log(error);
+        Swal({
+          type: 'error',
+          title: 'Alerta',
+          text: 'Ha ocurrido un error al guardar',
+          confirmButtonText: 'Continuar'
+        });
       });
     }
   }
@@ -17204,7 +17220,7 @@ var render = function() {
                       _vm.$set(_vm.client, "ci", $event.target.value)
                     },
                     function($event) {
-                      _vm.resetForm()
+                      _vm.resetClient()
                     }
                   ]
                 }
@@ -17471,10 +17487,10 @@ var render = function() {
     _c("div", { staticClass: "card mt-3" }, [
       _c("div", { staticClass: "card-header bg-dark" }, [
         _c("h6", { staticClass: "mt-2 text-white d-inline-block" }, [
-          _vm._v("\n          Datos del dispositivo \n        ")
+          _vm._v("\n        Datos del dispositivo \n      ")
         ]),
         _vm._v(" "),
-        !_vm.newClient
+        _vm.device.device
           ? _c(
               "a",
               {
@@ -17556,7 +17572,7 @@ var render = function() {
                         expression: "device.name"
                       }
                     ],
-                    staticClass: "form-control",
+                    staticClass: "form-control text-capitalize",
                     attrs: { type: "text" },
                     domProps: { value: _vm.device.name },
                     on: {
@@ -17687,7 +17703,7 @@ var render = function() {
                         expression: "device.brand"
                       }
                     ],
-                    staticClass: "form-control",
+                    staticClass: "form-control text-capitalize",
                     attrs: { type: "text" },
                     domProps: { value: _vm.device.brand },
                     on: {
@@ -17873,7 +17889,7 @@ var render = function() {
                     expression: "device.description"
                   }
                 ],
-                staticClass: "form-control",
+                staticClass: "form-control text-capitalize",
                 attrs: { id: "observaciones", rows: "3" },
                 domProps: { value: _vm.device.description },
                 on: {
@@ -17987,7 +18003,7 @@ var render = function() {
         _c(
           "a",
           {
-            staticClass: "btn btn-outline-success float-right",
+            staticClass: "btn btn-success float-right",
             attrs: { href: "#" },
             on: {
               click: function($event) {
@@ -18028,12 +18044,20 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(device.modelo))]),
                         _vm._v(" "),
+                        device.bienNacinal
+                          ? _c("td", [_vm._v(_vm._s(device.bienNacinal))])
+                          : _c("td", [_vm._v("No")]),
+                        _vm._v(" "),
                         _c("td", [
                           _c(
                             "a",
                             {
                               staticClass: "btn btn-outline-success btn-sm",
-                              attrs: { "data-dismiss": "modal", href: "#" },
+                              attrs: {
+                                title: "Seleccionar",
+                                "data-dismiss": "modal",
+                                href: "#"
+                              },
                               on: {
                                 click: function($event) {
                                   _vm.selectDevice(device)
@@ -18052,9 +18076,7 @@ var render = function() {
           ]
         )
       ]
-    ),
-    _vm._v(" "),
-    _c("pre", [_vm._v(_vm._s(_vm.$data))])
+    )
   ])
 }
 var staticRenderFns = [
@@ -18064,7 +18086,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
-        _vm._v("\n          Datos del cliente \n        ")
+        _vm._v("\n        Datos del cliente \n      ")
       ])
     ])
   },
@@ -18074,7 +18096,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
-        _vm._v("\n          Datos del técnico \n        ")
+        _vm._v("\n        Datos del técnico \n      ")
       ])
     ])
   },
@@ -18110,6 +18132,8 @@ var staticRenderFns = [
         _c("th", [_vm._v("Marca")]),
         _vm._v(" "),
         _c("th", [_vm._v("Modelo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Bien nacional")]),
         _vm._v(" "),
         _c("th", [_vm._v("Acción")])
       ])
