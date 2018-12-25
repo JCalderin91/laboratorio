@@ -105,11 +105,17 @@
             <div class="form-group">
               <label>Nombre</label>
 
-              <input v-if="checkNameDevice" v-model="device.name" type="text" class="form-control">
+              <input
+                @input="resetDevice()"
+                v-if="checkNameDevice"
+                v-model="device.name"
+                type="text"
+                class="form-control"
+              >
 
               <select v-else class="custom-select" v-model="device.name">
                 <option value="">Selecione un dispositivo</option>
-                <option v-for="name in nameDevices" :value="name.identificador" >{{ name.nombre }}</option>
+                <option v-for="name in nameDevices" :value="name.nombre" >{{ name.nombre }}</option>
               </select>
 
             </div>
@@ -123,11 +129,17 @@
             <div class="form-group">
               <label>Marca</label>
 
-              <input v-if="checkBrand" v-model="device.brand" type="text" class="form-control">
+              <input
+              @input="resetDevice()"
+                v-if="checkBrand"
+                v-model="device.brand"
+                type="text"
+                class="form-control"
+              >
 
               <select v-else class="custom-select" v-model="device.brand">
                 <option value="">Selecione una marca</option>
-                <option v-for="brand in brands" :value="brand.identificador" >{{ brand.nombre }}</option>
+                <option v-for="brand in brands" :value="brand.nombre" >{{ brand.nombre }}</option>
               </select>
 
             </div>
@@ -153,7 +165,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="observaciones">Observaciones de recepción</label>
-              <textarea class="form-control" id="observaciones" rows="3"></textarea>
+              <textarea v-model="device.description" class="form-control" id="observaciones" rows="3"></textarea>
             </div>
           </div>
         </div>
@@ -191,7 +203,11 @@
         </div>
       </div>
       <div class="card-footer">
-        <a href="#" class="btn btn-outline-success float-right">Registrar orden de servicio</a>
+        <a
+        @click="saveOrder()"
+          href="#"
+          class="btn btn-outline-success float-right"
+        >Registrar orden de servicio</a>
       </div>  
     </div>
 
@@ -211,6 +227,7 @@
             <tr>
               <th>Nombtre</th>
               <th>Marca</th>
+              <th>Modelo</th>
               <th>Acción</th>
             </tr>
           </thead>
@@ -218,8 +235,9 @@
             <tr v-for="device in client.devices">
               <td>{{device.nombre}}</td>
               <td>{{device.marca}}</td>
+              <td>{{device.modelo}}</td>
               <td>
-                <a href="#" class="btn btn-outline-success btn-sm">
+                <a data-dismiss="modal" @click="selectDevice(device)" href="#" class="btn btn-outline-success btn-sm">
                   <i class="fas fa-check"></i>
                 </a>
               </td>
@@ -244,7 +262,7 @@
     data(){
       return {
         client: {
-          ci: '',
+          ci: '10196016',
           first_name: '',
           last_name: '',
           phone: '',
@@ -253,12 +271,15 @@
           devices: ''
         },
         device: {
+          id: '',
           name: '',
           brand: '',
           model: '',
           bn: '',
+          description: ''
         },
         nameUser:'',
+        idUser:'',
         newClient: true,
         checkNameDevice: false,
         checkBrand: false,
@@ -311,6 +332,11 @@
         this.client.address = ''
         this.newClient= true
       },
+      resetDevice(){
+        this.device.model = ''
+        this.device.bn = ''
+        this.device.description = ''
+      },
 
       getAreas(area){
        axios
@@ -323,9 +349,9 @@
               this.areas = response.data.data
             ))
           .catch(error => {
-                        console.log(error)
-                        this.areas = []
-                      });
+            console.log(error)
+            this.areas = []
+          });
       },
 
       getAddress(){
@@ -396,16 +422,62 @@
             }
           })
           .then(response => {
-              this.client.devices = response.data.data
-            })
+            this.client.devices = response.data.data
+          })
           .catch(error => (
-              console.log(error)
-            ));
+            console.log(error)
+          ));
       },
 
       setNameUser(user){
+        this.idUser = user.identificador
         this.nameUser = user.apellido+', '+user.nombre 
+      },
+
+      selectDevice(device){
+        console.log(device)
+
+        this.device.id =  device.identificador
+        this.device.name =  device.nombre
+        this.device.brand =  device.marca
+        this.device.model =  device.modelo
+        this.device.bn = device.device
+        this.checkNameDevice = true
+        this.checkBrand = true
+
+      },
+      saveOrder(){
+        axios
+        .post("api/orders", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            },
+            // Datos del cliente
+            ci: this.client.ci,
+            first_name: this.client.first_name,
+            last_name: this.client.last_name,
+            phone: this.client.phone,
+            area_id: this.client.area,
+            address: this.client.address,
+            // Datos del dispositivo
+            device_id: this.device.id,
+            name: this.device.name,
+            title: this.device.brand,
+            model: this.device.model,
+            bn: this.device.bn,
+            description: this.device.description,
+            // Datos del tecnico
+            user_id: this.idUser
+          })
+          .then(response => {
+            console.log(response)
+            this.$router.push('/');
+          })
+          .catch(error => (
+            console.log(error)
+          ));
       }
+
     }
   }
 

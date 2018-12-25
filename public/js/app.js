@@ -17315,7 +17315,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -17566,13 +17566,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Service',
   data: function data() {
     return {
       client: {
-        ci: '',
+        ci: '10196016',
         first_name: '',
         last_name: '',
         phone: '',
@@ -17581,12 +17599,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         devices: ''
       },
       device: {
+        id: '',
         name: '',
         brand: '',
         model: '',
-        bn: ''
+        bn: '',
+        description: ''
       },
       nameUser: '',
+      idUser: '',
       newClient: true,
       checkNameDevice: false,
       checkBrand: false,
@@ -17635,6 +17656,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.client.area = '';
       this.client.address = '';
       this.newClient = true;
+    },
+    resetDevice: function resetDevice() {
+      this.device.model = '';
+      this.device.bn = '';
+      this.device.description = '';
     },
     getAreas: function getAreas(area) {
       var _this2 = this;
@@ -17716,7 +17742,49 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     setNameUser: function setNameUser(user) {
+      this.idUser = user.identificador;
       this.nameUser = user.apellido + ', ' + user.nombre;
+    },
+    selectDevice: function selectDevice(device) {
+      console.log(device);
+
+      this.device.id = device.identificador;
+      this.device.name = device.nombre;
+      this.device.brand = device.marca;
+      this.device.model = device.modelo;
+      this.device.bn = device.device;
+      this.checkNameDevice = true;
+      this.checkBrand = true;
+    },
+    saveOrder: function saveOrder() {
+      var _this8 = this;
+
+      axios.post("api/orders", {
+        headers: {
+          'Authorization': 'Bearer ' + this.$session.get('token')
+        },
+        // Datos del cliente
+        ci: this.client.ci,
+        first_name: this.client.first_name,
+        last_name: this.client.last_name,
+        phone: this.client.phone,
+        area_id: this.client.area,
+        address: this.client.address,
+        // Datos del dispositivo
+        device_id: this.device.id,
+        name: this.device.name,
+        title: this.device.brand,
+        model: this.device.model,
+        bn: this.device.bn,
+        description: this.device.description,
+        // Datos del tecnico
+        user_id: this.idUser
+      }).then(function (response) {
+        console.log(response);
+        _this8.$router.push('/');
+      }).catch(function (error) {
+        return console.log(error);
+      });
     }
   }
 });
@@ -18138,12 +18206,17 @@ var render = function() {
                     attrs: { type: "text" },
                     domProps: { value: _vm.device.name },
                     on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.device, "name", $event.target.value)
+                        },
+                        function($event) {
+                          _vm.resetDevice()
                         }
-                        _vm.$set(_vm.device, "name", $event.target.value)
-                      }
+                      ]
                     }
                   })
                 : _c(
@@ -18186,7 +18259,7 @@ var render = function() {
                       _vm._l(_vm.nameDevices, function(name) {
                         return _c(
                           "option",
-                          { domProps: { value: name.identificador } },
+                          { domProps: { value: name.nombre } },
                           [_vm._v(_vm._s(name.nombre))]
                         )
                       })
@@ -18264,12 +18337,17 @@ var render = function() {
                     attrs: { type: "text" },
                     domProps: { value: _vm.device.brand },
                     on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      input: [
+                        function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.device, "brand", $event.target.value)
+                        },
+                        function($event) {
+                          _vm.resetDevice()
                         }
-                        _vm.$set(_vm.device, "brand", $event.target.value)
-                      }
+                      ]
                     }
                   })
                 : _c(
@@ -18312,7 +18390,7 @@ var render = function() {
                       _vm._l(_vm.brands, function(brand) {
                         return _c(
                           "option",
-                          { domProps: { value: brand.identificador } },
+                          { domProps: { value: brand.nombre } },
                           [_vm._v(_vm._s(brand.nombre))]
                         )
                       })
@@ -18426,13 +18504,41 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(1)
+          _c("div", { staticClass: "col-12" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", { attrs: { for: "observaciones" } }, [
+                _vm._v("Observaciones de recepción")
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.device.description,
+                    expression: "device.description"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { id: "observaciones", rows: "3" },
+                domProps: { value: _vm.device.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.device, "description", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ])
         ])
       ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card mt-3" }, [
-      _vm._m(2),
+      _vm._m(1),
       _vm._v(" "),
       _c("div", { staticClass: "card-body" }, [
         _c("div", { staticClass: "row" }, [
@@ -18523,7 +18629,21 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(3)
+      _c("div", { staticClass: "card-footer" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-outline-success float-right",
+            attrs: { href: "#" },
+            on: {
+              click: function($event) {
+                _vm.saveOrder()
+              }
+            }
+          },
+          [_vm._v("Registrar orden de servicio")]
+        )
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -18538,11 +18658,11 @@ var render = function() {
           { staticClass: "modal-dialog", attrs: { role: "document" } },
           [
             _c("div", { staticClass: "modal-content" }, [
-              _vm._m(4),
+              _vm._m(2),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body p-0" }, [
                 _c("table", { staticClass: "table text-center" }, [
-                  _vm._m(5),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c(
                     "tbody",
@@ -18552,7 +18672,23 @@ var render = function() {
                         _vm._v(" "),
                         _c("td", [_vm._v(_vm._s(device.marca))]),
                         _vm._v(" "),
-                        _vm._m(6, true)
+                        _c("td", [_vm._v(_vm._s(device.modelo))]),
+                        _vm._v(" "),
+                        _c("td", [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-outline-success btn-sm",
+                              attrs: { "data-dismiss": "modal", href: "#" },
+                              on: {
+                                click: function($event) {
+                                  _vm.selectDevice(device)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-check" })]
+                          )
+                        ])
                       ])
                     })
                   )
@@ -18582,42 +18718,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-12" }, [
-      _c("div", { staticClass: "form-group" }, [
-        _c("label", { attrs: { for: "observaciones" } }, [
-          _vm._v("Observaciones de recepción")
-        ]),
-        _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control",
-          attrs: { id: "observaciones", rows: "3" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header bg-dark" }, [
       _c("h6", { staticClass: "m-0 text-white" }, [
         _vm._v("\n          Datos del técnico \n        ")
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-outline-success float-right",
-          attrs: { href: "#" }
-        },
-        [_vm._v("Registrar orden de servicio")]
-      )
     ])
   },
   function() {
@@ -18651,20 +18755,10 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Marca")]),
         _vm._v(" "),
+        _c("th", [_vm._v("Modelo")]),
+        _vm._v(" "),
         _c("th", [_vm._v("Acción")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", [
-      _c(
-        "a",
-        { staticClass: "btn btn-outline-success btn-sm", attrs: { href: "#" } },
-        [_c("i", { staticClass: "fas fa-check" })]
-      )
     ])
   }
 ]
