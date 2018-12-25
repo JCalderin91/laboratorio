@@ -16099,8 +16099,8 @@ var render = function() {
       _c("div", { staticClass: "card-content row" }, [
         _c("div", { staticClass: "card-title col-12 p-0" }, [
           !_vm.clientForm
-            ? _c("h4", [_vm._v("Lista de las direcciones")])
-            : _c("h4", [_vm._v("Registro de Cliente")])
+            ? _c("h4", [_vm._v("Lista de los clientes")])
+            : _c("h4", [_vm._v("Registro de clientes")])
         ]),
         _vm._v(" "),
         !_vm.clientForm
@@ -16126,7 +16126,7 @@ var render = function() {
                 _vm._v(" "),
                 _c("input", {
                   staticClass: "form-control col-4 ml-auto",
-                  attrs: { type: "text", placeholder: "buscar.." }
+                  attrs: { type: "text", placeholder: "Buscar..." }
                 }),
                 _vm._v(" "),
                 _c("client-list")
@@ -18535,7 +18535,7 @@ var render = function() {
                     expression: "device.description"
                   }
                 ],
-                staticClass: "form-control text-capitalize",
+                staticClass: "form-control",
                 attrs: { id: "observaciones", rows: "3" },
                 domProps: { value: _vm.device.description },
                 on: {

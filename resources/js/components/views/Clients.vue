@@ -3,8 +3,8 @@
 		<div class="card-content row">
 
 			<div class="card-title col-12 p-0">
-				<h4 v-if="!clientForm">Lista de las direcciones</h4>
-				<h4 v-else>Registro de Cliente</h4>
+				<h4 v-if="!clientForm">Lista de los clientes</h4>
+				<h4 v-else>Registro de clientes</h4>
 			</div>
 			<div class="col-12 row" v-if="!clientForm">
 				<button 
@@ -14,7 +14,7 @@
 					<i class="fas fa-plus"></i>
 				</button>
 				
-				<input type="text" class="form-control col-4 ml-auto" placeholder="buscar..">
+				<input type="text" class="form-control col-4 ml-auto" placeholder="Buscar...">
 				<client-list></client-list>
 			</div>
 

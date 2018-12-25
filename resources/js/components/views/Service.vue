@@ -165,7 +165,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="observaciones">Observaciones de recepción</label>
-              <textarea v-model="device.description" class="form-control text-capitalize" id="observaciones" rows="3"></textarea>
+              <textarea v-model="device.description" class="form-control" id="observaciones" rows="3"></textarea>
             </div>
           </div>
         </div>
