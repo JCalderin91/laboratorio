@@ -209,20 +209,6 @@
           >Registrar orden de servicio</a>
         </div>  
       </div>
-<<<<<<< HEAD
-      <div class="card-footer">
-        <a
-        @click="saveOrder()"
-          href="#"
-          class="btn btn-success float-right"
-        >Registrar orden de servicio</a>
-      </div>  
-    </div>
-
-    <pre>{{ $data }}</pre>
-=======
-
->>>>>>> refs/remotes/origin/master
     <div class="modal" id="clientDevices" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
