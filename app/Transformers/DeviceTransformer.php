@@ -22,7 +22,7 @@ class DeviceTransformer extends TransformerAbstract
             'marca' => $device->brand->title,
             //'cliente' => (int)$device->client_id,
             'modelo' => $device->model,
-            'bienNacinal' => isset($device->b_n) ? (string)$device->b_n : null ,
+            'bienNacional' => isset($device->b_n) ? (string)$device->b_n : null ,
             /* 'fechaCreacion' => (string)$area->created_at,
             'fechaActualizacion' => (string)$area->updated_at,
             'fechaEliminacion' => isset($area->deleted_at) ? (string)$area->deleted_at : null , */
@@ -36,7 +36,7 @@ class DeviceTransformer extends TransformerAbstract
             'marca' => 'brand_id',
             'cliente' => 'client_id',
             'modelo' => 'model',
-            'bienNacinal' => 'b_n',
+            'bienNacional' => 'b_n',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -50,7 +50,7 @@ class DeviceTransformer extends TransformerAbstract
             'brand_id' => 'marca',
             'client_id' => 'cliente',
             'model' => 'modelo',
-            'b_n' => 'bienNacinal',
+            'b_n' => 'bienNacional',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
