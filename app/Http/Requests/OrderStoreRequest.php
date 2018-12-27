@@ -24,13 +24,16 @@ class OrderStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'ci'          => 'required|unique:clients,ci|max:8',
+            'ci'          => 'required|min:7|max:8',
             'first_name'  => 'required|max:128',
             'last_name'   => 'required|max:128',
             'phone'       => 'max:11',
             'area_id'     => 'required|integer',
-            'description' => 'string',
-            'user_id'     => 'required|integer'
+            'description' => 'string|nullable',
+            'user_id'     => 'required|integer',
+            'device_id'     => 'nullable|integer',
+
+
         ];
     }
 }
