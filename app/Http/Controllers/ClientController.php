@@ -22,7 +22,7 @@ class ClientController extends ApiController{
     
     public function index(){
        
-        $clients = Client::with('area')->get();
+        $clients = Client::all();
 
         return $this->showAll($clients);
     }
