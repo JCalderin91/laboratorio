@@ -2,7 +2,9 @@
   <div>
     <h2>Registro de una nueva orden de servicio</h2>
     <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
-  
+
+    <form v-on:submit="saveOrder">
+
       <div class="card">
         <div class="card-header bg-dark">
           <h6 class="m-0 text-white">
@@ -23,35 +25,36 @@
                   type="text"
                   class="form-control"
                   placeholder="Cedula del cliente"
-                  aria-label="Cedula del cliente">
+                  aria-label="Cedula del cliente"
+                  required>
               </div>
             </div><!-- Cedula Nuevo Cliente -->
 
             <div class="col-6"><!-- Nombres -->
               <div class="form-group">
                 <label>Nombres</label>
-                <input :disabled="!newClient" v-model="client.first_name" type="text" class="form-control">
+                <input :disabled="!newClient" v-model="client.first_name" type="text" class="form-control" required>
               </div>
             </div><!-- Nombres -->
 
             <div class="col-6"><!-- Apellidos -->
               <div class="form-group">
                 <label>Apellidos</label>
-                <input :disabled="!newClient" v-model="client.last_name" type="text" class="form-control">
+                <input :disabled="!newClient" v-model="client.last_name" type="text" class="form-control" required>
               </div>
             </div><!-- Apellidos -->
 
             <div class="col-6"><!-- Teléfono -->
               <div class="form-group">
                 <label>Teléfono</label>
-                <input :disabled="!newClient" v-model="client.phone" type="text" class="form-control">
+                <input :disabled="!newClient" v-model="client.phone" type="text" class="form-control" required>
               </div>
             </div><!-- Teléfono -->
 
             <div v-if="newClient" class="col-6"><!-- Direcciones -->
               <div class="form-group">
                 <label>Direcciones</label>
-                <select class="custom-select" v-model="client.address" @change="getAreas(client.address)">
+                <select class="custom-select" v-model="client.address" @change="getAreas(client.address)" required>
                   <option value="">Selecione una dirección</option>
                   <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre }}</option>
                 </select>
@@ -61,14 +64,14 @@
             <div v-else class="col-6"><!-- Dirección -->
               <div class="form-group">
                 <label>Dirección</label>
-                <input :disabled="!newClient" v-model="client.address" type="text" class="form-control">
+                <input :disabled="!newClient" v-model="client.address" type="text" class="form-control" required>
               </div>
             </div><!-- Dirección -->
            
             <div v-if="newClient" class="col-6"><!-- Area -->
               <div class="form-group" >
                 <label>Área</label>
-                <select class="custom-select" v-model="client.area">
+                <select class="custom-select" v-model="client.area" required>
                   <option value="">Selecione una area</option>
                   <option v-for="area in areas" :value="area.identificador">{{ area.nombre }}</option>
                 </select>
@@ -78,7 +81,7 @@
             <div v-else class="col-6"><!-- Area -->
               <div class="form-group">
                 <label>Área</label>
-                <input :disabled="!newClient" v-model="client.area" type="text" class="form-control">
+                <input :disabled="!newClient" v-model="client.area" type="text" class="form-control" required>
               </div>
             </div><!-- Area -->
 
@@ -99,7 +102,7 @@
 
             <div class="col-md-6"><!-- Nombre del dispositivo -->
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="nameRegister" v-model="checkNameDevice">
+                <input type="checkbox" class="custom-control-input" id="nameRegister" v-model="checkNameDevice" required>
                 <label class="custom-control-label" for="nameRegister">Nuevo nombre</label>
               </div>
               <div class="form-group">
@@ -111,9 +114,10 @@
                   v-model="device.name"
                   type="text"
                   class="form-control text-capitalize"
+                  required
                 >
 
-                <select v-else class="custom-select" v-model="device.name">
+                <select v-else class="custom-select" v-model="device.name" required>
                   <option value="">Selecione un dispositivo</option>
                   <option v-for="name in nameDevices" :value="name.nombre" >{{ name.nombre }}</option>
                 </select>
@@ -123,21 +127,22 @@
 
             <div class="col-md-6"><!-- Marca -->
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="brandRegister" v-model="checkBrand">
+                <input type="checkbox" class="custom-control-input" id="brandRegister" v-model="checkBrand" required>
                 <label class="custom-control-label" for="brandRegister">Nueva marca</label>
               </div>
               <div class="form-group">
                 <label>Marca</label>
 
                 <input
-                @input="resetDevice()"
+                  @input="resetDevice()"
                   v-if="checkBrand"
                   v-model="device.brand"
                   type="text"
                   class="form-control text-capitalize"
+                  required
                 >
 
-                <select v-else class="custom-select" v-model="device.brand">
+                <select v-else class="custom-select" v-model="device.brand" required>
                   <option value="">Selecione una marca</option>
                   <option v-for="brand in brands" :value="brand.nombre" >{{ brand.nombre }}</option>
                 </select>
@@ -148,24 +153,24 @@
             <div class="col-md-6"><!-- Modelo -->
               <div class="form-group">
                 <label>Modelo</label>
-                <input v-model="device.model" type="text" class="form-control">
+                <input v-model="device.model" type="text" class="form-control" required>
               </div>
             </div><!-- Modelo -->
 
             <div class="col-md-6"><!-- Codigo de bien nacional -->
               <div class="form-group">
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="bn" v-model="checkBn">
+                  <input type="checkbox" class="custom-control-input" id="bn" v-model="checkBn" required>
                   <label class="custom-control-label" for="bn">Bien nacional</label>
                 </div>
-                <input v-if="checkBn" v-model="device.bn" type="text" class="form-control" style="margin-top: 6px">
+                <input v-if="checkBn" v-model="device.bn" type="text" class="form-control" style="margin-top: 6px" required>
               </div>
             </div><!-- Codigo de bien nacional -->
 
             <div class="col-12">
               <div class="form-group">
                 <label for="observaciones">Observaciones de recepción</label>
-                <textarea v-model="device.description" class="form-control" id="observaciones" rows="3"></textarea>
+                <textarea v-model="device.description" class="form-control" id="observaciones" rows="3" required></textarea>
               </div>
             </div>
           </div>
@@ -184,9 +189,9 @@
               <div class="form-group">
                 <label>Cedula</label>
 
-                <select class="custom-select" v-model="nameUser">
+                <select class="custom-select" v-on:change="setNameUser" required>
                   <option value="">Selecione una cedula</option>
-                  <option @click="setNameUser(user)" v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
+                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
                 </select>
 
               </div>
@@ -195,20 +200,22 @@
             <div class="col-12">
               <div class="form-group">
                 <label>Datos</label>
-                <input disabled type="text" class="form-control" v-model="nameUser">   
+                <input disabled type="text" class="form-control" v-model="nameUser" required>   
               </div>
             </div>
 
           </div>
         </div>
         <div class="card-footer">
-          <a
-          @click="saveOrder()"
-            href="#"
+          <buttom
+            type="submit"
             class="btn btn-success float-right"
-          >Registrar orden de servicio</a>
+          >Registrar orden de servicio</buttom>
         </div>  
       </div>
+      
+    </form>
+    
 
     <div class="modal" id="clientDevices" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
@@ -430,10 +437,11 @@
           });
       },
 
-      setNameUser(user){
+      setNameUser(event){
+        console.log(event.target.text)
         //setear el id y el name a mostrar
-        this.idUser = user.identificador
-        this.nameUser = user.apellido+', '+user.nombre 
+        //this.idUser = user.identificador
+        //this.nameUser = user.apellido+', '+user.nombre 
       },
 
       selectDevice(device){
@@ -451,28 +459,29 @@
         this.checkBrand = true
 
       },
-      saveOrder(){
+      saveOrder: function(){
+        alert('submit')
         axios
         .post("api/orders", {
             headers: {
               'Authorization': `Bearer ${this.$session.get('token')}`
             },
             // Datos del cliente
-            ci: this.client.ci,
-            first_name: this.client.first_name,
-            last_name: this.client.last_name,
+            cedula: this.client.ci,
+            nombres: this.client.first_name,
+            apellidos: this.client.last_name,
             phone: this.client.phone,
-            area_id: this.client.area,
-            address: this.client.address,
+            area: this.client.area,
+            //address: this.client.address,
             // Datos del dispositivo
-            device_id: this.device.id,
-            name: this.device.name.toLowerCase(),
-            title: this.device.brand.toLowerCase(),
-            model: this.device.model,
-            b_n: this.device.bn,
-            description: this.device.description,
+            equipo: this.device.id,
+            nombre_equipo: this.device.name.toLowerCase(),
+            marca: this.device.brand.toLowerCase(),
+            modelo: this.device.model,
+            bienNacional: this.device.bn,
+            detalle: this.device.description,
             // Datos del tecnico
-            user_id: this.idUser
+            tecnico: this.idUser
           })
           .then(response => {
             Swal({

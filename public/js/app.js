@@ -17315,7 +17315,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -17326,6 +17326,13 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -17742,10 +17749,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this7.device.device = false;
       });
     },
-    setNameUser: function setNameUser(user) {
+    setNameUser: function setNameUser(event) {
+      console.log(event.target.text);
       //setear el id y el name a mostrar
-      this.idUser = user.identificador;
-      this.nameUser = user.apellido + ', ' + user.nombre;
+      //this.idUser = user.identificador
+      //this.nameUser = user.apellido+', '+user.nombre 
     },
     selectDevice: function selectDevice(device) {
       console.log(device);
@@ -17760,29 +17768,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.checkNameDevice = true;
       this.checkBrand = true;
     },
+
     saveOrder: function saveOrder() {
       var _this8 = this;
 
+      alert('submit');
       axios.post("api/orders", {
         headers: {
           'Authorization': 'Bearer ' + this.$session.get('token')
         },
         // Datos del cliente
-        ci: this.client.ci,
-        first_name: this.client.first_name,
-        last_name: this.client.last_name,
+        cedula: this.client.ci,
+        nombres: this.client.first_name,
+        apellidos: this.client.last_name,
         phone: this.client.phone,
-        area_id: this.client.area,
-        address: this.client.address,
+        area: this.client.area,
+        //address: this.client.address,
         // Datos del dispositivo
-        device_id: this.device.id,
-        name: this.device.name.toLowerCase(),
-        title: this.device.brand.toLowerCase(),
-        model: this.device.model,
-        b_n: this.device.bn,
-        description: this.device.description,
+        equipo: this.device.id,
+        nombre_equipo: this.device.name.toLowerCase(),
+        marca: this.device.brand.toLowerCase(),
+        modelo: this.device.model,
+        bienNacional: this.device.bn,
+        detalle: this.device.description,
         // Datos del tecnico
-        user_id: this.idUser
+        tecnico: this.idUser
       }).then(function (response) {
         Swal({
           type: 'success',
@@ -17801,6 +17811,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         });
       });
     }
+
   }
 });
 
@@ -17819,152 +17830,223 @@ var render = function() {
       _vm._v("Registre los datos de un nuevo servicio de reparación o revición")
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
-            _c("label", [_vm._v("Cédula")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "input-group" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.client.ci,
-                    expression: "client.ci"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  type: "text",
-                  placeholder: "Cedula del cliente",
-                  "aria-label": "Cedula del cliente"
-                },
-                domProps: { value: _vm.client.ci },
-                on: {
-                  keypress: function($event) {
-                    if (
-                      !("button" in $event) &&
-                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                    ) {
-                      return null
+    _c("form", { on: { submit: _vm.saveOrder } }, [
+      _c("div", { staticClass: "card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-6" }, [
+              _c("label", [_vm._v("Cédula")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.client.ci,
+                      expression: "client.ci"
                     }
-                    _vm.searchClient(_vm.client.ci)
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Cedula del cliente",
+                    "aria-label": "Cedula del cliente",
+                    required: ""
                   },
-                  blur: function($event) {
-                    _vm.searchClient(_vm.client.ci)
+                  domProps: { value: _vm.client.ci },
+                  on: {
+                    keypress: function($event) {
+                      if (
+                        !("button" in $event) &&
+                        _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                      ) {
+                        return null
+                      }
+                      _vm.searchClient(_vm.client.ci)
+                    },
+                    blur: function($event) {
+                      _vm.searchClient(_vm.client.ci)
+                    },
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.client, "ci", $event.target.value)
+                      },
+                      function($event) {
+                        _vm.resetClient()
+                      }
+                    ]
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-6" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Nombres")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.client.first_name,
+                      expression: "client.first_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    disabled: !_vm.newClient,
+                    type: "text",
+                    required: ""
                   },
-                  input: [
-                    function($event) {
+                  domProps: { value: _vm.client.first_name },
+                  on: {
+                    input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.client, "ci", $event.target.value)
-                    },
-                    function($event) {
-                      _vm.resetClient()
+                      _vm.$set(_vm.client, "first_name", $event.target.value)
                     }
-                  ]
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Nombres")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.client.first_name,
-                    expression: "client.first_name"
                   }
-                ],
-                staticClass: "form-control",
-                attrs: { disabled: !_vm.newClient, type: "text" },
-                domProps: { value: _vm.client.first_name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.client, "first_name", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Apellidos")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.client.last_name,
-                    expression: "client.last_name"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { disabled: !_vm.newClient, type: "text" },
-                domProps: { value: _vm.client.last_name },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.client, "last_name", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Teléfono")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.client.phone,
-                    expression: "client.phone"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { disabled: !_vm.newClient, type: "text" },
-                domProps: { value: _vm.client.phone },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.client, "phone", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _vm.newClient
-            ? _c("div", { staticClass: "col-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Direcciones")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-6" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Apellidos")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
                     {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.client.last_name,
+                      expression: "client.last_name"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    disabled: !_vm.newClient,
+                    type: "text",
+                    required: ""
+                  },
+                  domProps: { value: _vm.client.last_name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.client, "last_name", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-6" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Teléfono")]),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.client.phone,
+                      expression: "client.phone"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    disabled: !_vm.newClient,
+                    type: "text",
+                    required: ""
+                  },
+                  domProps: { value: _vm.client.phone },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.client, "phone", $event.target.value)
+                    }
+                  }
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _vm.newClient
+              ? _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Direcciones")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.client.address,
+                            expression: "client.address"
+                          }
+                        ],
+                        staticClass: "custom-select",
+                        attrs: { required: "" },
+                        on: {
+                          change: [
+                            function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.$set(
+                                _vm.client,
+                                "address",
+                                $event.target.multiple
+                                  ? $$selectedVal
+                                  : $$selectedVal[0]
+                              )
+                            },
+                            function($event) {
+                              _vm.getAreas(_vm.client.address)
+                            }
+                          ]
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Selecione una dirección")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.addresses, function(address) {
+                          return _c(
+                            "option",
+                            { domProps: { value: address.identificador } },
+                            [_vm._v(_vm._s(address.nombre))]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
+                ])
+              : _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Dirección")]),
+                    _vm._v(" "),
+                    _c("input", {
                       directives: [
                         {
                           name: "model",
@@ -17973,10 +18055,45 @@ var render = function() {
                           expression: "client.address"
                         }
                       ],
-                      staticClass: "custom-select",
+                      staticClass: "form-control",
+                      attrs: {
+                        disabled: !_vm.newClient,
+                        type: "text",
+                        required: ""
+                      },
+                      domProps: { value: _vm.client.address },
                       on: {
-                        change: [
-                          function($event) {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.client, "address", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                ]),
+            _vm._v(" "),
+            _vm.newClient
+              ? _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Área")]),
+                    _vm._v(" "),
+                    _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.client.area,
+                            expression: "client.area"
+                          }
+                        ],
+                        staticClass: "custom-select",
+                        attrs: { required: "" },
+                        on: {
+                          change: function($event) {
                             var $$selectedVal = Array.prototype.filter
                               .call($event.target.options, function(o) {
                                 return o.selected
@@ -17987,71 +18104,36 @@ var render = function() {
                               })
                             _vm.$set(
                               _vm.client,
-                              "address",
+                              "area",
                               $event.target.multiple
                                 ? $$selectedVal
                                 : $$selectedVal[0]
                             )
-                          },
-                          function($event) {
-                            _vm.getAreas(_vm.client.address)
                           }
-                        ]
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("Selecione una dirección")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.addresses, function(address) {
-                        return _c(
-                          "option",
-                          { domProps: { value: address.identificador } },
-                          [_vm._v(_vm._s(address.nombre))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ])
-            : _c("div", { staticClass: "col-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Dirección")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.client.address,
-                        expression: "client.address"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { disabled: !_vm.newClient, type: "text" },
-                    domProps: { value: _vm.client.address },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
                         }
-                        _vm.$set(_vm.client, "address", $event.target.value)
-                      }
-                    }
-                  })
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Selecione una area")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.areas, function(area) {
+                          return _c(
+                            "option",
+                            { domProps: { value: area.identificador } },
+                            [_vm._v(_vm._s(area.nombre))]
+                          )
+                        })
+                      ],
+                      2
+                    )
+                  ])
                 ])
-              ]),
-          _vm._v(" "),
-          _vm.newClient
-            ? _c("div", { staticClass: "col-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Área")]),
-                  _vm._v(" "),
-                  _c(
-                    "select",
-                    {
+              : _c("div", { staticClass: "col-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", [_vm._v("Área")]),
+                    _vm._v(" "),
+                    _c("input", {
                       directives: [
                         {
                           name: "model",
@@ -18060,183 +18142,108 @@ var render = function() {
                           expression: "client.area"
                         }
                       ],
-                      staticClass: "custom-select",
+                      staticClass: "form-control",
+                      attrs: {
+                        disabled: !_vm.newClient,
+                        type: "text",
+                        required: ""
+                      },
+                      domProps: { value: _vm.client.area },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.client,
-                            "area",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("Selecione una area")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.areas, function(area) {
-                        return _c(
-                          "option",
-                          { domProps: { value: area.identificador } },
-                          [_vm._v(_vm._s(area.nombre))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-                ])
-              ])
-            : _c("div", { staticClass: "col-6" }, [
-                _c("div", { staticClass: "form-group" }, [
-                  _c("label", [_vm._v("Área")]),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.client.area,
-                        expression: "client.area"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { disabled: !_vm.newClient, type: "text" },
-                    domProps: { value: _vm.client.area },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.$set(_vm.client, "area", $event.target.value)
-                      }
-                    }
-                  })
-                ])
-              ])
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card mt-3" }, [
-      _c("div", { staticClass: "card-header bg-dark" }, [
-        _c("h6", { staticClass: "mt-2 text-white d-inline-block" }, [
-          _vm._v("\n          Datos del dispositivo \n        ")
-        ]),
-        _vm._v(" "),
-        _vm.device.device
-          ? _c(
-              "a",
-              {
-                staticClass: "btn btn-primary float-right btn-sm",
-                attrs: {
-                  "data-toggle": "modal",
-                  "data-target": "#clientDevices",
-                  href: "#"
-                }
-              },
-              [_vm._v("Mis dispositivos")]
-            )
-          : _vm._e()
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "custom-control custom-checkbox" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.checkNameDevice,
-                    expression: "checkNameDevice"
-                  }
-                ],
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", id: "nameRegister" },
-                domProps: {
-                  checked: Array.isArray(_vm.checkNameDevice)
-                    ? _vm._i(_vm.checkNameDevice, null) > -1
-                    : _vm.checkNameDevice
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = _vm.checkNameDevice,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.checkNameDevice = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.checkNameDevice = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
-                      }
-                    } else {
-                      _vm.checkNameDevice = $$c
-                    }
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass: "custom-control-label",
-                  attrs: { for: "nameRegister" }
-                },
-                [_vm._v("Nuevo nombre")]
-              )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Nombre")]),
-              _vm._v(" "),
-              _vm.checkNameDevice
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.device.name,
-                        expression: "device.name"
-                      }
-                    ],
-                    staticClass: "form-control text-capitalize",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.device.name },
-                    on: {
-                      input: [
-                        function($event) {
+                        input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.device, "name", $event.target.value)
-                        },
-                        function($event) {
-                          _vm.resetDevice()
+                          _vm.$set(_vm.client, "area", $event.target.value)
                         }
-                      ]
-                    }
-                  })
-                : _c(
-                    "select",
+                      }
+                    })
+                  ])
+                ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card mt-3" }, [
+        _c("div", { staticClass: "card-header bg-dark" }, [
+          _c("h6", { staticClass: "mt-2 text-white d-inline-block" }, [
+            _vm._v("\n          Datos del dispositivo \n        ")
+          ]),
+          _vm._v(" "),
+          _vm.device.device
+            ? _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary float-right btn-sm",
+                  attrs: {
+                    "data-toggle": "modal",
+                    "data-target": "#clientDevices",
+                    href: "#"
+                  }
+                },
+                [_vm._v("Mis dispositivos")]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                _c("input", {
+                  directives: [
                     {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkNameDevice,
+                      expression: "checkNameDevice"
+                    }
+                  ],
+                  staticClass: "custom-control-input",
+                  attrs: { type: "checkbox", id: "nameRegister", required: "" },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkNameDevice)
+                      ? _vm._i(_vm.checkNameDevice, null) > -1
+                      : _vm.checkNameDevice
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkNameDevice,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.checkNameDevice = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkNameDevice = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkNameDevice = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "custom-control-label",
+                    attrs: { for: "nameRegister" }
+                  },
+                  [_vm._v("Nuevo nombre")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Nombre")]),
+                _vm._v(" "),
+                _vm.checkNameDevice
+                  ? _c("input", {
                       directives: [
                         {
                           name: "model",
@@ -18245,129 +18252,134 @@ var render = function() {
                           expression: "device.name"
                         }
                       ],
-                      staticClass: "custom-select",
+                      staticClass: "form-control text-capitalize",
+                      attrs: { type: "text", required: "" },
+                      domProps: { value: _vm.device.name },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.device,
-                            "name",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.device, "name", $event.target.value)
+                          },
+                          function($event) {
+                            _vm.resetDevice()
+                          }
+                        ]
+                      }
+                    })
+                  : _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.device.name,
+                            expression: "device.name"
+                          }
+                        ],
+                        staticClass: "custom-select",
+                        attrs: { required: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.device,
+                              "name",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("Selecione un dispositivo")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.nameDevices, function(name) {
-                        return _c(
-                          "option",
-                          { domProps: { value: name.nombre } },
-                          [_vm._v(_vm._s(name.nombre))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "custom-control custom-checkbox" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.checkBrand,
-                    expression: "checkBrand"
-                  }
-                ],
-                staticClass: "custom-control-input",
-                attrs: { type: "checkbox", id: "brandRegister" },
-                domProps: {
-                  checked: Array.isArray(_vm.checkBrand)
-                    ? _vm._i(_vm.checkBrand, null) > -1
-                    : _vm.checkBrand
-                },
-                on: {
-                  change: function($event) {
-                    var $$a = _vm.checkBrand,
-                      $$el = $event.target,
-                      $$c = $$el.checked ? true : false
-                    if (Array.isArray($$a)) {
-                      var $$v = null,
-                        $$i = _vm._i($$a, $$v)
-                      if ($$el.checked) {
-                        $$i < 0 && (_vm.checkBrand = $$a.concat([$$v]))
-                      } else {
-                        $$i > -1 &&
-                          (_vm.checkBrand = $$a
-                            .slice(0, $$i)
-                            .concat($$a.slice($$i + 1)))
-                      }
-                    } else {
-                      _vm.checkBrand = $$c
-                    }
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c(
-                "label",
-                {
-                  staticClass: "custom-control-label",
-                  attrs: { for: "brandRegister" }
-                },
-                [_vm._v("Nueva marca")]
-              )
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Selecione un dispositivo")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.nameDevices, function(name) {
+                          return _c(
+                            "option",
+                            { domProps: { value: name.nombre } },
+                            [_vm._v(_vm._s(name.nombre))]
+                          )
+                        })
+                      ],
+                      2
+                    )
+              ])
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Marca")]),
-              _vm._v(" "),
-              _vm.checkBrand
-                ? _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.device.brand,
-                        expression: "device.brand"
-                      }
-                    ],
-                    staticClass: "form-control text-capitalize",
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.device.brand },
-                    on: {
-                      input: [
-                        function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.device, "brand", $event.target.value)
-                        },
-                        function($event) {
-                          _vm.resetDevice()
-                        }
-                      ]
-                    }
-                  })
-                : _c(
-                    "select",
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                _c("input", {
+                  directives: [
                     {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.checkBrand,
+                      expression: "checkBrand"
+                    }
+                  ],
+                  staticClass: "custom-control-input",
+                  attrs: {
+                    type: "checkbox",
+                    id: "brandRegister",
+                    required: ""
+                  },
+                  domProps: {
+                    checked: Array.isArray(_vm.checkBrand)
+                      ? _vm._i(_vm.checkBrand, null) > -1
+                      : _vm.checkBrand
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.checkBrand,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.checkBrand = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.checkBrand = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.checkBrand = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "custom-control-label",
+                    attrs: { for: "brandRegister" }
+                  },
+                  [_vm._v("Nueva marca")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Marca")]),
+                _vm._v(" "),
+                _vm.checkBrand
+                  ? _c("input", {
                       directives: [
                         {
                           name: "model",
@@ -18376,194 +18388,253 @@ var render = function() {
                           expression: "device.brand"
                         }
                       ],
-                      staticClass: "custom-select",
+                      staticClass: "form-control text-capitalize",
+                      attrs: { type: "text", required: "" },
+                      domProps: { value: _vm.device.brand },
                       on: {
-                        change: function($event) {
-                          var $$selectedVal = Array.prototype.filter
-                            .call($event.target.options, function(o) {
-                              return o.selected
-                            })
-                            .map(function(o) {
-                              var val = "_value" in o ? o._value : o.value
-                              return val
-                            })
-                          _vm.$set(
-                            _vm.device,
-                            "brand",
-                            $event.target.multiple
-                              ? $$selectedVal
-                              : $$selectedVal[0]
-                          )
-                        }
+                        input: [
+                          function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.device, "brand", $event.target.value)
+                          },
+                          function($event) {
+                            _vm.resetDevice()
+                          }
+                        ]
                       }
-                    },
-                    [
-                      _c("option", { attrs: { value: "" } }, [
-                        _vm._v("Selecione una marca")
-                      ]),
-                      _vm._v(" "),
-                      _vm._l(_vm.brands, function(brand) {
-                        return _c(
-                          "option",
-                          { domProps: { value: brand.nombre } },
-                          [_vm._v(_vm._s(brand.nombre))]
-                        )
-                      })
-                    ],
-                    2
-                  )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Modelo")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.device.model,
-                    expression: "device.model"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { type: "text" },
-                domProps: { value: _vm.device.model },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.$set(_vm.device, "model", $event.target.value)
-                  }
-                }
-              })
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                    })
+                  : _c(
+                      "select",
+                      {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.device.brand,
+                            expression: "device.brand"
+                          }
+                        ],
+                        staticClass: "custom-select",
+                        attrs: { required: "" },
+                        on: {
+                          change: function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.$set(
+                              _vm.device,
+                              "brand",
+                              $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            )
+                          }
+                        }
+                      },
+                      [
+                        _c("option", { attrs: { value: "" } }, [
+                          _vm._v("Selecione una marca")
+                        ]),
+                        _vm._v(" "),
+                        _vm._l(_vm.brands, function(brand) {
+                          return _c(
+                            "option",
+                            { domProps: { value: brand.nombre } },
+                            [_vm._v(_vm._s(brand.nombre))]
+                          )
+                        })
+                      ],
+                      2
+                    )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Modelo")]),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.checkBn,
-                      expression: "checkBn"
+                      value: _vm.device.model,
+                      expression: "device.model"
                     }
                   ],
-                  staticClass: "custom-control-input",
-                  attrs: { type: "checkbox", id: "bn" },
-                  domProps: {
-                    checked: Array.isArray(_vm.checkBn)
-                      ? _vm._i(_vm.checkBn, null) > -1
-                      : _vm.checkBn
-                  },
+                  staticClass: "form-control",
+                  attrs: { type: "text", required: "" },
+                  domProps: { value: _vm.device.model },
                   on: {
-                    change: function($event) {
-                      var $$a = _vm.checkBn,
-                        $$el = $event.target,
-                        $$c = $$el.checked ? true : false
-                      if (Array.isArray($$a)) {
-                        var $$v = null,
-                          $$i = _vm._i($$a, $$v)
-                        if ($$el.checked) {
-                          $$i < 0 && (_vm.checkBn = $$a.concat([$$v]))
-                        } else {
-                          $$i > -1 &&
-                            (_vm.checkBn = $$a
-                              .slice(0, $$i)
-                              .concat($$a.slice($$i + 1)))
-                        }
-                      } else {
-                        _vm.checkBn = $$c
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
                       }
+                      _vm.$set(_vm.device, "model", $event.target.value)
                     }
                   }
-                }),
-                _vm._v(" "),
-                _c(
-                  "label",
-                  { staticClass: "custom-control-label", attrs: { for: "bn" } },
-                  [_vm._v("Bien nacional")]
-                )
-              ]),
-              _vm._v(" "),
-              _vm.checkBn
-                ? _c("input", {
+                })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("div", { staticClass: "custom-control custom-checkbox" }, [
+                  _c("input", {
                     directives: [
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.device.bn,
-                        expression: "device.bn"
+                        value: _vm.checkBn,
+                        expression: "checkBn"
                       }
                     ],
-                    staticClass: "form-control",
-                    staticStyle: { "margin-top": "6px" },
-                    attrs: { type: "text" },
-                    domProps: { value: _vm.device.bn },
+                    staticClass: "custom-control-input",
+                    attrs: { type: "checkbox", id: "bn", required: "" },
+                    domProps: {
+                      checked: Array.isArray(_vm.checkBn)
+                        ? _vm._i(_vm.checkBn, null) > -1
+                        : _vm.checkBn
+                    },
                     on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      change: function($event) {
+                        var $$a = _vm.checkBn,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.checkBn = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.checkBn = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.checkBn = $$c
                         }
-                        _vm.$set(_vm.device, "bn", $event.target.value)
                       }
                     }
-                  })
-                : _vm._e()
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "observaciones" } }, [
-                _vm._v("Observaciones de recepción")
-              ]),
-              _vm._v(" "),
-              _c("textarea", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.device.description,
-                    expression: "device.description"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { id: "observaciones", rows: "3" },
-                domProps: { value: _vm.device.description },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "custom-control-label",
+                      attrs: { for: "bn" }
+                    },
+                    [_vm._v("Bien nacional")]
+                  )
+                ]),
+                _vm._v(" "),
+                _vm.checkBn
+                  ? _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.device.bn,
+                          expression: "device.bn"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      staticStyle: { "margin-top": "6px" },
+                      attrs: { type: "text", required: "" },
+                      domProps: { value: _vm.device.bn },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.device, "bn", $event.target.value)
+                        }
+                      }
+                    })
+                  : _vm._e()
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", { attrs: { for: "observaciones" } }, [
+                  _vm._v("Observaciones de recepción")
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.device.description,
+                      expression: "device.description"
                     }
-                    _vm.$set(_vm.device, "description", $event.target.value)
+                  ],
+                  staticClass: "form-control",
+                  attrs: { id: "observaciones", rows: "3", required: "" },
+                  domProps: { value: _vm.device.description },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.device, "description", $event.target.value)
+                    }
                   }
-                }
-              })
+                })
+              ])
             ])
           ])
         ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card mt-3" }, [
-      _vm._m(1),
+      ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-body" }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Cedula")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
+      _c("div", { staticClass: "card mt-3" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Cedula")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    staticClass: "custom-select",
+                    attrs: { required: "" },
+                    on: { change: _vm.setNameUser }
+                  },
+                  [
+                    _c("option", { attrs: { value: "" } }, [
+                      _vm._v("Selecione una cedula")
+                    ]),
+                    _vm._v(" "),
+                    _vm._l(_vm.users, function(user) {
+                      return _c(
+                        "option",
+                        { domProps: { value: user.identificador } },
+                        [_vm._v(_vm._s(user.cedula))]
+                      )
+                    })
+                  ],
+                  2
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-12" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Datos")]),
+                _vm._v(" "),
+                _c("input", {
                   directives: [
                     {
                       name: "model",
@@ -18572,91 +18643,37 @@ var render = function() {
                       expression: "nameUser"
                     }
                   ],
-                  staticClass: "custom-select",
+                  staticClass: "form-control",
+                  attrs: { disabled: "", type: "text", required: "" },
+                  domProps: { value: _vm.nameUser },
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.nameUser = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.nameUser = $event.target.value
                     }
                   }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Selecione una cedula")
-                  ]),
-                  _vm._v(" "),
-                  _vm._l(_vm.users, function(user) {
-                    return _c(
-                      "option",
-                      {
-                        domProps: { value: user.identificador },
-                        on: {
-                          click: function($event) {
-                            _vm.setNameUser(user)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(user.cedula))]
-                    )
-                  })
-                ],
-                2
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-12" }, [
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Datos")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.nameUser,
-                    expression: "nameUser"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { disabled: "", type: "text" },
-                domProps: { value: _vm.nameUser },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.nameUser = $event.target.value
-                  }
-                }
-              })
+                })
+              ])
             ])
           ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-footer" }, [
+        ]),
+        _vm._v(" "),
         _c(
-          "a",
-          {
-            staticClass: "btn btn-success float-right",
-            attrs: { href: "#" },
-            on: {
-              click: function($event) {
-                _vm.saveOrder()
-              }
-            }
-          },
-          [_vm._v("Registrar orden de servicio")]
+          "div",
+          { staticClass: "card-footer" },
+          [
+            _c(
+              "buttom",
+              {
+                staticClass: "btn btn-success float-right",
+                attrs: { type: "submit" }
+              },
+              [_vm._v("Registrar orden de servicio")]
+            )
+          ],
+          1
         )
       ])
     ]),
