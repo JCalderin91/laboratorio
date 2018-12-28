@@ -14,6 +14,25 @@
 		name: 'dashboard',
 		components: {
 			Widget,
+		},
+		mounted(){
+			this.getOrders()
+		},
+		methods: {
+			getOrders(){
+				axios
+        .get("api/orders", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => (
+              console.log(response.data.data)
+            ))
+          .catch(error => {
+            console.log(error)
+          });
+			}
 		}
 	}
 </script>

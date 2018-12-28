@@ -3,7 +3,7 @@
     <h2>Registro de una nueva orden de servicio</h2>
     <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
 
-    <form v-on:submit="saveOrder">
+
 
       <div class="card">
         <div class="card-header bg-dark">
@@ -189,9 +189,9 @@
               <div class="form-group">
                 <label>Cedula</label>
 
-                <select class="custom-select" v-on:change="setNameUser" required>
+                <select class="custom-select" required>
                   <option value="">Selecione una cedula</option>
-                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
+                  <option @click="setNameUser(user)" v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
                 </select>
 
               </div>
@@ -207,15 +207,16 @@
           </div>
         </div>
         <div class="card-footer">
-          <buttom
-            type="submit"
+          <a
+            @click.prevent="saveOrder"
+            href="#"
             class="btn btn-success float-right"
-          >Registrar orden de servicio</buttom>
+          >Registrar orden de servicio</a>
         </div>  
       </div>
 
       
-    </form>
+    <pre>{{ $data }}</pre>
     
 
     <div class="modal" id="clientDevices" tabindex="-1" role="dialog">
@@ -286,6 +287,7 @@
         },
         nameUser:'',
         idUser:'',
+        idArea:'',
         newClient: true,
         checkNameDevice: false,
         checkBrand: false,
@@ -320,8 +322,9 @@
             this.client.first_name = response.data.data.nombres
             this.client.last_name = response.data.data.apellidos
             this.client.phone = response.data.data.telefono
+            this.idArea = response.data.data.identificador_area
             this.client.address = response.data.data.direccion
-            this.client.area = response.data.data.area
+            this.client.area = response.data.data.nombre_area
             this.getClientDevices(response.data.data.identificador)
           })
           .catch(error => (
@@ -336,6 +339,7 @@
         this.client.phone = ''
         this.client.area = ''
         this.client.address = ''
+        this.idArea = ''
         this.newClient= true
         this.device.device = false 
       },
@@ -438,15 +442,14 @@
           });
       },
 
-      setNameUser(event){
-        console.log(event.target.text)
+      setNameUser(user){
+        //console.log(event.target.text)
         //setear el id y el name a mostrar
-        //this.idUser = user.identificador
-        //this.nameUser = user.apellido+', '+user.nombre 
+        this.idUser = user.identificador
+        this.nameUser = user.apellido+', '+user.nombre 
       },
 
       selectDevice(device){
-        console.log(device)
 
         this.device.id =  device.identificador
         this.device.name =  device.nombre
@@ -460,8 +463,14 @@
         this.checkBrand = true
 
       },
-      saveOrder: function(){
-        alert('submit')
+      saveOrder(){
+        let area = ''
+        if (typeof(this.client.area) == 'number') {
+          area = this.client.area
+        } else {
+          area = this.idArea
+        }
+
         axios
         .post("api/orders", {
             headers: {
@@ -472,7 +481,7 @@
             nombres: this.client.first_name,
             apellidos: this.client.last_name,
             phone: this.client.phone,
-            area: this.client.area,
+            area: area,
             //address: this.client.address,
             // Datos del dispositivo
             equipo: this.device.id,
@@ -495,10 +504,11 @@
             })
           })
           .catch(error => {
+            console.log(error)
             Swal({
               type: 'error',
               title: 'Alerta',
-              text: 'Ha ocurrido un error al guardar',
+              text: error,
               confirmButtonText: 'Continuar',
             })
           });
