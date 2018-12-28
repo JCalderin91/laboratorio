@@ -21,7 +21,8 @@ class ClientTransformer extends TransformerAbstract
             'nombres' => (string)$client->first_name,
             'apellidos' => (string)$client->last_name,
             'telefono' => (string)$client->phone,
-            'area' => (string)$client->area->name,
+            'identificador_area' => (string)$client->area->id,
+            'nombre_area' => (string)$client->area->name,
             'direccion' => (string)$client->area->address->name,
             /* 'fechaCreacion' => (string)$area->created_at,
             'fechaActualizacion' => (string)$area->updated_at,
@@ -36,7 +37,7 @@ class ClientTransformer extends TransformerAbstract
             'nombres' => 'first_name',
             'apellidos' => 'last_name',
             'telefono' => 'phone',
-            'area' =>  'area_id',
+            'identificador_area' =>  'area_id',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -50,7 +51,7 @@ class ClientTransformer extends TransformerAbstract
             'first_name' => 'nombres',
             'last_name' => 'apellidos',
             'phone' => 'telefono',
-            'area_id' =>  'area',
+            'area_id' =>  'identificador_area',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
