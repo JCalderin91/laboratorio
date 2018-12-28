@@ -32,7 +32,7 @@ class OrderController extends ApiController
      */
     public function index()
     {
-        $orders = Order::all();
+        $orders = Order::where('status', '!=', Order::ORDER_DELIVERED)->orderBy('arrival_date', 'desc')->get();
 
         return $this->showAll($orders);
        
