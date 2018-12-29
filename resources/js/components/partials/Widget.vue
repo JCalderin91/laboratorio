@@ -1,9 +1,9 @@
 <template>
-	<div class="col-md-4">
+	<div class="col-md-6">
 		<div :class="'widget rounded '+ type">
 			<div class="cover"></div>
 			<i :class="'fa fa-'+icon+' text-white'"></i>
-			<span class="h2 text-white">08</span>
+			<span class="h2 text-white">{{value}}</span>
 		</div>
 	</div>
 </template>
@@ -13,7 +13,7 @@
 	// check-double
 	export default {
 		name: 'widget',
-		props: ['type', 'icon']
+		props: ['type', 'icon','value']
 	}
 </script>
 

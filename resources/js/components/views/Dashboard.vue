@@ -1,9 +1,8 @@
 <template>
 		<div class="card">
 			<div class="row">
-				<widget type="pendientes" icon="exclamation-triangle"></widget>
-				<widget type="revisados" icon="wrench"></widget>	
-				<widget type="entregados" icon="check-double"></widget>
+				<widget type="pendientes" icon="exclamation-triangle" :value="pendingCant"></widget>
+				<widget type="revisados" icon="wrench" :value="revisedCant"></widget>	
 
 				<div class="col-12 pt-3">
 					<table class="table text-center table-striped table-hover">
@@ -68,6 +67,16 @@
           .catch(error => {
             console.log(error)
           });
+			}
+		},
+		computed:{
+			pendingCant: function(argument) {
+				let pendingCant = this.orders.filter(order => order.estado === 'pending')
+				return Object.keys(pendingCant).length
+			},
+			revisedCant: function(argument) {
+				let revisedCant = this.orders.filter(order => order.estado === 'revised')
+				return Object.keys(revisedCant).length
 			}
 		}
 	}

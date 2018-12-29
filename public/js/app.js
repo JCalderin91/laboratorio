@@ -16470,7 +16470,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16483,7 +16483,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Widget__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Widget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_Widget__);
-//
 //
 //
 //
@@ -16554,6 +16553,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			}).catch(function (error) {
 				console.log(error);
 			});
+		}
+	},
+	computed: {
+		pendingCant: function pendingCant(argument) {
+			var pendingCant = this.orders.filter(function (order) {
+				return order.estado === 'pending';
+			});
+			return Object.keys(pendingCant).length;
+		},
+		revisedCant: function revisedCant(argument) {
+			var revisedCant = this.orders.filter(function (order) {
+				return order.estado === 'revised';
+			});
+			return Object.keys(revisedCant).length;
 		}
 	}
 });
@@ -16670,7 +16683,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 // check-double
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'widget',
-	props: ['type', 'icon']
+	props: ['type', 'icon', 'value']
 });
 
 /***/ }),
@@ -16681,13 +16694,13 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-4" }, [
+  return _c("div", { staticClass: "col-md-6" }, [
     _c("div", { class: "widget rounded " + _vm.type }, [
       _c("div", { staticClass: "cover" }),
       _vm._v(" "),
       _c("i", { class: "fa fa-" + _vm.icon + " text-white" }),
       _vm._v(" "),
-      _c("span", { staticClass: "h2 text-white" }, [_vm._v("08")])
+      _c("span", { staticClass: "h2 text-white" }, [_vm._v(_vm._s(_vm.value))])
     ])
   ])
 }
@@ -16715,12 +16728,16 @@ var render = function() {
       { staticClass: "row" },
       [
         _c("widget", {
-          attrs: { type: "pendientes", icon: "exclamation-triangle" }
+          attrs: {
+            type: "pendientes",
+            icon: "exclamation-triangle",
+            value: _vm.pendingCant
+          }
         }),
         _vm._v(" "),
-        _c("widget", { attrs: { type: "revisados", icon: "wrench" } }),
-        _vm._v(" "),
-        _c("widget", { attrs: { type: "entregados", icon: "check-double" } }),
+        _c("widget", {
+          attrs: { type: "revisados", icon: "wrench", value: _vm.revisedCant }
+        }),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 pt-3" }, [
           _c(
