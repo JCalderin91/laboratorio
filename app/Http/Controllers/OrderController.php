@@ -47,8 +47,9 @@ class OrderController extends ApiController
      */
     public function store(OrderStoreRequest $request)
     {
+        DB::beginTransaction();
         
-        return DB::transaction(function () use ($request) {
+        try {
             
             $client = Client::firstOrCreate(['ci' => $request->ci],
             [
@@ -90,9 +91,17 @@ class OrderController extends ApiController
             }
     
             $order->save();
+
+            DB::commit();
     
             return $this->showOne($order, 201); 
-        });
+        
+        }catch(\Exception $e){
+
+            DB::rollback();
+
+            return $this->errorResponse('Ha ocurrido un error. Intente de nuevo.', 409);
+        }
         
         
     }

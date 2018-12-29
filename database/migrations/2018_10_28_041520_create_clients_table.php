@@ -20,7 +20,7 @@ class CreateClientsTable extends Migration
             $table->string('ci',8)->unique();
             $table->string('first_name',128);
             $table->string('last_name',128);
-            $table->string('phone');
+            $table->string('phone')->nullable();
             $table->timestamps();
             $table->softDeletes();   
 
