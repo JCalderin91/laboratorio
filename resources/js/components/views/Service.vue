@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="card">
     <h2>Registro de una nueva orden de servicio</h2>
     <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
 

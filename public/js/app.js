@@ -15745,7 +15745,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15758,7 +15758,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_ClientList__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_ClientList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_ClientList__);
-//
 //
 //
 //
@@ -15872,10 +15871,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			});
 		},
 		saveClient: function saveClient() {
-			var data = JSON.stringify(this.client);
 			axios.post('api/clients', {
-				headers: { 'Accept': 'Application/json', 'Content-Type': 'Application/json' },
-				data: data
+				headers: {
+					'Authorization': 'Bearer ' + this.$session.get('token')
+				},
+				cedula: this.client.ci,
+				nombres: this.client.first_name,
+				apellidos: this.client.last_name,
+				telefono: this.client.phone,
+				identificador_area: this.client.area
 			}).then(function (response) {
 				console.log(response);
 			}).catch(function (error) {
@@ -16318,7 +16322,7 @@ var render = function() {
                         return _c(
                           "option",
                           {
-                            key: address.id,
+                            key: address.identificador,
                             domProps: { value: address.nombre }
                           },
                           [_vm._v(_vm._s(address.nombre))]
@@ -16377,7 +16381,7 @@ var render = function() {
                       _vm._l(_vm.areas, function(area) {
                         return _c(
                           "option",
-                          { key: area.id, domProps: { value: area.nombre } },
+                          { domProps: { value: area.identificador } },
                           [_vm._v(_vm._s(area.nombre))]
                         )
                       })
@@ -16466,7 +16470,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16489,10 +16493,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'dashboard',
+	data: function data() {
+		return {
+			orders: []
+		};
+	},
+
 	components: {
 		Widget: __WEBPACK_IMPORTED_MODULE_0__partials_Widget___default.a
 	},
@@ -16502,12 +16542,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 		getOrders: function getOrders() {
+			var _this = this;
+
 			axios.get("api/orders", {
 				headers: {
 					'Authorization': 'Bearer ' + this.$session.get('token')
 				}
 			}).then(function (response) {
-				return console.log(response.data.data);
+				//console.log(response.data.data)
+				_this.orders = response.data.data;
 			}).catch(function (error) {
 				console.log(error);
 			});
@@ -16666,7 +16709,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container-fluid" }, [
+  return _c("div", { staticClass: "card" }, [
     _c(
       "div",
       { staticClass: "row" },
@@ -16677,13 +16720,87 @@ var render = function() {
         _vm._v(" "),
         _c("widget", { attrs: { type: "revisados", icon: "wrench" } }),
         _vm._v(" "),
-        _c("widget", { attrs: { type: "entregados", icon: "check-double" } })
+        _c("widget", { attrs: { type: "entregados", icon: "check-double" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-12 pt-3" }, [
+          _c(
+            "table",
+            { staticClass: "table text-center table-striped table-hover" },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "tbody",
+                _vm._l(_vm.orders, function(order) {
+                  return _c("tr", [
+                    _c("td", [_vm._v(_vm._s(order.cliente.data.cedula))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(order.equipo.data.nombre))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(order.fechaCreacion))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      order.estado === "pending"
+                        ? _c("span", { staticClass: "badge badge-danger" }, [
+                            _vm._v("Pendiente")
+                          ])
+                        : _c("span", { staticClass: "badge badge-primary" }, [
+                            _vm._v("Revisado")
+                          ])
+                    ]),
+                    _vm._v(" "),
+                    _c("td", [
+                      order.estado === "pending"
+                        ? _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-primary btn-sm",
+                              attrs: { href: "#", title: "Reparar" }
+                            },
+                            [_c("i", { staticClass: "fa fa-wrench" })]
+                          )
+                        : _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-success btn-sm",
+                              attrs: { href: "#", title: "Entregar" }
+                            },
+                            [_c("i", { staticClass: "fa fa-check-double" })]
+                          )
+                    ])
+                  ])
+                })
+              )
+            ]
+          )
+        ])
       ],
       1
-    )
+    ),
+    _vm._v(" "),
+    _c("pre", [_vm._v(_vm._s(_vm.$data))])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-dark text-white" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Cedula")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Equipo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Acciones")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -17849,7 +17966,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "card" }, [
     _c("h2", [_vm._v("Registro de una nueva orden de servicio")]),
     _vm._v(" "),
     _c("h6", [

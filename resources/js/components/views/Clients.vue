@@ -39,14 +39,14 @@
 					<label for="address">Direcciòn:</label>
 					<select class="form-control" type="text" name="address" v-model="client.address" placeholder="direccion">
 						<option value="">Seleccione Una</option>
-						<option v-for="address in addresses" :value="address.nombre" :key="address.id">{{address.nombre}}</option>
+						<option v-for="address in addresses" :value="address.nombre" :key="address.identificador">{{address.nombre}}</option>
 					</select>
 				</div>
 				<div class="form-group col-6">
 					<label for="area">Area:</label>
 					<select class="form-control" type="text" name="area" v-model="client.area" placeholder="area">
 						<option value="">Seleccione Una</option>
-						<option v-for="area in areas" :value="area.nombre" :key="area.id">{{area.nombre}}</option>
+						<option v-for="area in areas" :value="area.identificador">{{area.nombre}}</option>
 					</select>
 				</div>
 
@@ -58,7 +58,6 @@
 					<button class="btn btn-danger btn-block" @click.prevent="clientForm = !clientForm">Cancelar</button>
 				</div>
 			</form>
-
 		</div>
 	</div>
 </template>
@@ -105,10 +104,15 @@
 					.catch(error => {console.log(error)})
 			},
 			saveClient() {
-				let data = JSON.stringify(this.client)
 				axios.post('api/clients', {
-						headers: {'Accept': 'Application/json', 'Content-Type': 'Application/json'},
-						data: data
+						headers: {
+							'Authorization': `Bearer ${this.$session.get('token')}`
+						},
+						cedula: this.client.ci,
+						nombres: this.client.first_name,
+						apellidos: this.client.last_name,
+						telefono: this.client.phone,
+						identificador_area: this.client.area,
 					})
 					.then(response => {console.log(response)})
 					.catch(error => {console.log(error)})
