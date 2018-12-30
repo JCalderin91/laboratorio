@@ -28,7 +28,6 @@
 							<router-link tag="a" to="/">
 								<i class="fa fa-tachometer-alt"></i>
 							  <span>Principal</span>
-								<span class="badge badge-pill badge-danger">New</span>
 							</router-link>
 						</li>
 
@@ -135,6 +134,12 @@
 <style scoped>
 .background img{
 	height: 100%;
+}
+.sidebar-menu li a.router-link-exact-active{
+	filter: brightness(2);
+}
+.sidebar-menu li a.router-link-exact-active span{
+	font-weight: bold;
 }
 
 #logout-link {
