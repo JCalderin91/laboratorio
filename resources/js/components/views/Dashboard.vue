@@ -34,6 +34,8 @@
 										<i class="fa fa-wrench"></i>
 									</a>
 									<a
+										@click="setOrder(order)"
+										data-toggle="modal" data-target="#entregar"
 										v-else
 										href="#"
 										title="Entregar"
@@ -47,7 +49,7 @@
 				</div>
 			</div>
 
-	
+			<pre>{{$data}}</pre>
 
 			<!-- Modal de reparar -->
 			<div class="modal fade" id="reparar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -62,34 +64,92 @@
 				      </div>
 				      <div class="modal-body">
 				      	<div class="row">
-				      		<div class="col-md-6">
-				      			<div class="form-group">
-			                <label>Cedula del técnico</label>
 
-			                <select v-model="tecnicID" class="custom-select" required>
-			                  <option value="">Selecione una cedula</option>
-			                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
-			                </select>
-
-			              </div>
-				      		</div>
-				      		<div class="col-md-6">
+				      		<div class="col-md-12">
 				      			<div class="form-group">
 			                <label>Estado del dispositivo</label>
-
 			                <select v-model="stateDevice" class="custom-select" required>
 			                  <option value="">Selecione el resultado de la revisión</option>
 			                  <option v-for="state in states" :value="state.value">{{ state.name }}</option>
 			                </select>
-
 			              </div>
 				      		</div>
+
 				      		<div class="col-md-12">
 				      			<div class="form-group">
 			                <label for="observaciones">Observaciones de atencion de orden</label>
 			                <textarea v-model="datails" class="form-control" id="observaciones" rows="3" required></textarea>
 			              </div>
 				      		</div>
+
+				      		<div class="col-md-12">
+				      			<div class="form-group">
+			                <label>Cedula del técnico</label>
+			                <select v-model="tecnicID" class="custom-select" required>
+			                  <option value="">Selecione una cedula</option>
+			                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
+			                </select>
+			              </div>
+				      		</div>
+
+				      	</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				        <button type="submit" class="btn btn-primary">Guardar</button>
+				      </div>
+			    	</form>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Modal de Entregar -->
+			<div class="modal fade" id="entregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			    	<form @submit.prevent="saveDelivery" method="POST">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Entregar dispositivo</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	<div class="row">
+
+				      		<div class="col-md-12">
+				      			<div class="form-group">
+			                <div class="custom-control custom-checkbox">
+			                  <input @change="setClient" type="checkbox" class="custom-control-input" id="bn" v-model="sameClientCheck">
+			                  <label class="custom-control-label" for="bn">Lo retira la misma persona que lo ingresó</label>
+			                </div>
+			              </div>
+				      		</div>
+
+				      		<div class="col-md-4 pr-1">
+				      			<div class="form-group">
+			                <label>Cedula</label>
+			                <input v-model="client.ci" type="text" class="form-control" :disabled="sameClientCheck" required>
+			              </div>
+				      		</div>
+
+				      		<div class="col-md-8 pl-1">
+				      			<div class="form-group">
+			                <label>Nombres y apellidos</label>
+			                <input v-model="client.name" type="text" class="form-control" :disabled="sameClientCheck" required>
+			              </div>
+				      		</div>
+
+				      		<div class="col-md-12">
+				      			<div class="form-group">
+			                <label>Cedula del técnico</label>
+			                <select v-model="tecnicID" class="custom-select" required>
+			                  <option value="">Selecione una cedula</option>
+			                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
+			                </select>
+			              </div>
+				      		</div>
+
 				      	</div>
 				      </div>
 				      <div class="modal-footer">
@@ -111,6 +171,15 @@
 		name: 'dashboard',
 		data(){
 			return{
+				sameClientCheck: false,
+				someClient:{
+					ci:'',
+					name:''
+				},
+				client:{
+					ci:'',
+					name:''
+				},
 				datails: '',
 				stateDevice:'',
 				order: '',
@@ -186,9 +255,55 @@
         });
 
 			},
+			saveDelivery(){
+				axios.post("",{
+					headers: {
+            'Authorization': `Bearer ${this.$session.get('token')}`
+          },
+          tecnico: this.tecnicID,
+          clientCi: this.client.ci ,
+          clientName: this.client.name
+				})
+				.then(response => {
+					this.getOrders()
+					this.tecnicID = ''
+          this.client.ci  = ''
+          this.client.name = ''
+          Swal({
+            type: 'success',
+            title: 'Excelente',
+            text: 'Datos guardados con exito',
+            confirmButtonText: 'Continuar',
+          }).then(() => {
+            this.$router.push('/');
+          })
+				})
+        .catch(error => {
+        	Swal({
+            type: 'error',
+            title: 'Alerta',
+            text: error,
+            confirmButtonText: 'Continuar',
+          })
+        }).then(()=>{
+        	$('#entregar').modal('hide')
+        });
+
+			},
+			setClient(){
+				if(this.sameClientCheck){
+					this.client.ci =  this.someClient.ci
+					this.client.name = this.someClient.name
+				}else{
+					this.client.ci = ''
+					this.client.name = ''
+				}
+			},
 
 			setOrder(order){
 				this.order = order.identificador
+				this.someClient.ci = order.cliente.data.cedula
+				this.someClient.name = order.cliente.data.nombres+' '+order.cliente.data.apellidos
 			},
 
       getUsers(){

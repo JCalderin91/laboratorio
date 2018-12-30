@@ -16528,7 +16528,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16649,6 +16649,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -16656,6 +16716,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	name: 'dashboard',
 	data: function data() {
 		return {
+			sameClientCheck: false,
+			someClient: {
+				ci: '',
+				name: ''
+			},
+			client: {
+				ci: '',
+				name: ''
+			},
 			datails: '',
 			stateDevice: '',
 			order: '',
@@ -16731,18 +16800,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				$('#reparar').modal('hide');
 			});
 		},
+		saveDelivery: function saveDelivery() {
+			var _this3 = this;
+
+			axios.post("", {
+				headers: {
+					'Authorization': 'Bearer ' + this.$session.get('token')
+				},
+				tecnico: this.tecnicID,
+				clientCi: this.client.ci,
+				clientName: this.client.name
+			}).then(function (response) {
+				_this3.getOrders();
+				_this3.tecnicID = '';
+				_this3.client.ci = '';
+				_this3.client.name = '';
+				Swal({
+					type: 'success',
+					title: 'Excelente',
+					text: 'Datos guardados con exito',
+					confirmButtonText: 'Continuar'
+				}).then(function () {
+					_this3.$router.push('/');
+				});
+			}).catch(function (error) {
+				Swal({
+					type: 'error',
+					title: 'Alerta',
+					text: error,
+					confirmButtonText: 'Continuar'
+				});
+			}).then(function () {
+				$('#entregar').modal('hide');
+			});
+		},
+		setClient: function setClient() {
+			if (this.sameClientCheck) {
+				this.client.ci = this.someClient.ci;
+				this.client.name = this.someClient.name;
+			} else {
+				this.client.ci = '';
+				this.client.name = '';
+			}
+		},
 		setOrder: function setOrder(order) {
 			this.order = order.identificador;
+			this.someClient.ci = order.cliente.data.cedula;
+			this.someClient.name = order.cliente.data.nombres + ' ' + order.cliente.data.apellidos;
 		},
 		getUsers: function getUsers() {
-			var _this3 = this;
+			var _this4 = this;
 
 			axios.get("/api/users", {
 				headers: {
 					'Authorization': 'Bearer ' + this.$session.get('token')
 				}
 			}).then(function (response) {
-				_this3.users = response.data.data;
+				_this4.users = response.data.data;
 			}).catch(function (error) {
 				return console.log(error);
 			});
@@ -17151,7 +17265,17 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn btn-success btn-sm",
-                              attrs: { href: "#", title: "Entregar" }
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#entregar",
+                                href: "#",
+                                title: "Entregar"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.setOrder(order)
+                                }
+                              }
                             },
                             [_c("i", { staticClass: "fa fa-check-double" })]
                           )
@@ -17165,6 +17289,8 @@ var render = function() {
       ],
       1
     ),
+    _vm._v(" "),
+    _c("pre", [_vm._v(_vm._s(_vm.$data))]),
     _vm._v(" "),
     _c(
       "div",
@@ -17200,59 +17326,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("div", { staticClass: "modal-body" }, [
                     _c("div", { staticClass: "row" }, [
-                      _c("div", { staticClass: "col-md-6" }, [
-                        _c("div", { staticClass: "form-group" }, [
-                          _c("label", [_vm._v("Cedula del técnico")]),
-                          _vm._v(" "),
-                          _c(
-                            "select",
-                            {
-                              directives: [
-                                {
-                                  name: "model",
-                                  rawName: "v-model",
-                                  value: _vm.tecnicID,
-                                  expression: "tecnicID"
-                                }
-                              ],
-                              staticClass: "custom-select",
-                              attrs: { required: "" },
-                              on: {
-                                change: function($event) {
-                                  var $$selectedVal = Array.prototype.filter
-                                    .call($event.target.options, function(o) {
-                                      return o.selected
-                                    })
-                                    .map(function(o) {
-                                      var val =
-                                        "_value" in o ? o._value : o.value
-                                      return val
-                                    })
-                                  _vm.tecnicID = $event.target.multiple
-                                    ? $$selectedVal
-                                    : $$selectedVal[0]
-                                }
-                              }
-                            },
-                            [
-                              _c("option", { attrs: { value: "" } }, [
-                                _vm._v("Selecione una cedula")
-                              ]),
-                              _vm._v(" "),
-                              _vm._l(_vm.users, function(user) {
-                                return _c(
-                                  "option",
-                                  { domProps: { value: user.identificador } },
-                                  [_vm._v(_vm._s(user.cedula))]
-                                )
-                              })
-                            ],
-                            2
-                          )
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
                         _c("div", { staticClass: "form-group" }, [
                           _c("label", [_vm._v("Estado del dispositivo")]),
                           _vm._v(" "),
@@ -17336,11 +17410,296 @@ var render = function() {
                             }
                           })
                         ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Cedula del técnico")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.tecnicID,
+                                  expression: "tecnicID"
+                                }
+                              ],
+                              staticClass: "custom-select",
+                              attrs: { required: "" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.tecnicID = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Selecione una cedula")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.users, function(user) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: user.identificador } },
+                                  [_vm._v(_vm._s(user.cedula))]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
                       ])
                     ])
                   ]),
                   _vm._v(" "),
                   _vm._m(2)
+                ]
+              )
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "entregar",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c(
+                "form",
+                {
+                  attrs: { method: "POST" },
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                      return _vm.saveDelivery($event)
+                    }
+                  }
+                },
+                [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "modal-body" }, [
+                    _c("div", { staticClass: "row" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c(
+                            "div",
+                            { staticClass: "custom-control custom-checkbox" },
+                            [
+                              _c("input", {
+                                directives: [
+                                  {
+                                    name: "model",
+                                    rawName: "v-model",
+                                    value: _vm.sameClientCheck,
+                                    expression: "sameClientCheck"
+                                  }
+                                ],
+                                staticClass: "custom-control-input",
+                                attrs: { type: "checkbox", id: "bn" },
+                                domProps: {
+                                  checked: Array.isArray(_vm.sameClientCheck)
+                                    ? _vm._i(_vm.sameClientCheck, null) > -1
+                                    : _vm.sameClientCheck
+                                },
+                                on: {
+                                  change: [
+                                    function($event) {
+                                      var $$a = _vm.sameClientCheck,
+                                        $$el = $event.target,
+                                        $$c = $$el.checked ? true : false
+                                      if (Array.isArray($$a)) {
+                                        var $$v = null,
+                                          $$i = _vm._i($$a, $$v)
+                                        if ($$el.checked) {
+                                          $$i < 0 &&
+                                            (_vm.sameClientCheck = $$a.concat([
+                                              $$v
+                                            ]))
+                                        } else {
+                                          $$i > -1 &&
+                                            (_vm.sameClientCheck = $$a
+                                              .slice(0, $$i)
+                                              .concat($$a.slice($$i + 1)))
+                                        }
+                                      } else {
+                                        _vm.sameClientCheck = $$c
+                                      }
+                                    },
+                                    _vm.setClient
+                                  ]
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "label",
+                                {
+                                  staticClass: "custom-control-label",
+                                  attrs: { for: "bn" }
+                                },
+                                [
+                                  _vm._v(
+                                    "Lo retira la misma persona que lo ingresó"
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-4 pr-1" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Cedula")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.client.ci,
+                                expression: "client.ci"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              disabled: _vm.sameClientCheck,
+                              required: ""
+                            },
+                            domProps: { value: _vm.client.ci },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(_vm.client, "ci", $event.target.value)
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-8 pl-1" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Nombres y apellidos")]),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.client.name,
+                                expression: "client.name"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              disabled: _vm.sameClientCheck,
+                              required: ""
+                            },
+                            domProps: { value: _vm.client.name },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.client,
+                                  "name",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          })
+                        ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-12" }, [
+                        _c("div", { staticClass: "form-group" }, [
+                          _c("label", [_vm._v("Cedula del técnico")]),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.tecnicID,
+                                  expression: "tecnicID"
+                                }
+                              ],
+                              staticClass: "custom-select",
+                              attrs: { required: "" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.tecnicID = $event.target.multiple
+                                    ? $$selectedVal
+                                    : $$selectedVal[0]
+                                }
+                              }
+                            },
+                            [
+                              _c("option", { attrs: { value: "" } }, [
+                                _vm._v("Selecione una cedula")
+                              ]),
+                              _vm._v(" "),
+                              _vm._l(_vm.users, function(user) {
+                                return _c(
+                                  "option",
+                                  { domProps: { value: user.identificador } },
+                                  [_vm._v(_vm._s(user.cedula))]
+                                )
+                              })
+                            ],
+                            2
+                          )
+                        ])
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(4)
                 ]
               )
             ])
@@ -17378,6 +17737,52 @@ var staticRenderFns = [
         "h5",
         { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
         [_vm._v("Atender orden de revisión")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-secondary",
+          attrs: { type: "button", "data-dismiss": "modal" }
+        },
+        [_vm._v("Cancelar")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary", attrs: { type: "submit" } },
+        [_vm._v("Guardar")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Entregar dispositivo")]
       ),
       _vm._v(" "),
       _c(
