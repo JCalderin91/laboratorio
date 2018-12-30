@@ -41,7 +41,7 @@ class OrderTableSeeder extends Seeder
         $order->device_id = 3;
         $order->client_id = 3;
         $order->arrival_date = new \DateTime('2018-09-20 11:10:15'); 
-        $order->status = Order::ORDER_PENDING;
+        $order->status = Order::ORDER_REVISED;
         $order->save();
 
         $order = new Order();
