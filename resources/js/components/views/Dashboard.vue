@@ -256,13 +256,13 @@
 
 			},
 			saveDelivery(){
-				axios.post("",{
+				axios.post("api/orders/"+this.order+"/deliveries",{
 					headers: {
             'Authorization': `Bearer ${this.$session.get('token')}`
           },
-          tecnico: this.tecnicID,
-          clientCi: this.client.ci ,
-          clientName: this.client.name
+          user_delivery_id: this.tecnicID,
+          client_ci: this.client.ci ,
+          client_name: this.client.name
 				})
 				.then(response => {
 					this.getOrders()
