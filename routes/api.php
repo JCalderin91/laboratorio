@@ -59,6 +59,7 @@ Route::group([
 
     //Ordenes
     Route::apiResource('/orders', 'OrderController');
+    Route::apiResource('/orders.repairs', 'OrderRepairController',  ['only' => ['store', 'update']]);
 
     //Reparaciones
     Route::apiResource('/repairs', 'RepairController');
