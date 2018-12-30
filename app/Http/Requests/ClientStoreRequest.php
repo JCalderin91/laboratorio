@@ -25,8 +25,8 @@ class ClientStoreRequest extends FormRequest
     {
         return [
             'ci'         => 'required|unique:clients,ci|max:8',
-            'first_name' => 'required|max:128',
-            'last_name'  => 'required|max:128',
+            'first_name' => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
+            'last_name'  => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'phone'      => 'max:11',
             'area_id'    => 'required',
         ];
