@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
 
-class OrderDeliveryController extends Controller
+class OrderDeliveryController extends ApiController
 {
     /**
      * Display a listing of the resource.
