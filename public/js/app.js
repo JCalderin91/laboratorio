@@ -16470,7 +16470,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16481,8 +16481,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Widget__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Widget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_Widget__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Modal__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Widget__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__partials_Widget___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__partials_Widget__);
 //
 //
 //
@@ -16522,21 +16524,101 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'dashboard',
 	data: function data() {
 		return {
+			datails: '',
+			stateDevice: '',
+			order: '',
+			tecnicID: '',
+			users: '',
+			states: [{
+				value: 'without repair',
+				name: 'Sin reparación'
+			}, {
+				value: 'repaired',
+				name: 'Reparado'
+			}],
 			orders: []
 		};
 	},
 
 	components: {
-		Widget: __WEBPACK_IMPORTED_MODULE_0__partials_Widget___default.a
+		Widget: __WEBPACK_IMPORTED_MODULE_1__partials_Widget___default.a,
+		Modal: __WEBPACK_IMPORTED_MODULE_0__partials_Modal___default.a
 	},
 	mounted: function mounted() {
 		this.getOrders();
+		this.getUsers();
 	},
 
 	methods: {
@@ -16552,6 +16634,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				_this.orders = response.data.data;
 			}).catch(function (error) {
 				console.log(error);
+			});
+		},
+		saveRepair: function saveRepair() {
+			axios.post("api/orders/" + this.order + "/repairs", {
+				headers: {
+					'Authorization': 'Bearer ' + this.$session.get('token')
+				},
+				tecnico: this.tecnicID,
+				estado: this.state,
+				detalle: this.datails
+			}).then(function (response) {
+				console.log(response);
+			}).catch(function (error) {
+				return console.log(error);
+			});
+		},
+		setOrder: function setOrder(order) {
+			this.order = order.identificador;
+		},
+		getUsers: function getUsers() {
+			var _this2 = this;
+
+			axios.get("/api/users", {
+				headers: {
+					'Authorization': 'Bearer ' + this.$session.get('token')
+				}
+			}).then(function (response) {
+				_this2.users = response.data.data;
+			}).catch(function (error) {
+				return console.log(error);
 			});
 		}
 	},
@@ -16772,7 +16884,17 @@ var render = function() {
                             "a",
                             {
                               staticClass: "btn btn-primary btn-sm",
-                              attrs: { href: "#", title: "Reparar" }
+                              attrs: {
+                                "data-toggle": "modal",
+                                "data-target": "#reparar",
+                                href: "#",
+                                title: "Reparar"
+                              },
+                              on: {
+                                click: function($event) {
+                                  _vm.setOrder(order)
+                                }
+                              }
                             },
                             [_c("i", { staticClass: "fa fa-wrench" })]
                           )
@@ -16795,7 +16917,189 @@ var render = function() {
       1
     ),
     _vm._v(" "),
-    _c("pre", [_vm._v(_vm._s(_vm.$data))])
+    _c("pre", [_vm._v(_vm._s(_vm.$data))]),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "reparar",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body" }, [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Cedula del técnico")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.tecnicID,
+                              expression: "tecnicID"
+                            }
+                          ],
+                          staticClass: "custom-select",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.tecnicID = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Selecione una cedula")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.users, function(user) {
+                            return _c(
+                              "option",
+                              { domProps: { value: user.identificador } },
+                              [_vm._v(_vm._s(user.cedula))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-6" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", [_vm._v("Estado del dispositivo")]),
+                      _vm._v(" "),
+                      _c(
+                        "select",
+                        {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.stateDevice,
+                              expression: "stateDevice"
+                            }
+                          ],
+                          staticClass: "custom-select",
+                          attrs: { required: "" },
+                          on: {
+                            change: function($event) {
+                              var $$selectedVal = Array.prototype.filter
+                                .call($event.target.options, function(o) {
+                                  return o.selected
+                                })
+                                .map(function(o) {
+                                  var val = "_value" in o ? o._value : o.value
+                                  return val
+                                })
+                              _vm.stateDevice = $event.target.multiple
+                                ? $$selectedVal
+                                : $$selectedVal[0]
+                            }
+                          }
+                        },
+                        [
+                          _c("option", { attrs: { value: "" } }, [
+                            _vm._v("Selecione el resultado de la revisión")
+                          ]),
+                          _vm._v(" "),
+                          _vm._l(_vm.states, function(state) {
+                            return _c(
+                              "option",
+                              { domProps: { value: state.value } },
+                              [_vm._v(_vm._s(state.name))]
+                            )
+                          })
+                        ],
+                        2
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-12" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("label", { attrs: { for: "observaciones" } }, [
+                        _vm._v("Observaciones de atencion de orden")
+                      ]),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.datails,
+                            expression: "datails"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { id: "observaciones", rows: "3", required: "" },
+                        domProps: { value: _vm.datails },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.datails = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-secondary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Cancelar")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { "data-dismiss": "modal", type: "button" },
+                    on: { click: _vm.saveRepair }
+                  },
+                  [_vm._v("Guardar")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -16815,6 +17119,31 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Acciones")])
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "h5",
+        { staticClass: "modal-title", attrs: { id: "exampleModalLabel" } },
+        [_vm._v("Ateder orden de revisión")]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
     ])
   }
 ]
@@ -19387,7 +19716,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.modal-wrapper[data-v-6afba85b] {\n\theight: 100vh;\n\twidth: 100vw;\n\tbackground: rgba(0,0,0,0.3);\n\tz-index: 100;\n\tposition: fixed;\n\ttop: 0;\n}\n", ""]);
+exports.push([module.i, "\n.modal-wrapper[data-v-6afba85b] {\n\theight: 100vh;\n\twidth: 100vw;\n\tbackground: rgba(0,0,0,0.3);\n\tz-index: 1000;\n\tposition: fixed;\n\ttop: 0;\n\tleft: 0\n}\n", ""]);
 
 // exports
 
