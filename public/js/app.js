@@ -19785,7 +19785,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n.background img[data-v-438bbc0a]{\n\theight: 100%;\n}\n#logout-link[data-v-438bbc0a] {\n\tcursor: pointer !important;\n\tposition: fixed;\n\tbottom: 0;\n\twidth: 260px;\n}\n.fade-enter-active[data-v-438bbc0a], .fade-leave-active[data-v-438bbc0a] {\n  -webkit-transition: opacity .5s;\n  transition: opacity .5s;\n}\n.fade-enter[data-v-438bbc0a], .fade-leave-to[data-v-438bbc0a] {\n  opacity: 0;\n}\n", ""]);
+exports.push([module.i, "\n.background img[data-v-438bbc0a]{\n\theight: 100%;\n}\n.sidebar-menu li a.router-link-exact-active[data-v-438bbc0a]{\n\t-webkit-filter: brightness(2);\n\t        filter: brightness(2);\n}\n.sidebar-menu li a.router-link-exact-active span[data-v-438bbc0a]{\n\tfont-weight: bold;\n}\n#logout-link[data-v-438bbc0a] {\n\tcursor: pointer !important;\n\tposition: fixed;\n\tbottom: 0;\n\twidth: 260px;\n}\n.fade-enter-active[data-v-438bbc0a], .fade-leave-active[data-v-438bbc0a] {\n  -webkit-transition: opacity .5s;\n  transition: opacity .5s;\n}\n.fade-enter[data-v-438bbc0a], .fade-leave-to[data-v-438bbc0a] {\n  opacity: 0;\n}\n", ""]);
 
 // exports
 
@@ -19798,7 +19798,6 @@ exports.push([module.i, "\n.background img[data-v-438bbc0a]{\n\theight: 100%;\n}
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Modal__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Modal__);
-//
 //
 //
 //
@@ -19970,11 +19969,7 @@ var render = function() {
                 _c("router-link", { attrs: { tag: "a", to: "/" } }, [
                   _c("i", { staticClass: "fa fa-tachometer-alt" }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Principal")]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "badge badge-pill badge-danger" }, [
-                    _vm._v("New")
-                  ])
+                  _c("span", [_vm._v("Principal")])
                 ])
               ],
               1
