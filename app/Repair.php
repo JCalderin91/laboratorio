@@ -24,7 +24,6 @@ class Repair extends Model
         'description', 
     ];
 
-    public $incrementing = false;
     public $timestamps = false;
 
     public function order(){

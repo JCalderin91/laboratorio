@@ -154,12 +154,16 @@
             'Authorization': `Bearer ${this.$session.get('token')}`
           },
           tecnico: this.tecnicID,
-          estado: this.state ,
+          estado: this.stateDevice ,
           detalle: this.datails
 				})
 				.then(response => {
-          console.log(response)
-        })
+					this.getOrders()
+					this.tecnicID = ''
+          this.state = ''
+          this.datails = ''
+          this.order = ''
+				})
         .catch(error => (
           console.log(error)
         ));
