@@ -25,6 +25,9 @@ class Order extends Model
         'arrival_date',
         'description',
         'status',
+        'user_delivery_id',
+        'client_name',
+        'client_ci',
     ];
     
     public function client(){

@@ -33,7 +33,7 @@ class OrderTransformer extends TransformerAbstract
         $attributes = [
             'identificador' => 'id',
             'estado' => 'status',
-            'detalle' => ' description',
+            'detalle' => 'description',
             'fechaCreacion' => 'arrival_date',
             'equipo' => 'device_id',
             'nombre_equipo' => 'name',
