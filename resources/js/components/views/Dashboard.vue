@@ -47,54 +47,56 @@
 				</div>
 			</div>
 
-			<pre>{{$data}}</pre>
+	
 
-			<!-- Modal -->
+			<!-- Modal de reparar -->
 			<div class="modal fade" id="reparar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			  <div class="modal-dialog" role="document">
 			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title" id="exampleModalLabel">Ateder orden de revisión</h5>
-			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-			          <span aria-hidden="true">&times;</span>
-			        </button>
-			      </div>
-			      <div class="modal-body">
-			      	<div class="row">
-			      		<div class="col-md-6">
-			      			<div class="form-group">
-		                <label>Cedula del técnico</label>
+			    	<form @submit.prevent="saveRepair" method="POST">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">Atender orden de revisión</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <div class="modal-body">
+				      	<div class="row">
+				      		<div class="col-md-6">
+				      			<div class="form-group">
+			                <label>Cedula del técnico</label>
 
-		                <select v-model="tecnicID" class="custom-select" required>
-		                  <option value="">Selecione una cedula</option>
-		                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
-		                </select>
+			                <select v-model="tecnicID" class="custom-select" required>
+			                  <option value="">Selecione una cedula</option>
+			                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
+			                </select>
 
-		              </div>
-			      		</div>
-			      		<div class="col-md-6">
-			      			<div class="form-group">
-		                <label>Estado del dispositivo</label>
+			              </div>
+				      		</div>
+				      		<div class="col-md-6">
+				      			<div class="form-group">
+			                <label>Estado del dispositivo</label>
 
-		                <select v-model="stateDevice" class="custom-select" required>
-		                  <option value="">Selecione el resultado de la revisión</option>
-		                  <option v-for="state in states" :value="state.value">{{ state.name }}</option>
-		                </select>
+			                <select v-model="stateDevice" class="custom-select" required>
+			                  <option value="">Selecione el resultado de la revisión</option>
+			                  <option v-for="state in states" :value="state.value">{{ state.name }}</option>
+			                </select>
 
-		              </div>
-			      		</div>
-			      		<div class="col-md-12">
-			      			<div class="form-group">
-		                <label for="observaciones">Observaciones de atencion de orden</label>
-		                <textarea v-model="datails" class="form-control" id="observaciones" rows="3" required></textarea>
-		              </div>
-			      		</div>
-			      	</div>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-			        <button @click="saveRepair" data-dismiss="modal" type="button" class="btn btn-primary">Guardar</button>
-			      </div>
+			              </div>
+				      		</div>
+				      		<div class="col-md-12">
+				      			<div class="form-group">
+			                <label for="observaciones">Observaciones de atencion de orden</label>
+			                <textarea v-model="datails" class="form-control" id="observaciones" rows="3" required></textarea>
+			              </div>
+				      		</div>
+				      	</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+				        <button type="submit" class="btn btn-primary">Guardar</button>
+				      </div>
+			    	</form>
 			    </div>
 			  </div>
 			</div>
@@ -163,10 +165,26 @@
           this.state = ''
           this.datails = ''
           this.order = ''
+          Swal({
+            type: 'success',
+            title: 'Excelente',
+            text: 'Datos guardados con exito',
+            confirmButtonText: 'Continuar',
+          }).then(() => {
+            this.$router.push('/');
+          })
 				})
-        .catch(error => (
-          console.log(error)
-        ));
+        .catch(error => {
+        	Swal({
+            type: 'error',
+            title: 'Alerta',
+            text: error,
+            confirmButtonText: 'Continuar',
+          })
+        }).then(()=>{
+        	$('#reparar').modal('hide')
+        });
+
 			},
 
 			setOrder(order){

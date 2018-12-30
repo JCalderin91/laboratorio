@@ -3,7 +3,7 @@
     <h2>Registro de una nueva orden de servicio</h2>
     <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
 
-
+    <form @submit.prevent="saveOrder" method="POST">
 
       <div class="card">
         <div class="card-header bg-dark">
@@ -84,7 +84,6 @@
                 <input :disabled="!newClient" v-model="client.area" type="text" class="form-control" required>
               </div>
             </div><!-- Area -->
-
           </div>
         </div>
       </div>
@@ -102,7 +101,7 @@
 
             <div class="col-md-6"><!-- Nombre del dispositivo -->
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="nameRegister" v-model="checkNameDevice" required>
+                <input type="checkbox" class="custom-control-input" id="nameRegister" v-model="checkNameDevice">
                 <label class="custom-control-label" for="nameRegister">Nuevo nombre</label>
               </div>
               <div class="form-group">
@@ -127,7 +126,7 @@
 
             <div class="col-md-6"><!-- Marca -->
               <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="brandRegister" v-model="checkBrand" required>
+                <input type="checkbox" class="custom-control-input" id="brandRegister" v-model="checkBrand">
                 <label class="custom-control-label" for="brandRegister">Nueva marca</label>
               </div>
               <div class="form-group">
@@ -153,14 +152,14 @@
             <div class="col-md-6"><!-- Modelo -->
               <div class="form-group">
                 <label>Modelo</label>
-                <input v-model="device.model" type="text" class="form-control" required>
+                <input v-model="device.model" type="text" class="form-control" >
               </div>
             </div><!-- Modelo -->
 
             <div class="col-md-6"><!-- Codigo de bien nacional -->
               <div class="form-group">
                 <div class="custom-control custom-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="bn" v-model="checkBn" required>
+                  <input type="checkbox" class="custom-control-input" id="bn" v-model="checkBn">
                   <label class="custom-control-label" for="bn">Bien nacional</label>
                 </div>
                 <input v-if="checkBn" v-model="device.bn" type="text" class="form-control" style="margin-top: 6px" required>
@@ -207,17 +206,18 @@
           </div>
         </div>
         <div class="card-footer">
-          <a
-            @click.prevent="saveOrder"
+          <button
+            type="submit"
             href="#"
             class="btn btn-success float-right"
-          >Registrar orden de servicio</a>
+          >Registrar orden de servicio</button>
         </div>  
       </div>
 
+    </form>
+
       
-    <pre>{{ $data }}</pre>
-    
+   
 
     <div class="modal" id="clientDevices" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">

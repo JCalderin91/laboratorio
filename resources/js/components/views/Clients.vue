@@ -39,7 +39,7 @@
 					<label for="address">Direcciòn:</label>
 					<select class="form-control" type="text" name="address" v-model="client.address" placeholder="direccion">
 						<option value="">Seleccione Una</option>
-						<option v-for="address in addresses" :value="address.nombre" :key="address.identificador">{{address.nombre}}</option>
+						<option @click="getAreas(address.identificador)" v-for="address in addresses" :value="address.nombre" :key="address.identificador">{{address.nombre}}</option>
 					</select>
 				</div>
 				<div class="form-group col-6">
@@ -84,7 +84,6 @@
 		},
 		mounted() {
 			this.getAddresses()
-			this.getAreas()
 		},
 		methods: {
 			getAddresses() {
@@ -93,14 +92,6 @@
 						headers: {'Authorization': `Bearer ${this.$session.get('token')}` }
 					})
 					.then(response => {this.addresses = response.data.data})
-					.catch(error => {console.log(error)})
-			},
-			getAreas() {
-				axios
-					.get('api/areas', {
-						headers: {'Authorization': `Bearer ${this.$session.get('token')}` }
-					})
-					.then(response => {this.areas = response.data.data})
 					.catch(error => {console.log(error)})
 			},
 			saveClient() {
@@ -116,7 +107,23 @@
 					})
 					.then(response => {console.log(response)})
 					.catch(error => {console.log(error)})
-			}
+			},
+
+      getAreas(area){
+       axios
+        .get("api/addresses/"+area+"/areas", {
+            headers: {
+              'Authorization': `Bearer ${this.$session.get('token')}`
+            }
+          })
+          .then(response => (
+              this.areas = response.data.data
+            ))
+          .catch(error => {
+            console.log(error)
+            this.areas = []
+          });
+      },
 		},
 		components: {
 			ClientList
