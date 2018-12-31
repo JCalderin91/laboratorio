@@ -105,8 +105,24 @@
 						telefono: this.client.phone,
 						identificador_area: this.client.area,
 					})
-					.then(response => {console.log(response)})
-					.catch(error => {console.log(error)})
+					.then(response => {
+						Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos guardados con exito',
+              confirmButtonText: 'Continuar',
+            }).then(() => {
+              this.$router.push('/');
+            })
+					})
+					.catch(error => {
+						Swal({
+              type: 'error',
+              title: 'Alerta',
+              text: error,
+              confirmButtonText: 'Continuar',
+            })
+					})
 			},
 
       getAreas(area){

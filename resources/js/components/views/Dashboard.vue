@@ -49,7 +49,7 @@
 				</div>
 			</div>
 
-			<pre>{{$data}}</pre>
+		
 
 			<!-- Modal de reparar -->
 			<div class="modal fade" id="reparar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -269,6 +269,7 @@
 					this.tecnicID = ''
           this.client.ci  = ''
           this.client.name = ''
+          this.sameClientCheck= false
           Swal({
             type: 'success',
             title: 'Excelente',

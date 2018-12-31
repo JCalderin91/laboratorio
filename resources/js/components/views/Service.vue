@@ -217,8 +217,6 @@
     </form>
 
       
-   
-
     <div class="modal" id="clientDevices" tabindex="-1" role="dialog">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -456,7 +454,7 @@
         this.device.brand =  device.marca
         this.device.model =  device.modelo
         this.device.bn = device.bienNacinal
-        this.device.description = device.bienNacinal
+        this.device.description = device.description
         if (this.device.bn) this.checkBn = true
         else this.checkBn = false
         this.checkNameDevice = true

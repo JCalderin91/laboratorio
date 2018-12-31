@@ -20,7 +20,7 @@
 					{{ client.nombres + ' ' + client.apellidos }}
 				</td>
 				<td>
-					{{ client.area }}
+					{{ client.nombre_area }}
 				</td>
 				<td>
 					{{ client.telefono }}
