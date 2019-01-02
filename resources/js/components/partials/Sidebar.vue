@@ -49,7 +49,7 @@
 						<li class="sidebar">
 							<router-link tag="a" to="/dispositivos">
 								<i class="fa fa-laptop"></i>
-							  <span>Equipos</span>
+							  <span>Dispositivos</span>
 							</router-link>
 						</li>
 
@@ -63,7 +63,8 @@
 						<li class="sidebar">
 							<router-link tag="a" to="/usuarios">
 								<i class="fa fa-id-badge "></i>
-							  <span>Usuarios</span>
+							  <span v-if="isAdmin" >Usuarios</span>
+							  <span v-else >Técnicos</span>
 							</router-link>
 						</li>
 
