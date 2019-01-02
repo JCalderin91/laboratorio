@@ -100,7 +100,11 @@ class OrderTransformer extends TransformerAbstract
     public function includeReparacion(Order $order){
         
         $device = $order->repair;
-
-        return $this->item($device, new RepairTransformer);
+        
+        if(!$device){
+            return null;
+        }else{
+            return $this->item($device, new RepairTransformer);
+        }
     }
 }
