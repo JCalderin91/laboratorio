@@ -1,4 +1,4 @@
-  <template>
+<template>
 	<div class="card" style="margin: 10px;">
     <div class="card-content">
       

@@ -16,7 +16,8 @@
 						<span class="user-name">
 							{{ name }}
 						</span>
-						<span class="user-role">Administrator</span>
+						<span v-if="isAdmin" class="user-role">Profesor</span>
+						<span v-else class="user-role">Técnico</span>
 					</div>
 				</div>
 				<div class="sidebar-menu">
@@ -73,14 +74,14 @@
 							</router-link>
 						</li>
 
-						<li class="sidebar">
+						<li v-if="isAdmin" class="sidebar">
 							<router-link tag="a" to="/reportes">
 								<i class="fa fa-tachometer-alt"></i>
 							  <span>Reportes</span>
 							</router-link>
 						</li>
 
-						<li class="sidebar">
+						<li v-if="isAdmin" class="sidebar">
 							<router-link tag="a" to="/conf">
 								<i class="fa fa-cogs"></i>
 							  <span>Configuraciones</span>
@@ -112,7 +113,8 @@
 		data() {
 			return {
 				showModal: false,
-				name: this.$session.get('name')
+				name: this.$session.get('name'),
+				isAdmin: this.$session.get('isAdmin')
 			}
 		},
 		methods: {

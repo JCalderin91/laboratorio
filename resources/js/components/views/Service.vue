@@ -18,7 +18,7 @@
               <label>Cédula</label>
               <div class="input-group">
                 <input
-                  @keypress.enter="searchClient(client.ci)"
+                  @keypress.enter.prevent="searchClient(client.ci)"
                   @blur="searchClient(client.ci)"
                   @input="resetClient()"
                   v-model="client.ci"

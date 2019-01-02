@@ -17931,7 +17931,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -17942,13 +17942,44 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n", ""]);
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_DeviceList__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_DeviceList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_DeviceList__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'devices'
+	name: 'devices',
+	data: function data() {
+		return {
+			device: {
+				ci: '',
+				first_name: '',
+				last_name: '',
+				phone: '',
+				area: '',
+				address: ''
+			}
+		};
+	},
+
+	components: {
+		DeviceList: __WEBPACK_IMPORTED_MODULE_0__partials_DeviceList___default.a
+	}
 });
 
 /***/ }),
@@ -17959,7 +17990,35 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("Devices View")])
+  return _c(
+    "div",
+    { staticClass: "card col-11", staticStyle: { margin: "10px" } },
+    [
+      _c("div", { staticClass: "card-content row" }, [
+        _c("div", { staticClass: "card-title col-12 p-0" }, [
+          !_vm.deviceForm
+            ? _c("h4", [_vm._v("Lista de los dispositivos")])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        !_vm.deviceForm
+          ? _c(
+              "div",
+              { staticClass: "col-12 row" },
+              [
+                _c("input", {
+                  staticClass: "form-control col-4 ml-auto",
+                  attrs: { type: "text", placeholder: "Buscar..." }
+                }),
+                _vm._v(" "),
+                _c("device-list")
+              ],
+              1
+            )
+          : _vm._e()
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -18104,6 +18163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.$session.set('password', this.contraseña);
 			this.$session.set('token', data.access_token);
 			this.$session.set('name', data.user.original.data.nombre + ' ' + data.user.original.data.apellido);
+			this.$session.set('isAdmin', data.user.original.data.esAdministrador);
 			this.loading = false;
 			window.location = '/';
 		},
@@ -19058,6 +19118,7 @@ var render = function() {
                         ) {
                           return null
                         }
+                        $event.preventDefault()
                         _vm.searchClient(_vm.client.ci)
                       },
                       blur: function($event) {
@@ -20323,6 +20384,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -20330,7 +20392,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			showModal: false,
-			name: this.$session.get('name')
+			name: this.$session.get('name'),
+			isAdmin: this.$session.get('isAdmin')
 		};
 	},
 
@@ -20372,7 +20435,9 @@ var render = function() {
               _vm._v("\n\t\t\t\t\t" + _vm._s(_vm.name) + "\n\t\t\t\t")
             ]),
             _vm._v(" "),
-            _c("span", { staticClass: "user-role" }, [_vm._v("Administrator")])
+            _vm.isAdmin
+              ? _c("span", { staticClass: "user-role" }, [_vm._v("Profesor")])
+              : _c("span", { staticClass: "user-role" }, [_vm._v("Técnico")])
           ])
         ]),
         _vm._v(" "),
@@ -20475,31 +20540,39 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/reportes" } }, [
-                  _c("i", { staticClass: "fa fa-tachometer-alt" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Reportes")])
-                ])
-              ],
-              1
-            ),
+            _vm.isAdmin
+              ? _c(
+                  "li",
+                  { staticClass: "sidebar" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { tag: "a", to: "/reportes" } },
+                      [
+                        _c("i", { staticClass: "fa fa-tachometer-alt" }),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("Reportes")])
+                      ]
+                    )
+                  ],
+                  1
+                )
+              : _vm._e(),
             _vm._v(" "),
-            _c(
-              "li",
-              { staticClass: "sidebar" },
-              [
-                _c("router-link", { attrs: { tag: "a", to: "/conf" } }, [
-                  _c("i", { staticClass: "fa fa-cogs" }),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("Configuraciones")])
-                ])
-              ],
-              1
-            )
+            _vm.isAdmin
+              ? _c(
+                  "li",
+                  { staticClass: "sidebar" },
+                  [
+                    _c("router-link", { attrs: { tag: "a", to: "/conf" } }, [
+                      _c("i", { staticClass: "fa fa-cogs" }),
+                      _vm._v(" "),
+                      _c("span", [_vm._v("Configuraciones")])
+                    ])
+                  ],
+                  1
+                )
+              : _vm._e()
           ])
         ]),
         _vm._v(" "),
@@ -20640,6 +20713,216 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(89)
+/* template */
+var __vue_template__ = __webpack_require__(90)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/partials/DeviceList.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4fcf24d6", Component.options)
+  } else {
+    hotAPI.reload("data-v-4fcf24d6", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'device-list',
+	data: function data() {
+		return {
+			devices: []
+		};
+	},
+	mounted: function mounted() {
+		this.list();
+	},
+
+	methods: {
+		list: function list() {
+			var _this = this;
+
+			axios.get("/api/devices", {
+				headers: {
+					'Authorization': 'Bearer ' + this.$session.get('token')
+				}
+			}).then(function (response) {
+				_this.devices = response.data.data;
+			}).catch(function (error) {
+				return console.log(error);
+			});
+		}
+	}
+});
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("table", { staticClass: "table table-striped table-hover mt-4" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c(
+      "tbody",
+      _vm._l(_vm.devices, function(device) {
+        return _c(
+          "tr",
+          { key: device.identificador, staticClass: "text-center" },
+          [
+            _c("td", [
+              _vm._v("\n\t\t\t\t" + _vm._s(device.nombre) + "\n\t\t\t")
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v("\n\t\t\t\t" + _vm._s(device.marca) + "\n\t\t\t")
+            ]),
+            _vm._v(" "),
+            _c("td", [
+              _vm._v("\n\t\t\t\t" + _vm._s(device.modelo) + "\n\t\t\t")
+            ]),
+            _vm._v(" "),
+            _vm.bienNacional
+              ? _c("td", [
+                  _vm._v(
+                    "\n\t\t\t\t" + _vm._s(device.bienNacional) + "\n\t\t\t"
+                  )
+                ])
+              : _c("td", [_vm._v("\n\t\t\t\tPropio\n\t\t\t")]),
+            _vm._v(" "),
+            _vm._m(1, true)
+          ]
+        )
+      })
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "bg-dark text-white text-center" }, [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Marca")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Modelo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Bien Nacional")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { staticClass: "waves-effect waves-light btn-small" }, [
+        _c("i", { staticClass: "fas fa-pen" })
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4fcf24d6", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
