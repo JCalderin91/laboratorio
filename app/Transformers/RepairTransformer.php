@@ -16,7 +16,7 @@ class RepairTransformer extends TransformerAbstract
     {
         return [
             'identificador' => (int)$repair->id,
-            'orden' => (int)$repair->order_id,
+           // 'orden' => (int)$repair->order_id,
             'tecnico' => (int)$repair->user_id,
             'estado' => (string)$repair->status,
             'fechaCreacion' => (string)$repair->created,

@@ -71,4 +71,7 @@ Route::group([
     //Sub-equipos
     Route::apiResource('/sub-devices', 'SubDeviceController'); 
 
+
+    Route::post('/reports', 'ReportController@index');
+
 });

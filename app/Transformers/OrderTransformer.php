@@ -11,6 +11,7 @@ class OrderTransformer extends TransformerAbstract
         'tecnico',
         'cliente',
         'equipo',
+        'reparacion'
     ];
     
     /**
@@ -94,5 +95,12 @@ class OrderTransformer extends TransformerAbstract
         $device = $order->device;
 
         return $this->item($device, new DeviceTransformer);
+    }
+
+    public function includeReparacion(Order $order){
+        
+        $device = $order->repair;
+
+        return $this->item($device, new RepairTransformer);
     }
 }
