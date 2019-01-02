@@ -3,33 +3,36 @@
 	<table class="table table-striped table-hover mt-4">
 		<thead class="bg-dark text-white text-center">
 			<tr>
+				<th>Cedula</th>
 				<th>Nombre</th>
-				<th>Marca</th>
-				<th>Modelo</th>
-				<th>Bien Nacional</th>
+				<th>apellido</th>
+				<th>Genero</th>
+				<th v-if="isAdmin" >Rol</th>
 				<th>Opciones</th>
 			</tr>
 		</thead>
 
 		<tbody>
-			<tr v-for="device in devices" :key="device.identificador" class="text-center">
+			<tr v-for="user in users" :key="user.identificador" class="text-center">
 				<td>
-					{{ device.nombre }}
-				</td>
-				<td>
-					{{ device.marca }}
+					{{ user.cedula }}
 				</td>
 				<td>
-					{{ device.modelo }}
-				</td>
-				<td v-if="bienNacional">
-					{{ device.bienNacional }}
-				</td>
-				<td v-else>
-					No
+					{{ user.nombre }}
 				</td>
 				<td>
-					<a class="waves-effect waves-light btn-small">
+					{{ user.apellido }}
+				</td>
+				<td>
+					<span v-if="user.sexo === 'F'" >Femenino</span>
+					<span v-else >Masculino</span>
+				</td>
+				<td v-if="isAdmin" >
+					<span v-if="user.esAdministrador" >Profesor</span>
+					<span v-else >Ténico</span>
+				</td>
+				<td>
+					<a class="btn btn-sm">
 						<i class="fas fa-pen"></i>
 					</a>
 				</td>
@@ -41,10 +44,11 @@
 
 <script>
 	export default {
-		name: 'device-list',
+		name: 'user-list',
 		data () {
 			return {
-				devices: [],
+				isAdmin: this.$session.get('isAdmin'),
+				users: [],
 			}
 		},
 		mounted(){
@@ -53,13 +57,13 @@
 		methods:{
 			list(){
 				axios
-					.get("/api/devices", {
+					.get("/api/users", {
 						headers: {
 							'Authorization': `Bearer ${this.$session.get('token')}`
 						}
 					})
 					.then(response => {
-						this.devices = response.data.data
+						this.users = response.data.data
 					})
 					.catch(error => (
 						console.log(error)

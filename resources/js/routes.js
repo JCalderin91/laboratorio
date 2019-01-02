@@ -7,6 +7,7 @@ import Devices from './components/views/Devices'
 import Login from './components/views/Login'
 import Users from './components/views/Users'
 import Service from './components/views/Service'
+import Reports from './components/views/Reports'
 
 const routes = [
 	{
@@ -53,6 +54,11 @@ const routes = [
 		path: '/servicio',
 		name: 'service',
 		component: Service,
+	},
+	{
+		path: '/reportes',
+		name: 'reports',
+		component: Reports,
 	},
 ];
 

@@ -84,7 +84,6 @@
 				this.$session.set('token', data.access_token)
 				this.$session.set('name', data.user.original.data.nombre + ' ' + data.user.original.data.apellido)
 				this.$session.set('isAdmin', data.user.original.data.esAdministrador)
-				this.loading = false;
 				window.location = '/'
 			},
 			loginFailed() {
