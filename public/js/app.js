@@ -20962,7 +20962,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -21048,61 +21048,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'users',
-  data: function data() {
-    return {
-      from: '',
-      to: '',
-      status: '',
-      user_id: '',
-      filter_by: 'user',
-      users: '',
-      reports: ''
-    };
-  },
-  mounted: function mounted() {
-    this.getUsers();
-  },
+	name: 'users',
+	data: function data() {
+		return {
+			from: '',
+			to: '',
+			status: '',
+			user_id: '',
+			filter_by: 'user',
+			users: '',
+			reports: '',
+			statuses: []
+		};
+	},
+	mounted: function mounted() {
+		this.getUsers();
+	},
 
-  methods: {
-    getUsers: function getUsers() {
-      var _this = this;
+	methods: {
+		getUsers: function getUsers() {
+			var _this = this;
 
-      axios.get("/api/users", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
-        _this.users = response.data.data;
-      }).catch(function (error) {
-        return console.log(error);
-      });
-    },
-    getReport: function getReport() {
-      var _this2 = this;
+			axios.get("/api/users", {
+				headers: {
+					'Authorization': 'Bearer ' + this.$session.get('token')
+				}
+			}).then(function (response) {
+				_this.users = response.data.data;
+			}).catch(function (error) {
+				return console.log(error);
+			});
+		},
+		changeUser: function changeUser() {
+			if (this.user_id == 'all') {
+				this.statuses = [{ value: 'pending', name: 'Pendiente' }, { value: 'revised', name: 'Revisado' }, { value: 'delivered', name: 'Entregado' }];
+			} else {
+				this.statuses = [{ value: 'pending', name: 'Recibidos' }, { value: 'revised', name: 'Revisados' }, { value: 'delivered', name: 'Entregados' }];
+			}
+		},
+		getReport: function getReport() {
+			var _this2 = this;
 
-      if (this.user_id == 'all') this.filter_by = 'order';
-      axios.post("api/reports", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        },
-        from: this.from + ' 00:00',
-        to: this.to + ' 24:00',
-        status: this.status,
-        user_id: this.user_id,
-        filter_by: this.filter_by
-      }).then(function (response) {
-        _this2.reports = response.data.data;
-      }).catch(function (error) {
-        return console.log(error);
-      });
-    }
-  }
+			if (this.user_id == 'all') this.filter_by = 'order';
+			axios.post("api/reports", {
+				headers: {
+					'Authorization': 'Bearer ' + this.$session.get('token')
+				},
+				from: this.from + ' 00:00',
+				to: this.to + ' 24:00',
+				status: this.status,
+				user_id: this.user_id,
+				filter_by: this.filter_by
+			}).then(function (response) {
+				_this2.reports = response.data.data;
+			}).catch(function (error) {
+				return console.log(error);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -21145,7 +21150,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "date", placeholder: "Seleccione una fecha" },
+                attrs: {
+                  type: "date",
+                  placeholder: "Seleccione una fecha",
+                  required: ""
+                },
                 domProps: { value: _vm.from },
                 on: {
                   input: function($event) {
@@ -21173,7 +21182,11 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "date", placeholder: "Selecione una fecha" },
+                attrs: {
+                  type: "date",
+                  placeholder: "Selecione una fecha",
+                  required: ""
+                },
                 domProps: { value: _vm.to },
                 on: {
                   input: function($event) {
@@ -21205,21 +21218,24 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { name: "", id: "" },
+                  attrs: { name: "", id: "", required: "" },
                   on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.user_id = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.user_id = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      _vm.changeUser
+                    ]
                   }
                 },
                 [
@@ -21262,7 +21278,7 @@ var render = function() {
                     }
                   ],
                   staticClass: "form-control",
-                  attrs: { name: "", id: "" },
+                  attrs: { name: "", id: "", required: "" },
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -21284,20 +21300,13 @@ var render = function() {
                     _vm._v("Seleccione un estado")
                   ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "all" } }, [_vm._v("Todos")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "pending" } }, [
-                    _vm._v("Pendiente")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "revised" } }, [
-                    _vm._v("Reparado")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "delivered" } }, [
-                    _vm._v("Entregado")
-                  ])
-                ]
+                  _vm._l(_vm.statuses, function(item) {
+                    return _c("option", { domProps: { value: item.value } }, [
+                      _vm._v(_vm._s(item.name))
+                    ])
+                  })
+                ],
+                2
               )
             ])
           ])

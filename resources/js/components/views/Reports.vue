@@ -7,21 +7,21 @@
 	    	<div class="col-md-6">
 					<div class="form-group">
 						<label >Fecha inicial</label>
-						<input v-model="from" type="date" class="form-control" placeholder="Seleccione una fecha">
+						<input v-model="from" type="date" class="form-control" placeholder="Seleccione una fecha" required>
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
 						<label >Fecha Final</label>
-						<input v-model="to" type="date" class="form-control" placeholder="Selecione una fecha">
+						<input v-model="to" type="date" class="form-control" placeholder="Selecione una fecha" required>
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="">Usuario resposable de las ordenes</label>
-						<select v-model="user_id" name="" id="" class="form-control">
+						<select @change="changeUser" v-model="user_id" name="" id="" class="form-control" required>
 							<option value="">seleccione un usuario</option>
 							<option value="all">Todos</option>
 							<option v-for="user in users" :value="user.identificador">{{user.cedula}} - {{ user.nombre }}</option>
@@ -32,12 +32,9 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Estado de orden</label>
-						<select v-model="status" name="" id="" class="form-control">
+						<select v-model="status" name="" id="" class="form-control" required>
 							<option value="">Seleccione un estado</option>
-							<option value="all">Todos</option>
-							<option value="pending">Pendiente</option>
-							<option value="revised">Reparado</option>
-							<option value="delivered">Entregado</option>
+							<option v-for="item in statuses" :value="item.value">{{ item.name }}</option>
 						</select>
 					</div>
 				</div>
@@ -88,6 +85,7 @@
 				filter_by: 'user',
 				users:'',
 				reports:'',
+				statuses:[]
 			}
 		},
 		mounted(){
@@ -107,6 +105,22 @@
           .catch(error => (
             console.log(error)
           ));
+      },
+      changeUser(){
+      	if (this.user_id == 'all') {
+      		this.statuses = [
+						{value:'pending',name:'Pendiente'},
+						{value:'revised',name:'Revisado'},
+						{value:'delivered',name:'Entregado'},
+					]
+      	} else {
+      		this.statuses = [
+						{value:'pending',name:'Recibidos'},
+						{value:'revised',name:'Revisados'},
+						{value:'delivered',name:'Entregados'},
+					]
+
+      	}
       },
 			getReport(){
 				if(this.user_id=='all') this.filter_by='order'
