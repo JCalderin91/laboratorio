@@ -20,19 +20,6 @@
 
 				<div class="col-md-6">
 					<div class="form-group">
-						<label>Estado de orden</label>
-						<select v-model="status" name="" id="" class="form-control">
-							<option value="">Seleccione un estado</option>
-							<option value="all">Todos</option>
-							<option value="pending">Pendiente</option>
-							<option value="repair">Reparado</option>
-							<option value="delivered">Entregado</option>
-						</select>
-					</div>
-				</div>
-
-				<div class="col-md-6">
-					<div class="form-group">
 						<label for="">Usuario resposable de las ordenes</label>
 						<select v-model="user_id" name="" id="" class="form-control">
 							<option value="">seleccione un usuario</option>
@@ -41,6 +28,20 @@
 						</select>
 					</div>
 				</div>
+
+				<div class="col-md-6">
+					<div class="form-group">
+						<label>Estado de orden</label>
+						<select v-model="status" name="" id="" class="form-control">
+							<option value="">Seleccione un estado</option>
+							<option value="all">Todos</option>
+							<option value="pending">Pendiente</option>
+							<option value="revised">Reparado</option>
+							<option value="delivered">Entregado</option>
+						</select>
+					</div>
+				</div>
+
 	    </div>
 	    <button type="submit" class="btn btn-success">Consultar</button>
 		</form>
@@ -55,7 +56,6 @@
 								<th>Técnico</th>
 								<th>Cliente</th>
 								<th>Equipo</th>
-								<th v-if="status != 'pending'">Estado dispositivo</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -65,14 +65,14 @@
 								<td>{{report.tecnico.data.cedula}}</td>
 								<td>{{report.cliente.data.cedula}}</td>
 								<td>{{report.equipo.data.nombre}}</td>
-								<td v-if="status != 'pending'">{{report.reparacion.data.estado}}</td>
+
 							</tr>
 						</tbody>
 					</table>
 				</div>				
 			</div>
 
-
+	<pre>{{$data}}</pre>
 	</div>
 </template>
 
@@ -109,7 +109,7 @@
           ));
       },
 			getReport(){
-				if(this.users=='all') this.filter_by='order'
+				if(this.user_id=='all') this.filter_by='order'
         axios
         .post("api/reports", {
             headers: {

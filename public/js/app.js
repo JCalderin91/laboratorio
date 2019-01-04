@@ -21288,7 +21288,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getReport: function getReport() {
       var _this2 = this;
 
-      if (this.users == 'all') this.filter_by = 'order';
+      if (this.user_id == 'all') this.filter_by = 'order';
       axios.post("api/reports", {
         headers: {
           'Authorization': 'Bearer ' + this.$session.get('token')
@@ -21391,62 +21391,6 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "form-group" }, [
-              _c("label", [_vm._v("Estado de orden")]),
-              _vm._v(" "),
-              _c(
-                "select",
-                {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.status,
-                      expression: "status"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { name: "", id: "" },
-                  on: {
-                    change: function($event) {
-                      var $$selectedVal = Array.prototype.filter
-                        .call($event.target.options, function(o) {
-                          return o.selected
-                        })
-                        .map(function(o) {
-                          var val = "_value" in o ? o._value : o.value
-                          return val
-                        })
-                      _vm.status = $event.target.multiple
-                        ? $$selectedVal
-                        : $$selectedVal[0]
-                    }
-                  }
-                },
-                [
-                  _c("option", { attrs: { value: "" } }, [
-                    _vm._v("Seleccione un estado")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "all" } }, [_vm._v("Todos")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "pending" } }, [
-                    _vm._v("Pendiente")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "repair" } }, [
-                    _vm._v("Reparado")
-                  ]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "delivered" } }, [
-                    _vm._v("Entregado")
-                  ])
-                ]
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("div", { staticClass: "form-group" }, [
               _c("label", { attrs: { for: "" } }, [
                 _vm._v("Usuario resposable de las ordenes")
               ]),
@@ -21502,6 +21446,62 @@ var render = function() {
                 2
               )
             ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c("label", [_vm._v("Estado de orden")]),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.status,
+                      expression: "status"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: "", id: "" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.status = $event.target.multiple
+                        ? $$selectedVal
+                        : $$selectedVal[0]
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Seleccione un estado")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "all" } }, [_vm._v("Todos")]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "pending" } }, [
+                    _vm._v("Pendiente")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "revised" } }, [
+                    _vm._v("Reparado")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "delivered" } }, [
+                    _vm._v("Entregado")
+                  ])
+                ]
+              )
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -21517,23 +21517,7 @@ var render = function() {
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-12 mt-3" }, [
             _c("table", { staticClass: "table" }, [
-              _c("thead", [
-                _c("tr", [
-                  _c("th", [_vm._v("Estado Orden")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Fecha")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Técnico")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Cliente")]),
-                  _vm._v(" "),
-                  _c("th", [_vm._v("Equipo")]),
-                  _vm._v(" "),
-                  _vm.status != "pending"
-                    ? _c("th", [_vm._v("Estado dispositivo")])
-                    : _vm._e()
-                ])
-              ]),
+              _vm._m(0),
               _vm._v(" "),
               _c(
                 "tbody",
@@ -21547,23 +21531,38 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(report.cliente.data.cedula))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(report.equipo.data.nombre))]),
-                    _vm._v(" "),
-                    _vm.status != "pending"
-                      ? _c("td", [
-                          _vm._v(_vm._s(report.reparacion.data.estado))
-                        ])
-                      : _vm._e()
+                    _c("td", [_vm._v(_vm._s(report.equipo.data.nombre))])
                   ])
                 })
               )
             ])
           ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("pre", [_vm._v(_vm._s(_vm.$data))])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Estado Orden")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Fecha")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Técnico")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Cliente")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Equipo")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
