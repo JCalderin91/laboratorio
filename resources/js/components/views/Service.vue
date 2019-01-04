@@ -303,6 +303,7 @@
       this.getSubDevice()
       this.getBrands()
       this.getUsers()
+      
     },
 
     methods: {

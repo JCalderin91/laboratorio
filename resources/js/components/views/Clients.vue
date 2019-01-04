@@ -1,5 +1,5 @@
 <template>
-	<div class="card col-11" style="margin: 10px;">
+	<div class="card" style="margin: 10px;">
 		<div class="card-content row">
 
 			<div class="card-title col-12 p-0">
