@@ -14,6 +14,7 @@ class ReportController extends ApiController
     {
         $from = Carbon::parse($request->from)->format('Y-m-d H:i:s');
         $to = Carbon::parse($request->to)->format('Y-m-d H:i:s');
+        $user = $request->user_id;
 
         $query_order = Order::query();
         $query_user = User::query();
@@ -33,8 +34,28 @@ class ReportController extends ApiController
         });
 
         $query_order->when(request('filter_by') == 'orders' && request('status') == 'delivered', function ($q) use ($from, $to)  {
+            return $q->whereBetween('delivery_date', [$from, $to])->get();
+
+        });
+
+        $query_order->when(request('filter_by') == 'user' && request('status') == 'pending', function ($q) use ($from, $to, $user)  {
+            return $q->whereBetween('arrival_date', [$from, $to])
+                        ->where('user_id', $user)
+                        ->get();
+
+        });
+
+        $query_order->when(request('filter_by') == 'user' && request('status') == 'revised', function ($q) use ($from, $to, $user)  {
+            return $q->whereHas('repair', function ($query) use ($from, $to, $user)  {
+                    $query->whereBetween('created', [$from, $to])
+                    ->where('user_id', $user);
+            })->get();
+            
+        });
+
+        $query_order->when(request('filter_by') == 'user' && request('status') == 'delivered', function ($q) use ($from, $to, $user)  {
             return $q->whereBetween('delivery_date', [$from, $to])
-                        ->where('status', 'delivered')->get();
+                        ->where('user_delivery_id', $user)->get();
 
         });
 
