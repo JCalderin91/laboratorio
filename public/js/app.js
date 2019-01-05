@@ -21293,7 +21293,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getReport: function getReport() {
 			var _this2 = this;
 
-			if (this.user_id == 'all') this.filter_by = 'order';
+			if (this.user_id == 'all') this.filter_by = 'orders';
 			axios.post("api/reports", {
 				headers: {
 					'Authorization': 'Bearer ' + this.$session.get('token')

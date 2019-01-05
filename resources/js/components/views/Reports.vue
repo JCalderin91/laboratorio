@@ -123,7 +123,7 @@
       	}
       },
 			getReport(){
-				if(this.user_id=='all') this.filter_by='order'
+				if(this.user_id=='all') this.filter_by='orders'
         axios
         .post("api/reports", {
             headers: {
