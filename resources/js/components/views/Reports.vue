@@ -61,14 +61,18 @@
 								<td>{{report.estado}}</td>
 								<td>{{report.fechaCreacion}}</td>
 	
-								<td v-if="report.reparacion" >{{report.reparacion.data.tecnico}}</td>
-								<td v-else >{{report.tecnico.data.cedula}}</td>
+								<td>
+									<span v-if="report.reparacion">{{report.reparacion.data.tecnico}}</span>									
+									<span v-else >{{report.tecnico.data.cedula}}</span>
+								</td>
 
 								<td>{{report.cliente.data.cedula}}</td>
 								<td>{{report.equipo.data.nombre}}</td>
 
-								<td v-if="report.reparacion" >{{report.reparacion.data.estado}}</td>
-								<td v-else >No revisado</td>
+								<td>
+									<span v-if="report.reparacion" >{{report.reparacion.data.estado}}</span>
+									<span v-else >No revisado</span>
+								</td>
 
 							</tr>
 						</tbody>

@@ -45,7 +45,7 @@
 		name: 'area-list',
 		data () {
       return {
-        addresses: '',
+        areas: '',
         newAddress: false
       }
     },
@@ -61,7 +61,7 @@
             }
           })
 	        .then(response => (
-	        		this.addresses = response.data.data
+	        		this.areas = response.data.data
 	        	))
 	        .catch(error => (
 	        		console.log(error)
