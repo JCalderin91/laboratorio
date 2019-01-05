@@ -21164,7 +21164,7 @@ exports = module.exports = __webpack_require__(2)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -21175,6 +21175,13 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -21536,11 +21543,21 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(report.fechaCreacion))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(report.tecnico.data.cedula))]),
+                    report.reparacion
+                      ? _c("td", [
+                          _vm._v(_vm._s(report.reparacion.data.tecnico))
+                        ])
+                      : _c("td", [_vm._v(_vm._s(report.tecnico.data.cedula))]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(report.cliente.data.cedula))]),
                     _vm._v(" "),
-                    _c("td", [_vm._v(_vm._s(report.equipo.data.nombre))])
+                    _c("td", [_vm._v(_vm._s(report.equipo.data.nombre))]),
+                    _vm._v(" "),
+                    report.reparacion
+                      ? _c("td", [
+                          _vm._v(_vm._s(report.reparacion.data.estado))
+                        ])
+                      : _c("td", [_vm._v("No revisado")])
                   ])
                 })
               )
@@ -21567,7 +21584,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Cliente")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Equipo")])
+        _c("th", [_vm._v("Dispositivo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Estado de dispositivo")])
       ])
     ])
   }

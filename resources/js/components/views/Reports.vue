@@ -52,16 +52,23 @@
 								<th>Fecha</th>
 								<th>Técnico</th>
 								<th>Cliente</th>
-								<th>Equipo</th>
+								<th>Dispositivo</th>
+								<th>Estado de dispositivo</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr v-for="report in reports">
 								<td>{{report.estado}}</td>
 								<td>{{report.fechaCreacion}}</td>
-								<td>{{report.tecnico.data.cedula}}</td>
+	
+								<td v-if="report.reparacion" >{{report.reparacion.data.tecnico}}</td>
+								<td v-else >{{report.tecnico.data.cedula}}</td>
+
 								<td>{{report.cliente.data.cedula}}</td>
 								<td>{{report.equipo.data.nombre}}</td>
+
+								<td v-if="report.reparacion" >{{report.reparacion.data.estado}}</td>
+								<td v-else >No revisado</td>
 
 							</tr>
 						</tbody>
