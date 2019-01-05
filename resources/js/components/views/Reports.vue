@@ -62,7 +62,7 @@
 								<td>{{report.fechaCreacion}}</td>
 	
 								<td>
-									<span v-if="report.reparacion">{{report.reparacion.data.tecnico}}</span>									
+									<span v-if="report.reparacion">{{report.reparacion.data.tecnico.data.cedula}}</span>									
 									<span v-else >{{report.tecnico.data.cedula}}</span>
 								</td>
 

@@ -21420,7 +21420,9 @@ var render = function() {
                     _c("td", [
                       report.reparacion
                         ? _c("span", [
-                            _vm._v(_vm._s(report.reparacion.data.tecnico))
+                            _vm._v(
+                              _vm._s(report.reparacion.data.tecnico.data.cedula)
+                            )
                           ])
                         : _c("span", [
                             _vm._v(_vm._s(report.tecnico.data.cedula))
