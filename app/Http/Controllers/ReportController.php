@@ -17,7 +17,7 @@ class ReportController extends ApiController
         $user = $request->user_id;
 
         $query_order = Order::query();
-        $query_user = User::query();
+   
 
         $query_order->when(request('filter_by') == 'orders' && request('status') == 'pending', function ($q) use ($from, $to)  {
             return $q->whereBetween('arrival_date', [$from, $to])
