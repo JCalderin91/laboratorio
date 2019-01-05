@@ -119,12 +119,14 @@
       },
       changeUser(){
       	if (this.user_id == 'all') {
+      		this.filter_by = 'orders'
       		this.statuses = [
 						{value:'pending',name:'Pendiente'},
 						{value:'revised',name:'Revisado'},
 						{value:'delivered',name:'Entregado'},
 					]
       	} else {
+      		this.filter_by = 'user'
       		this.statuses = [
 						{value:'pending',name:'Recibidos'},
 						{value:'revised',name:'Revisados'},
@@ -134,7 +136,6 @@
       	}
       },
 			getReport(){
-				if(this.user_id=='all') this.filter_by='orders'
         axios
         .post("api/reports", {
             headers: {
