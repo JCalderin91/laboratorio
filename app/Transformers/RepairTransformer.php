@@ -12,12 +12,14 @@ class RepairTransformer extends TransformerAbstract
      *
      * @return array
      */
+
+    protected $defaultIncludes = ['tecnico'];
+
     public function transform(Repair $repair)
     {
         return [
             'identificador' => (int)$repair->id,
            // 'orden' => (int)$repair->order_id,
-            'tecnico' => (int)$repair->user_id,
             'estado' => (string)$repair->status,
             'fechaCreacion' => (string)$repair->created,
             'detalle' => (string)$repair->description,
@@ -51,5 +53,12 @@ class RepairTransformer extends TransformerAbstract
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
        
+    }
+
+    public function includeTecnico(Repair $repair){
+        
+        $user = $repair->user;
+
+        return $this->item($user, new UserTransformer);
     }
 }
