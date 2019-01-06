@@ -18,9 +18,9 @@
               <label>Cédula</label>
               <div class="input-group">
                 <input
-                  @keypress.enter.prevent="searchClient(client.ci)"
-                  @blur="searchClient(client.ci)"
-                  @input="resetClient()"
+                  @keypress.enter.prevent="searchClient"
+                  @blur="searchClient"
+                  @input="resetClient"
                   v-model="client.ci"
                   type="text"
                   class="form-control"
@@ -54,7 +54,7 @@
             <div v-if="newClient" class="col-6"><!-- Direcciones -->
               <div class="form-group">
                 <label>Direcciones</label>
-                <select class="custom-select" v-model="client.address" @change="getAreas(client.address)" required>
+                <select class="custom-select" v-model="client.address" @change="getAreas" required>
                   <option value="">Selecione una dirección</option>
                   <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre }}</option>
                 </select>
@@ -108,7 +108,7 @@
                 <label>Nombre</label>
 
                 <input
-                  @input="resetDevice()"
+                  @input="resetDevice"
                   v-if="checkNameDevice"
                   v-model="device.name"
                   type="text"
@@ -133,7 +133,7 @@
                 <label>Marca</label>
 
                 <input
-                  @input="resetDevice()"
+                  @input="resetDevice"
                   v-if="checkBrand"
                   v-model="device.brand"
                   type="text"
@@ -188,9 +188,9 @@
               <div class="form-group">
                 <label>Cedula</label>
 
-                <select class="custom-select" required>
+                <select class="custom-select" required @change="setNameUser" v-model="idUser">
                   <option value="">Selecione una cedula</option>
-                  <option @click="setNameUser(user)" v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
+                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
                 </select>
 
               </div>
@@ -294,7 +294,7 @@
         areas:'',
         nameDevices:'',
         brands:'',
-        users: '',
+        users: [],
       }
     },
 
@@ -308,27 +308,21 @@
 
     methods: {
 
-      searchClient(ci){
-        if (ci != '') {
+      searchClient(){
+        if (this.client.ci != '') {
           axios
-          .get("/api/clients/"+this.client.ci, {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => {
-            this.newClient = false
-            this.client.first_name = response.data.data.nombres
-            this.client.last_name = response.data.data.apellidos
-            this.client.phone = response.data.data.telefono
-            this.idArea = response.data.data.identificador_area
-            this.client.address = response.data.data.direccion
-            this.client.area = response.data.data.nombre_area
-            this.getClientDevices(response.data.data.identificador)
-          })
-          .catch(error => (
-            console.log(error)
-          ));
+            .get("/api/clients/"+this.client.ci)
+            .then(response => {
+              this.newClient = false
+              this.client.first_name = response.data.data.nombres
+              this.client.last_name = response.data.data.apellidos
+              this.client.phone = response.data.data.telefono
+              this.idArea = response.data.data.identificador_area
+              this.client.address = response.data.data.direccion
+              this.client.area = response.data.data.nombre_area
+              this.getClientDevices(response.data.data.identificador)
+            })
+            .catch(error => {console.log(error)});
         }
       },
 
@@ -348,9 +342,9 @@
         this.device.description = ''
       },
 
-      getAreas(area){
+      getAreas(){
         axios
-          .get("api/addresses/"+area+"/areas")
+          .get("api/addresses/"+this.client.address+"/areas")
           .then(response => {this.areas = response.data.data})
           .catch(error => {
             console.log(error)
@@ -399,11 +393,16 @@
           });
       },
 
-      setNameUser(user){
-        //console.log(event.target.text)
-        //setear el id y el name a mostrar
-        this.idUser = user.identificador
-        this.nameUser = user.apellido+', '+user.nombre 
+      setNameUser(event){
+        for (let i = 0; i <= this.users.length; i++) {
+          if (this.users[i].identificador == this.idUser) {
+            this.idUser = this.users[i].identificador
+            this.nameUser = this.users[i].apellido+', '+this.users[i].nombre
+            break
+          } else {
+            console.log(i)
+          }
+        } 
       },
 
       selectDevice(device){

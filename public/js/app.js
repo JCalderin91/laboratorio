@@ -16568,7 +16568,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16794,7 +16794,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getOrders: function getOrders() {
 			var _this = this;
 
-			console.log(axios.defaults.headers.common);
 			axios.get("api/orders").then(function (response) {
 				_this.orders = response.data.data;
 			}).catch(function (error) {
@@ -19374,7 +19373,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19681,7 +19680,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       areas: '',
       nameDevices: '',
       brands: '',
-      users: ''
+      users: []
     };
   },
   mounted: function mounted() {
@@ -19693,15 +19692,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
   methods: {
-    searchClient: function searchClient(ci) {
+    searchClient: function searchClient() {
       var _this = this;
 
-      if (ci != '') {
-        axios.get("/api/clients/" + this.client.ci, {
-          headers: {
-            'Authorization': 'Bearer ' + this.$session.get('token')
-          }
-        }).then(function (response) {
+      if (this.client.ci != '') {
+        axios.get("/api/clients/" + this.client.ci).then(function (response) {
           _this.newClient = false;
           _this.client.first_name = response.data.data.nombres;
           _this.client.last_name = response.data.data.apellidos;
@@ -19711,7 +19706,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           _this.client.area = response.data.data.nombre_area;
           _this.getClientDevices(response.data.data.identificador);
         }).catch(function (error) {
-          return console.log(error);
+          console.log(error);
         });
       }
     },
@@ -19730,10 +19725,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       this.device.bn = '';
       this.device.description = '';
     },
-    getAreas: function getAreas(area) {
+    getAreas: function getAreas() {
       var _this2 = this;
 
-      axios.get("api/addresses/" + area + "/areas").then(function (response) {
+      axios.get("api/addresses/" + this.client.address + "/areas").then(function (response) {
         _this2.areas = response.data.data;
       }).catch(function (error) {
         console.log(error);
@@ -19787,11 +19782,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _this7.device.device = false;
       });
     },
-    setNameUser: function setNameUser(user) {
-      //console.log(event.target.text)
-      //setear el id y el name a mostrar
-      this.idUser = user.identificador;
-      this.nameUser = user.apellido + ', ' + user.nombre;
+    setNameUser: function setNameUser(event) {
+      for (var i = 0; i <= this.users.length; i++) {
+        if (this.users[i].identificador == this.idUser) {
+          this.idUser = this.users[i].identificador;
+          this.nameUser = this.users[i].apellido + ', ' + this.users[i].nombre;
+          break;
+        } else {
+          console.log(i);
+        }
+      }
     },
     selectDevice: function selectDevice(device) {
 
@@ -19924,11 +19924,9 @@ var render = function() {
                           return null
                         }
                         $event.preventDefault()
-                        _vm.searchClient(_vm.client.ci)
+                        return _vm.searchClient($event)
                       },
-                      blur: function($event) {
-                        _vm.searchClient(_vm.client.ci)
-                      },
+                      blur: _vm.searchClient,
                       input: [
                         function($event) {
                           if ($event.target.composing) {
@@ -19936,9 +19934,7 @@ var render = function() {
                           }
                           _vm.$set(_vm.client, "ci", $event.target.value)
                         },
-                        function($event) {
-                          _vm.resetClient()
-                        }
+                        _vm.resetClient
                       ]
                     }
                   })
@@ -20078,9 +20074,7 @@ var render = function() {
                                     : $$selectedVal[0]
                                 )
                               },
-                              function($event) {
-                                _vm.getAreas(_vm.client.address)
-                              }
+                              _vm.getAreas
                             ]
                           }
                         },
@@ -20322,9 +20316,7 @@ var render = function() {
                               }
                               _vm.$set(_vm.device, "name", $event.target.value)
                             },
-                            function($event) {
-                              _vm.resetDevice()
-                            }
+                            _vm.resetDevice
                           ]
                         }
                       })
@@ -20454,9 +20446,7 @@ var render = function() {
                               }
                               _vm.$set(_vm.device, "brand", $event.target.value)
                             },
-                            function($event) {
-                              _vm.resetDevice()
-                            }
+                            _vm.resetDevice
                           ]
                         }
                       })
@@ -20662,7 +20652,36 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "select",
-                    { staticClass: "custom-select", attrs: { required: "" } },
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.idUser,
+                          expression: "idUser"
+                        }
+                      ],
+                      staticClass: "custom-select",
+                      attrs: { required: "" },
+                      on: {
+                        change: [
+                          function($event) {
+                            var $$selectedVal = Array.prototype.filter
+                              .call($event.target.options, function(o) {
+                                return o.selected
+                              })
+                              .map(function(o) {
+                                var val = "_value" in o ? o._value : o.value
+                                return val
+                              })
+                            _vm.idUser = $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          },
+                          _vm.setNameUser
+                        ]
+                      }
+                    },
                     [
                       _c("option", { attrs: { value: "" } }, [
                         _vm._v("Selecione una cedula")
@@ -20671,14 +20690,7 @@ var render = function() {
                       _vm._l(_vm.users, function(user) {
                         return _c(
                           "option",
-                          {
-                            domProps: { value: user.identificador },
-                            on: {
-                              click: function($event) {
-                                _vm.setNameUser(user)
-                              }
-                            }
-                          },
+                          { domProps: { value: user.identificador } },
                           [_vm._v(_vm._s(user.cedula))]
                         )
                       })
