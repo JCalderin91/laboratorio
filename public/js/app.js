@@ -15851,7 +15851,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15864,9 +15864,6 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_ClientList__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_ClientList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_ClientList__);
-//
-//
-//
 //
 //
 //
@@ -16489,41 +16486,39 @@ var render = function() {
                 )
               ]),
               _vm._v(" "),
-              _vm._m(0),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-6 mt-5" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-danger btn-block",
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        _vm.clientForm = !_vm.clientForm
+              _c(
+                "div",
+                {
+                  staticClass:
+                    "form-group col-12 mt-5 d-flex justify-content-end"
+                },
+                [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-secondary m-2",
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.clientForm = !_vm.clientForm
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Cancelar")]
-                )
-              ])
+                    },
+                    [_vm._v("Cancelar")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    staticClass: "btn btn-primary m-2",
+                    attrs: { type: "submit", value: "Guardar" }
+                  })
+                ]
+              )
             ]
           )
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-6 mt-5" }, [
-      _c("input", {
-        staticClass: "btn btn-primary btn-block",
-        attrs: { type: "submit", value: "Guardar" }
-      })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -20969,7 +20964,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -20980,6 +20975,12 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -21327,7 +21328,10 @@ var render = function() {
         _vm._v(" "),
         _c(
           "button",
-          { staticClass: "btn btn-success", attrs: { type: "submit" } },
+          {
+            staticClass: "btn btn-success float-right",
+            attrs: { type: "submit" }
+          },
           [_vm._v("Consultar")]
         )
       ]
@@ -21336,14 +21340,20 @@ var render = function() {
     _vm.reports != ""
       ? _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-12 mt-3" }, [
-            _c("table", { staticClass: "table" }, [
+            _c("table", { staticClass: "table text-center" }, [
               _vm._m(0),
               _vm._v(" "),
               _c(
                 "tbody",
                 _vm._l(_vm.reports, function(report) {
                   return _c("tr", [
-                    _c("td", [_vm._v(_vm._s(report.estado))]),
+                    _c("td", [
+                      report.estado === "pending"
+                        ? _c("span", [_vm._v("Pendiente")])
+                        : report.estado === "revised"
+                          ? _c("span", [_vm._v("Revisado")])
+                          : _c("span", [_vm._v("Entregado")])
+                    ]),
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(report.fechaCreacion))]),
                     _vm._v(" "),
@@ -21365,8 +21375,10 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [
                       report.reparacion
-                        ? _c("span", [
-                            _vm._v(_vm._s(report.reparacion.data.estado))
+                        ? _c("div", [
+                            report.reparacion.data.estado === "repaired"
+                              ? _c("span", [_vm._v("Reparado")])
+                              : _c("span", [_vm._v("Sin reparación")])
                           ])
                         : _c("span", [_vm._v("No revisado")])
                     ])
@@ -21376,9 +21388,7 @@ var render = function() {
             ])
           ])
         ])
-      : _vm._e(),
-    _vm._v(" "),
-    _c("pre", [_vm._v(_vm._s(_vm.$data))])
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -21386,7 +21396,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
+    return _c("thead", { staticClass: "bg-dark text-white" }, [
       _c("tr", [
         _c("th", [_vm._v("Estado Orden")]),
         _vm._v(" "),
@@ -21739,12 +21749,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			Swal({
-				type: 'question',
-				title: 'Cerrar Sesion',
-				text: 'Seguro qu edesea salir del sistema?',
-				confirmButtonText: 'Aceptar'
-			}).then(function () {
-				_this.logout();
+				title: 'Esta seguro?',
+				text: "Estas saliendo del sistema!",
+				type: 'warning',
+				showCancelButton: true,
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				cancelButtonText: 'Cancelar',
+				confirmButtonText: 'Salir'
+			}).then(function (result) {
+				if (result.value) {
+					_this.logout();
+				}
 			});
 		},
 		logout: function logout() {

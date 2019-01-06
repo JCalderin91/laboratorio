@@ -50,12 +50,9 @@
 					</select>
 				</div>
 
-				<div class="form-group col-6 mt-5">
-					<input type="submit" class="btn btn-primary btn-block" value="Guardar">
-				</div>
-
-				<div class="form-group col-6 mt-5">
-					<button class="btn btn-danger btn-block" @click.prevent="clientForm = !clientForm">Cancelar</button>
+				<div class="form-group col-12 mt-5 d-flex justify-content-end">
+					<button class="btn btn-secondary m-2" @click.prevent="clientForm = !clientForm">Cancelar</button>
+					<input type="submit" class="btn btn-primary m-2" value="Guardar">
 				</div>
 			</form>
 		</div>
