@@ -233,7 +233,7 @@
                   <th>Nombtre</th>
                   <th>Marca</th>
                   <th>Modelo</th>
-                  <th>Bien nacional</th>
+                  <th>B/N</th>
                   <th>Acción</th>
                 </tr>
               </thead>

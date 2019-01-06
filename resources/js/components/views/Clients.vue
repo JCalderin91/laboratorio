@@ -15,10 +15,10 @@
 				</button>
 				
 				<input type="text" class="form-control col-4 ml-auto" placeholder="Buscar...">
-				<client-list></client-list>
+				<client-list :clients="clients" :editClickHandler="setClient"></client-list>
 			</div>
 
-			<form v-else class="col-12 row" @submit.prevent="saveClient">
+			<form v-else class="col-12 row" @submit.prevent="submit">
 				<div class="form-group col-6">
 					<label for="ci">Cedula:</label>
 					<input class="form-control" type="text" name="ci" v-model="client.cedula" placeholder="cedula">
@@ -78,14 +78,24 @@
           identificador_area: '',
           direccion: '',
         },
+        clients: [],
         areas: [],
-        addresses: []
+        addresses: [],
+        update: false,
 			}
 		},
 		mounted() {
 			this.getAddresses()
+      this.getClients()
 		},
 		methods: {
+      getClients() {
+        axios
+          .get('api/clients')
+          .then(response => {this.clients = response.data.data})
+          .catch(error => {console.log(error)})
+      },
+
 			getAddresses() {
 				axios
 					.get('api/addresses')
@@ -103,8 +113,45 @@
           });
       },
 
+      setClient(event) {
+        for (let i = 0; i < this.clients.length; i++) {
+          if (this.clients[i].cedula == event.target.id) {
+            this.client = this.clients[i]
+            this.clientForm = !this.clientForm
+            this.update = true
+            break
+          }
+        }
+      },
+
+      updateClient() {
+        alert()
+        axios
+          .put('api/clients/'+this.client.cedula, this.client)
+          .then(response => {
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos se acutlizaron con exito',
+              confirmButtonText: 'Continuar',
+            }).then(() => {
+              this.update = false
+              this.$router.push('/clientes');
+            })
+          })
+          .catch(error => {
+            Swal({
+              type: 'error',
+              title: 'Alerta',
+              text: error,
+              confirmButtonText: 'Continuar',
+            })
+          })
+      },
+
 			saveClient() {
-				axios.post('api/clients', this.client)
+				axios
+          .post('api/clients', this.client)
 					.then(response => {
 						Swal({
               type: 'success',
@@ -112,7 +159,7 @@
               text: 'Datos guardados con exito',
               confirmButtonText: 'Continuar',
             }).then(() => {
-              this.$router.push('/');
+              this.$router.push('/clientes');
             })
 					})
 					.catch(error => {
@@ -124,6 +171,17 @@
             })
 					})
 			},
+
+      submit() {
+        console.log(this.update)
+        if (this.update) {
+          console.log('update')
+          this.updateClient()
+        } else {
+          this.saveClient()
+          console.log('save')
+        }
+      }
 		},
 		components: {
 			ClientList

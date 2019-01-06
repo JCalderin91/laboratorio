@@ -11,8 +11,6 @@
       </div>
     </div>
   </div>
-
-  <!-- poner nombre mas apropiado a este componente-->
 </template>
 
 <script>

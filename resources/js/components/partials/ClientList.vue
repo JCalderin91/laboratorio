@@ -26,9 +26,9 @@
 					{{ client.telefono }}
 				</td>
 				<td>
-					<a class="waves-effect waves-light btn-small">
-						<i class="fas fa-pen"></i>
-					</a>
+					<button :id="client.cedula" @click="editClickHandler" class="waves-effect waves-light btn btn-dark text-white btn-small">
+						<i :id="client.cedula" class="fas fa-pen"></i>
+					</button>
 				</td>
 			</tr>
 		</tbody>
@@ -39,21 +39,6 @@
 <script>
 	export default {
 		name: 'client-list',
-		data () {
-			return {
-				clients: [],
-			}
-		},
-		mounted(){
-			this.list()
-		},
-		methods:{
-			list(){
-				axios
-					.get("/api/clients")
-					.then(response => {this.clients = response.data.data})
-					.catch(error => {onsole.log(error)})
-			}
-		}
+		props: ['clients', 'editClickHandler'],
 	}
 </script>

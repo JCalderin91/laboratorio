@@ -99,7 +99,6 @@
 </template>
 
 <script>
-	import Modal from './Modal'
 	export default {
 		name: 'sidebar',
 		data() {
@@ -113,10 +112,12 @@
 				Swal({
             type: 'question',
             title: 'Cerrar Sesion',
-            text: 'Seguro qu edesea salir del sistema?',
+            text: 'Seguro que edesea salir del sistema?',
             confirmButtonText: 'Aceptar',
-          }).then(() => {
-            this.logout()
+            cancelButtonText: 'Cancelar',
+            showCancelButton: true
+          }).then((res) => {
+            if (res.value) this.logout()
           })
 			},
 			logout() {
@@ -128,9 +129,6 @@
 				this.showModal = false
 			}
 		},
-		components: {
-			Modal
-		}
 	}	
 </script>
 
