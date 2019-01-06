@@ -15138,27 +15138,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getAdresess: function getAdresess() {
       var _this = this;
 
-      axios.get("/api/addresses", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
-        return _this.addresses = response.data.data;
+      axios.get("/api/addresses").then(function (response) {
+        _this.addresses = response.data.data;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
       });
     },
     getAreas: function getAreas(area) {
       var _this2 = this;
 
-      axios.get("api/addresses/" + area + "/areas", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
-        return _this2.areas = response.data.data;
+      axios.get("api/addresses/" + area + "/areas").then(function (response) {
+        _this2.areas = response.data.data;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
       });
     }
   },
@@ -15859,7 +15851,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15945,12 +15937,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			newClient: false,
 			clientForm: false,
 			client: {
-				ci: '',
-				first_name: '',
-				last_name: '',
-				phone: '',
-				area: '',
-				address: ''
+				cedula: '',
+				nombres: '',
+				apellidos: '',
+				telefono: '',
+				identificador_area: '',
+				direccion: ''
 			},
 			areas: [],
 			addresses: []
@@ -15964,34 +15956,33 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getAddresses: function getAddresses() {
 			var _this = this;
 
-			axios.get('api/addresses', {
-				headers: { 'Authorization': 'Bearer ' + this.$session.get('token') }
-			}).then(function (response) {
+			axios.get('api/addresses').then(function (response) {
 				_this.addresses = response.data.data;
 			}).catch(function (error) {
 				console.log(error);
 			});
 		},
-		saveClient: function saveClient() {
+		getAreas: function getAreas() {
 			var _this2 = this;
 
-			axios.post('api/clients', {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				},
-				cedula: this.client.ci,
-				nombres: this.client.first_name,
-				apellidos: this.client.last_name,
-				telefono: this.client.phone,
-				identificador_area: this.client.area
-			}).then(function (response) {
+			axios.get('api/addresses/' + this.client.direccion + '/areas').then(function (response) {
+				return _this2.areas = response.data.data;
+			}).catch(function (error) {
+				console.log(error);
+				_this2.areas = [];
+			});
+		},
+		saveClient: function saveClient() {
+			var _this3 = this;
+
+			axios.post('api/clients', this.client).then(function (response) {
 				Swal({
 					type: 'success',
 					title: 'Excelente',
 					text: 'Datos guardados con exito',
 					confirmButtonText: 'Continuar'
 				}).then(function () {
-					_this2.$router.push('/');
+					_this3.$router.push('/');
 				});
 			}).catch(function (error) {
 				Swal({
@@ -16000,20 +15991,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					text: error,
 					confirmButtonText: 'Continuar'
 				});
-			});
-		},
-		getAreas: function getAreas(area) {
-			var _this3 = this;
-
-			axios.get("api/addresses/" + area + "/areas", {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				}
-			}).then(function (response) {
-				return _this3.areas = response.data.data;
-			}).catch(function (error) {
-				console.log(error);
-				_this3.areas = [];
 			});
 		}
 	},
@@ -16129,14 +16106,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		list: function list() {
 			var _this = this;
 
-			axios.get("/api/clients", {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				}
-			}).then(function (response) {
+			axios.get("/api/clients").then(function (response) {
 				_this.clients = response.data.data;
 			}).catch(function (error) {
-				return console.log(error);
+				onsole.log(error);
 			});
 		}
 	}
@@ -16286,19 +16259,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.client.ci,
-                      expression: "client.ci"
+                      value: _vm.client.cedula,
+                      expression: "client.cedula"
                     }
                   ],
                   staticClass: "form-control",
                   attrs: { type: "text", name: "ci", placeholder: "cedula" },
-                  domProps: { value: _vm.client.ci },
+                  domProps: { value: _vm.client.cedula },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.client, "ci", $event.target.value)
+                      _vm.$set(_vm.client, "cedula", $event.target.value)
                     }
                   }
                 })
@@ -16314,8 +16287,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.client.first_name,
-                      expression: "client.first_name"
+                      value: _vm.client.nombres,
+                      expression: "client.nombres"
                     }
                   ],
                   staticClass: "form-control",
@@ -16324,13 +16297,13 @@ var render = function() {
                     name: "first_name",
                     placeholder: "nombre"
                   },
-                  domProps: { value: _vm.client.first_name },
+                  domProps: { value: _vm.client.nombres },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.client, "first_name", $event.target.value)
+                      _vm.$set(_vm.client, "nombres", $event.target.value)
                     }
                   }
                 })
@@ -16346,8 +16319,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.client.last_name,
-                      expression: "client.last_name"
+                      value: _vm.client.apellidos,
+                      expression: "client.apellidos"
                     }
                   ],
                   staticClass: "form-control",
@@ -16356,13 +16329,13 @@ var render = function() {
                     name: "last_name",
                     placeholder: "apellido"
                   },
-                  domProps: { value: _vm.client.last_name },
+                  domProps: { value: _vm.client.apellidos },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.client, "last_name", $event.target.value)
+                      _vm.$set(_vm.client, "apellidos", $event.target.value)
                     }
                   }
                 })
@@ -16376,8 +16349,8 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: _vm.client.phone,
-                      expression: "client.phone"
+                      value: _vm.client.telefono,
+                      expression: "client.telefono"
                     }
                   ],
                   staticClass: "form-control",
@@ -16386,13 +16359,13 @@ var render = function() {
                     name: "phone",
                     placeholder: "teléfono"
                   },
-                  domProps: { value: _vm.client.phone },
+                  domProps: { value: _vm.client.telefono },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(_vm.client, "phone", $event.target.value)
+                      _vm.$set(_vm.client, "telefono", $event.target.value)
                     }
                   }
                 })
@@ -16410,8 +16383,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.client.address,
-                        expression: "client.address"
+                        value: _vm.client.direccion,
+                        expression: "client.direccion"
                       }
                     ],
                     staticClass: "form-control",
@@ -16421,23 +16394,26 @@ var render = function() {
                       placeholder: "direccion"
                     },
                     on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.client,
-                          "address",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.client,
+                            "direccion",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.getAreas
+                      ]
                     }
                   },
                   [
@@ -16450,12 +16426,7 @@ var render = function() {
                         "option",
                         {
                           key: address.identificador,
-                          domProps: { value: address.nombre },
-                          on: {
-                            click: function($event) {
-                              _vm.getAreas(address.identificador)
-                            }
-                          }
+                          domProps: { value: address.identificador }
                         },
                         [_vm._v(_vm._s(address.nombre))]
                       )
@@ -16475,8 +16446,8 @@ var render = function() {
                       {
                         name: "model",
                         rawName: "v-model",
-                        value: _vm.client.area,
-                        expression: "client.area"
+                        value: _vm.client.identificador_area,
+                        expression: "client.identificador_area"
                       }
                     ],
                     staticClass: "form-control",
@@ -16493,7 +16464,7 @@ var render = function() {
                           })
                         _vm.$set(
                           _vm.client,
-                          "area",
+                          "identificador_area",
                           $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
@@ -16597,7 +16568,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -16786,7 +16757,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			sameClientCheck: false,
-			someClient: {
+			sameClient: {
 				ci: '',
 				name: ''
 			},
@@ -16823,12 +16794,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		getOrders: function getOrders() {
 			var _this = this;
 
-			axios.get("api/orders", {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				}
-			}).then(function (response) {
-				//console.log(response.data.data)
+			console.log(axios.defaults.headers.common);
+			axios.get("api/orders").then(function (response) {
 				_this.orders = response.data.data;
 			}).catch(function (error) {
 				console.log(error);
@@ -16837,11 +16804,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		saveRepair: function saveRepair() {
 			var _this2 = this;
 
-			axios.post("api/orders/" + this.order + "/repairs", {
+			var repair = {
 				tecnico: this.tecnicID,
 				estado: this.stateDevice,
 				detalle: this.datails
-			}).then(function (response) {
+			};
+			axios.post('api/orders/' + this.order + '/repairs', repair).then(function (response) {
 				_this2.getOrders();
 				_this2.tecnicID = '';
 				_this2.state = '';
@@ -16869,14 +16837,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		saveDelivery: function saveDelivery() {
 			var _this3 = this;
 
-			axios.post("api/orders/" + this.order + "/deliveries", {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				},
+			var delivery = {
 				user_delivery_id: this.tecnicID,
 				client_ci: this.client.ci,
 				client_name: this.client.name
-			}).then(function (response) {
+			};
+			axios.post('api/orders/' + this.order + '/deliveries', delivery).then(function (response) {
 				_this3.getOrders();
 				_this3.tecnicID = '';
 				_this3.client.ci = '';
@@ -16890,6 +16856,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				}).then(function () {
 					_this3.$router.push('/');
 				});
+			}).then(function () {
+				$('#entregar').modal('hide');
 			}).catch(function (error) {
 				Swal({
 					type: 'error',
@@ -16897,14 +16865,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					text: error,
 					confirmButtonText: 'Continuar'
 				});
-			}).then(function () {
-				$('#entregar').modal('hide');
 			});
 		},
 		setClient: function setClient() {
 			if (this.sameClientCheck) {
-				this.client.ci = this.someClient.ci;
-				this.client.name = this.someClient.name;
+				this.client.ci = this.sameClient.ci;
+				this.client.name = this.sameClient.name;
 			} else {
 				this.client.ci = '';
 				this.client.name = '';
@@ -16912,35 +16878,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		setOrder: function setOrder(order) {
 			this.order = order.identificador;
-			this.someClient.ci = order.cliente.data.cedula;
-			this.someClient.name = order.cliente.data.nombres + ' ' + order.cliente.data.apellidos;
+			this.sameClient.ci = order.cliente.data.cedula;
+			this.sameClient.name = order.cliente.data.nombres + ' ' + order.cliente.data.apellidos;
 		},
 		getUsers: function getUsers() {
 			var _this4 = this;
 
-			axios.get("/api/users", {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				}
-			}).then(function (response) {
+			axios.get("/api/users").then(function (response) {
 				_this4.users = response.data.data;
 			}).catch(function (error) {
-				return console.log(error);
+				console.log(error);
 			});
 		}
 	},
 	computed: {
-		pendingCant: function pendingCant(argument) {
-			var pendingCant = this.orders.filter(function (order) {
+		pendingCount: function pendingCount(argument) {
+			var pendingCount = this.orders.filter(function (order) {
 				return order.estado === 'pending';
 			});
-			return Object.keys(pendingCant).length;
+			return Object.keys(pendingCount).length;
 		},
-		revisedCant: function revisedCant(argument) {
-			var revisedCant = this.orders.filter(function (order) {
+		revisedCount: function revisedCount(argument) {
+			var revisedCount = this.orders.filter(function (order) {
 				return order.estado === 'revised';
 			});
-			return Object.keys(revisedCant).length;
+			return Object.keys(revisedCount).length;
 		}
 	}
 });
@@ -17273,12 +17235,12 @@ var render = function() {
           attrs: {
             type: "pendientes",
             icon: "exclamation-triangle",
-            value: _vm.pendingCant
+            value: _vm.pendingCount
           }
         }),
         _vm._v(" "),
         _c("widget", {
-          attrs: { type: "revisados", icon: "wrench", value: _vm.revisedCant }
+          attrs: { type: "revisados", icon: "wrench", value: _vm.revisedCount }
         }),
         _vm._v(" "),
         _c("div", { staticClass: "col-12 pt-3" }, [
@@ -18142,14 +18104,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		list: function list() {
 			var _this = this;
 
-			axios.get("/api/devices", {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				}
-			}).then(function (response) {
+			axios.get("/api/devices").then(function (response) {
 				_this.devices = response.data.data;
 			}).catch(function (error) {
-				return console.log(error);
+				console.log(error);
 			});
 		}
 	}
@@ -18402,13 +18360,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			this.loading = true;
-			axios.post("/auth/login", {
-				cedula: this.cedula,
-				contraseña: this.contraseña
-			}).then(function (response) {
-				return _this.loginSuccessful(response.data);
+			axios.post("/auth/login", { cedula: this.cedula, contraseña: this.contraseña }).then(function (response) {
+				_this.loginSuccessful(response.data);
 			}).catch(function (error) {
-				console.log('Error');
 				console.error(error);
 				_this.loginFailed();
 			});
@@ -18779,17 +18733,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 			if (this.user.role == 'teacher') this.user.role = true;else this.user.role = false;
 
-			axios.post('api/users', {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				},
+			var user = {
 				cedula: this.user.ci,
 				nombre: this.user.first_name,
 				apellido: this.user.last_name,
 				contraseña: '123',
 				esAdministrador: this.user.role,
 				sexo: this.user.gender
-			}).then(function (response) {
+			};
+
+			axios.post('api/users', user).then(function (response) {
 				Swal({
 					type: 'success',
 					title: 'Excelente',
@@ -18927,14 +18880,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		list: function list() {
 			var _this = this;
 
-			axios.get("/api/users", {
-				headers: {
-					'Authorization': 'Bearer ' + this.$session.get('token')
-				}
-			}).then(function (response) {
+			axios.get("/api/users").then(function (response) {
 				_this.users = response.data.data;
 			}).catch(function (error) {
-				return console.log(error);
+				console.log(error);
 			});
 		}
 	}
@@ -19425,7 +19374,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -19784,12 +19733,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getAreas: function getAreas(area) {
       var _this2 = this;
 
-      axios.get("api/addresses/" + area + "/areas", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
-        return _this2.areas = response.data.data;
+      axios.get("api/addresses/" + area + "/areas").then(function (response) {
+        _this2.areas = response.data.data;
       }).catch(function (error) {
         console.log(error);
         _this2.areas = [];
@@ -19798,63 +19743,43 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     getAddress: function getAddress() {
       var _this3 = this;
 
-      axios.get("/api/addresses", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
-        return _this3.addresses = response.data.data;
+      axios.get("/api/addresses").then(function (response) {
+        _this3.addresses = response.data.data;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
       });
     },
     getSubDevice: function getSubDevice() {
       var _this4 = this;
 
-      axios.get("/api/sub-devices", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
+      axios.get("/api/sub-devices").then(function (response) {
         _this4.nameDevices = response.data.data;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
       });
     },
     getBrands: function getBrands() {
       var _this5 = this;
 
-      axios.get("/api/brands", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
+      axios.get("/api/brands").then(function (response) {
         _this5.brands = response.data.data;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
       });
     },
     getUsers: function getUsers() {
       var _this6 = this;
 
-      axios.get("/api/users", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
+      axios.get("/api/users").then(function (response) {
         _this6.users = response.data.data;
       }).catch(function (error) {
-        return console.log(error);
+        console.log(error);
       });
     },
     getClientDevices: function getClientDevices(clientId) {
       var _this7 = this;
 
-      axios.get("api/clients/" + clientId + "/devices", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
+      axios.get("api/clients/" + clientId + "/devices").then(function (response) {
         _this7.client.devices = response.data.data;
         _this7.device.device = true;
       }).catch(function (error) {
@@ -19890,10 +19815,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         area = this.idArea;
       }
 
-      axios.post("api/orders", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        },
+      var order = {
         // Datos del cliente
         cedula: this.client.ci,
         nombres: this.client.first_name,
@@ -19910,7 +19832,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         detalle: this.device.description,
         // Datos del tecnico
         tecnico: this.idUser
-      }).then(function (response) {
+      };
+
+      axios.post("api/orders", order).then(function (response) {
         Swal({
           type: 'success',
           title: 'Excelente',
@@ -21033,7 +20957,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -21132,65 +21056,59 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'users',
-  data: function data() {
-    return {
-      from: '',
-      to: '',
-      status: '',
-      user_id: '',
-      filter_by: 'user',
-      users: '',
-      reports: '',
-      statuses: []
-    };
-  },
-  mounted: function mounted() {
-    this.getUsers();
-  },
+	name: 'users',
+	data: function data() {
+		return {
+			from: '',
+			to: '',
+			status: '',
+			user_id: '',
+			filter_by: 'user',
+			users: '',
+			reports: '',
+			statuses: []
+		};
+	},
+	mounted: function mounted() {
+		this.getUsers();
+	},
 
-  methods: {
-    getUsers: function getUsers() {
-      var _this = this;
+	methods: {
+		getUsers: function getUsers() {
+			var _this = this;
 
-      axios.get("/api/users", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        }
-      }).then(function (response) {
-        _this.users = response.data.data;
-      }).catch(function (error) {
-        return console.log(error);
-      });
-    },
-    changeUser: function changeUser() {
-      if (this.user_id == 'all') {
-        this.filter_by = 'orders';
-        this.statuses = [{ value: 'pending', name: 'Pendiente' }, { value: 'revised', name: 'Revisado' }, { value: 'delivered', name: 'Entregado' }];
-      } else {
-        this.filter_by = 'user';
-        this.statuses = [{ value: 'pending', name: 'Recibidos' }, { value: 'revised', name: 'Revisados' }, { value: 'delivered', name: 'Entregados' }];
-      }
-    },
-    getReport: function getReport() {
-      var _this2 = this;
+			axios.get("/api/users").then(function (response) {
+				_this.users = response.data.data;
+			}).catch(function (error) {
+				console.log(error);
+			});
+		},
+		changeUser: function changeUser() {
+			if (this.user_id == 'all') {
+				this.filter_by = 'orders';
+				this.statuses = [{ value: 'pending', name: 'Pendiente' }, { value: 'revised', name: 'Revisado' }, { value: 'delivered', name: 'Entregado' }];
+			} else {
+				this.filter_by = 'user';
+				this.statuses = [{ value: 'pending', name: 'Recibidos' }, { value: 'revised', name: 'Revisados' }, { value: 'delivered', name: 'Entregados' }];
+			}
+		},
+		getReport: function getReport() {
+			var _this2 = this;
 
-      axios.post("api/reports", {
-        headers: {
-          'Authorization': 'Bearer ' + this.$session.get('token')
-        },
-        from: this.from + ' 00:00',
-        to: this.to + ' 24:00',
-        status: this.status,
-        user_id: this.user_id,
-        filter_by: this.filter_by
-      }).then(function (response) {
-        _this2.reports = response.data.data;
-      }).catch(function (error) {
-        return console.log(error);
-      });
-    }
-  }
+			var filters = {
+				from: this.from + ' 00:00',
+				to: this.to + ' 24:00',
+				status: this.status,
+				user_id: this.user_id,
+				filter_by: this.filter_by
+			};
+			axios.post("api/reports", filters).then(function (response) {
+				_this2.reports = response.data.data;
+			}).catch(function (error) {
+				return console.log(error);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -21580,7 +21498,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return this.$session.exists();
     }
   },
-  mounted: function mounted() {
+  created: function created() {
     if (this.logged) {
       axios.defaults.headers.common['X-CSRF-TOKEN'] = this.$session.get('xsrf');
       axios.defaults.headers.common['Authorization'] = 'Bearer ' + this.$session.get('token');

@@ -1,8 +1,8 @@
 <template>
 		<div class="card">
 			<div class="row">
-				<widget type="pendientes" icon="exclamation-triangle" :value="pendingCant"></widget>
-				<widget type="revisados" icon="wrench" :value="revisedCant"></widget>	
+				<widget type="pendientes" icon="exclamation-triangle" :value="pendingCount"></widget>
+				<widget type="revisados" icon="wrench" :value="revisedCount"></widget>	
 
 				<div class="col-12 pt-3">
 					<table class="table text-center table-striped table-hover">
@@ -172,7 +172,7 @@
 		data(){
 			return{
 				sameClientCheck: false,
-				someClient:{
+				sameClient:{
 					ci:'',
 					name:''
 				},
@@ -206,92 +206,85 @@
 		methods: {
 			getOrders(){
 				axios
-        .get("api/orders", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => {
-          	//console.log(response.data.data)
-            this.orders = response.data.data
-          })
-          .catch(error => {
-            console.log(error)
-          });
+          .get("api/orders")
+          .then(response => {this.orders = response.data.data})
+          .catch(error => {console.log(error)})
 			},
 			saveRepair(){
-				axios.post("api/orders/"+this.order+"/repairs",{
+        let repair = {
           tecnico: this.tecnicID,
           estado: this.stateDevice ,
           detalle: this.datails
-				})
-				.then(response => {
-					this.getOrders()
-					this.tecnicID = ''
-          this.state = ''
-          this.datails = ''
-          this.order = ''
-          Swal({
-            type: 'success',
-            title: 'Excelente',
-            text: 'Datos guardados con exito',
-            confirmButtonText: 'Continuar',
-          }).then(() => {
-            this.$router.push('/');
+        }
+				axios
+          .post(`api/orders/${this.order}/repairs`, repair)
+  				.then(response => {
+  					this.getOrders()
+  					this.tecnicID = ''
+            this.state = ''
+            this.datails = ''
+            this.order = ''
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos guardados con exito',
+              confirmButtonText: 'Continuar',
+            }).then(() => {
+              this.$router.push('/')
+            })
+  				})
+          .catch(error => {
+          	Swal({
+              type: 'error',
+              title: 'Alerta',
+              text: error,
+              confirmButtonText: 'Continuar',
+            })
+          }).then(()=>{
+          	$('#reparar').modal('hide')
           })
-				})
-        .catch(error => {
-        	Swal({
-            type: 'error',
-            title: 'Alerta',
-            text: error,
-            confirmButtonText: 'Continuar',
-          })
-        }).then(()=>{
-        	$('#reparar').modal('hide')
-        });
 
 			},
 			saveDelivery(){
-				axios.post("api/orders/"+this.order+"/deliveries",{
-					headers: {
-            'Authorization': `Bearer ${this.$session.get('token')}`
-          },
+        let delivery = {
           user_delivery_id: this.tecnicID,
           client_ci: this.client.ci ,
           client_name: this.client.name
-				})
-				.then(response => {
-					this.getOrders()
-					this.tecnicID = ''
-          this.client.ci  = ''
-          this.client.name = ''
-          this.sameClientCheck= false
-          Swal({
-            type: 'success',
-            title: 'Excelente',
-            text: 'Datos guardados con exito',
-            confirmButtonText: 'Continuar',
-          }).then(() => {
-            this.$router.push('/');
+        }
+				axios
+          .post(`api/orders/${this.order}/deliveries`, delivery)
+  				.then(response => {
+  					this.getOrders()
+  					this.tecnicID = ''
+            this.client.ci  = ''
+            this.client.name = ''
+            this.sameClientCheck= false
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos guardados con exito',
+              confirmButtonText: 'Continuar',
+            }).then(() => {
+              this.$router.push('/')
+            })
+  				})
+          .then(()=>{
+            $('#entregar').modal('hide')
           })
-				})
-        .catch(error => {
-        	Swal({
-            type: 'error',
-            title: 'Alerta',
-            text: error,
-            confirmButtonText: 'Continuar',
+          .catch(error => {
+          	Swal({
+              type: 'error',
+              title: 'Alerta',
+              text: error,
+              confirmButtonText: 'Continuar',
+            })
           })
-        }).then(()=>{
-        	$('#entregar').modal('hide')
-        });
 
 			},
 			setClient(){
 				if(this.sameClientCheck){
-					this.client.ci =  this.someClient.ci
-					this.client.name = this.someClient.name
+					this.client.ci =  this.sameClient.ci
+					this.client.name = this.sameClient.name
 				}else{
 					this.client.ci = ''
 					this.client.name = ''
@@ -300,33 +293,25 @@
 
 			setOrder(order){
 				this.order = order.identificador
-				this.someClient.ci = order.cliente.data.cedula
-				this.someClient.name = order.cliente.data.nombres+' '+order.cliente.data.apellidos
+				this.sameClient.ci = order.cliente.data.cedula
+				this.sameClient.name = order.cliente.data.nombres+' '+order.cliente.data.apellidos
 			},
 
       getUsers(){
         axios
-        .get("/api/users", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => {
-            this.users = response.data.data
-          })
-          .catch(error => (
-            console.log(error)
-          ));
+          .get("/api/users")
+          .then(response => {this.users = response.data.data})
+          .catch(error => {console.log(error)});
       },
 		},
 		computed:{
-			pendingCant: function(argument) {
-				let pendingCant = this.orders.filter(order => order.estado === 'pending')
-				return Object.keys(pendingCant).length
+			pendingCount: function(argument) {
+				let pendingCount = this.orders.filter(order => order.estado === 'pending')
+				return Object.keys(pendingCount).length
 			},
-			revisedCant: function(argument) {
-				let revisedCant = this.orders.filter(order => order.estado === 'revised')
-				return Object.keys(revisedCant).length
+			revisedCount: function(argument) {
+				let revisedCount = this.orders.filter(order => order.estado === 'revised')
+				return Object.keys(revisedCount).length
 			}
 		}
 	}

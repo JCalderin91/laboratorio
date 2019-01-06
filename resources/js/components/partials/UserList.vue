@@ -57,17 +57,9 @@
 		methods:{
 			list(){
 				axios
-					.get("/api/users", {
-						headers: {
-							'Authorization': `Bearer ${this.$session.get('token')}`
-						}
-					})
-					.then(response => {
-						this.users = response.data.data
-					})
-					.catch(error => (
-						console.log(error)
-					));
+					.get("/api/users")
+					.then(response => {this.users = response.data.data})
+					.catch(error => {console.log(error)});
 			}
 		}
 	}

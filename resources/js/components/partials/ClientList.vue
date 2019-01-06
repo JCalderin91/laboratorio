@@ -50,17 +50,9 @@
 		methods:{
 			list(){
 				axios
-					.get("/api/clients", {
-						headers: {
-							'Authorization': `Bearer ${this.$session.get('token')}`
-						}
-					})
-					.then(response => {
-						this.clients = response.data.data
-					})
-					.catch(error => (
-						console.log(error)
-					));
+					.get("/api/clients")
+					.then(response => {this.clients = response.data.data})
+					.catch(error => {onsole.log(error)})
 			}
 		}
 	}

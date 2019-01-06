@@ -110,31 +110,15 @@
       },
       getAdresess(){
         axios
-          .get("/api/addresses", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => (
-              this.addresses = response.data.data
-            ))
-          .catch(error => (
-              console.log(error)
-            ));
+          .get("/api/addresses")
+          .then(response => {this.addresses = response.data.data})
+          .catch(error => {console.log(error)});
       },
       getAreas(area){
         axios
-          .get("api/addresses/"+area+"/areas", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => (
-              this.areas = response.data.data
-            ))
-          .catch(error => (
-              console.log(error)
-            ));
+          .get("api/addresses/"+area+"/areas")
+          .then(response => {this.areas = response.data.data})
+          .catch(error => {console.log(error)});
       }
     },
     components: {

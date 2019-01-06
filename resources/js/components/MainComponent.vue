@@ -33,10 +33,10 @@
     },
     computed: {
       logged() {
-        return this.$session.exists();
+        return this.$session.exists()
       }
     },
-    mounted() {
+    created() {
       if (this.logged) {
         axios.defaults.headers.common['X-CSRF-TOKEN'] = this.$session.get('xsrf')
         axios.defaults.headers.common['Authorization'] = 'Bearer '+this.$session.get('token')

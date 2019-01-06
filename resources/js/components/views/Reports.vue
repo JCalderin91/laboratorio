@@ -105,17 +105,9 @@
 		methods: {
 			getUsers(){
         axios
-        .get("/api/users", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => {
-            this.users = response.data.data
-          })
-          .catch(error => (
-            console.log(error)
-          ));
+          .get("/api/users")
+          .then(response => {this.users = response.data.data})
+          .catch(error => {console.log(error)});
       },
       changeUser(){
       	if (this.user_id == 'all') {
@@ -136,23 +128,17 @@
       	}
       },
 			getReport(){
+        let filters = {
+          from: this.from+' 00:00',
+          to: this.to+' 24:00',
+          status: this.status,
+          user_id: this.user_id,
+          filter_by: this.filter_by,
+        }
         axios
-        .post("api/reports", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            },
-            from: this.from+' 00:00',
-						to: this.to+' 24:00',
-						status: this.status,
-						user_id: this.user_id,
-						filter_by: this.filter_by,
-          })
-          .then(response => {
-            this.reports = response.data.data
-          })
-          .catch(error => (
-            console.log(error)
-          ));
+          .post("api/reports", filters)
+          .then(response => {this.reports = response.data.data})
+          .catch(error => console.log(error))
       },
 		}
 	}

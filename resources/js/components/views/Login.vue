@@ -65,16 +65,12 @@
 			login() {
 				this.loading = true;
 				axios
-				.post("/auth/login", {
-					cedula: this.cedula,
-					contraseña: this.contraseña
-				})
-				.then(response => this.loginSuccessful(response.data))
-				.catch(error => {
-					console.log('Error')
-					console.error(error);
-					this.loginFailed();
-				});
+					.post("/auth/login", {cedula: this.cedula, contraseña: this.contraseña})
+					.then(response => {this.loginSuccessful(response.data)})
+					.catch(error => {
+						console.error(error);
+						this.loginFailed();
+					});
 			},
 			loginSuccessful(data) {
 				console.log(data)
@@ -88,6 +84,7 @@
 
 				window.location = '/'
 			},
+			
 			loginFailed() {
 				this.error = "Credenciales invalidas";
 				this.loading = false;

@@ -349,88 +349,46 @@
       },
 
       getAreas(area){
-       axios
-        .get("api/addresses/"+area+"/areas", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => (
-              this.areas = response.data.data
-            ))
+        axios
+          .get("api/addresses/"+area+"/areas")
+          .then(response => {this.areas = response.data.data})
           .catch(error => {
             console.log(error)
             this.areas = []
-          });
+          })
       },
 
       getAddress(){
         axios
-        .get("/api/addresses", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => (
-              this.addresses = response.data.data
-            ))
-          .catch(error => (
-              console.log(error)
-            ));
+          .get("/api/addresses")
+          .then(response => {this.addresses = response.data.data})
+          .catch(error => {console.log(error)})
       },
 
       getSubDevice(){
         axios
-        .get("/api/sub-devices", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => {
-              this.nameDevices = response.data.data
-            })
-          .catch(error => (
-              console.log(error)
-            ));
+          .get("/api/sub-devices")
+          .then(response => {this.nameDevices = response.data.data})
+          .catch(error => {console.log(error)})
       },
 
       getBrands(){
         axios
-        .get("/api/brands", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => {
-            this.brands = response.data.data
-          })
-          .catch(error => (
-            console.log(error)
-          ));
+          .get("/api/brands")
+          .then(response => {this.brands = response.data.data})
+          .catch(error => {console.log(error)})
       },
 
       getUsers(){
         axios
-        .get("/api/users", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => {
-            this.users = response.data.data
-          })
-          .catch(error => (
-            console.log(error)
-          ));
+          .get("/api/users")
+          .then(response => {this.users = response.data.data})
+          .catch(error => {console.log(error)})
       },
 
       getClientDevices(clientId){
         axios
-        .get("api/clients/"+clientId+"/devices", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
+          .get("api/clients/"+clientId+"/devices")
           .then(response => {
             this.client.devices = response.data.data
             this.device.device = true
@@ -470,28 +428,27 @@
           area = this.idArea
         }
 
+        let order = {
+          // Datos del cliente
+          cedula: this.client.ci,
+          nombres: this.client.first_name,
+          apellidos: this.client.last_name,
+          phone: this.client.phone,
+          area: area,
+          //address: this.client.address,
+          // Datos del dispositivo
+          equipo: this.device.id,
+          nombre_equipo: this.device.name.toLowerCase(),
+          marca: this.device.brand.toLowerCase(),
+          modelo: this.device.model,
+          bienNacional: this.device.bn,
+          detalle: this.device.description,
+          // Datos del tecnico
+          tecnico: this.idUser
+        }
+
         axios
-        .post("api/orders", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            },
-            // Datos del cliente
-            cedula: this.client.ci,
-            nombres: this.client.first_name,
-            apellidos: this.client.last_name,
-            phone: this.client.phone,
-            area: area,
-            //address: this.client.address,
-            // Datos del dispositivo
-            equipo: this.device.id,
-            nombre_equipo: this.device.name.toLowerCase(),
-            marca: this.device.brand.toLowerCase(),
-            modelo: this.device.model,
-            bienNacional: this.device.bn,
-            detalle: this.device.description,
-            // Datos del tecnico
-            tecnico: this.idUser
-          })
+          .post("api/orders", order)
           .then(response => {
             Swal({
               type: 'success',
@@ -499,7 +456,7 @@
               text: 'Datos guardados con exito',
               confirmButtonText: 'Continuar',
             }).then(() => {
-              this.$router.push('/');
+              this.$router.push('/')
             })
           })
           .catch(error => {
@@ -510,7 +467,7 @@
               text: error,
               confirmButtonText: 'Continuar',
             })
-          });
+          })
       }
 
     }

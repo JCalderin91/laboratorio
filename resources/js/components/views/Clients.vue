@@ -21,30 +21,30 @@
 			<form v-else class="col-12 row" @submit.prevent="saveClient">
 				<div class="form-group col-6">
 					<label for="ci">Cedula:</label>
-					<input class="form-control" type="text" name="ci" v-model="client.ci" placeholder="cedula">
+					<input class="form-control" type="text" name="ci" v-model="client.cedula" placeholder="cedula">
 				</div>
 				<div class="form-group col-6">
 					<label for="first_name">Nombre:</label>
-					<input class="form-control" type="text" name="first_name" v-model="client.first_name" placeholder="nombre">
+					<input class="form-control" type="text" name="first_name" v-model="client.nombres" placeholder="nombre">
 				</div>
 				<div class="form-group col-6">
 					<label for="last_name">Apellido:</label>
-					<input class="form-control" type="text" name="last_name" v-model="client.last_name" placeholder="apellido">
+					<input class="form-control" type="text" name="last_name" v-model="client.apellidos" placeholder="apellido">
 				</div>
 				<div class="form-group col-6">
 					<label for="phone">Teléfono:</label>
-					<input class="form-control" type="text" name="phone" v-model="client.phone" placeholder="teléfono">
+					<input class="form-control" type="text" name="phone" v-model="client.telefono" placeholder="teléfono">
 				</div>
 				<div class="form-group col-6">
 					<label for="address">Direcciòn:</label>
-					<select class="form-control" type="text" name="address" v-model="client.address" placeholder="direccion">
+					<select class="form-control" type="text" name="address" v-model="client.direccion" placeholder="direccion" @change="getAreas">
 						<option value="">Seleccione Una</option>
-						<option @click="getAreas(address.identificador)" v-for="address in addresses" :value="address.nombre" :key="address.identificador">{{address.nombre}}</option>
+						<option v-for="address in addresses" :value="address.identificador" :key="address.identificador">{{address.nombre}}</option>
 					</select>
 				</div>
 				<div class="form-group col-6">
 					<label for="area">Area:</label>
-					<select class="form-control" type="text" name="area" v-model="client.area" placeholder="area">
+					<select class="form-control" type="text" name="area" v-model="client.identificador_area" placeholder="area">
 						<option value="">Seleccione Una</option>
 						<option v-for="area in areas" :value="area.identificador">{{area.nombre}}</option>
 					</select>
@@ -71,12 +71,12 @@
 				newClient: false,
 				clientForm: false,
         client: {
-          ci: '',
-          first_name: '',
-          last_name: '',
-          phone: '',
-          area: '',
-          address: '',
+          cedula: '',
+          nombres: '',
+          apellidos: '',
+          telefono: '',
+          identificador_area: '',
+          direccion: '',
         },
         areas: [],
         addresses: []
@@ -88,23 +88,23 @@
 		methods: {
 			getAddresses() {
 				axios
-					.get('api/addresses', {
-						headers: {'Authorization': `Bearer ${this.$session.get('token')}` }
-					})
+					.get('api/addresses')
 					.then(response => {this.addresses = response.data.data})
 					.catch(error => {console.log(error)})
 			},
+
+      getAreas(){
+        axios
+          .get(`api/addresses/${this.client.direccion}/areas`)
+          .then(response => this.areas = response.data.data)
+          .catch(error => {
+            console.log(error)
+            this.areas = []
+          });
+      },
+
 			saveClient() {
-				axios.post('api/clients', {
-						headers: {
-							'Authorization': `Bearer ${this.$session.get('token')}`
-						},
-						cedula: this.client.ci,
-						nombres: this.client.first_name,
-						apellidos: this.client.last_name,
-						telefono: this.client.phone,
-						identificador_area: this.client.area,
-					})
+				axios.post('api/clients', this.client)
 					.then(response => {
 						Swal({
               type: 'success',
@@ -124,22 +124,6 @@
             })
 					})
 			},
-
-      getAreas(area){
-       axios
-        .get("api/addresses/"+area+"/areas", {
-            headers: {
-              'Authorization': `Bearer ${this.$session.get('token')}`
-            }
-          })
-          .then(response => (
-              this.areas = response.data.data
-            ))
-          .catch(error => {
-            console.log(error)
-            this.areas = []
-          });
-      },
 		},
 		components: {
 			ClientList

@@ -87,18 +87,18 @@
 					this.user.role = true
 				else
 					this.user.role = false
+
+				let user = {
+					cedula: this.user.ci,
+					nombre: this.user.first_name,
+					apellido: this.user.last_name,
+					contraseña: '123',
+					esAdministrador: this.user.role,
+					sexo: this.user.gender,
+				}
 				
-				axios.post('api/users', {
-						headers: {
-							'Authorization': `Bearer ${this.$session.get('token')}`
-						},
-						cedula: this.user.ci,
-						nombre: this.user.first_name,
-						apellido: this.user.last_name,
-						contraseña: '123',
-						esAdministrador: this.user.role,
-						sexo: this.user.gender,
-					})
+				axios
+					.post('api/users', user)
 					.then(response => {
 						Swal({
               type: 'success',
@@ -106,7 +106,7 @@
               text: 'Datos guardados con exito',
               confirmButtonText: 'Continuar',
             }).then(() => {
-              this.$router.push('/');
+              this.$router.push('/')
             })
 					})
 					.catch(error => {
