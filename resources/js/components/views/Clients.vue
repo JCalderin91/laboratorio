@@ -68,6 +68,7 @@
 				newClient: false,
 				clientForm: false,
         client: {
+          identificador: '',
           cedula: '',
           nombres: '',
           apellidos: '',
@@ -124,7 +125,7 @@
       updateClient() {
         alert()
         axios
-          .put('api/clients/'+this.client.cedula, this.client)
+          .put('api/clients/'+this.client.identificador, this.client)
           .then(response => {
             Swal({
               type: 'success',

@@ -15800,11 +15800,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-<<<<<<< HEAD
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
-=======
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
->>>>>>> 4304c24c15e8c1ae7d0c007145c26a617366861b
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15887,6 +15883,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       newClient: false,
       clientForm: false,
       client: {
+        identificador: '',
         cedula: '',
         nombres: '',
         apellidos: '',
@@ -15948,7 +15945,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       var _this4 = this;
 
       alert();
-      axios.put('api/clients/' + this.client.cedula, this.client).then(function (response) {
+      axios.put('api/clients/' + this.client.identificador, this.client).then(function (response) {
         Swal({
           type: 'success',
           title: 'Excelente',
@@ -21792,16 +21789,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			Swal({
-<<<<<<< HEAD
-				type: 'question',
-				title: 'Cerrar Sesion',
-				text: 'Seguro que edesea salir del sistema?',
-				confirmButtonText: 'Aceptar',
-				cancelButtonText: 'Cancelar',
-				showCancelButton: true
-			}).then(function (res) {
-				if (res.value) _this.logout();
-=======
 				title: 'Esta seguro?',
 				text: "Estas saliendo del sistema!",
 				type: 'warning',
@@ -21814,7 +21801,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				if (result.value) {
 					_this.logout();
 				}
->>>>>>> 4304c24c15e8c1ae7d0c007145c26a617366861b
 			});
 		},
 		logout: function logout() {
