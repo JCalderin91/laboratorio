@@ -37,15 +37,15 @@
       }
     },
     mounted() {
-    //this.$session.destroy() descomentar para cerrar session
-    if (!this.logged) {
-      //this.$router.push({name: 'login'})
+      if (this.logged) {
+        axios.defaults.headers.common['X-CSRF-TOKEN'] = this.$session.get('xsrf')
+        axios.defaults.headers.common['Authorization'] = 'Bearer '+this.$session.get('token')
+      }
+    },
+    components: {
+      Login,
+      Dashboard,
+      Sidebar
     }
-  },
-  components: {
-    Login,
-    Dashboard,
-    Sidebar
-  }
-};
+  };
 </script>

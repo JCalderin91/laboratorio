@@ -221,9 +221,6 @@
 			},
 			saveRepair(){
 				axios.post("api/orders/"+this.order+"/repairs",{
-					headers: {
-            'Authorization': `Bearer ${this.$session.get('token')}`
-          },
           tecnico: this.tecnicID,
           estado: this.stateDevice ,
           detalle: this.datails

@@ -92,18 +92,9 @@
 					</ul>
 				</div>
 				<!-- sidebar-menu  -->
-				<a id="logout-link" class="text-center text-white pb-2" @click.prevent="showModal = true"><i class="fa fa-sign-out-alt" ></i> Cerrar sesion</a>
+				<a id="logout-link" class="text-center text-white pb-2" @click.prevent="logoutPrompt"><i class="fa fa-sign-out-alt" ></i> Cerrar sesion</a>
 			</div>
 			<!-- sidebar-content  -->
-			<transition name="fade">
-				<Modal 
-					title="Cerrar session" 
-					:acceptHandler="logout" 
-					:closeHandler="toggleModal"
-					v-if="showModal">
-					<p>¿Desea salír del Sistema?</p>
-				</Modal>
-			</transition>
 		</nav>
 </template>
 
@@ -113,12 +104,21 @@
 		name: 'sidebar',
 		data() {
 			return {
-				showModal: false,
 				name: this.$session.get('name'),
 				isAdmin: this.$session.get('isAdmin')
 			}
 		},
 		methods: {
+			logoutPrompt() {
+				Swal({
+            type: 'question',
+            title: 'Cerrar Sesion',
+            text: 'Seguro qu edesea salir del sistema?',
+            confirmButtonText: 'Aceptar',
+          }).then(() => {
+            this.logout()
+          })
+			},
 			logout() {
 				this.$session.destroy()
 				window.location = '/'

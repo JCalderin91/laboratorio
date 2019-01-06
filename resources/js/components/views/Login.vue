@@ -82,8 +82,10 @@
 				this.$session.set('ci', this.cedula)
 				this.$session.set('password', this.contraseña)
 				this.$session.set('token', data.access_token)
+				this.$session.set('xsrf', document.cookie.split('=')[1])
 				this.$session.set('name', data.user.original.data.nombre + ' ' + data.user.original.data.apellido)
 				this.$session.set('isAdmin', data.user.original.data.esAdministrador)
+
 				window.location = '/'
 			},
 			loginFailed() {
