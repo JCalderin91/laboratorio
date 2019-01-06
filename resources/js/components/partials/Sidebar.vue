@@ -109,16 +109,21 @@
 		},
 		methods: {
 			logoutPrompt() {
+
 				Swal({
-            type: 'question',
-            title: 'Cerrar Sesion',
-            text: 'Seguro que edesea salir del sistema?',
-            confirmButtonText: 'Aceptar',
-            cancelButtonText: 'Cancelar',
-            showCancelButton: true
-          }).then((res) => {
-            if (res.value) this.logout()
-          })
+				  title: 'Esta seguro?',
+				  text: "Estas saliendo del sistema!",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  cancelButtonText: 'Cancelar',
+				  confirmButtonText: 'Salir'
+				}).then(result => {
+				  if (result.value) {
+				    this.logout()
+				  }
+				})
 			},
 			logout() {
 				this.$session.destroy()

@@ -40,13 +40,13 @@
 				</div>
 
 	    </div>
-	    <button type="submit" class="btn btn-success">Consultar</button>
+	    <button type="submit" class="btn btn-success float-right">Consultar</button>
 		</form>
 
 			<div v-if="reports != ''" class="row">
 				<div class="col-12 mt-3">
-					<table class="table">
-						<thead>
+					<table class="table text-center">
+						<thead class="bg-dark text-white">
 							<tr>
 								<th>Estado Orden</th>
 								<th>Fecha</th>
@@ -58,7 +58,11 @@
 						</thead>
 						<tbody>
 							<tr v-for="report in reports">
-								<td>{{report.estado}}</td>
+								<td>
+									<span v-if="report.estado === 'pending'" >Pendiente</span>
+									<span v-else-if="report.estado === 'revised'" >Revisado</span>
+									<span v-else >Entregado</span>
+								</td>
 								<td>{{report.fechaCreacion}}</td>
 	
 								<td>
@@ -70,7 +74,10 @@
 								<td>{{report.equipo.data.nombre}}</td>
 
 								<td>
-									<span v-if="report.reparacion" >{{report.reparacion.data.estado}}</span>
+									<div v-if="report.reparacion" >
+										<span v-if="report.reparacion.data.estado === 'repaired' ">Reparado</span>
+										<span v-else>Sin reparación</span>
+									</div>
 									<span v-else >No revisado</span>
 								</td>
 
@@ -80,7 +87,6 @@
 				</div>				
 			</div>
 
-	<pre>{{$data}}</pre>
 	</div>
 </template>
 
