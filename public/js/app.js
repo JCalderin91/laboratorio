@@ -21009,7 +21009,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -21020,6 +21020,17 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -21416,7 +21427,27 @@ var render = function() {
                     _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(report.cliente.data.cedula))]),
                     _vm._v(" "),
+                    _c("td", [
+                      _vm._v(
+                        _vm._s(report.cliente.data.nombres) +
+                          " " +
+                          _vm._s(report.cliente.data.apellidos)
+                      )
+                    ]),
+                    _vm._v(" "),
                     _c("td", [_vm._v(_vm._s(report.equipo.data.nombre))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(report.equipo.data.marca))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(report.equipo.data.modelo))]),
+                    _vm._v(" "),
+                    _c("td", [
+                      report.equipo.data.bienNacional
+                        ? _c("span", [
+                            _vm._v(_vm._s(report.equipo.data.bienNacional))
+                          ])
+                        : _c("span", [_vm._v("Propio")])
+                    ]),
                     _vm._v(" "),
                     _c("td", [
                       report.reparacion
@@ -21433,7 +21464,9 @@ var render = function() {
             ])
           ])
         ])
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c("pre", [_vm._v(_vm._s(_vm.$data))])
   ])
 }
 var staticRenderFns = [
@@ -21449,9 +21482,17 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("Técnico")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Cliente")]),
+        _c("th", [_vm._v("Cedula del cliente")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre del cliente")]),
         _vm._v(" "),
         _c("th", [_vm._v("Dispositivo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Marca")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Modelo")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Bien nacional")]),
         _vm._v(" "),
         _c("th", [_vm._v("Estado de dispositivo")])
       ])

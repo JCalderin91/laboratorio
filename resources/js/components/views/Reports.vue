@@ -51,8 +51,12 @@
 								<th>Estado Orden</th>
 								<th>Fecha</th>
 								<th>Técnico</th>
-								<th>Cliente</th>
+								<th>Cedula del cliente</th>
+								<th>Nombre del cliente</th>
 								<th>Dispositivo</th>
+								<th>Marca</th>
+								<th>Modelo</th>
+								<th>Bien nacional</th>
 								<th>Estado de dispositivo</th>
 							</tr>
 						</thead>
@@ -71,7 +75,14 @@
 								</td>
 
 								<td>{{report.cliente.data.cedula}}</td>
+								<td>{{report.cliente.data.nombres}} {{report.cliente.data.apellidos}}</td>
 								<td>{{report.equipo.data.nombre}}</td>
+								<td>{{report.equipo.data.marca}}</td>
+								<td>{{report.equipo.data.modelo}}</td>
+								<td>
+									<span v-if="report.equipo.data.bienNacional">{{report.equipo.data.bienNacional}}</span>
+									<span v-else >Propio</span>
+								</td>
 
 								<td>
 									<div v-if="report.reparacion" >
@@ -86,7 +97,7 @@
 					</table>
 				</div>				
 			</div>
-
+<pre>{{$data}}</pre>
 	</div>
 </template>
 
