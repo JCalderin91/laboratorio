@@ -14971,8 +14971,41 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_NewAddress__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_NewAddress___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_NewAddress__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_NewAreaAddress__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__partials_NewAreaAddress___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__partials_NewAreaAddress__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -15068,186 +15101,74 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   name: 'Address-View',
   data: function data() {
     return {
-      addresses: '',
-      areas: '',
+      area: '',
+      selectedAddress: '',
+      addresses: null,
+      areas: null,
       newArea: false,
       newAddress: false
     };
   },
   mounted: function mounted() {
     this.getAdresess();
-    this.getAreas();
   },
 
   methods: {
-    toggleForm: function toggleForm() {
-      this.newAddress = !this.newAddress;
-      this.areas = '';
+    toggleForm: function toggleForm(event) {
+      if (event.target.id == 'address-toggle') {
+        this.newAddress = !this.newAddress;
+        this.areas = '';
+      } else if (event.target.id == 'area-toggle') {
+        if (this.selectedAddress == '') return;
+        this.newArea = !this.newArea;
+      }
     },
     getAdresess: function getAdresess() {
       var _this = this;
 
-      axios.get("/api/addresses").then(function (response) {
+      axios.get('/api/addresses').then(function (response) {
         _this.addresses = response.data.data;
       }).catch(function (error) {
         console.log(error);
       });
     },
-    getAreas: function getAreas(area) {
+    getAreas: function getAreas() {
       var _this2 = this;
 
-      axios.get("api/addresses/" + area + "/areas").then(function (response) {
+      axios.get('api/addresses/' + this.selectedAddress + '/areas').then(function (response) {
         _this2.areas = response.data.data;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    saveAddress: function saveAddress() {
+      var _this3 = this;
+
+      axios.post('api/addresses/', { nombre: this.selectedAddress }).then(function (response) {
+        _this3.selectedAddress = '';
+        _this3.getAdresess();
+        _this3.newAddress = false;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    saveArea: function saveArea() {
+      axios.post('api/areas/', { identificador_direccion: this.selectedAddress, nombre: this.area }).then(function (response) {
+        console.log('area saved \n', response);
       }).catch(function (error) {
         console.log(error);
       });
     }
   },
   components: {
-    NewAddress: __WEBPACK_IMPORTED_MODULE_0__partials_NewAddress___default.a
+    NewAreaAddress: __WEBPACK_IMPORTED_MODULE_0__partials_NewAreaAddress___default.a
   }
 });
 
 /***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(18)
-/* template */
-var __vue_template__ = __webpack_require__(19)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/js/components/partials/NewAddress.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-438d3a14", Component.options)
-  } else {
-    hotAPI.reload("data-v-438d3a14", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'new-address',
-	props: ['newAddress']
-});
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "row m-2 " }, [
-    _vm._m(0),
-    _vm._v(" "),
-    _c("div", { staticClass: "form-group col-12 d-flex justify-content-end" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn m-2 btn-secondary",
-          attrs: { href: "" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.newAddress($event)
-            }
-          }
-        },
-        [_vm._v("Cancelar")]
-      ),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          staticClass: "btn m-2 btn-primary",
-          attrs: { href: "" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.newAddress($event)
-            }
-          }
-        },
-        [_vm._v("Guardar")]
-      )
-    ])
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-12" }, [
-      _c("input", {
-        staticClass: "form-control",
-        attrs: { type: "text", placeholder: "Nombre de la dirección" }
-      })
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-438d3a14", module.exports)
-  }
-}
-
-/***/ }),
+/* 17 */,
+/* 18 */,
+/* 19 */,
 /* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -15256,6 +15177,8 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
+    _c("h1", [_vm._v("Areas y Direcciones")]),
+    _vm._v(" "),
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-6" }, [
         _c("div", { staticClass: "card" }, [
@@ -15276,78 +15199,148 @@ var render = function() {
                     {
                       staticClass:
                         "btn btn-primary btn-sm text-white float-right",
+                      attrs: { id: "address-toggle" },
                       on: { click: _vm.toggleForm }
                     },
-                    [_c("i", { staticClass: "fas fa-plus" })]
+                    [
+                      _c("i", {
+                        staticClass: "fas fa-plus",
+                        attrs: { id: "address-toggle" }
+                      })
+                    ]
                   )
                 : _vm._e()
             ]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body p-0" },
-            [
-              _vm.newAddress
-                ? _c("new-address", { attrs: { newAddress: _vm.toggleForm } })
-                : _c(
-                    "table",
-                    {
-                      staticClass:
-                        "table table-striped table-hover mt-2 text-center"
-                    },
-                    [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th"),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Nombre")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Opciones")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.addresses, function(address) {
-                          return _c("tr", { key: address.identificador }, [
-                            _c("td", [
-                              _c("input", {
-                                attrs: { type: "radio", name: "customRadio" },
-                                on: {
-                                  click: function($event) {
-                                    _vm.getAreas(address.identificador)
-                                  }
-                                }
-                              })
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(address.nombre) +
-                                  "\n                  "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "waves-effect waves-light btn-small"
-                                },
-                                [_c("i", { staticClass: "fas fa-pen" })]
-                              )
-                            ])
-                          ])
+          _c("div", { staticClass: "card-body p-0" }, [
+            _vm.newAddress
+              ? _c(
+                  "form",
+                  {
+                    staticClass: "row m-2",
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.saveAddress($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group col-12" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.selectedAddress,
+                            expression: "selectedAddress"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del la Direccion"
+                        },
+                        domProps: { value: _vm.selectedAddress },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.selectedAddress = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "form-group col-12 d-flex justify-content-end"
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn m-2 btn-secondary",
+                            attrs: { id: "address-toggle", href: "" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.toggleForm($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Cancelar")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "btn m-2 btn-primary",
+                          attrs: { type: "submit", value: "Guardar" }
                         })
-                      )
-                    ]
-                  )
-            ],
-            1
-          )
+                      ]
+                    )
+                  ]
+                )
+              : _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-striped table-hover mt-2 text-center"
+                  },
+                  [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.addresses, function(address) {
+                        return _c("tr", { key: address.identificador }, [
+                          _c("td", [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value: _vm.selectedAddress,
+                                  expression: "selectedAddress"
+                                }
+                              ],
+                              attrs: { type: "radio", name: "customRadio" },
+                              domProps: {
+                                value: address.identificador,
+                                checked: _vm._q(
+                                  _vm.selectedAddress,
+                                  address.identificador
+                                )
+                              },
+                              on: {
+                                change: [
+                                  function($event) {
+                                    _vm.selectedAddress = address.identificador
+                                  },
+                                  _vm.getAreas
+                                ]
+                              }
+                            })
+                          ]),
+                          _vm._v(" "),
+                          _c("td", [
+                            _vm._v(
+                              "\n                    " +
+                                _vm._s(address.nombre) +
+                                "\n                  "
+                            )
+                          ]),
+                          _vm._v(" "),
+                          _vm._m(1, true)
+                        ])
+                      })
+                    )
+                  ]
+                )
+          ])
         ])
       ]),
       _vm._v(" "),
@@ -15368,74 +15361,191 @@ var render = function() {
                 "a",
                 {
                   staticClass: "btn btn-primary btn-sm text-white float-right",
+                  attrs: { id: "area-toggle" },
                   on: {
                     click: function($event) {
-                      _vm.newAddress = !_vm.newAddress
+                      $event.preventDefault()
+                      return _vm.toggleForm($event)
                     }
                   }
                 },
-                [_c("i", { staticClass: "fas fa-plus" })]
+                [
+                  _c("i", {
+                    staticClass: "fas fa-plus",
+                    attrs: { id: "area-toggle" }
+                  })
+                ]
               )
             ]
           ),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body p-0" },
-            [
-              _vm.newAddress
-                ? _c("new-address", { attrs: { newAddress: _vm.toggleForm } })
-                : _c(
-                    "table",
-                    {
-                      staticClass:
-                        "table table-striped table-hover mt-2 text-center"
-                    },
-                    [
-                      _c("thead", [
-                        _c("tr", [
-                          _c("th", [_vm._v("Nombre")]),
-                          _vm._v(" "),
-                          _c("th", [_vm._v("Opciones")])
-                        ])
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "tbody",
-                        _vm._l(_vm.areas, function(area) {
-                          return _c("tr", { key: area.id }, [
-                            _c("td", [
-                              _vm._v(
-                                "\n                    " +
-                                  _vm._s(area.nombre) +
-                                  "\n                  "
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("td", [
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "waves-effect waves-light btn-small"
-                                },
-                                [_c("i", { staticClass: "fas fa-pen" })]
-                              )
-                            ])
-                          ])
+          _c("div", { staticClass: "card-body p-0" }, [
+            _vm.newArea
+              ? _c(
+                  "form",
+                  {
+                    staticClass: "row m-2",
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.saveArea($event)
+                      }
+                    }
+                  },
+                  [
+                    _c("div", { staticClass: "form-group col-12" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.area,
+                            expression: "area"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          placeholder: "Nombre del la Direccion"
+                        },
+                        domProps: { value: _vm.area },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.area = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      {
+                        staticClass:
+                          "form-group col-12 d-flex justify-content-end"
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn m-2 btn-secondary",
+                            attrs: { id: "area-toggle", href: "" },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.toggleForm($event)
+                              }
+                            }
+                          },
+                          [_vm._v("Cancelar")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          staticClass: "btn m-2 btn-primary",
+                          attrs: { type: "submit", value: "Guardar" }
                         })
-                      )
-                    ]
-                  )
-            ],
-            1
-          )
+                      ]
+                    )
+                  ]
+                )
+              : _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-striped table-hover mt-2 text-center"
+                  },
+                  [
+                    _vm._m(2),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      [
+                        _vm._l(_vm.areas, function(area) {
+                          return _vm.areas
+                            ? _c("tr", { key: area.id }, [
+                                _c("td", [
+                                  _vm._v(
+                                    "\n                    " +
+                                      _vm._s(area.nombre) +
+                                      "\n                  "
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _vm._m(3, true)
+                              ])
+                            : _vm._e()
+                        }),
+                        _vm._v(" "),
+                        !_vm.selectedAddress ? _c("tr", [_vm._m(4)]) : _vm._e()
+                      ],
+                      2
+                    )
+                  ]
+                )
+          ])
         ])
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th"),
+        _vm._v(" "),
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { staticClass: "waves-effect waves-light btn-small" }, [
+        _c("i", { staticClass: "fas fa-pen" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Opciones")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", [
+      _c("a", { staticClass: "waves-effect waves-light btn-small" }, [
+        _c("i", { staticClass: "fas fa-pen" })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { attrs: { colspan: "2" } }, [
+      _c("strong", [_vm._v("Debe seleccionar una direccion.")])
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -15800,7 +15910,7 @@ exports = module.exports = __webpack_require__(1)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -15941,10 +16051,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
       }
     },
+    resetClient: function resetClient() {
+      this.client = {
+        identificador: '',
+        cedula: '',
+        nombres: '',
+        apellidos: '',
+        telefono: '',
+        identificador_area: '',
+        direccion: ''
+      };
+    },
+    cleanAfterSubmit: function cleanAfterSubmit() {
+      this.clientForm = false;
+      this.getClients();
+      this.resetClient();
+    },
     updateClient: function updateClient() {
       var _this4 = this;
 
-      alert();
       axios.put('api/clients/' + this.client.identificador, this.client).then(function (response) {
         Swal({
           type: 'success',
@@ -15953,7 +16078,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           confirmButtonText: 'Continuar'
         }).then(function () {
           _this4.update = false;
-          _this4.$router.push('/clientes');
+          _this4.cleanAfterSubmit();
         });
       }).catch(function (error) {
         Swal({
@@ -15974,7 +16099,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
           text: 'Datos guardados con exito',
           confirmButtonText: 'Continuar'
         }).then(function () {
-          _this5.$router.push('/clientes');
+          _this5.cleanAfterSubmit();
         });
       }).catch(function (error) {
         Swal({
@@ -15986,13 +16111,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     submit: function submit() {
-      console.log(this.update);
       if (this.update) {
-        console.log('update');
         this.updateClient();
       } else {
         this.saveClient();
-        console.log('save');
       }
     }
   },
@@ -22136,6 +22258,157 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(95)
+/* template */
+var __vue_template__ = __webpack_require__(96)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/partials/NewAreaAddress.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-739a0b29", Component.options)
+  } else {
+    hotAPI.reload("data-v-739a0b29", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 95 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'new-area-address',
+	props: ['newAddress', 'placeholder', 'cancelHandler', 'saveHandler']
+});
+
+/***/ }),
+/* 96 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      staticClass: "row m-2",
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.saveHandler($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group col-12" }, [
+        _c("input", {
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: _vm.placeholder }
+        })
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group col-12 d-flex justify-content-end" },
+        [
+          _c(
+            "a",
+            {
+              staticClass: "btn m-2 btn-secondary",
+              attrs: { href: "" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.cancelHandler($event)
+                }
+              }
+            },
+            [_vm._v("Cancelar")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn m-2 btn-primary",
+              attrs: { href: "" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.saveHandler($event)
+                }
+              }
+            },
+            [_vm._v("Guardar")]
+          )
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-739a0b29", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
