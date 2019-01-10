@@ -3,13 +3,12 @@
 namespace App;
 
 use App\Transformers\UserTransformer;
-use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable implements JWTSubject
+class User extends Model
 {
     use Notifiable, SoftDeletes;
 
@@ -71,18 +70,6 @@ class User extends Authenticatable implements JWTSubject
     public function getLastNameAttribute($value){
         return ucwords($value);
     }
-
-    public function getJWTIdentifier()
-    {
-        return $this->getKey();
-    }
-    
-    public function getJWTCustomClaims()
-    {
-        return [];
-    }
-
-
-    
+   
 
 }

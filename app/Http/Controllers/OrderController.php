@@ -59,9 +59,9 @@ class OrderController extends ApiController
                 'phone' => $request->phone
             ]);
     
-            $sub_device = SubDevice::firstOrCreate(['name' => $request->name]);
+            $sub_device = SubDevice::firstOrCreate(['name' => strtolower($request->name)]);
     
-            $brand = Brand::firstOrCreate(['title' => $request->title]); 
+            $brand = Brand::firstOrCreate(['title' => strtolower($request->title)]); 
     
             $device = Device::firstOrCreate(['id' => $request->device_id],
             [

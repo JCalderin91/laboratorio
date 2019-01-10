@@ -19,5 +19,12 @@ class Brand extends Model
 		'title', 
 	];
 
+	public function setTitleAttribute($value){
+        $this->attributes['title'] = strtolower($value);
+    }
+
+    public function getTitleAttribute($value){
+        return ucwords($value);
+    }
     
 }

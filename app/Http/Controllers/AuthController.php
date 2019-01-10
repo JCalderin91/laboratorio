@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use App\Transformers\UserTransformer;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\ApiController;
+use App\Transformers\Transformers\LoginTransformer;
 
 class AuthController extends ApiController
 {
@@ -17,7 +17,7 @@ class AuthController extends ApiController
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => ['login']]);
-        //$this->middleware('transform.input:' . UserTransformer::class)->only(['login']);
+        $this->middleware('transform.input:' . LoginTransformer::class)->only(['login']);
     }
 
     /**
@@ -30,8 +30,8 @@ class AuthController extends ApiController
         
         
         $credentials = array(
-            'ci' => Input::get('cedula'),
-            'password' => Input::get('contraseña'));
+            'username' => Input::get('username'),
+            'password' => Input::get('password'));
 
         if (! $token = auth()->attempt($credentials)) {
             return response()->json(['error' => 'Unauthorized'], 401);

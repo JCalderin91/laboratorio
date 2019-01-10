@@ -432,7 +432,7 @@
           cedula: this.client.ci,
           nombres: this.client.first_name,
           apellidos: this.client.last_name,
-          phone: this.client.phone,
+          telefono: this.client.phone,
           area: area,
           //address: this.client.address,
           // Datos del dispositivo

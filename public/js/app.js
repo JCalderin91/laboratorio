@@ -18655,8 +18655,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			error: false,
-			cedula: "",
-			contraseña: "",
+			usuario: "",
+			contrasena: "",
 			loading: false
 		};
 	},
@@ -18666,7 +18666,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			this.loading = true;
-			axios.post("/auth/login", { cedula: this.cedula, contraseña: this.contraseña }).then(function (response) {
+			axios.post("/auth/login", { usuario: this.usuario, contrasena: this.contrasena }).then(function (response) {
 				_this.loginSuccessful(response.data);
 			}).catch(function (error) {
 				console.error(error);
@@ -18676,11 +18676,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		loginSuccessful: function loginSuccessful(data) {
 			console.log(data);
 			this.$session.start();
-			this.$session.set('ci', this.cedula);
-			this.$session.set('password', this.contraseña);
 			this.$session.set('token', data.access_token);
 			this.$session.set('xsrf', document.cookie.split('=')[1]);
-			this.$session.set('name', data.user.original.data.nombre + ' ' + data.user.original.data.apellido);
+			this.$session.set('usuario', data.user.original.data.usuario);
 			this.$session.set('isAdmin', data.user.original.data.esAdministrador);
 
 			window.location = '/';
@@ -18724,15 +18722,15 @@ var render = function() {
               : _vm._e(),
             _vm._v(" "),
             _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "ci" } }, [_vm._v("Cedula:")]),
+              _c("label", { attrs: { for: "ci" } }, [_vm._v("Usuario:")]),
               _vm._v(" "),
               _c("input", {
                 directives: [
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.cedula,
-                    expression: "cedula"
+                    value: _vm.usuario,
+                    expression: "usuario"
                   }
                 ],
                 staticClass: "form-control",
@@ -18740,17 +18738,17 @@ var render = function() {
                   id: "ci",
                   name: "ci",
                   type: "text",
-                  placeholder: "Ingrese su cedula",
+                  placeholder: "Ingrese el usuario",
                   required: "",
                   disabled: _vm.loading
                 },
-                domProps: { value: _vm.cedula },
+                domProps: { value: _vm.usuario },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.cedula = $event.target.value
+                    _vm.usuario = $event.target.value
                   }
                 }
               })
@@ -18766,8 +18764,8 @@ var render = function() {
                   {
                     name: "model",
                     rawName: "v-model",
-                    value: _vm.contraseña,
-                    expression: "contraseña"
+                    value: _vm.contrasena,
+                    expression: "contrasena"
                   }
                 ],
                 staticClass: "form-control",
@@ -18779,13 +18777,13 @@ var render = function() {
                   required: "",
                   disabled: _vm.loading
                 },
-                domProps: { value: _vm.contraseña },
+                domProps: { value: _vm.contrasena },
                 on: {
                   input: function($event) {
                     if ($event.target.composing) {
                       return
                     }
-                    _vm.contraseña = $event.target.value
+                    _vm.contrasena = $event.target.value
                   }
                 }
               })
@@ -20127,7 +20125,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         cedula: this.client.ci,
         nombres: this.client.first_name,
         apellidos: this.client.last_name,
-        phone: this.client.phone,
+        telefono: this.client.phone,
         area: area,
         //address: this.client.address,
         // Datos del dispositivo
