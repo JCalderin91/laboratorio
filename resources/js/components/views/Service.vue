@@ -50,7 +50,7 @@
                 <input :disabled="!newClient" v-model="client.phone" type="text" class="form-control" required>
               </div>
             </div><!-- Teléfono -->
-
+    
             <div v-if="newClient" class="col-6"><!-- Direcciones -->
               <div class="form-group">
                 <label>Direcciones</label>
