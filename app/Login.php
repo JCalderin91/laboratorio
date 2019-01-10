@@ -3,16 +3,33 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Tymon\JWTAuth\Contracts\JWTSubject;
+use App\Transformers\Transformers\LoginTransformer;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Login extends Model
+class Login extends Authenticatable implements JWTSubject
 {
+   
+   public $transformer = LoginTransformer::class;
+   
     protected $fillable = [
-        'user_id',
         'username',
         'password',
     ];
 
-    public function user(){
-        return $this->belongsTo('App\User');
+    protected $hidden = [
+        'password',
+    ];
+
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
     }
+    
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+
 }

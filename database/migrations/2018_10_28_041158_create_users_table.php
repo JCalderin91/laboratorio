@@ -22,7 +22,6 @@ class CreateUsersTable extends Migration
             $table->string('first_name',128);
             $table->string('last_name',128);
             $table->enum('gender', ['F', 'M']);
-            $table->string('password');
             $table->string('admin')->default(User::USER_REGULAR);
             $table->timestamps(); 
             $table->softDeletes();   

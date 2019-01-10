@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
         $this->call(DeviceTableSeeder::class);
         $this->call(OrderTableSeeder::class);
         $this->call(RepairTableSeeder::class);
+        $this->call(LoginTableSeeder::class);
         
     }
 }

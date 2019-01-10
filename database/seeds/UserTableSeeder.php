@@ -22,7 +22,6 @@ class UserTableSeeder extends Seeder
         $user->last_name = 'Hurtado';
         $user->gender = 'F';
         $user->admin = User::USER_REGULAR;
-        $user->password = bcrypt('123');
         $user->save();
 
         $user = new User();
@@ -31,7 +30,6 @@ class UserTableSeeder extends Seeder
         $user->last_name = 'Calderin';
         $user->gender = 'M';
         $user->admin = User::USER_ADMIN;
-        $user->password = bcrypt('123');
         $user->save();
 
         $user = new User();
@@ -40,7 +38,6 @@ class UserTableSeeder extends Seeder
         $user->last_name = 'Maestre';
         $user->gender = 'M';
         $user->admin = User::USER_ADMIN;
-        $user->password = bcrypt('123');
         $user->save();
 
     }
