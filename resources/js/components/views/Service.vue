@@ -1,5 +1,6 @@
 <template>
   <div class="card">
+    <img id="loader" src="svg/loader.svg" v-if="loading">
     <h2>Registro de una nueva orden de servicio</h2>
     <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
 
@@ -265,6 +266,7 @@
     name: 'Service',
     data(){
       return {
+        loading: false,
         client: {
           ci: '10196016',
           first_name: '',
@@ -310,6 +312,7 @@
 
       searchClient(){
         if (this.client.ci != '') {
+          this.loading = true
           axios
             .get("/api/clients/"+this.client.ci)
             .then(response => {
@@ -321,8 +324,12 @@
               this.client.address = response.data.data.direccion
               this.client.area = response.data.data.nombre_area
               this.getClientDevices(response.data.data.identificador)
+              this.loading = false
             })
-            .catch(error => {console.log(error)});
+            .catch(error => {
+              console.log(error)
+              this.loading = false
+            });
         }
       },
 

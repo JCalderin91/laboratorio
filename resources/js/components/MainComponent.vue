@@ -6,6 +6,7 @@
         <i class="fas fa-bars"></i>
       </a>
       <Sidebar/>
+      
       <div id="main" class="page-content">    
         <router-view></router-view>
       </div>
@@ -47,3 +48,4 @@
     }
   };
 </script>
+
