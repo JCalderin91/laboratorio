@@ -9,14 +9,14 @@
 				<div class="card-body">
 					<p class="alert alert-danger text-center" v-if="error">{{error}}</p>
 					<div class="form-group">
-						<label for="ci">Cedula:</label>
+						<label for="ci">Usuario:</label>
 						<input
 						class="form-control"
 						id="ci"
 						name="ci"
 						type="text"
-						placeholder="Ingrese su cedula"
-						v-model="cedula"
+						placeholder="Ingrese el usuario"
+						v-model="usuario"
 						required
 						:disabled="loading">
 					</div>
@@ -28,7 +28,7 @@
 						name="contraseña"
 						type="password"
 						placeholder="Ingrese su contraseña"
-						v-model="contraseña"
+						v-model="contrasena"
 						required
 						:disabled="loading">
 					</div>
@@ -56,8 +56,8 @@
 		data() {
 			return {
 				error: false,
-				cedula: "",
-				contraseña: "",
+				usuario: "",
+				contrasena: "",
 				loading: false,
 			};
 		},
@@ -65,7 +65,7 @@
 			login() {
 				this.loading = true;
 				axios
-					.post("/auth/login", {cedula: this.cedula, contraseña: this.contraseña})
+					.post("/auth/login", {usuario: this.usuario, contrasena: this.contrasena})
 					.then(response => {this.loginSuccessful(response.data)})
 					.catch(error => {
 						console.error(error);
@@ -75,11 +75,9 @@
 			loginSuccessful(data) {
 				console.log(data)
 				this.$session.start()
-				this.$session.set('ci', this.cedula)
-				this.$session.set('password', this.contraseña)
 				this.$session.set('token', data.access_token)
 				this.$session.set('xsrf', document.cookie.split('=')[1])
-				this.$session.set('name', data.user.original.data.nombre + ' ' + data.user.original.data.apellido)
+				this.$session.set('usuario', data.user.original.data.usuario)
 				this.$session.set('isAdmin', data.user.original.data.esAdministrador)
 
 				window.location = '/'

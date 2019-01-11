@@ -15,6 +15,7 @@ class LoginTableSeeder extends Seeder
        $login = new Login();
        $login->username = 'admin';
        $login->password = bcrypt('admin');
+       $login->admin = 'true';
        $login->save();
     }
 }
