@@ -28,6 +28,11 @@ class AddressController extends ApiController
     {  
         $addresses = Address::all();
 
+        if(request()->has('paginate')){
+
+            return $this->showAll($addresses, 200, true);
+        }
+
         return $this->showAll($addresses);
     }
 

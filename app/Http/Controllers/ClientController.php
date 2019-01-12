@@ -24,6 +24,11 @@ class ClientController extends ApiController{
        
         $clients = Client::all();
 
+        if(request()->has('paginate')){
+
+            return $this->showAll($clients, 200, true);
+        }
+
         return $this->showAll($clients);
     }
 
