@@ -29,7 +29,7 @@ Route::group([
 
 Route::group([
     
-    'middleware' => 'jwt.auth',
+   // 'middleware' => 'jwt.auth',
     'prefix' => 'api'
 
 
@@ -38,7 +38,7 @@ Route::group([
     //Direcciones
 
     Route::apiResource('/addresses', 'AddressController');
-    Route::apiResource('/addresses.areas', 'AddressAreaController', ['only' => ['index']]);
+    Route::apiResource('/addresses.areas', 'AddressAreaController', ['only' => ['index', 'store']]);
 
     //Clientes
 

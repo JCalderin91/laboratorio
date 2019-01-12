@@ -25,7 +25,6 @@ class AreaStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:areas,name',
-            'address_id' => 'required',
         ];
     }
 }
