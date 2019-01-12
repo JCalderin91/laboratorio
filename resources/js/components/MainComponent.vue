@@ -28,7 +28,7 @@
         email: "jesuscaldeirn@gmail.com",
         password: "123",
         error: false,
-        loading: true,
+        loading: false,
       };
     },
     computed: {
