@@ -7,7 +7,7 @@
       <div class="card-body p-0 row">
         <div class="col-md-6">
           <div class="card">
-            <div class="card-header">Dispositivos</div>
+            <div class="card-header">{{devicesMeta.total}} Dispositivos registrados</div>
             <div class="card-body p-0">
               <table class="table">
                 <thead class="thead-dark">
@@ -22,7 +22,18 @@
                     <td>-</td>
                   </tr>
                 </tbody>
-              </table>  
+              </table> 
+              <nav aria-label="Page navigation example" class="mx-2">
+                <ul class="pagination pagination-sm">
+                  <li 
+                    v-for="page in devicesMeta.total_pages"
+                    v-bind:class="{'page-item pt-1':true, 'active':(page === devicesMeta.current_page)}">
+                    <a @click.prevent="subDevicePaginate(page)" class="page-link" href="#">
+                      {{page}}
+                    </a>
+                  </li>
+                </ul>
+              </nav> 
             </div>
           </div>
         </div> 
@@ -118,7 +129,10 @@
       getSubDevice(){
         axios
           .get("/api/sub-devices?paginate=true")
-          .then(response => {this.devices = response.data.data})
+          .then(response => {
+            this.devices = response.data.data
+            this.devicesMeta = response.data.meta.pagination
+          })
           .catch(error => {console.log(error)})
       },
       subDevicePaginate(page){
