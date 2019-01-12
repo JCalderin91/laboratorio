@@ -34,6 +34,11 @@ class SubDeviceController extends ApiController
     {
         $subDevices = SubDevice::create($request->all());
 
+        if(request()->has('paginate')){
+
+            return $this->showAll($subDevice, 200, true);
+        }
+
         return $this->showOne($subDevice, 201);
     }
     
