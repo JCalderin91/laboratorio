@@ -1,6 +1,6 @@
 <template>
   <div class="card">
-    <img id="loader" src="svg/loader.svg" v-if="loading">
+    
     <h2>Registro de una nueva orden de servicio</h2>
     <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
 
@@ -313,6 +313,7 @@
       searchClient(){
         if (this.client.ci != '') {
           this.loading = true
+          eventBus.$emit('loading', true)
           axios
             .get("/api/clients/"+this.client.ci)
             .then(response => {
@@ -329,7 +330,8 @@
             .catch(error => {
               console.log(error)
               this.loading = false
-            });
+            })
+            .then(() => {eventBus.$emit('loading', false)})
         }
       },
 

@@ -205,10 +205,13 @@
 		},
 		methods: {
 			getOrders(){
+				eventBus.$emit('loading', true)
 				axios
           .get("api/orders")
           .then(response => {this.orders = response.data.data})
           .catch(error => {console.log(error)})
+          .then(() => {eventBus.$emit('loading', false)})
+
 			},
 			saveRepair(){
         let repair = {

@@ -6,7 +6,7 @@
         <i class="fas fa-bars"></i>
       </a>
       <Sidebar/>
-      
+      <img id="loader" src="svg/loader.svg" v-if="loading">
       <div id="main" class="page-content">    
         <router-view></router-view>
       </div>
@@ -27,7 +27,8 @@
       return {
         email: "jesuscaldeirn@gmail.com",
         password: "123",
-        error: false
+        error: false,
+        loading: true,
       };
     },
     computed: {
@@ -40,6 +41,10 @@
         axios.defaults.headers.common['X-CSRF-TOKEN'] = this.$session.get('xsrf')
         axios.defaults.headers.common['Authorization'] = 'Bearer '+this.$session.get('token')
       }
+      eventBus.$on('loading', (loading) => {
+        this.loading = loading 
+      })
+
     },
     components: {
       Login,

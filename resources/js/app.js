@@ -9,6 +9,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueSession from 'vue-session'
+	
+window.eventBus = new Vue();
 
 Vue.use(VueSession)
 Vue.use(VueRouter)
