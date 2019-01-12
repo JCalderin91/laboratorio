@@ -28,7 +28,7 @@
         </div> 
         <div class="col-md-6">
           <div class="card">
-            <div class="card-header">Marcas</div>
+            <div class="card-header">{{brandsMeta.total}} Marcas registradas</div>
             <div class="card-body p-0">
               <table class="table">
                 <thead class="thead-dark">
@@ -44,24 +44,32 @@
                   </tr>
                 </tbody>
               </table>  
-              <nav aria-label="Page navigation example" class="float-right">
-                <ul class="pagination">
-                  <li 
-                    v-if="brandsMeta.pagination.links.previous" 
-                    @click.prevent="brandPaginate(brandsMeta.pagination.links.previous)"
+              <nav aria-label="Page navigation example" class="mx-2">
+                <ul class="pagination pagination-sm">
+                  <!-- <li 
+                    v-if="brandsMeta.links.previous" 
+                    @click.prevent="brandPaginate(brandsMeta.links.previous)"
                     class="page-item">
                     <a class="page-link" href="#">Anterior</a>
-                  </li>
-                  <li class="page-item">
+                  </li> -->
+                  <!-- <li class="page-item">
                     <a @click.prevent="" class="page-link" href="#">
-                      {{brandsMeta.pagination.current_page}}
+                      {{brandsMeta.current_page}}
                     </a>
-                  </li>
-                  <li 
-                    v-if="brandsMeta.pagination.links.next" 
-                    @click.prevent="brandPaginate(brandsMeta.pagination.links.next)"
+                  </li> -->
+                  <!-- <li 
+                    v-if="brandsMeta.links.next" 
+                    @click.prevent="brandPaginate(brandsMeta.links.next)"
                     class="page-item">
                     <a class="page-link" href="#">Siguiente</a>
+                  </li> -->
+
+                  <li 
+                    v-for="page in brandsMeta.total_pages"
+                    v-bind:class="{'page-item pt-1':true, 'active':(page === brandsMeta.current_page)}">
+                    <a @click.prevent="brandPaginate(page)" class="page-link" href="#">
+                      {{page}}
+                    </a>
                   </li>
                 </ul>
               </nav>
@@ -94,7 +102,7 @@
           .get("/api/brands?paginate=true")
           .then(response => {
             this.brands = response.data.data
-            this.brandsMeta = response.data.meta
+            this.brandsMeta = response.data.meta.pagination
           })
           .catch(error => {console.log(error)})
       },
@@ -103,7 +111,7 @@
           .get("/api/brands?paginate=true&page="+page)
           .then(response => {
             this.brands = response.data.data
-            this.brandsMeta = response.data.meta
+            this.brandsMeta = response.data.meta.pagination
           })
           .catch(error => {console.log(error)})
       },

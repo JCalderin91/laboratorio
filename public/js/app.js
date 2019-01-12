@@ -15997,6 +15997,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Brands-View',
@@ -16018,7 +16026,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.get("/api/brands?paginate=true").then(function (response) {
         _this.brands = response.data.data;
-        _this.brandsMeta = response.data.meta;
+        _this.brandsMeta = response.data.meta.pagination;
       }).catch(function (error) {
         console.log(error);
       });
@@ -16028,7 +16036,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.get("/api/brands?paginate=true&page=" + page).then(function (response) {
         _this2.brands = response.data.data;
-        _this2.brandsMeta = response.data.meta;
+        _this2.brandsMeta = response.data.meta.pagination;
       }).catch(function (error) {
         console.log(error);
       });
@@ -16083,7 +16091,9 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("Marcas")]),
+            _c("div", { staticClass: "card-header" }, [
+              _vm._v(_vm._s(_vm.brandsMeta.total) + " Marcas registradas")
+            ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body p-0" }, [
               _c("table", { staticClass: "table" }, [
@@ -16104,87 +16114,47 @@ var render = function() {
               _c(
                 "nav",
                 {
-                  staticClass: "float-right",
+                  staticClass: "mx-2",
                   attrs: { "aria-label": "Page navigation example" }
                 },
                 [
-                  _c("ul", { staticClass: "pagination" }, [
-                    _vm.brandsMeta.pagination.links.previous
-                      ? _c(
-                          "li",
-                          {
-                            staticClass: "page-item",
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.brandPaginate(
-                                  _vm.brandsMeta.pagination.links.previous
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "page-link",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Anterior")]
-                            )
-                          ]
-                        )
-                      : _vm._e(),
-                    _vm._v(" "),
-                    _c("li", { staticClass: "page-item" }, [
-                      _c(
-                        "a",
+                  _c(
+                    "ul",
+                    { staticClass: "pagination pagination-sm" },
+                    _vm._l(_vm.brandsMeta.total_pages, function(page) {
+                      return _c(
+                        "li",
                         {
-                          staticClass: "page-link",
-                          attrs: { href: "#" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                            }
+                          class: {
+                            "page-item pt-1": true,
+                            active: page === _vm.brandsMeta.current_page
                           }
                         },
                         [
-                          _vm._v(
-                            "\n                      " +
-                              _vm._s(_vm.brandsMeta.pagination.current_page) +
-                              "\n                    "
+                          _c(
+                            "a",
+                            {
+                              staticClass: "page-link",
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.brandPaginate(page)
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                      " +
+                                  _vm._s(page) +
+                                  "\n                    "
+                              )
+                            ]
                           )
                         ]
                       )
-                    ]),
-                    _vm._v(" "),
-                    _vm.brandsMeta.pagination.links.next
-                      ? _c(
-                          "li",
-                          {
-                            staticClass: "page-item",
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                _vm.brandPaginate(
-                                  _vm.brandsMeta.pagination.links.next
-                                )
-                              }
-                            }
-                          },
-                          [
-                            _c(
-                              "a",
-                              {
-                                staticClass: "page-link",
-                                attrs: { href: "#" }
-                              },
-                              [_vm._v("Siguiente")]
-                            )
-                          ]
-                        )
-                      : _vm._e()
-                  ])
+                    })
+                  )
                 ]
               )
             ])
