@@ -9,6 +9,7 @@ use App\Transformers\BrandTransformer;
 use App\Http\Controllers\ApiController;
 use App\Http\Requests\BrandStoreRequest;
 use App\Http\Requests\BrandUpdateRequest;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class BrandController extends ApiController{
    
@@ -23,6 +24,11 @@ class BrandController extends ApiController{
     public function index(){
 
         $brands = Brand::orderBy('title','asc')->get();
+
+        if(request()->has('paginate')){
+
+            return $this->showAll($brands, 200, true);
+        }
 
         return $this->showAll($brands);
     }
