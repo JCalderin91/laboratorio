@@ -13,11 +13,8 @@
 						<img class="img-responsive img-rounded" src="assets/avatars/001-man.png" alt="User picture">
 					</div>
 					<div class="user-info">
-						<span class="user-name">
-							{{ name }}
-						</span>
-						<span v-if="isAdmin" class="user-role">Profesor</span>
-						<span v-else class="user-role">Técnico</span>
+						<span v-if="isAdmin" class="user-name">Profesor</span>
+						<span v-else class="user-name">Técnico</span>
 					</div>
 				</div>
 				<div class="sidebar-menu">
@@ -83,7 +80,7 @@
 						</li>
 
 						<li v-if="isAdmin" class="sidebar">
-							<router-link tag="a" to="/conf">
+							<router-link tag="a" to="/configuraciones">
 								<i class="fa fa-cogs"></i>
 							  <span>Configuraciones</span>
 							</router-link>

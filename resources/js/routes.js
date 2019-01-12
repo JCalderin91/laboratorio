@@ -8,6 +8,7 @@ import Login from './components/views/Login'
 import Users from './components/views/Users'
 import Service from './components/views/Service'
 import Reports from './components/views/Reports'
+import Configurations from './components/views/Configurations'
 
 const routes = [
 	{
@@ -59,6 +60,11 @@ const routes = [
 		path: '/reportes',
 		name: 'reports',
 		component: Reports,
+	},
+	{
+		path: '/configuraciones',
+		name: 'configurations',
+		component: Configurations,
 	},
 ];
 
