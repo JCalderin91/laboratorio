@@ -78,7 +78,6 @@
         </div>       
       </div>
     </div>
-    <pre>{{ $data }}</pre>
 	</div>
 </template>
 
@@ -89,7 +88,8 @@
       return {
         brands: '',
         brandsMeta: '',
-        devices: ''
+        devices: '',
+        devicesMeta: '',
       }
     },
     mounted() {
@@ -117,8 +117,17 @@
       },
       getSubDevice(){
         axios
-          .get("/api/sub-devices")
+          .get("/api/sub-devices?paginate=true")
           .then(response => {this.devices = response.data.data})
+          .catch(error => {console.log(error)})
+      },
+      subDevicePaginate(page){
+        axios
+          .get("/api/sub-devices?paginate=true&page="+page)
+          .then(response => {
+            this.devices = response.data.data
+            this.devicesMeta = response.data.meta.pagination
+          })
           .catch(error => {console.log(error)})
       },
     }
