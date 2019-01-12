@@ -20,6 +20,11 @@ class SubDeviceController extends ApiController
     {
         $subDevices = SubDevice::orderBy('name', 'asc')->get();
 
+        if(request()->has('paginate')){
+
+            return $this->showAll($subDevices, 200, true);
+        }
+        
         return $this->showAll($subDevices);
     }
 
@@ -33,11 +38,6 @@ class SubDeviceController extends ApiController
     public function store(Request $request)
     {
         $subDevices = SubDevice::create($request->all());
-
-        if(request()->has('paginate')){
-
-            return $this->showAll($subDevice, 200, true);
-        }
 
         return $this->showOne($subDevice, 201);
     }
