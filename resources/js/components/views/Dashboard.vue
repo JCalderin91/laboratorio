@@ -5,7 +5,7 @@
 				<widget type="revisados" icon="wrench" :value="revisedCount"></widget>	
 
 				<div class="col-12 pt-3">
-					<table class="table text-center table-striped table-hover">
+					<table class="table text-center table-striped table-hover table-sm">
 						<thead class="bg-dark text-white">
 							<tr>
 								<th>Cedula</th>
@@ -160,7 +160,7 @@
 			    </div>
 			  </div>
 			</div>
-
+		<pre>{{$data}}</pre>
 		</div>
 </template>
 
@@ -207,7 +207,7 @@
 			getOrders(){
 				eventBus.$emit('loading', true)
 				axios
-          .get("api/orders")
+          .get("api/orders?paginate=true")
           .then(response => {this.orders = response.data.data})
           .catch(error => {console.log(error)})
           .then(() => {eventBus.$emit('loading', false)})

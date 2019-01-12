@@ -8,7 +8,9 @@
       <Sidebar/>
       <img id="loader" src="svg/loader.svg" v-if="loading">
       <div id="main" class="page-content">    
-        <router-view></router-view>
+        <transition transition="expand" >
+          <router-view></router-view>
+        </transition>
       </div>
     </div>
   </div>
