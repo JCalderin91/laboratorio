@@ -14,13 +14,15 @@
               </a>
             </div>
             <div class="card-body p-0">
-              <div class="p-2" v-if="newDevice" >
-                <div class="form-group">
-                  <input type="text" v-model="device" class="form-control">
+              <transition name="fade" mode="out-in">
+                <div class="p-2" v-if="newDevice" >
+                  <div class="form-group">
+                    <input type="text" v-model="device" class="form-control">
+                  </div>
+                  <a @click.prevent="newDevice = false" href="#" class="btn btn-secondary">Cancelar</a>
+                  <a @click.prevent="createDevice()" href="#" class="btn btn-primary">Guardar</a>
                 </div>
-                <a @click.prevent="newDevice = false" href="#" class="btn btn-secondary">Cancelar</a>
-                <a @click.prevent="createDevice()" href="#" class="btn btn-primary">Guardar</a>
-              </div>
+              </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
                   <tr>
@@ -65,13 +67,15 @@
               </a>
             </div>
             <div class="card-body p-0">
-              <div class="p-2" v-if="newBrand" >
-                <div class="form-group">
-                  <input type="text" v-model="brand" class="form-control">
+              <transition name="fade" mode="out-in">
+                <div class="p-2" v-if="newBrand" >
+                  <div class="form-group">
+                    <input type="text" v-model="brand" class="form-control">
+                  </div>
+                  <a @click.prevent="newBrand = false" href="#" class="btn btn-secondary">Cancelar</a>
+                  <a @click.prevent="createBrand()" href="#" class="btn btn-primary">Guardar</a>
                 </div>
-                <a @click.prevent="newBrand = false" href="#" class="btn btn-secondary">Cancelar</a>
-                <a @click.prevent="createBrand()" href="#" class="btn btn-primary">Guardar</a>
-              </div>
+              </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
                   <tr>

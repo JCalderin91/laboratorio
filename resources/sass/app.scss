@@ -510,18 +510,10 @@ body {
   justify-content: center;
 }
 
-/* always present */
-.expand-transition {
-  transition: all .3s ease;
-  height: 30px;
-  padding: 10px;
-  background-color: #eee;
-  overflow: hidden;
-}
-/* .expand-enter defines the starting state for entering */
-/* .expand-leave defines the ending state for leaving */
-.expand-enter, .expand-leave {
-  height: 0;
-  padding: 0 10px;
+
+.fade-enter, .fade-leave-to {
   opacity: 0;
+}
+.fade-enter-active,.fad-leave-active{
+  transition: all .1s ease;
 }
