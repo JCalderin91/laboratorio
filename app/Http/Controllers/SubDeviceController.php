@@ -37,7 +37,7 @@ class SubDeviceController extends ApiController
      */
     public function store(Request $request)
     {
-        $subDevices = SubDevice::create($request->all());
+        $subDevice = SubDevice::create($request->all());
 
         return $this->showOne($subDevice, 201);
     }

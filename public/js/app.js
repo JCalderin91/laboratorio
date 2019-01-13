@@ -16015,20 +16015,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Brands-View',
   data: function data() {
     return {
+      newBrand: false,
+      newDevice: false,
+      brand: '',
       brands: '',
       brandsMeta: '',
+      device: '',
       devices: '',
       devicesMeta: ''
     };
   },
   mounted: function mounted() {
-    this.getBrands();
     this.getSubDevice();
+    this.getBrands();
   },
 
   methods: {
@@ -16052,24 +16076,124 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
-    getSubDevice: function getSubDevice() {
+    createBrand: function createBrand() {
       var _this3 = this;
 
-      axios.get("/api/sub-devices?paginate=true").then(function (response) {
-        _this3.devices = response.data.data;
-        _this3.devicesMeta = response.data.meta.pagination;
+      this.newBrand = false;
+      axios.post("api/brands", { nombre: this.brand }).then(function (response) {
+        _this3.getBrands();
+        Swal({
+          type: 'success',
+          title: 'Excelente',
+          text: 'Datos guardados con exito',
+          confirmButtonText: 'Continuar'
+        });
       }).catch(function (error) {
         console.log(error);
       });
     },
-    subDevicePaginate: function subDevicePaginate(page) {
+    deleteBrand: function deleteBrand(id) {
       var _this4 = this;
 
-      axios.get("/api/sub-devices?paginate=true&page=" + page).then(function (response) {
-        _this4.devices = response.data.data;
-        _this4.devicesMeta = response.data.meta.pagination;
+      Swal({
+        title: 'Esta seguro?',
+        text: "Estas a punto de borrar el registro!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Continuar'
+      }).then(function (result) {
+        if (result.value) {
+          axios.delete("api/brands/" + id).then(function (response) {
+            _this4.getBrands();
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos borrados con exito',
+              confirmButtonText: 'Continuar'
+            });
+          }).catch(function (error) {
+            console.log(error);
+          });
+        }
+      });
+    },
+    getSubDevice: function getSubDevice() {
+      var _this5 = this;
+
+      axios.get("/api/sub-devices?paginate=true").then(function (response) {
+        _this5.devices = response.data.data;
+        _this5.devicesMeta = response.data.meta.pagination;
       }).catch(function (error) {
         console.log(error);
+        Swal({
+          type: 'error',
+          title: 'Alerta',
+          text: error,
+          confirmButtonText: 'Continuar'
+        });
+      });
+    },
+    subDevicePaginate: function subDevicePaginate(page) {
+      var _this6 = this;
+
+      axios.get("/api/sub-devices?paginate=true&page=" + page).then(function (response) {
+        _this6.devices = response.data.data;
+        _this6.devicesMeta = response.data.meta.pagination;
+      }).catch(function (error) {
+        console.log(error);
+      });
+    },
+    createDevice: function createDevice() {
+      var _this7 = this;
+
+      this.newDevice = false;
+      axios.post("api/sub-devices", { nombre: this.device }).then(function (response) {
+        _this7.getSubDevice();
+        Swal({
+          type: 'success',
+          title: 'Excelente',
+          text: 'Datos guardados con exito',
+          confirmButtonText: 'Continuar'
+        });
+      }).catch(function (error) {
+        console.log(error);
+        Swal({
+          type: 'error',
+          title: 'Alerta',
+          text: error,
+          confirmButtonText: 'Continuar'
+        });
+      });
+    },
+    deleteSubDevice: function deleteSubDevice(id) {
+      var _this8 = this;
+
+      Swal({
+        title: 'Esta seguro?',
+        text: "Estas a punto de borrar el registro!",
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar',
+        confirmButtonText: 'Continuar'
+      }).then(function (result) {
+        if (result.value) {
+          axios.delete("api/sub-devices/" + id).then(function (response) {
+            _this8.getSubDevice();
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos borrados con exito',
+              confirmButtonText: 'Continuar'
+            });
+          }).catch(function (error) {
+            console.log(error);
+          });
+        }
       });
     }
   }
@@ -16092,25 +16216,127 @@ var render = function() {
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
               _vm._v(
-                _vm._s(_vm.devicesMeta.total) + " Dispositivos registrados"
-              )
+                "\n              " +
+                  _vm._s(_vm.devicesMeta.total) +
+                  " Dispositivos registrados\n              "
+              ),
+              !_vm.newDevice
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary float-right btn-sm",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.newDevice = true
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-plus" })]
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body p-0" }, [
-              _c("table", { staticClass: "table" }, [
-                _vm._m(1),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.devices, function(device) {
-                    return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(device.nombre))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("-")])
-                    ])
-                  })
-                )
-              ]),
+              _vm.newDevice
+                ? _c("div", { staticClass: "p-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.device,
+                            expression: "device"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.device },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.device = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.newDevice = false
+                          }
+                        }
+                      },
+                      [_vm._v("Cancelar")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.createDevice()
+                          }
+                        }
+                      },
+                      [_vm._v("Guardar")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-sm table-striped table-hover" },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.devices, function(device) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(_vm._s(device.nombre))]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "d-flex justify-content-end" },
+                          [
+                            _vm._m(2, true),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "ml-1 btn btn-outline-danger btn-sm",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.deleteSubDevice(device.identificador)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-trash" })]
+                            )
+                          ]
+                        )
+                      ])
+                    })
+                  )
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "nav",
@@ -16165,24 +16391,128 @@ var render = function() {
         _c("div", { staticClass: "col-md-6" }, [
           _c("div", { staticClass: "card" }, [
             _c("div", { staticClass: "card-header" }, [
-              _vm._v(_vm._s(_vm.brandsMeta.total) + " Marcas registradas")
+              _vm._v(
+                "\n              " +
+                  _vm._s(_vm.brandsMeta.total) +
+                  " Marcas registradas\n              "
+              ),
+              !_vm.newBrand
+                ? _c(
+                    "a",
+                    {
+                      staticClass: "btn btn-primary float-right btn-sm",
+                      attrs: { href: "#" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          _vm.newBrand = true
+                        }
+                      }
+                    },
+                    [_c("i", { staticClass: "fas fa-plus" })]
+                  )
+                : _vm._e()
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body p-0" }, [
-              _c("table", { staticClass: "table" }, [
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "tbody",
-                  _vm._l(_vm.brands, function(brand) {
-                    return _c("tr", [
-                      _c("td", [_vm._v(_vm._s(brand.nombre))]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("-")])
-                    ])
-                  })
-                )
-              ]),
+              _vm.newBrand
+                ? _c("div", { staticClass: "p-2" }, [
+                    _c("div", { staticClass: "form-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.brand,
+                            expression: "brand"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: { type: "text" },
+                        domProps: { value: _vm.brand },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.brand = $event.target.value
+                          }
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-secondary",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.newBrand = false
+                          }
+                        }
+                      },
+                      [_vm._v("Cancelar")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            _vm.createBrand()
+                          }
+                        }
+                      },
+                      [_vm._v("Guardar")]
+                    )
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              _c(
+                "table",
+                { staticClass: "table table-sm table-striped table-hover" },
+                [
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c(
+                    "tbody",
+                    _vm._l(_vm.brands, function(brand) {
+                      return _c("tr", [
+                        _c("td", [_vm._v(_vm._s(brand.nombre))]),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "d-flex justify-content-end" },
+                          [
+                            _vm._m(4, true),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass:
+                                  "ml-1 btn btn-outline-danger btn-sm",
+                                attrs: { href: "#" },
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.deleteBrand(brand.identificador)
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-trash" })]
+                            )
+                          ]
+                        )
+                      ])
+                    })
+                  )
+                ]
+              ),
               _vm._v(" "),
               _c(
                 "nav",
@@ -16254,9 +16584,21 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Acción")])
+        _c("th", { staticClass: "d-flex justify-content-end" }, [
+          _vm._v("Acciónes")
+        ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn bg-dark text-white btn-sm", attrs: { href: "#" } },
+      [_c("i", { staticClass: "fas fa-pen" })]
+    )
   },
   function() {
     var _vm = this
@@ -16266,9 +16608,21 @@ var staticRenderFns = [
       _c("tr", [
         _c("th", [_vm._v("Nombre")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Acción")])
+        _c("th", { staticClass: "d-flex justify-content-end" }, [
+          _vm._v("Acciónes")
+        ])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "btn bg-dark text-white btn-sm", attrs: { href: "#" } },
+      [_c("i", { staticClass: "fas fa-pen" })]
+    )
   }
 ]
 render._withStripped = true
