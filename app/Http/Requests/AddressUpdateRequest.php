@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AddressUpdateRequest extends FormRequest
@@ -24,7 +25,7 @@ class AddressUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:addresses,name,' . $this->address,
+            'name' => Rule::unique('addresses')->ignore($this->address),
         ];
     }
 }
