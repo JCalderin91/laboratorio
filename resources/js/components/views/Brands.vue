@@ -25,7 +25,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th>Nombre</th>
-                    <th class="d-flex justify-content-end">Acciónes</th>
+                    <th class="text-right">Acciónes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -76,7 +76,7 @@
                 <thead class="thead-dark">
                   <tr>
                     <th>Nombre</th>
-                    <th class="d-flex justify-content-end">Acciónes</th>
+                    <th class="text-right">Acciónes</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -191,11 +191,7 @@
               })
               .catch(error => {console.log(error)})
           }
-        })
-
-
-
-        
+        })        
       },
       getSubDevice(){
         axios
