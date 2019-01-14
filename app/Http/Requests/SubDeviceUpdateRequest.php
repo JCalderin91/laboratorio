@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class SubDeviceUpdateRequest extends FormRequest
@@ -24,7 +25,7 @@ class SubDeviceUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:sub_devices,name,' . $this->sub_device,
+            'name' => Rule::unique('sub_devices')->ignore($this->sub_devices),
         ];
     }
 }

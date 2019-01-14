@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BrandUpdateRequest extends FormRequest
@@ -24,7 +25,7 @@ class BrandUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|unique:brands,title,' . $this->brand,
+            'title' => Rule::unique('brands')->ignore($this->brand),
         ];
     }
 }
