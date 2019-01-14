@@ -70,6 +70,7 @@
             <a 
               id="area-toggle"
               @click.prevent="toggleForm"
+              v-if="selectedAddress"
               class="btn btn-primary btn-sm text-white float-right">
               <i v-if="!newArea" id="area-toggle" class="fas fa-plus"></i>
               <i v-else id="area-toggle" class="fas fa-minus"></i>
@@ -144,7 +145,7 @@
     methods: {
       setAddressName() {
         this.addresses.forEach(address => {
-          if (address.identificador == this.selectedAddress) this.address_name = address.name
+          if (address.identificador == this.selectedAddress) this.address_name = address.nombre
         })
       },
 
