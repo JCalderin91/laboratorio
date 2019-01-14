@@ -49,9 +49,12 @@
                   </td>
                   <td>
                     <a 
-                      class="waves-effect waves-light btn-small" 
+                      class="btn btn-sm bg-dark text-white" 
                       @click.prevent="editAddress">
-                      <i :id="address.identificador" class="fas fa-pen" style="cursor: pointer;"></i>
+                      <i :id="address.identificador" class="fas fa-pen"></i>
+                    </a>
+                    <a @click.prevent="deleteAddress(address.identificador)" href="#" class="ml-1 btn btn-outline-danger btn-sm">
+                      <i class="fas fa-trash"></i>  
                     </a>
                   </td>
                 </tr>
@@ -91,18 +94,21 @@
               </thead>
 
               <tbody>
-                <tr v-if="areas" v-for="area in areas" :key="area.id">
+                <tr v-if="!areas">
+                  <td colspan="2"><strong>No hay nada para mostrar.</strong></td>
+                </tr>
+                <tr v-else v-for="area in areas" :key="area.id">
                   <td>
                     {{ area.nombre }}
                   </td>
                   <td>
-                    <a @click.prevent="editArea" class="waves-effect waves-light btn-small" style="cursor: pointer;">
+                    <a @click.prevent="editArea" class="btn btn-sm btn-dark text-white" style="cursor: pointer;">
                       <i :id="area.identificador" class="fas fa-pen"></i>
                     </a>
+                    <a @click.prevent="deleteArea(area.identificador)" href="#" class="ml-1 btn btn-outline-danger btn-sm">
+                      <i class="fas fa-trash"></i>  
+                    </a>
                   </td>
-                </tr>
-                <tr v-else>
-                  <td colspan="2"><strong>Debe seleccionar una direccion.</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -124,8 +130,8 @@
         selectedAddress: '',
         selectedArea: '',
         address_name: '',
-        addresses: 0,
-        areas: 0,
+        addresses: [],
+        areas: false,
         newArea: false,
         newAddress: false,
         addressUpdate: false,
@@ -187,26 +193,56 @@
         axios
           .get('/api/addresses')
           .then(response => {this.addresses = response.data.data})
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            this.$emit('error', error)
+          })
       },
 
       getAreas(){
         axios
           .get(`api/addresses/${this.selectedAddress}/areas`)
           .then(response => {this.areas = response.data.data})
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            this.$emit('error', error)
+          })
       },
 
       saveAddress() {
         axios
           .post('api/addresses/', {nombre: this.address_name})
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            this.$emit('error', error)
+          })
       },
 
       updateAddress() {
         axios
           .put('api/addresses/'+this.selectedAddress, {nombre: this.address_name})
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            this.$emit('error', error)
+          })
+      },
+
+      deleteAddress(id) {
+        Swal({
+          title: 'Esta seguro?',
+          text: "Estas a punto de borrar el registro!",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: 'Cancelar',
+          confirmButtonText: 'Continuar'
+        }).then(result => {
+          if (result.value) {
+            axios
+              .delete('api/addresses/'+id)
+              .then(response => {this.getAddresses()})
+              .catch(error => {
+                this.$emit('error', error)
+              })
+          }
+        })
       },
 
       addressSubmit() {
@@ -226,14 +262,29 @@
         axios
           .post(`api/addresses/${this.selectedAddress}/areas`, {nombre: this.area_name})
           .then(response => {this.areas = response.data.data})
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            this.$emit('error', error)
+          })
       },
 
       updateArea() {
         axios
           .put(`api/areas/${this.selectedArea}`, {nombre: this.area_name})
           .then(response => {console.log(response.data.data)})
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            this.$emit('error', error)
+          })
+      },
+
+      deleteArea(id) {
+        axios
+          .delete(`/api/areas/${id}`)
+          .then(response => {
+            this.getAreas()
+          })
+          .catch(error => {
+            this.$emit('error', error)
+          })
       },
 
       areaSubmit() {
