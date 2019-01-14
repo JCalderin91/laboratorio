@@ -19344,7 +19344,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			this.$session.set('xsrf', document.cookie.split('=')[1]);
 			this.$session.set('usuario', data.user.original.data.usuario);
 			this.$session.set('isAdmin', data.user.original.data.esAdministrador);
-
+			//this.$router.push({name:'dashboard'})
 			window.location = '/';
 		},
 		loginFailed: function loginFailed() {
@@ -22658,6 +22658,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(99)
+}
 var normalizeComponent = __webpack_require__(0)
 /* script */
 var __vue_script__ = __webpack_require__(88)
@@ -22666,7 +22670,7 @@ var __vue_template__ = __webpack_require__(94)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
-var __vue_styles__ = null
+var __vue_styles__ = injectStyle
 /* scopeId */
 var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
@@ -22712,6 +22716,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__views_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__views_Dashboard__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_Login__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__views_Login___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__views_Login__);
+//
+//
 //
 //
 //
@@ -23024,7 +23030,9 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "user-info" }, [
             _vm.isAdmin
-              ? _c("span", { staticClass: "user-name" }, [_vm._v("Profesor")])
+              ? _c("span", { staticClass: "user-name toggle-item" }, [
+                  _vm._v("Profesor")
+                ])
               : _c("span", { staticClass: "user-name" }, [_vm._v("Técnico")])
           ])
         ]),
@@ -23040,7 +23048,9 @@ var render = function() {
                 _c("router-link", { attrs: { tag: "a", to: "/" } }, [
                   _c("i", { staticClass: "fa fa-tachometer-alt" }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Principal")])
+                  _c("span", { staticClass: "toggle-item" }, [
+                    _vm._v("Principal")
+                  ])
                 ])
               ],
               1
@@ -23053,7 +23063,9 @@ var render = function() {
                 _c("router-link", { attrs: { tag: "a", to: "/servicio" } }, [
                   _c("i", { staticClass: "fa fa-file-invoice " }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Registrar servicio")])
+                  _c("span", { staticClass: "toggle-item" }, [
+                    _vm._v("Registrar servicio")
+                  ])
                 ])
               ],
               1
@@ -23066,7 +23078,9 @@ var render = function() {
                 _c("router-link", { attrs: { tag: "a", to: "/clientes" } }, [
                   _c("i", { staticClass: "fa fa-users" }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Clientes")])
+                  _c("span", { staticClass: "toggle-item" }, [
+                    _vm._v("Clientes")
+                  ])
                 ])
               ],
               1
@@ -23082,7 +23096,9 @@ var render = function() {
                   [
                     _c("i", { staticClass: "fa fa-laptop" }),
                     _vm._v(" "),
-                    _c("span", [_vm._v("Dispositivos")])
+                    _c("span", { staticClass: "toggle-item" }, [
+                      _vm._v("Dispositivos")
+                    ])
                   ]
                 )
               ],
@@ -23096,7 +23112,7 @@ var render = function() {
                 _c("router-link", { attrs: { tag: "a", to: "/marcas" } }, [
                   _c("i", { staticClass: "fa fa-tachometer-alt" }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Marcas")])
+                  _c("span", { staticClass: "toggle-item" }, [_vm._v("Marcas")])
                 ])
               ],
               1
@@ -23110,8 +23126,12 @@ var render = function() {
                   _c("i", { staticClass: "fa fa-id-badge " }),
                   _vm._v(" "),
                   _vm.isAdmin
-                    ? _c("span", [_vm._v("Usuarios")])
-                    : _c("span", [_vm._v("Técnicos")])
+                    ? _c("span", { staticClass: "toggle-item" }, [
+                        _vm._v("Usuarios")
+                      ])
+                    : _c("span", { staticClass: "toggle-item" }, [
+                        _vm._v("Técnicos")
+                      ])
                 ])
               ],
               1
@@ -23124,7 +23144,9 @@ var render = function() {
                 _c("router-link", { attrs: { tag: "a", to: "/areas" } }, [
                   _c("i", { staticClass: "fa fa-directions" }),
                   _vm._v(" "),
-                  _c("span", [_vm._v("Areas & Direcciones")])
+                  _c("span", { staticClass: "toggle-item" }, [
+                    _vm._v("Areas & Direcciones")
+                  ])
                 ])
               ],
               1
@@ -23141,7 +23163,9 @@ var render = function() {
                       [
                         _c("i", { staticClass: "fa fa-tachometer-alt" }),
                         _vm._v(" "),
-                        _c("span", [_vm._v("Reportes")])
+                        _c("span", { staticClass: "toggle-item" }, [
+                          _vm._v("Reportes")
+                        ])
                       ]
                     )
                   ],
@@ -23160,7 +23184,9 @@ var render = function() {
                       [
                         _c("i", { staticClass: "fa fa-cogs" }),
                         _vm._v(" "),
-                        _c("span", [_vm._v("Configuraciones")])
+                        _c("span", { staticClass: "toggle-item" }, [
+                          _vm._v("Configuraciones")
+                        ])
                       ]
                     )
                   ],
@@ -23184,7 +23210,10 @@ var render = function() {
           },
           [
             _c("i", { staticClass: "fa fa-sign-out-alt" }),
-            _vm._v(" Cerrar sesion")
+            _vm._v(" "),
+            _c("span", { staticClass: "toggle-item" }, [
+              _vm._v("Cerrar sesion")
+            ])
           ]
         )
       ])
@@ -23197,7 +23226,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "sidebar-brand" }, [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("laboratorio")]),
+      _c("a", { staticClass: "toggle-item", attrs: { href: "#" } }, [
+        _vm._v("laboratorio")
+      ]),
       _vm._v(" "),
       _c("div", { attrs: { id: "close-sidebar" } }, [
         _c("i", { staticClass: "fas fa-times" })
@@ -23220,7 +23251,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "header-menu" }, [
-      _c("span", [_vm._v("Menu")])
+      _c("span", { staticClass: "toggle-item" }, [_vm._v("Menu")])
     ])
   }
 ]
@@ -23266,7 +23297,14 @@ var render = function() {
             _c(
               "div",
               { staticClass: "page-content", attrs: { id: "main" } },
-              [_c("router-view")],
+              [
+                _c(
+                  "transition",
+                  { attrs: { name: "fade", mode: "out-in" } },
+                  [_c("router-view")],
+                  1
+                )
+              ],
               1
             )
           ],
@@ -23289,6 +23327,49 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(100);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("5dbc01ba", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ee370e9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainComponent.vue", function() {
+     var newContent = require("!!../../../node_modules/css-loader/index.js!../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3ee370e9\",\"scoped\":false,\"hasInlineConfig\":true}!../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./MainComponent.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.fade-enter,\n.fade-leave-active{\n  -webkit-transition: opacity .1s;\n  transition: opacity .1s;\n}\n.fade-enter,\n.fade-leave-to{\n  opacity: 0;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

@@ -79,7 +79,7 @@
 				this.$session.set('xsrf', document.cookie.split('=')[1])
 				this.$session.set('usuario', data.user.original.data.usuario)
 				this.$session.set('isAdmin', data.user.original.data.esAdministrador)
-
+				//this.$router.push({name:'dashboard'})
 				window.location = '/'
 			},
 			

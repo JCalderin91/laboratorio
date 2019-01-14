@@ -8,7 +8,9 @@
       <Sidebar/>
       <img id="loader" src="svg/loader.svg" v-if="loading">
       <div id="main" class="page-content">    
-        <router-view></router-view>
+        <transition name="fade" mode="out-in">
+          <router-view></router-view>
+        </transition>
       </div>
     </div>
   </div>
@@ -53,4 +55,14 @@
     }
   };
 </script>
+<style>
+  .fade-enter,
+  .fade-leave-active{
+    transition: opacity .1s;
+  }
+  .fade-enter,
+  .fade-leave-to{
+    opacity: 0;
+  }
+</style>
 
