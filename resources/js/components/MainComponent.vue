@@ -8,8 +8,8 @@
       <Sidebar/>
       <img id="loader" src="svg/loader.svg" v-if="loading">
       <div id="main" class="page-content">    
-        <transition transition="expand" >
-          <router-view @error="errorAlert"></router-view>
+        <transition name="fade" mode="out-in">
+          <router-view  @error="errorAlert"></router-view>
         </transition>
       </div>
     </div>
