@@ -20,26 +20,36 @@
                     <input type="text" v-model="device" class="form-control">
                   </div>
                   <a @click.prevent="newDevice = false" href="#" class="btn btn-secondary">Cancelar</a>
-                  <a @click.prevent="createDevice()" href="#" class="btn btn-primary">Guardar</a>
+                  <a @click.prevent="createDevice" href="#" class="btn btn-primary">Guardar</a>
                 </div>
               </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
                   <tr>
-                    <th>Nombre</th>
-                    <th class="d-flex justify-content-end">Acciónes</th>
+                    <th class=" text-center" style="vertical-align: middle">Nombre</th>
+                    <th class="text-center">
+                      <button class="btn btn-outline-light btn-sm" title="Eliminar Dispositivo(s)"  @click.prevent="deleteDevices"><i class="fas fa-trash"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Editar Dispositivo"><i class="fas fa-pen"></i></button>
+                    </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody class="text-center">
                   <tr v-for="device in devices">
                     <td>{{ device.nombre }}</td>
-                    <td class="d-flex justify-content-end">
-                      <a href="#" class="btn bg-dark text-white btn-sm">
+                    <td>
+                      <!-- <a href="#" class="btn bg-dark text-white btn-sm">
                         <i class="fas fa-pen"></i>  
                       </a>
                       <a @click.prevent="deleteSubDevice(device.identificador)" href="#" class="ml-1 btn btn-outline-danger btn-sm">
                         <i class="fas fa-trash"></i>  
-                      </a>
+                      </a> -->
+                      <div class="custom-control custom-checkbox" style="cursor: pointer;">
+                        <input class="custom-control-input" type="checkbox" style="display: none;"
+                          @change="selectDevice" 
+                          :name="device.identificador" 
+                          :id="device.identificador">
+                        <label class="custom-control-label" :for="device.identificador" style="vertical-align: top"></label>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -128,6 +138,7 @@
         brandsMeta: '',
         device: '',
         devices: '',
+        selectedDevices: [],
         devicesMeta: '',
       }
     },
@@ -136,6 +147,14 @@
       this.getBrands()
     },
     methods: {
+      selectDevice(event) {
+        if (this.selectedDevices.indexOf(event.target.id) == (-1)) {
+          this.selectedDevices.push(event.target.id)
+        } else {
+          this.selectedDevices = this.selectedDevices.filter(id => id != event.target.id)
+        }
+      },
+
       getBrands(){
         axios
           .get("/api/brands?paginate=true")
@@ -195,11 +214,7 @@
               })
               .catch(error => {console.log(error)})
           }
-        })
-
-
-
-        
+        })        
       },
       getSubDevice(){
         axios
@@ -227,6 +242,17 @@
           })
           .catch(error => {console.log(error)})
       },
+
+      deleteDevices() {
+        this.$emit('prompt', {
+          title: 'Comfirmación',
+          message: '¿Seguro que desea eliminar los dispositivos seleccionados?',
+          confirmHandler: () => {
+            console.log(this.selectedDevices)
+          },
+        })
+      },
+
       createDevice(){
         this.newDevice = false 
         axios
