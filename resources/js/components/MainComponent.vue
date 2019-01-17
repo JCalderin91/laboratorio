@@ -10,7 +10,7 @@
       <div id="main" class="page-content">    
         <transition name="fade" mode="out-in">
 
-          <router-view  @error="errorAlert"></router-view>
+          <router-view  @error="errorAlert" @prompt="promptAlert"></router-view>
 
         </transition>
       </div>
@@ -59,7 +59,24 @@
           confirmButtonText:"Aceptar",
           confirmButtonColor: '#3085d6'
         })
-      }
+      },
+
+      promptAlert(payload) {
+        Swal({
+          title: payload.title,
+          text: payload.message,
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText:"Aceptar",
+          confirmButtonColor: '#3085d6',
+          cancelButtonColor: '#d33',
+          cancelButtonText: 'Cancelar',
+        }).then(result => {
+          if (result.value) {
+            payload.confirmHandler()
+          }
+        })
+      },
     },
     components: {
       Login,
