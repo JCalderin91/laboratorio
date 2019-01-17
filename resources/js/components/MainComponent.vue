@@ -9,7 +9,9 @@
       <img id="loader" src="svg/loader.svg" v-if="loading">
       <div id="main" class="page-content">    
         <transition name="fade" mode="out-in">
-          <router-view></router-view>
+
+          <router-view  @error="errorAlert"></router-view>
+
         </transition>
       </div>
     </div>
@@ -47,6 +49,17 @@
         this.loading = loading 
       })
 
+    },
+    methods: {
+      errorAlert(message) {
+        Swal({
+          title: 'Ha ocurrido un error',
+          text: message,
+          type: 'error',
+          confirmButtonText:"Aceptar",
+          confirmButtonColor: '#3085d6'
+        })
+      }
     },
     components: {
       Login,

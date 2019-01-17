@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AreaUpdateRequest extends FormRequest
@@ -24,7 +25,7 @@ class AreaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'unique:areas,name,' . $this->area,
+            'name' => Rule::unique('areas')->ignore($this->area),
         ];
     }
 }

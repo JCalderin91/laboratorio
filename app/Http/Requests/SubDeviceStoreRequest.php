@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddressUpdateRequest extends FormRequest
+class SubDeviceStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +24,7 @@ class AddressUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => Rule::unique('addresses')->ignore($this->address),
+            'name' => 'required|unique:sub_devices,name'
         ];
     }
 }
