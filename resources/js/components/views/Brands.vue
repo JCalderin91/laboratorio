@@ -119,7 +119,7 @@
                     <th class=" text-center" style="vertical-align: middle">Nombre</th>
                     <th class="text-center">
                       <button class="btn btn-outline-light btn-sm" title="Eliminar Marca(s)"  @click.prevent="deleteBrand"><i class="fas fa-trash"></i></button>
-                      <button class="btn btn-outline-light btn-sm" title="Editar Marca"><i class="fas fa-pen" @click.prevent="editBrand"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Editar Marca" @click.prevent="editBrand"><i class="fas fa-pen"></i></button>
                     </th>
                   </tr>
                 </thead>
