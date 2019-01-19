@@ -7,7 +7,7 @@
 				<div class="col-12 pt-3">
 
 					<div class="form-group">
-						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar cliente por cedula">
+						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar orden por cedula o dispositivo">
 					</div>
 						
 					<table class="table text-center table-striped table-hover table-sm">
@@ -361,8 +361,15 @@
 				return Object.keys(revisedCount).length
 			},
 			filterOrders: function(){
+				var expreg = /[0-9]/;
+  
 				if(this.searchOrder != ''){
-					return this.allOrders.filter((item) => item.cliente.data.cedula.includes(this.searchOrder));
+					if (expreg.test(this.searchOrder)) {
+	          return this.allOrders.filter((item) => item.cliente.data.cedula.includes(this.searchOrder));
+	        } else {
+	          return this.allOrders.filter((item) => item.equipo.data.nombre.includes(this.searchOrder));
+	        }
+					
 				}else{
 					return this.orders
 				}
