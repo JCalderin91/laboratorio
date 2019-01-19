@@ -46,6 +46,7 @@ class OrderTransformer extends TransformerAbstract
             'apellidos' => 'last_name',
             'telefono' => 'phone',
             'area' =>  'area_id',
+            'direccion' => 'address_id',
             'tecnico' => 'user_id',
         ];
 
@@ -69,6 +70,7 @@ class OrderTransformer extends TransformerAbstract
             'last_name' => 'apellidos',
             'phone' => 'telefono',
             'area_id' => 'area',
+            'address_id' => 'direccion',
             'user_id' => 'tecnico',
         ];
 
