@@ -46,14 +46,7 @@
 						<li class="sidebar">
 							<router-link tag="a" to="/dispositivos">
 								<i class="fa fa-laptop"></i>
-							  <span class="toggle-item">Dispositivos</span>
-							</router-link>
-						</li>
-
-						<li class="sidebar">
-							<router-link tag="a" to="/marcas">
-								<i class="fa fa-tachometer-alt"></i>
-							  <span class="toggle-item">Marcas</span>
+							  <span class="toggle-item">Ordenes</span>
 							</router-link>
 						</li>
 
@@ -62,6 +55,13 @@
 								<i class="fa fa-id-badge "></i>
 							  <span class="toggle-item" v-if="isAdmin" >Usuarios</span>
 							  <span class="toggle-item" v-else >Técnicos</span>
+							</router-link>
+						</li>
+
+						<li class="sidebar">
+							<router-link tag="a" to="/marcas">
+								<i class="fa fa-tachometer-alt"></i>
+							  <span class="toggle-item">Marcas & Dispositivos</span>
 							</router-link>
 						</li>
 

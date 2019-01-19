@@ -55,7 +55,7 @@
             <div v-if="newClient" class="col-6"><!-- Direcciones -->
               <div class="form-group">
                 <label>Direcciones</label>
-                <select class="custom-select" v-model="client.address" @change="getAreas" required>
+                <select class="custom-select" v-model="client.address" required>
                   <option value="">Selecione una dirección</option>
                   <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre }}</option>
                 </select>
@@ -257,7 +257,7 @@
         </div>
       </div>
     </div>
-
+    <pre>{{$data}}</pre>
   </div>
 </template>
 
@@ -272,7 +272,7 @@
           first_name: '',
           last_name: '',
           phone: '',
-          area: '',
+          area: '', 
           address: '',
           devices: ''
         },
@@ -288,6 +288,7 @@
         nameUser:'',
         idUser:'',
         idArea:'',
+        idAddress:'',
         newClient: true,
         checkNameDevice: false,
         checkBrand: false,
@@ -302,6 +303,7 @@
 
     mounted(){
       this.getAddress()
+      this.getAreas()
       this.getSubDevice()
       this.getBrands()
       this.getUsers()
@@ -322,7 +324,8 @@
               this.client.last_name = response.data.data.apellidos
               this.client.phone = response.data.data.telefono
               this.idArea = response.data.data.identificador_area
-              this.client.address = response.data.data.direccion
+              this.client.address = response.data.data.nombre_direccion
+              this.client.idAddress = response.data.data.identificador_direccion
               this.client.area = response.data.data.nombre_area
               this.getClientDevices(response.data.data.identificador)
               this.loading = false
@@ -353,7 +356,7 @@
 
       getAreas(){
         axios
-          .get("api/addresses/"+this.client.address+"/areas")
+          .get("api/areas")
           .then(response => {this.areas = response.data.data})
           .catch(error => {
             console.log(error)
@@ -436,6 +439,13 @@
           area = this.idArea
         }
 
+        let address = ''
+        if (typeof(this.client.address) == 'number') {
+          address = this.client.address
+        } else {
+          address = this.idAddress
+        }
+
         let order = {
           // Datos del cliente
           cedula: this.client.ci,
@@ -443,7 +453,7 @@
           apellidos: this.client.last_name,
           telefono: this.client.phone,
           area: area,
-          //address: this.client.address,
+          direccion: this.client.address,
           // Datos del dispositivo
           equipo: this.device.id,
           nombre_equipo: this.device.name.toLowerCase(),
