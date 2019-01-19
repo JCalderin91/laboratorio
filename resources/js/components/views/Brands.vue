@@ -26,16 +26,12 @@
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
                   <tr>
-<<<<<<< HEAD
-                    <th>Nombre</th>
-                    <th class="text-right">Acciónes</th>
-=======
+
                     <th class=" text-center" style="vertical-align: middle">Nombre</th>
                     <th class="text-center">
                       <button class="btn btn-outline-light btn-sm" title="Eliminar Dispositivo(s)"  @click.prevent="deleteDevices"><i class="fas fa-trash"></i></button>
                       <button class="btn btn-outline-light btn-sm" title="Editar Dispositivo"><i class="fas fa-pen"></i></button>
                     </th>
->>>>>>> refs/remotes/origin/master
                   </tr>
                 </thead>
                 <tbody class="text-center">
@@ -48,10 +44,10 @@
                       <a @click.prevent="deleteSubDevice(device.identificador)" href="#" class="ml-1 btn btn-outline-danger btn-sm">
                         <i class="fas fa-trash"></i>  
                       </a> -->
-                      <div class="custom-control custom-checkbox" style="cursor: pointer;">
-                        <input class="custom-control-input" type="checkbox" style="display: none;"
+                      <div class="custom-control custom-radio" style="cursor: pointer;">
+                        <input class="custom-control-input" type="radio" style="display: none;"
                           @change="selectDevice" 
-                          :name="device.identificador" 
+                          name="brand" 
                           :id="device.identificador">
                         <label class="custom-control-label" :for="device.identificador" style="vertical-align: top"></label>
                       </div>

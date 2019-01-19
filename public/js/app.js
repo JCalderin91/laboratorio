@@ -567,7 +567,7 @@ module.exports = Component.exports
 var disposed = false
 function injectStyle (ssrContext) {
   if (disposed) return
-  __webpack_require__(60)
+  __webpack_require__(101)
 }
 var normalizeComponent = __webpack_require__(0)
 /* script */
@@ -16161,6 +16161,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Brands-View',
@@ -16173,6 +16184,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       brandsMeta: '',
       device: '',
       devices: '',
+      selectedDevices: [],
       devicesMeta: ''
     };
   },
@@ -16182,6 +16194,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
 
   methods: {
+    selectDevice: function selectDevice(event) {
+      if (this.selectedDevices.indexOf(event.target.id) == -1) {
+        this.selectedDevices.push(event.target.id);
+      } else {
+        this.selectedDevices = this.selectedDevices.filter(function (id) {
+          return id != event.target.id;
+        });
+      }
+    },
     getBrands: function getBrands() {
       var _this = this;
 
@@ -16272,12 +16293,23 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         console.log(error);
       });
     },
-    createDevice: function createDevice() {
+    deleteDevices: function deleteDevices() {
       var _this7 = this;
+
+      this.$emit('prompt', {
+        title: 'Comfirmación',
+        message: '¿Seguro que desea eliminar los dispositivos seleccionados?',
+        confirmHandler: function confirmHandler() {
+          console.log(_this7.selectedDevices);
+        }
+      });
+    },
+    createDevice: function createDevice() {
+      var _this8 = this;
 
       this.newDevice = false;
       axios.post("api/sub-devices", { nombre: this.device }).then(function (response) {
-        _this7.getSubDevice();
+        _this8.getSubDevice();
         Swal({
           type: 'success',
           title: 'Excelente',
@@ -16295,7 +16327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       });
     },
     deleteSubDevice: function deleteSubDevice(id) {
-      var _this8 = this;
+      var _this9 = this;
 
       Swal({
         title: 'Esta seguro?',
@@ -16309,7 +16341,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       }).then(function (result) {
         if (result.value) {
           axios.delete("api/sub-devices/" + id).then(function (response) {
-            _this8.getSubDevice();
+            _this9.getSubDevice();
             Swal({
               type: 'success',
               title: 'Excelente',
@@ -16418,7 +16450,7 @@ var render = function() {
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
-                                _vm.createDevice()
+                                return _vm.createDevice($event)
                               }
                             }
                           },
@@ -16432,37 +16464,72 @@ var render = function() {
                   "table",
                   { staticClass: "table table-sm table-striped table-hover" },
                   [
-                    _vm._m(1),
+                    _c("thead", { staticClass: "thead-dark" }, [
+                      _c("tr", [
+                        _c(
+                          "th",
+                          {
+                            staticClass: " text-center",
+                            staticStyle: { "vertical-align": "middle" }
+                          },
+                          [_vm._v("Nombre")]
+                        ),
+                        _vm._v(" "),
+                        _c("th", { staticClass: "text-center" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-outline-light btn-sm",
+                              attrs: { title: "Eliminar Dispositivo(s)" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.deleteDevices($event)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-trash" })]
+                          ),
+                          _vm._v(" "),
+                          _vm._m(1)
+                        ])
+                      ])
+                    ]),
                     _vm._v(" "),
                     _c(
                       "tbody",
+                      { staticClass: "text-center" },
                       _vm._l(_vm.devices, function(device) {
                         return _c("tr", [
                           _c("td", [_vm._v(_vm._s(device.nombre))]),
                           _vm._v(" "),
-                          _c(
-                            "td",
-                            { staticClass: "d-flex justify-content-end" },
-                            [
-                              _vm._m(2, true),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass:
-                                    "ml-1 btn btn-outline-danger btn-sm",
-                                  attrs: { href: "#" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.deleteSubDevice(device.identificador)
-                                    }
-                                  }
-                                },
-                                [_c("i", { staticClass: "fas fa-trash" })]
-                              )
-                            ]
-                          )
+                          _c("td", [
+                            _c(
+                              "div",
+                              {
+                                staticClass: "custom-control custom-radio",
+                                staticStyle: { cursor: "pointer" }
+                              },
+                              [
+                                _c("input", {
+                                  staticClass: "custom-control-input",
+                                  staticStyle: { display: "none" },
+                                  attrs: {
+                                    type: "radio",
+                                    name: "brand",
+                                    id: device.identificador
+                                  },
+                                  on: { change: _vm.selectDevice }
+                                }),
+                                _vm._v(" "),
+                                _c("label", {
+                                  staticClass: "custom-control-label",
+                                  staticStyle: { "vertical-align": "top" },
+                                  attrs: { for: device.identificador }
+                                })
+                              ]
+                            )
+                          ])
                         ])
                       })
                     )
@@ -16615,7 +16682,7 @@ var render = function() {
                   "table",
                   { staticClass: "table table-sm table-striped table-hover" },
                   [
-                    _vm._m(3),
+                    _vm._m(2),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -16627,7 +16694,7 @@ var render = function() {
                             "td",
                             { staticClass: "d-flex justify-content-end" },
                             [
-                              _vm._m(4, true),
+                              _vm._m(3, true),
                               _vm._v(" "),
                               _c(
                                 "a",
@@ -16720,21 +16787,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark" }, [
-      _c("tr", [
-        _c("th", [_vm._v("Nombre")]),
-        _vm._v(" "),
-        _c("th", { staticClass: "text-right" }, [_vm._v("Acciónes")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
-      "a",
-      { staticClass: "btn bg-dark text-white btn-sm", attrs: { href: "#" } },
+      "button",
+      {
+        staticClass: "btn btn-outline-light btn-sm",
+        attrs: { title: "Editar Dispositivo" }
+      },
       [_c("i", { staticClass: "fas fa-pen" })]
     )
   },
@@ -19442,46 +19500,8 @@ if (false) {
 }
 
 /***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(61);
-if(typeof content === 'string') content = [[module.i, content, '']];
-if(content.locals) module.exports = content.locals;
-// add the styles to the DOM
-var update = __webpack_require__(2)("a1a99eb6", content, false, {});
-// Hot Module Replacement
-if(false) {
- // When the styles change, update the <style> tags
- if(!content.locals) {
-   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a0ceb926\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue", function() {
-     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a0ceb926\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue");
-     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-     update(newContent);
-   });
- }
- // When the module is disposed, remove the <style> tags
- module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(1)(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n.login-wrapper[data-v-a0ceb926] {\n\tdisplay: -webkit-box;\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-webkit-box-orient: vertical;\n\t-webkit-box-direction: normal;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\t-webkit-box-pack: center;\n\t    -ms-flex-pack: center;\n\t        justify-content: center;\n\t-webkit-box-align: center;\n\t    -ms-flex-align: center;\n\t        align-items: center;\n\tmin-height: 100vh;\n\twidth: 100vw;\n\n\tbackground: #232526;  /* fallback for old browsers */  /* Chrome 10-25, Safari 5.1-6 */\n\tbackground: -webkit-gradient(linear, left top, right top, from(#414345), to(#232526));\n\tbackground: linear-gradient(to right, #414345, #232526); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */\n}\n.card[data-v-a0ceb926]{\n\twidth: 400px;\n\tmax-width: 99%;\n}\n.card-action[data-v-a0ceb926] {\n\tborder-top: 0px;\n}\n.pssw-rec[data-v-a0ceb926] {\n\tmargin-right: 0 !important;\n\tcolor: teal !important;\n}\n.pssw-rec[data-v-a0ceb926]:hover {\n\ttext-decoration: underline;\n}\n\n", ""]);
-
-// exports
-
-
-/***/ }),
+/* 60 */,
+/* 61 */,
 /* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19539,11 +19559,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: "login",
 	data: function data() {
 		return {
+			texto: 'INICIAR SESION',
 			error: false,
 			usuario: "",
 			contrasena: "",
@@ -19556,6 +19586,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			this.loading = true;
+			this.texto = 'CARGANDO';
 			axios.post("/auth/login", { usuario: this.usuario, contrasena: this.contrasena }).then(function (response) {
 				_this.loginSuccessful(response.data);
 			}).catch(function (error) {
@@ -19576,6 +19607,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		loginFailed: function loginFailed() {
 			this.error = "Credenciales invalidas";
 			this.loading = false;
+			this.texto = 'INICIAR SESION';
 		}
 	}
 });
@@ -19588,12 +19620,15 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "login-wrapper" }, [
-    _c("div", { staticClass: "card" }, [
+  return _c("div", { staticClass: "login-wrapper d-flex" }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "login" }, [
       _c(
         "form",
         {
           staticClass: "card-content",
+          attrs: { method: "POST" },
           on: {
             submit: function($event) {
               $event.preventDefault()
@@ -19602,101 +19637,105 @@ var render = function() {
           }
         },
         [
-          _vm._m(0),
+          _c("h3", [_vm._v("Ingrese a su cuenta")]),
           _vm._v(" "),
-          _c("div", { staticClass: "card-body" }, [
-            _vm.error
-              ? _c("p", { staticClass: "alert alert-danger text-center" }, [
-                  _vm._v(_vm._s(_vm.error))
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "ci" } }, [_vm._v("Usuario:")]),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.usuario,
-                    expression: "usuario"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  id: "ci",
-                  name: "ci",
-                  type: "text",
-                  placeholder: "Ingrese el usuario",
-                  required: "",
-                  disabled: _vm.loading
-                },
-                domProps: { value: _vm.usuario },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.usuario = $event.target.value
-                  }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "form-group" }, [
-              _c("label", { attrs: { for: "contraseña" } }, [
-                _vm._v("Contraseña:")
+          _c(
+            "div",
+            {},
+            [
+              _c("transition", { attrs: { name: "fade" } }, [
+                _vm.error
+                  ? _c("p", { staticClass: "alert alert-danger text-center" }, [
+                      _vm._v(_vm._s(_vm.error))
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.contrasena,
-                    expression: "contrasena"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: {
-                  id: "contraseña",
-                  name: "contraseña",
-                  type: "password",
-                  placeholder: "Ingrese su contraseña",
-                  required: "",
-                  disabled: _vm.loading
-                },
-                domProps: { value: _vm.contrasena },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.usuario,
+                      expression: "usuario"
                     }
-                    _vm.contrasena = $event.target.value
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "ci",
+                    name: "ci",
+                    type: "text",
+                    placeholder: "Ingrese el usuario",
+                    required: "",
+                    disabled: _vm.loading
+                  },
+                  domProps: { value: _vm.usuario },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.usuario = $event.target.value
+                      },
+                      function($event) {
+                        _vm.error = false
+                      }
+                    ]
                   }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-action" }, [
-              _c("input", {
-                staticClass: "btn btn-primary btn-block",
-                staticStyle: { margin: "auto" },
-                attrs: {
-                  type: "submit",
-                  value: "Iniciar Sesíon",
-                  disabled: _vm.loading
-                },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.login($event)
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.contrasena,
+                      expression: "contrasena"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    id: "contraseña",
+                    name: "contraseña",
+                    type: "password",
+                    placeholder: "Ingrese su contraseña",
+                    required: "",
+                    disabled: _vm.loading
+                  },
+                  domProps: { value: _vm.contrasena },
+                  on: {
+                    input: [
+                      function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.contrasena = $event.target.value
+                      },
+                      function($event) {
+                        _vm.error = false
+                      }
+                    ]
                   }
-                }
-              })
-            ])
-          ])
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "btn-box" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary btn-block",
+                    attrs: { type: "submit", disabled: _vm.loading }
+                  },
+                  [_vm._v(_vm._s(_vm.texto))]
+                )
+              ])
+            ],
+            1
+          )
         ]
       )
     ])
@@ -19710,21 +19749,27 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass:
-          "card-header d-flex justify-content-between align-items-center"
+        staticClass: "img-background",
+        staticStyle: { "background-image": "url('assets/img/bg.jpg')" }
       },
       [
-        _c("h4", { staticClass: "m-0 text-primary" }, [
-          _vm._v("Iniciar sesión")
-        ]),
+        _c("div", { staticClass: "filtro" }),
         _vm._v(" "),
-        _c("img", {
-          attrs: {
-            src: "assets/favicon.png",
-            alt: "logo-proyecto",
-            height: "25px"
-          }
-        })
+        _c("div", { staticClass: "info" }, [
+          _c("h1", [
+            _c("img", {
+              attrs: {
+                src: "assets/favicon.png",
+                alt: "logo-proyecto",
+                height: "50px"
+              }
+            }),
+            _vm._v(" "),
+            _c("span", [_vm._v("Laboratorio")])
+          ]),
+          _vm._v(" "),
+          _c("h2", [_vm._v("Bienvenido al sistema")])
+        ])
       ]
     )
   }
@@ -23046,6 +23091,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         confirmButtonText: "Aceptar",
         confirmButtonColor: '#3085d6'
       });
+    },
+    promptAlert: function promptAlert(payload) {
+      Swal({
+        title: payload.title,
+        text: payload.message,
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonText: "Aceptar",
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Cancelar'
+      }).then(function (result) {
+        if (result.value) {
+          payload.confirmHandler();
+        }
+      });
     }
   },
   components: {
@@ -23580,7 +23641,11 @@ var render = function() {
                 _c(
                   "transition",
                   { attrs: { name: "fade", mode: "out-in" } },
-                  [_c("router-view", { on: { error: _vm.errorAlert } })],
+                  [
+                    _c("router-view", {
+                      on: { error: _vm.errorAlert, prompt: _vm.promptAlert }
+                    })
+                  ],
                   1
                 )
               ],
@@ -23606,6 +23671,49 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(102);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(2)("0bc319d8", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a0ceb926\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-a0ceb926\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../node_modules/sass-loader/lib/loader.js!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(1)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n.img-background[data-v-a0ceb926] {\n  width: calc(100vw - 400px) !important;\n  height: 100vh;\n  background-position: center;\n  background-repeat: no-repeat;\n  background-size: cover;\n  z-index: -2;\n}\n.img-background .info[data-v-a0ceb926] {\n    position: absolute;\n    bottom: 0;\n    left: 0;\n    color: white;\n    z-index: 5;\n    padding: 5%;\n}\n.filtro[data-v-a0ceb926] {\n  content: '';\n  position: absolute;\n  width: 110%;\n  height: 110%;\n  top: -10px;\n  left: -20px;\n  background-color: rgba(0, 0, 0, 0.75);\n}\n.login[data-v-a0ceb926] {\n  position: absolute;\n  right: 0;\n  top: 0;\n  height: 100vh;\n  width: 400px;\n  max-width: 100%;\n  background-color: #fff;\n  display: -webkit-box;\n  display: -ms-flexbox;\n  display: flex;\n  -webkit-box-align: center;\n      -ms-flex-align: center;\n          align-items: center;\n  -webkit-box-pack: center;\n      -ms-flex-pack: center;\n          justify-content: center;\n}\n.login form[data-v-a0ceb926] {\n    width: 80%;\n}\n.login form h3[data-v-a0ceb926] {\n      margin-bottom: 20px;\n}\n.login form .btn-box[data-v-a0ceb926] {\n      margin-top: 40px;\n}\ninput[data-v-a0ceb926] {\n  border: none;\n  border-bottom: 1px solid #33333388;\n  border-radius: 0;\n}\ninput[data-v-a0ceb926]:focus {\n    -webkit-box-shadow: none;\n            box-shadow: none;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
