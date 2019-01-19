@@ -27,11 +27,11 @@ class Repair extends Model
     public $timestamps = false;
 
     public function order(){
-        return $this->belongsTo('App\Order');
+        return $this->belongsTo('App\Order')->withTrashed();
     }
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User')->withTrashed();
     }
 
     public function isRepair(){

@@ -31,19 +31,19 @@ class Order extends Model
     ];
     
     public function client(){
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo('App\Client')->withTrashed();
     }
 
     public function device(){
-        return $this->belongsTo('App\Device');
+        return $this->belongsTo('App\Device')->withTrashed();
     }
 
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User')->withTrashed();
     }
 
     public function repair(){
-        return $this->hasOne('App\Repair');
+        return $this->hasOne('App\Repair')->withTrashed();
     }
 
     public function isPending (){
