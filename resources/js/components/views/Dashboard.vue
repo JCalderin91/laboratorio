@@ -51,7 +51,7 @@
 							</tr>
 						</tbody>
 					</table>	
-					<nav aria-label="Page navigation example" class="mx-2">
+					<nav v-if="!searchOrder" aria-label="Page navigation example" class="mx-2">
 						<ul class="pagination pagination-sm">
 							<li 
 								v-for="page in ordersMeta.total_pages"
