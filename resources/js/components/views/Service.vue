@@ -325,7 +325,7 @@
               this.client.phone = response.data.data.telefono
               this.idArea = response.data.data.identificador_area
               this.client.address = response.data.data.nombre_direccion
-              this.client.idAddress = response.data.data.identificador_direccion
+              this.idAddress = response.data.data.identificador_direccion
               this.client.area = response.data.data.nombre_area
               this.getClientDevices(response.data.data.identificador)
               this.loading = false
