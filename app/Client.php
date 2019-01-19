@@ -16,7 +16,7 @@ class Client extends Model
     public $transformer = ClientTransformer::class;
    
     protected $fillable = [
-        'ci', 'first_name', 'last_name', 'phone', 'area_id', 
+        'ci', 'first_name', 'last_name', 'phone', 'area_id', 'address_id' 
     ];
 
 	public function orders(){
@@ -29,6 +29,10 @@ class Client extends Model
 
     public function area(){
         return $this->belongsTo('App\Area');
+    } 
+
+    public function address(){
+        return $this->belongsTo('App\Address');
     } 
 
 

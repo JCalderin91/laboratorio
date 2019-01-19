@@ -13,11 +13,11 @@ class AddressTableSeeder extends Seeder
     public function run()
     {
         $address = new Address();
-        $address->name = 'Edif de Informatica';
+        $address->name = 'Edificio de Informatica';
         $address->save();
 
         $address = new Address();
-        $address->name = 'Edif de Turismo';
+        $address->name = 'Edificio de Turismo';
         $address->save();
     }
 }

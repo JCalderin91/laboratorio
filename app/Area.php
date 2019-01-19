@@ -19,13 +19,8 @@ class Area extends Model
 		'name', 'address_id'
 	];
 	
-    public function address(){
-        return $this->belongsTo('App\Address');
-    }
 
-    public function clients(){
-        return $this->hasMany('App\Client');
-    } 
+   
  
 
 }

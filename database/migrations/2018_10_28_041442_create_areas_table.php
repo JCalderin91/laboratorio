@@ -15,13 +15,10 @@ class CreateAreasTable extends Migration
     {
         Schema::create('areas', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('address_id');
-
+         
             $table->string('name',128);
             $table->timestamps();
             $table->softDeletes();   
-            
-            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

@@ -61,6 +61,7 @@ class OrderController extends ApiController
                 'first_name' => $request->first_name,
                 'last_name' => $request->last_name,
                 'area_id' => $request->area_id,
+                'address_id' => $request->address_id,
                 'phone' => $request->phone
             ]);
     

@@ -29,6 +29,11 @@ class AreaController extends ApiController
     {
         $areas = Area::all();
 
+        if(request()->has('paginate')){
+
+            return $this->showAll($area, 200, true);
+        }
+
         return $this->showAll($areas);
     }
     
