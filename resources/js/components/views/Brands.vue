@@ -26,10 +26,9 @@
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
                   <tr>
-
                     <th class=" text-center" style="vertical-align: middle">Nombre</th>
                     <th class="text-center">
-                      <button class="btn btn-outline-light btn-sm" title="Eliminar Dispositivo(s)"  @click.prevent="deleteDevices"><i class="fas fa-trash"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Eliminar Dispositivo(s)"  @click.prevent="deleteSubDevice"><i class="fas fa-trash"></i></button>
                       <button class="btn btn-outline-light btn-sm" title="Editar Dispositivo"><i class="fas fa-pen"></i></button>
                     </th>
                   </tr>
@@ -84,26 +83,36 @@
                     <input type="text" v-model="brand" class="form-control">
                   </div>
                   <a @click.prevent="newBrand = false" href="#" class="btn btn-secondary">Cancelar</a>
-                  <a @click.prevent="createBrand()" href="#" class="btn btn-primary">Guardar</a>
+                  <a @click.prevent="createBrand" href="#" class="btn btn-primary">Guardar</a>
                 </div>
               </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
                   <tr>
-                    <th>Nombre</th>
-                    <th class="text-right">Acciónes</th>
+                    <th class=" text-center" style="vertical-align: middle">Nombre</th>
+                    <th class="text-center">
+                      <button class="btn btn-outline-light btn-sm" title="Eliminar Marca(s)"  @click.prevent="deleteBrand"><i class="fas fa-trash"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Editar Marca"><i class="fas fa-pen"></i></button>
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr v-for="brand in brands">
+                  <tr class="text-center" v-for="brand in brands">
                     <td>{{ brand.nombre }}</td>
-                    <td class="d-flex justify-content-end">
-                      <a href="#" class="btn bg-dark text-white btn-sm">
+                    <td>
+                      <!-- <a href="#" class="btn bg-dark text-white btn-sm">
                         <i class="fas fa-pen"></i>  
                       </a>
                       <a @click.prevent="deleteBrand(brand.identificador)" href="#" class="ml-1 btn btn-outline-danger btn-sm">
                         <i class="fas fa-trash"></i>  
-                      </a>
+                      </a> -->
+                      <div class="custom-control custom-radio" style="cursor: pointer;">
+                        <input class="custom-control-input" type="radio" style="display: none;"
+                          @change="selectBrand" 
+                          name="brand" 
+                          :id="brand.identificador">
+                        <label class="custom-control-label" :for="brand.identificador" style="vertical-align: top"></label>
+                      </div>
                     </td>
                   </tr>
                 </tbody>
@@ -139,7 +148,8 @@
         brandsMeta: '',
         device: '',
         devices: '',
-        selectedDevices: [],
+        selectedDevice: null,
+        selectedBrand: null,
         devicesMeta: '',
       }
     },
@@ -149,11 +159,10 @@
     },
     methods: {
       selectDevice(event) {
-        if (this.selectedDevices.indexOf(event.target.id) == (-1)) {
-          this.selectedDevices.push(event.target.id)
-        } else {
-          this.selectedDevices = this.selectedDevices.filter(id => id != event.target.id)
-        }
+        this.selectedDevice = event.target.id
+      },
+      selectBrand(event) {
+        this.selectedBrand = event.target.id
       },
 
       getBrands(){
@@ -189,34 +198,30 @@
           })
           .catch(error => {console.log(error)})
       },
-      deleteBrand(id){
 
-        Swal({
-          title: 'Esta seguro?',
-          text: "Estas a punto de borrar el registro!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Continuar'
-        }).then(result => {
-          if (result.value) {
-            axios
-              .delete("api/brands/"+id)
-              .then(response => {
-                this.getBrands()
-                Swal({
-                  type: 'success',
-                  title: 'Excelente',
-                  text: 'Datos borrados con exito',
-                  confirmButtonText: 'Continuar',
-                })
-              })
-              .catch(error => {console.log(error)})
-          }
-        })        
+      deleteBrand(){
+        this.$emit('prompt', {
+          title: '¿Está seguro?',
+          message: 'El resgistro sera Eliminado!',
+          confirmHandler: this.deleteBrandHandler
+        })
       },
+
+      deleteBrandHandler() {
+        axios
+          .delete("api/brands/"+this.selectedBrand)
+          .then(response => {
+            this.getBrands()
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos borrados con exito',
+              confirmButtonText: 'Continuar',
+            })
+          })
+          .catch(error => {console.log(error)})   
+      },
+
       getSubDevice(){
         axios
           .get("/api/sub-devices?paginate=true")
@@ -244,16 +249,6 @@
           .catch(error => {console.log(error)})
       },
 
-      deleteDevices() {
-        this.$emit('prompt', {
-          title: 'Comfirmación',
-          message: '¿Seguro que desea eliminar los dispositivos seleccionados?',
-          confirmHandler: () => {
-            console.log(this.selectedDevices)
-          },
-        })
-      },
-
       createDevice(){
         this.newDevice = false 
         axios
@@ -278,32 +273,28 @@
           })
       },
 
-      deleteSubDevice(id){
-        Swal({
-          title: 'Esta seguro?',
-          text: "Estas a punto de borrar el registro!",
-          type: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Continuar'
-        }).then(result => {
-          if (result.value) {
-            axios
-              .delete("api/sub-devices/"+id)
-              .then(response => {
-                this.getSubDevice()
-                Swal({
-                  type: 'success',
-                  title: 'Excelente',
-                  text: 'Datos borrados con exito',
-                  confirmButtonText: 'Continuar',
-                })
-              })
-              .catch(error => {console.log(error)})
-          }
+
+      deleteSubDevice() {
+        this.$emit('prompt', {
+          title: '¿Seguro?',
+          message: '¡El registro sera elminado!',
+          confirmHandler: this.deleteSubDeviceHandler,
         })
+      },
+
+      deleteSubDeviceHandler(){
+        axios
+          .delete("api/sub-devices/"+this.selectedDevice)
+          .then(response => {
+            this.getSubDevice()
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos borrados con exito',
+              confirmButtonText: 'Continuar',
+            })
+          })
+          .catch(error => {console.log(error)})
       },
     }
 	}
