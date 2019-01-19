@@ -7,7 +7,7 @@
 				<div class="col-12 pt-3">
 
 					<div class="form-group">
-						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar cliente por cedula">
+						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar orden por cedula o dispositivo">
 					</div>
 						
 					<table class="table text-center table-striped table-hover table-sm">
