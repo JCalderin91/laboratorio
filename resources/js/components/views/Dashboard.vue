@@ -5,6 +5,11 @@
 				<widget type="revisados" icon="wrench" :value="revisedCount"></widget>	
 
 				<div class="col-12 pt-3">
+
+					<div class="form-group">
+						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar cliente por cedula">
+					</div>
+						
 					<table class="table text-center table-striped table-hover table-sm">
 						<thead class="bg-dark text-white">
 							<tr>
@@ -16,7 +21,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="order in orders">
+							<tr v-for="order in filterOrders">
 								<td>{{order.cliente.data.cedula}}</td>
 								<td>{{order.equipo.data.nombre}}</td>
 								<td>{{order.fechaCreacion}}</td>
@@ -181,6 +186,7 @@
 		name: 'dashboard',
 		data(){
 			return{
+				searchOrder:'',
 				sameClientCheck: false,
 				sameClient:{
 					ci:'',
@@ -346,13 +352,21 @@
       },
 		},
 		computed:{
-			pendingCount: function(argument) {
+			pendingCount: function() {
 				let pendingCount = this.allOrders.filter(order => order.estado === 'pending')
 				return Object.keys(pendingCount).length
 			},
-			revisedCount: function(argument) {
+			revisedCount: function() {
 				let revisedCount = this.allOrders.filter(order => order.estado === 'revised')
 				return Object.keys(revisedCount).length
+			},
+			filterOrders: function(){
+				if(this.searchOrder != ''){
+					return this.allOrders.filter((item) => item.cliente.data.cedula.includes(this.searchOrder));
+				}else{
+					return this.orders
+				}
+				
 			}
 		}
 	}
