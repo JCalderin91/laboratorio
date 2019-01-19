@@ -36,9 +36,10 @@ Route::group([
 ], function() {
 
     //Direcciones
-
     Route::apiResource('/addresses', 'AddressController');
-    Route::apiResource('/addresses.areas', 'AddressAreaController', ['only' => ['index', 'store']]);
+    
+    //Areas
+    Route::apiResource('/areas', 'AreaController');
 
     //Clientes
 
@@ -65,9 +66,7 @@ Route::group([
     //Reparaciones
     Route::apiResource('/repairs', 'RepairController');
 
-    //Areas
-    Route::apiResource('/areas', 'AreaController');
-
+    
     //Sub-equipos
     Route::apiResource('/sub-devices', 'SubDeviceController'); 
 

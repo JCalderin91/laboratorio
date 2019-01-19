@@ -16,6 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('area_id');
+            $table->unsignedInteger('address_id');
 
             $table->string('ci',8)->unique();
             $table->string('first_name',128);
@@ -25,6 +26,7 @@ class CreateClientsTable extends Migration
             $table->softDeletes();   
 
             $table->foreign('area_id')->references('id')->on('areas');
+            $table->foreign('address_id')->references('id')->on('addresses');
         });
     }
 

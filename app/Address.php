@@ -18,7 +18,5 @@ class Address extends Model
 		'name', 
 	];
 
-    public function areas(){
-        return $this->hasMany('App\Area');
-    }
+   
 }

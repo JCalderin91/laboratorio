@@ -28,6 +28,7 @@ class ClientStoreRequest extends FormRequest
             'first_name' => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'last_name'  => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'phone'      => 'max:11',
+            
             'area_id'    => 'required',
         ];
     }

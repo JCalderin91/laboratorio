@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Database\Seeder;
 use App\Area;
+
+use Illuminate\Database\Seeder;
 
 class AreaTableSeeder extends Seeder
 {
@@ -13,13 +14,20 @@ class AreaTableSeeder extends Seeder
     public function run()
     {
         $area = new Area();
-        $area->name = 'Estudiante de Informatica';
-        $area->address_id = 1;
+        $area->name = 'Administrativo';
         $area->save();
 
         $area = new Area();
-        $area->name = 'Estudiante de turismo';
-        $area->address_id = 2;
+        $area->name = 'Estudiante';
         $area->save();
+
+        $area = new Area();
+        $area->name = 'Obrero';
+        $area->save();
+
+        $area = new Area();
+        $area->name = 'Profesor';
+        $area->save();
+
     }
 }
