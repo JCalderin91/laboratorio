@@ -48,11 +48,11 @@ class User extends Model
     }
 
     public function orders(){
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Order')->withTrashed();
     }
 
     public function repairs(){
-        return $this->hasMany('App\Repair');
+        return $this->hasMany('App\Repair')->withTrashed();
     }
 
     public function setFirstNameAttribute($value){

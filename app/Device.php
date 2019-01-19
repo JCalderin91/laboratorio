@@ -24,19 +24,19 @@ class Device extends Model
     ];
 
     public function orders(){
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Order')->withTrashed();
     }
 
     public function brand(){
-        return $this->belongsTo('App\Brand');
+        return $this->belongsTo('App\Brand')->withTrashed();
     }
 
     public function client(){
-        return $this->belongsTo('App\Client');
+        return $this->belongsTo('App\Client')->withTrashed();
     }
 
     public function subDevice(){
-        return $this->belongsTo('App\SubDevice');
+        return $this->belongsTo('App\SubDevice')->withTrashed();
     }
 
 

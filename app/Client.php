@@ -20,7 +20,7 @@ class Client extends Model
     ];
 
 	public function orders(){
-        return $this->hasMany('App\Order');
+        return $this->hasMany('App\Order')->withTrashed();
     } 
 
     public function devices(){
@@ -28,11 +28,11 @@ class Client extends Model
     } 
 
     public function area(){
-        return $this->belongsTo('App\Area');
+        return $this->belongsTo('App\Area')->withTrashed();
     } 
 
     public function address(){
-        return $this->belongsTo('App\Address');
+        return $this->belongsTo('App\Address')->withTrashed();
     } 
 
 
