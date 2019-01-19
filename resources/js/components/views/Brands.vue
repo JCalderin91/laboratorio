@@ -9,19 +9,34 @@
           <div class="card">
             <div class="card-header">
               {{devicesMeta.total}} Dispositivos registrados
-              <a v-if="!newDevice" @click.prevent="newDevice = true" href="#" class="btn btn-primary float-right btn-sm">
-                <i class="fas fa-plus"></i>
-              </a>
+              <a 
+                id="device-toggle" 
+                @click="toggleForm"
+                class="btn btn-primary btn-sm text-white float-right">
+                <i v-if="!newDevice" id="device-toggle" class="fas fa-plus"></i>
+                <i v-else id="device-toggle" class="fas fa-minus"></i>
+              </a> 
             </div>
             <div class="card-body p-0">
               <transition name="fade" mode="out-in">
-                <div class="p-2" v-if="newDevice" >
+                <form v-if="newDevice" class="row m-2" @submit.prevent="deviceSubmit">
+
+                  
+                  <div class="input-group col-12">
+                    <input type="text" class="form-control" placeholder="Nombre del dispositivo" required
+                      v-model="device_name" >
+                    <input type="submit" class="input-group-append btn btn-primary" value="Guardar"> 
+                  </div>
+                  
+                </form>
+
+                <!--<div class="p-2" v-if="newDevice" >
                   <div class="form-group">
                     <input type="text" v-model="device" class="form-control">
                   </div>
                   <a @click.prevent="newDevice = false" href="#" class="btn btn-secondary">Cancelar</a>
                   <a @click.prevent="createDevice" href="#" class="btn btn-primary">Guardar</a>
-                </div>
+                </div>-->
               </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
@@ -29,7 +44,7 @@
                     <th class=" text-center" style="vertical-align: middle">Nombre</th>
                     <th class="text-center">
                       <button class="btn btn-outline-light btn-sm" title="Eliminar Dispositivo(s)"  @click.prevent="deleteSubDevice"><i class="fas fa-trash"></i></button>
-                      <button class="btn btn-outline-light btn-sm" title="Editar Dispositivo"><i class="fas fa-pen"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Editar Dispositivo" @click.prevent="editDevice"><i class="fas fa-pen"></i></button>
                     </th>
                   </tr>
                 </thead>
@@ -72,19 +87,31 @@
           <div class="card">
             <div class="card-header">
               {{brandsMeta.total}} Marcas registradas
-              <a v-if="!newBrand" @click.prevent="newBrand = true" href="#" class="btn btn-primary float-right btn-sm">
-                <i class="fas fa-plus"></i>
-              </a>
+              <a 
+                id="brand-toggle" 
+                @click="toggleForm"
+                class="btn btn-primary btn-sm text-white float-right">
+                <i v-if="!newBrand" id="brand-toggle" class="fas fa-plus"></i>
+                <i v-else id="brand-toggle" class="fas fa-minus"></i>
+              </a> 
             </div>
             <div class="card-body p-0">
-              <transition name="fade" mode="out-in">
-                <div class="p-2" v-if="newBrand" >
+              <transition name="fade" mode="out-in">                
+                <form v-if="newBrand" class="row m-2" @submit.prevent="brandSubmit">                  
+                  <div class="input-group col-12">
+                    <input type="text" class="form-control" placeholder="Nombre de la Marca" required
+                      v-model="brand_name" >
+                    <input type="submit" class="input-group-append btn btn-primary" value="Guardar"> 
+                  </div>
+                </form>
+
+                <!--<div class="p-2" v-if="newBrand" >
                   <div class="form-group">
                     <input type="text" v-model="brand" class="form-control">
                   </div>
                   <a @click.prevent="newBrand = false" href="#" class="btn btn-secondary">Cancelar</a>
                   <a @click.prevent="createBrand" href="#" class="btn btn-primary">Guardar</a>
-                </div>
+                </div>-->
               </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
@@ -92,7 +119,7 @@
                     <th class=" text-center" style="vertical-align: middle">Nombre</th>
                     <th class="text-center">
                       <button class="btn btn-outline-light btn-sm" title="Eliminar Marca(s)"  @click.prevent="deleteBrand"><i class="fas fa-trash"></i></button>
-                      <button class="btn btn-outline-light btn-sm" title="Editar Marca"><i class="fas fa-pen"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Editar Marca"><i class="fas fa-pen" @click.prevent="editBrand"></i></button>
                     </th>
                   </tr>
                 </thead>
@@ -151,6 +178,12 @@
         selectedDevice: null,
         selectedBrand: null,
         devicesMeta: '',
+
+        brandUpdate: false,
+        deviceUpdate: false,
+
+        device_name: '',
+        brand_name: '',
       }
     },
     mounted() {
@@ -158,12 +191,42 @@
       this.getBrands()
     },
     methods: {
+      toggleForm(event) {
+        let target = event.target.id
+        switch (target) {
+          case 'device-toggle': 
+            this.newDevice = !this.newDevice
+            this.deviceUpdate = false
+            this.device_name = ''
+            break;
+          case 'brand-toggle': 
+            this.newBrand = !this.newBrand
+            this.brandUpdate = false
+            this.brand_name = ''
+            break; 
+        }
+      },
+
       selectDevice(event) {
         this.selectedDevice = event.target.id
+        this.device_name = this.devices.filter(device => device.identificador == this.selectedDevice)[0].nombre
       },
       selectBrand(event) {
         this.selectedBrand = event.target.id
+        this.brand_name = this.brands.filter(brand => brand.identificador == this.selectedBrand)[0].nombre
       },
+
+      editBrand() {
+        this.brandUpdate = true
+        this.newBrand = true
+      },
+
+      editDevice() {
+        this.deviceUpdate = true
+        this.newDevice = true
+      },
+
+      // METODOS DE MARCAS
 
       getBrands(){
         axios
@@ -172,7 +235,10 @@
             this.brands = response.data.data
             this.brandsMeta = response.data.meta.pagination
           })
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })
       },
       brandPaginate(page){
         axios
@@ -181,12 +247,15 @@
             this.brands = response.data.data
             this.brandsMeta = response.data.meta.pagination
           })
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })
       },
       createBrand(){
         this.newBrand = false 
         axios
-          .post("api/brands",{nombre:this.brand})
+          .post("api/brands",{nombre:this.brand_name})
           .then(response => {
             this.getBrands()
             Swal({
@@ -196,7 +265,28 @@
               confirmButtonText: 'Continuar',
             })
           })
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })
+      },
+
+      updateBrand() {
+        axios
+          .put('/api/brands/'+this.selectedBrand, {nombre: this.brand_name})
+          .then(response => {
+            this.getBrands()
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos actualizados con exito',
+              confirmButtonText: 'Continuar',
+            })
+          })
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })
       },
 
       deleteBrand(){
@@ -219,9 +309,23 @@
               confirmButtonText: 'Continuar',
             })
           })
-          .catch(error => {console.log(error)})   
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })   
       },
 
+      brandSubmit() {
+        if (this.brand_name == '') return
+
+        if (this.brandUpdate) {
+          this.updateBrand()
+        } else {
+          this.createBrand()
+        }
+      },
+
+      // METODOS DE DISPOSITIVOS
       getSubDevice(){
         axios
           .get("/api/sub-devices?paginate=true")
@@ -231,14 +335,10 @@
           })
           .catch(error => {
             console.log(error)
-            Swal({
-              type: 'error',
-              title: 'Alerta',
-              text: error,
-              confirmButtonText: 'Continuar',
-            })
+            this.$emit('error', error)
           })
       },
+
       subDevicePaginate(page){
         axios
           .get("/api/sub-devices?paginate=true&page="+page)
@@ -246,13 +346,16 @@
             this.devices = response.data.data
             this.devicesMeta = response.data.meta.pagination
           })
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })
       },
 
       createDevice(){
         this.newDevice = false 
         axios
-          .post("api/sub-devices",{nombre:this.device})
+          .post("api/sub-devices",{ nombre: this.device_name })
           .then(response => {
             this.getSubDevice()
             Swal({
@@ -264,15 +367,38 @@
           })
           .catch(error => {
             console.log(error)
-            Swal({
-              type: 'error',
-              title: 'Alerta',
-              text: error,
-              confirmButtonText: 'Continuar',
-            })
+            this.$emit('error', error)
           })
       },
 
+      deviceSubmit() {
+        if (this.device_name == '') return
+
+        if (this.deviceUpdate) {
+          this.updateDevice()
+        } else {
+          this.createDevice()
+        }
+
+      },
+
+      updateDevice() {
+        axios
+          .put('/api/sub-devices/'+this.selectedDevice, {nombre: this.device_name})
+          .then(response => {
+            this.getSubDevice()
+            Swal({
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos actualizados con exito',
+              confirmButtonText: 'Continuar',
+            })
+          })
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })
+      },
 
       deleteSubDevice() {
         this.$emit('prompt', {
@@ -294,7 +420,10 @@
               confirmButtonText: 'Continuar',
             })
           })
-          .catch(error => {console.log(error)})
+          .catch(error => {
+            console.log(error)
+            this.$emit('error', error)
+          })
       },
     }
 	}
