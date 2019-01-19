@@ -65,9 +65,9 @@ class OrderController extends ApiController
                 'phone' => $request->phone
             ]);
     
-            $sub_device = SubDevice::firstOrCreate(['name' => strtolower($request->name)]);
+            $sub_device = SubDevice::withTrashed()->firstOrCreate(['name' => strtolower($request->name)]);
     
-            $brand = Brand::firstOrCreate(['title' => strtolower($request->title)]); 
+            $brand = Brand::withTrashed()->firstOrCreate(['title' => strtolower($request->title)]); 
     
             $device = Device::firstOrCreate(['id' => $request->device_id],
             [
@@ -105,7 +105,7 @@ class OrderController extends ApiController
         }catch(\Exception $e){
 
             DB::rollback();
-
+            //return $e->getMessage();
             return $this->errorResponse('Ha ocurrido un error. Intente de nuevo.', 409);
         }
         
