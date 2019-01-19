@@ -75,5 +75,85 @@ class OrderTableSeeder extends Seeder
         $order->arrival_date = new \DateTime('2018-09-20 11:10:15'); 
         $order->status = Order::ORDER_PENDING;
         $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 11:11:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 11:20:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 11:30:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 11:40:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 11:50:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 12:00:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 12:10:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 12:20:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 12:30:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
+
+        $order = new Order();
+        $order->user_id = 3;
+        $order->device_id = 3;
+        $order->client_id = 2;
+        $order->arrival_date = new \DateTime('2018-09-20 12:40:15'); 
+        $order->status = Order::ORDER_PENDING;
+        $order->save();
     }
 }

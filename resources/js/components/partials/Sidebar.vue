@@ -3,7 +3,7 @@
 		<nav id="sidebar" class="sidebar-wrapper">
 			<div class="sidebar-content">
 				<div class="sidebar-brand">
-					<a href="#">laboratorio</a>
+					<a class="toggle-item" href="#">laboratorio</a>
 					<div id="close-sidebar">
 						<i class="fas fa-times"></i>
 					</div>
@@ -13,83 +13,83 @@
 						<img class="img-responsive img-rounded" src="assets/avatars/001-man.png" alt="User picture">
 					</div>
 					<div class="user-info">
-						<span v-if="isAdmin" class="user-name">Profesor</span>
+						<span v-if="isAdmin" class="user-name toggle-item">Profesor</span>
 						<span v-else class="user-name">Técnico</span>
 					</div>
 				</div>
 				<div class="sidebar-menu">
 					<ul>
 						<li class="header-menu">
-							<span>Menu</span>
+							<span class="toggle-item">Menu</span>
 						</li>
 						<li class="sidebar">
 							<router-link tag="a" to="/">
 								<i class="fa fa-tachometer-alt"></i>
-							  <span>Principal</span>
+							  <span class="toggle-item">Principal</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
 							<router-link tag="a" to="/servicio">
 								<i class="fa fa-file-invoice "></i>
-							  <span>Registrar servicio</span>
+							  <span class="toggle-item">Registrar servicio</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
 							<router-link tag="a" to="/clientes">
 								<i class="fa fa-users"></i>
-							  <span>Clientes</span>
+							  <span class="toggle-item">Clientes</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
 							<router-link tag="a" to="/dispositivos">
 								<i class="fa fa-laptop"></i>
-							  <span>Dispositivos</span>
+							  <span class="toggle-item">Dispositivos</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
 							<router-link tag="a" to="/marcas">
 								<i class="fa fa-tachometer-alt"></i>
-							  <span>Marcas</span>
+							  <span class="toggle-item">Marcas</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
 							<router-link tag="a" to="/usuarios">
 								<i class="fa fa-id-badge "></i>
-							  <span v-if="isAdmin" >Usuarios</span>
-							  <span v-else >Técnicos</span>
+							  <span class="toggle-item" v-if="isAdmin" >Usuarios</span>
+							  <span class="toggle-item" v-else >Técnicos</span>
 							</router-link>
 						</li>
 
 						<li class="sidebar">
 							<router-link tag="a" to="/areas">
 								<i class="fa fa-directions"></i>
-							  <span>Areas & Direcciones</span>
+							  <span class="toggle-item">Areas & Direcciones</span>
 							</router-link>
 						</li>
 
 						<li v-if="isAdmin" class="sidebar">
 							<router-link tag="a" to="/reportes">
 								<i class="fa fa-tachometer-alt"></i>
-							  <span>Reportes</span>
+							  <span class="toggle-item">Reportes</span>
 							</router-link>
 						</li>
 
 						<li v-if="isAdmin" class="sidebar">
 							<router-link tag="a" to="/configuraciones">
 								<i class="fa fa-cogs"></i>
-							  <span>Configuraciones</span>
+							  <span class="toggle-item">Configuraciones</span>
 							</router-link>
 						</li>
 
 					</ul>
 				</div>
 				<!-- sidebar-menu  -->
-				<a id="logout-link" class="text-center text-white pb-2" @click.prevent="logoutPrompt"><i class="fa fa-sign-out-alt" ></i> Cerrar sesion</a>
+				<a id="logout-link" class="text-center text-white pb-2" @click.prevent="logoutPrompt"><i class="fa fa-sign-out-alt" ></i> <span class="toggle-item">Cerrar sesion</span>		</a>
 			</div>
 			<!-- sidebar-content  -->
 		</nav>

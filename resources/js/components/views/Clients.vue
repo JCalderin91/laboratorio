@@ -80,12 +80,18 @@
         areas: [],
         addresses: [],
         update: false,
+        clientName: ''
       }
     },
     mounted() {
      this.getAddresses()
      this.getClients()
    },
+  computed: {
+    searchClient: function () {
+        return this.clients.filter((item) => item.nombre.includes(this.clientName));
+    }
+  },
    methods: {
     getClients() {
       axios

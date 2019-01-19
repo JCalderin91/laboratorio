@@ -45,7 +45,18 @@
 								</td>
 							</tr>
 						</tbody>
-					</table>				
+					</table>	
+					<nav aria-label="Page navigation example" class="mx-2">
+						<ul class="pagination pagination-sm">
+							<li 
+								v-for="page in ordersMeta.total_pages"
+								v-bind:class="{'page-item pt-1':true, 'active':(page === ordersMeta.current_page)}">
+								<a @click.prevent="ordersPaginate(page)" class="page-link" href="#">
+									{{page}}
+								</a>
+							</li>
+						</ul>
+					</nav>			
 				</div>
 			</div>
 
@@ -160,7 +171,6 @@
 			    </div>
 			  </div>
 			</div>
-		<pre>{{$data}}</pre>
 		</div>
 </template>
 
@@ -193,6 +203,8 @@
 					name: 'Reparado'
 				}],
 				orders: [],
+				allOrders: [],
+				ordersMeta: [],
 			}
 		},
 		components: {
@@ -200,19 +212,43 @@
 			Modal
 		},
 		mounted(){
+			this.getAllOrders()
 			this.getOrders()
 			this.getUsers()
 		},
 		methods: {
-			getOrders(){
+			getAllOrders(){
 				eventBus.$emit('loading', true)
 				axios
-          .get("api/orders?paginate=true")
-          .then(response => {this.orders = response.data.data})
+          .get("api/orders")
+          .then(response => {
+						this.allOrders = response.data.data
+					})
           .catch(error => {console.log(error)})
           .then(() => {eventBus.$emit('loading', false)})
 
 			},
+			getOrders(){
+				eventBus.$emit('loading', true)
+				axios
+          .get("api/orders?paginate=true")
+          .then(response => {
+						this.orders = response.data.data
+						this.ordersMeta = response.data.meta.pagination
+					})
+          .catch(error => {console.log(error)})
+          .then(() => {eventBus.$emit('loading', false)})
+
+			},
+      ordersPaginate(page){
+        axios
+          .get("/api/orders?paginate=true&page="+page)
+          .then(response => {
+            this.orders = response.data.data
+            this.ordersMeta = response.data.meta.pagination
+          })
+          .catch(error => {console.log(error)})
+      },
 			saveRepair(){
         let repair = {
           tecnico: this.tecnicID,
@@ -234,6 +270,7 @@
               confirmButtonText: 'Continuar',
             }).then(() => {
               this.$router.push('/')
+              this.getAllOrders()
             })
   				})
           .catch(error => {
@@ -269,6 +306,7 @@
               confirmButtonText: 'Continuar',
             }).then(() => {
               this.$router.push('/')
+              this.getAllOrders()
             })
   				})
           .then(()=>{
@@ -309,11 +347,11 @@
 		},
 		computed:{
 			pendingCount: function(argument) {
-				let pendingCount = this.orders.filter(order => order.estado === 'pending')
+				let pendingCount = this.allOrders.filter(order => order.estado === 'pending')
 				return Object.keys(pendingCount).length
 			},
 			revisedCount: function(argument) {
-				let revisedCount = this.orders.filter(order => order.estado === 'revised')
+				let revisedCount = this.allOrders.filter(order => order.estado === 'revised')
 				return Object.keys(revisedCount).length
 			}
 		}

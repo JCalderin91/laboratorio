@@ -21,6 +21,7 @@
     },
     "dependencies": {
         "materialize-css": "^1.0.0-rc.2",
+        "npm": "^6.5.0",
         "sweetalert2": "^7.33.1",
         "vue-router": "^3.0.2",
         "vue-session": "^1.0.0"
