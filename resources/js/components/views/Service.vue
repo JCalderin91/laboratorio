@@ -453,7 +453,7 @@
           apellidos: this.client.last_name,
           telefono: this.client.phone,
           area: area,
-          direccion: this.client.address,
+          direccion: address,
           // Datos del dispositivo
           equipo: this.device.id,
           nombre_equipo: this.device.name.toLowerCase(),
