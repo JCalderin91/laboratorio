@@ -61,7 +61,7 @@
                       <div class="custom-control custom-radio" style="cursor: pointer;">
                         <input class="custom-control-input" type="radio" style="display: none;"
                           @change="selectDevice" 
-                          name="brand" 
+                          name="device" 
                           :id="device.identificador">
                         <label class="custom-control-label" :for="device.identificador" style="vertical-align: top"></label>
                       </div>
@@ -233,6 +233,7 @@
           .get("/api/brands?paginate=true")
           .then(response => {
             this.brands = response.data.data
+            document.querySelectorAll('input[name="brand"]').forEach(r => {r.checked = false})
             this.brandsMeta = response.data.meta.pagination
           })
           .catch(error => {
@@ -253,7 +254,6 @@
           })
       },
       createBrand(){
-        this.newBrand = false 
         axios
           .post("api/brands",{nombre:this.brand_name})
           .then(response => {
@@ -323,6 +323,8 @@
         } else {
           this.createBrand()
         }
+
+        this.toggleForm({target: {id: 'brand-toggle'}})
       },
 
       // METODOS DE DISPOSITIVOS
@@ -331,6 +333,7 @@
           .get("/api/sub-devices?paginate=true")
           .then(response => {
             this.devices = response.data.data
+            document.querySelectorAll('input[name="device"]').forEach(r => {r.checked = false})
             this.devicesMeta = response.data.meta.pagination
           })
           .catch(error => {
@@ -353,7 +356,6 @@
       },
 
       createDevice(){
-        this.newDevice = false 
         axios
           .post("api/sub-devices",{ nombre: this.device_name })
           .then(response => {
@@ -376,8 +378,10 @@
 
         if (this.deviceUpdate) {
           this.updateDevice()
+          this.toggleForm({target: {id: 'device-toggle'}})
         } else {
           this.createDevice()
+          this.device_name = ''
         }
 
       },
