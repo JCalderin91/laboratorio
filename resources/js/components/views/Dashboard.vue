@@ -367,7 +367,7 @@
 					if (expreg.test(this.searchOrder)) {
 	          return this.allOrders.filter((item) => item.cliente.data.cedula.includes(this.searchOrder));
 	        } else {
-	          return this.allOrders.filter((item) => item.equipo.data.nombre.includes(this.searchOrder));
+	          return this.allOrders.filter((item) => item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()));
 	        }
 					
 				}else{
