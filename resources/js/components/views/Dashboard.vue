@@ -361,8 +361,15 @@
 				return Object.keys(revisedCount).length
 			},
 			filterOrders: function(){
+				var expreg = /[0-9]/;
+  
 				if(this.searchOrder != ''){
-					return this.allOrders.filter((item) => item.cliente.data.cedula.includes(this.searchOrder));
+					if (expreg.test(this.searchOrder)) {
+	          return this.allOrders.filter((item) => item.cliente.data.cedula.includes(this.searchOrder));
+	        } else {
+	          return this.allOrders.filter((item) => item.equipo.data.nombre.includes(this.searchOrder));
+	        }
+					
 				}else{
 					return this.orders
 				}
