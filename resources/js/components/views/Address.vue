@@ -294,7 +294,7 @@
 
       updateAddress() {
         axios
-          .put('/api/addresses/'+this.selectedaddress, {nombre: this.address_name})
+          .put('/api/addresses/'+this.selectedAddress, {nombre: this.address_name})
           .then(response => {
             this.getAddresses()
             Swal({
@@ -318,7 +318,7 @@
         })
       },
 
-      deleteBrandHandler() {
+      deleteAddressHandler() {
         axios
           .delete("api/addresses/"+this.selectedAddress)
           .then(response => {
