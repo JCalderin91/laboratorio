@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use App\Transformers\OrderTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,9 +11,9 @@ class Order extends Model
 {
     use SoftDeletes;
 
-    const ORDER_PENDING = 'pending';
-    const ORDER_REVISED = 'revised';
-    const ORDER_DELIVERED = 'delivered';
+    const ORDER_PENDING = 'pendiente';
+    const ORDER_REVISED = 'revisado';
+    const ORDER_DELIVERED = 'entregado';
 
     protected $dates = ['deleted_at'];
 
@@ -46,16 +47,9 @@ class Order extends Model
         return $this->hasOne('App\Repair')->withTrashed();
     }
 
-    public function isPending (){
-        return $this->status == Order::ORDER_PENDING;
-    }
-
-    public function isRevised (){
-        return $this->status == Order::ORDER_REVISED;
-    }
-
-    public function isDelivered (){
-        return $this->status == Order::ORDER_DELIVERED;
+    public function getArrivalDateAttribute($value){
+        $dateTime = Carbon::parse($value);
+        return $dateTime->format('d-m-Y H:i:s');
     }
 
     public $timestamps = false;
