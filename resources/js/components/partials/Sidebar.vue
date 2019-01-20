@@ -61,7 +61,7 @@
 						<li class="sidebar">
 							<router-link tag="a" to="/marcas">
 								<i class="fa fa-tachometer-alt"></i>
-							  <span class="toggle-item">Marcas & Dispositivos</span>
+							  <span class="toggle-item">Dispositivos & Marcas</span>
 							</router-link>
 						</li>
 
