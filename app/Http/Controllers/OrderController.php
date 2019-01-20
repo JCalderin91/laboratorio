@@ -32,7 +32,7 @@ class OrderController extends ApiController
      */
     public function index()
     {
-        $orders = Order::where('status', '!=', Order::ORDER_DELIVERED)->orderBy('arrival_date', 'asc')->get();
+        $orders = Order::orderBy('arrival_date', 'asc')->get();
   
         if(request()->has('paginate')){
 
