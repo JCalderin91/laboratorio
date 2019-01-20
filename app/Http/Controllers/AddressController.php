@@ -46,8 +46,11 @@ class AddressController extends ApiController
     public function store(AddressStoreRequest $request)
     {
        
-        $address = Address::create($request->all());
+        $address = Address::withTrashed()->firstOrCreate(['name' => strtolower($request->name)]);
 
+        if($address->trashed()){
+            $address->restore();
+        }
         return $this->showOne($address, 201);
     }
     

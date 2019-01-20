@@ -37,14 +37,18 @@ class BrandController extends ApiController{
 
     public function store(BrandStoreRequest $request){
         
-        $brand = Brand::create($request->all());
+        $brand = Brand::withTrashed()->firstOrCreate(['title' => strtolower($request->title)]); 
+
+        if($brand->trashed()){
+            $brand->restore();
+        }
 
         return $this->showOne($brand, 201);
     }
 
     
-    public function show($id){
-        //
+    public function show(Brand $brand){
+        return $this->showOne($brand);
     }
 
 

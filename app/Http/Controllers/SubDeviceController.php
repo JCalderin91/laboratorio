@@ -37,8 +37,12 @@ class SubDeviceController extends ApiController
      */
     public function store(Request $request)
     {
-        $subDevice = SubDevice::create($request->all());
+        $subDevice = SubDevice::withTrashed()->firstOrCreate(['name' => strtolower($request->name)]);
 
+        if($subDevice->trashed()){
+            $subDevice->restore();
+        }
+        
         return $this->showOne($subDevice, 201);
     }
     
