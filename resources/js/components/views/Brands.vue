@@ -13,7 +13,11 @@
               <a 
                 id="device-toggle" 
                 @click="toggleForm"
-                class="btn btn-primary btn-sm text-white float-right">
+                v-bind:class="{
+                  'btn btn-sm text-white float-right':true,
+                  'btn-primary': !newDevice,
+                  'btn-secondary': newDevice
+                }">
                 <i v-if="!newDevice" id="device-toggle" class="fas fa-plus"></i>
                 <i v-else id="device-toggle" class="fas fa-minus"></i>
               </a> 
@@ -21,17 +25,17 @@
             <div class="card-body p-0">
               <transition name="fade" mode="out-in">
 
-                <form v-if="newDevice" class="row m-2" @submit.prevent="deviceSubmit">                  
+                <form v-if="newDevice" class="row" @submit.prevent="deviceSubmit">                  
                   <div class="input-group col-12">
-                    <input type="text" class="form-control" placeholder="Nombre del dispositivo" required
+                    <input type="text" class="form-control rounded-0" placeholder="Nombre del dispositivo" required
                       v-model="device_name" >
-                    <input type="submit" class="input-group-append btn btn-primary" value="Guardar"> 
+                    <input type="submit" class="input-group-append btn btn-primary rounded-0" value="Guardar"> 
                   </div>                  
                 </form>
 
-                <form v-if="!newDevice" class="row m-2">                  
+                <form v-if="!newDevice" class="row">                  
                   <div class="input-group col-12">
-                    <input type="text" class="form-control" placeholder="Buscar dispositivo"
+                    <input type="text" class="form-control rounded-0" placeholder="Buscar dispositivo"
                       v-model="device_nameSearch" >
                   </div>                  
                 </form>
@@ -90,24 +94,28 @@
               <a 
                 id="brand-toggle" 
                 @click="toggleForm"
-                class="btn btn-primary btn-sm text-white float-right">
+                v-bind:class="{
+                  'btn btn-sm text-white float-right':true,
+                  'btn-primary': !newDevice,
+                  'btn-secondary': newDevice
+                }">
                 <i v-if="!newBrand" id="brand-toggle" class="fas fa-plus"></i>
                 <i v-else id="brand-toggle" class="fas fa-minus"></i>
               </a> 
             </div>
             <div class="card-body p-0">
               <transition name="fade" mode="out-in">                
-                <form v-if="newBrand" class="row m-2" @submit.prevent="brandSubmit">                  
+                <form v-if="newBrand" class="row" @submit.prevent="brandSubmit">                  
                   <div class="input-group col-12">
-                    <input type="text" class="form-control" placeholder="Nombre de la Marca" required
+                    <input type="text" class="form-control rounded-0" placeholder="Nombre de la Marca" required
                       v-model="brand_name" >
-                    <input type="submit" class="input-group-append btn btn-primary" value="Guardar"> 
+                    <input type="submit" class="input-group-append btn btn-primary rounded-0" value="Guardar"> 
                   </div>
                 </form>
 
-                <form v-if="!newBrand" class="row m-2" >                  
+                <form v-if="!newBrand" class="row" >                  
                   <div class="input-group col-12">
-                    <input type="text" class="form-control" placeholder="Buscar marca" 
+                    <input type="text" class="form-control rounded-0" placeholder="Buscar marca" 
                       v-model="brand_nameSearch" >
                   </div>
                 </form>
@@ -244,6 +252,7 @@
       // METODOS DE MARCAS
 
       getBrands(){
+        this.brandPaginate()
         axios
           .get("/api/brands")
           .then(response => {
@@ -343,6 +352,7 @@
 
       // METODOS DE DISPOSITIVOS
       getSubDevice(){
+        this.subDevicePaginate()
         axios
           .get("/api/sub-devices")
           .then(response => {
