@@ -44,7 +44,7 @@
 						</li>
 
 						<li class="sidebar">
-							<router-link tag="a" to="/dispositivos">
+							<router-link tag="a" to="/ordenes">
 								<i class="fa fa-laptop"></i>
 							  <span class="toggle-item">Ordenes</span>
 							</router-link>

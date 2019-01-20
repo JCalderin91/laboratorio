@@ -53,6 +53,7 @@
 							</tr>
 						</tbody>
 					</table>	
+
 					<nav v-if="!searchOrder" aria-label="Page navigation example" class="mx-2">
 						<ul class="pagination pagination-sm">
 							<li 
@@ -63,7 +64,8 @@
 								</a>
 							</li>
 						</ul>
-					</nav>			
+					</nav>	
+							
 				</div>
 			</div>
 
@@ -100,15 +102,17 @@
 			              </div>
 				      		</div>
 
-				      		<div class="col-md-12">
+				      		<set-user class="col-12" :users="users"></set-user>
+
+				      		<!-- <div class="col-md-12">
 				      			<div class="form-group">
 			                <label>Cedula del técnico</label>
-			                <select v-model="tecnicID" class="custom-select" required>
+			                <select v-model="idUser" class="custom-select" required>
 			                  <option value="">Selecione una cedula</option>
 			                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
 			                </select>
 			              </div>
-				      		</div>
+				      		</div> -->
 
 				      	</div>
 				      </div>
@@ -158,15 +162,7 @@
 			              </div>
 				      		</div>
 
-				      		<div class="col-md-12">
-				      			<div class="form-group">
-			                <label>Cedula del técnico</label>
-			                <select v-model="tecnicID" class="custom-select" required>
-			                  <option value="">Selecione una cedula</option>
-			                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
-			                </select>
-			              </div>
-				      		</div>
+				      		<set-user class="col-12" :users="users"></set-user>
 
 				      	</div>
 				      </div>
@@ -184,6 +180,7 @@
 <script>
 	import Modal from '../partials/Modal'
 	import Widget from '../partials/Widget'
+	import SetUser from '../partials/SetUser'
 	export default {
 		name: 'dashboard',
 		data(){
@@ -201,7 +198,7 @@
 				datails: '',
 				stateDevice:'',
 				order: '',
-				tecnicID: '',
+				idUser: '',
 				users: '',
 				states: [{
 					value: 'without repair',
@@ -217,13 +214,19 @@
 		},
 		components: {
 			Widget,
-			Modal
+			Modal,
+			SetUser
 		},
 		mounted(){
 			this.getAllOrders()
 			this.getOrders()
 			this.getUsers()
 		},
+    created(){
+      eventBus.$on('idUser', (value) => {
+        this.idUser = value 
+      })
+    },
 		methods: {
 			getAllOrders(){
 				eventBus.$emit('loading', true)
@@ -259,7 +262,7 @@
       },
 			saveRepair(){
         let repair = {
-          tecnico: this.tecnicID,
+          tecnico: this.idUser,
           estado: this.stateDevice ,
           detalle: this.datails
         }
@@ -267,7 +270,7 @@
           .post(`api/orders/${this.order}/repairs`, repair)
   				.then(response => {
   					this.getOrders()
-  					this.tecnicID = ''
+  					this.idUser = ''
             this.state = ''
             this.datails = ''
             this.order = ''
@@ -295,7 +298,7 @@
 			},
 			saveDelivery(){
         let delivery = {
-          user_delivery_id: this.tecnicID,
+          user_delivery_id: this.idUser,
           client_ci: this.client.ci ,
           client_name: this.client.name
         }
@@ -303,7 +306,7 @@
           .post(`api/orders/${this.order}/deliveries`, delivery)
   				.then(response => {
   					this.getOrders()
-  					this.tecnicID = ''
+  					this.idUser = ''
             this.client.ci  = ''
             this.client.name = ''
             this.sameClientCheck= false
@@ -383,7 +386,7 @@
 	          	item.fechaCreacion.includes(this.searchOrder) 
           	);					
 				}else{
-					return this.orders
+					return this.orders.filter((item)=>item.estado != 'entregado')
 				}
 				
 			}

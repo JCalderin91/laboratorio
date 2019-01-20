@@ -26,7 +26,7 @@
 					{{ client.telefono }}
 				</td>
 				<td>
-					<button :id="client.cedula" @click="editClickHandler" class="waves-effect waves-light btn btn-dark text-white btn-small">
+					<button :id="client.cedula" @click="editClickHandler" class=" btn btn-dark text-white btn-sm">
 						<i :id="client.cedula" class="fas fa-pen"></i>
 					</button>
 				</td>

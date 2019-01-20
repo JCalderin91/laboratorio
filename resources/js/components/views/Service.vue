@@ -184,27 +184,7 @@
           </h6>
         </div>
         <div class="card-body">
-          <div class="row">
-            <div class="col-12">
-              <div class="form-group">
-                <label>Cedula</label>
-
-                <select class="custom-select" required @change="setNameUser" v-model="idUser">
-                  <option value="">Selecione una cedula</option>
-                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
-                </select>
-
-              </div>
-            </div>
-
-            <div class="col-12">
-              <div class="form-group">
-                <label>Datos</label>
-                <input disabled type="text" class="form-control" v-model="nameUser" required>   
-              </div>
-            </div>
-
-          </div>
+          <set-user :users="users"></set-user>
         </div>
         <div class="card-footer">
           <button
@@ -262,6 +242,7 @@
 </template>
 
 <script>
+  import SetUser from '../partials/SetUser'
   export default {
     name: 'Service',
     data(){
@@ -300,7 +281,11 @@
         users: [],
       }
     },
-
+    created(){
+      eventBus.$on('idUser', (value) => {
+        this.idUser = value 
+      })
+    },
     mounted(){
       this.getAddress()
       this.getAreas()
@@ -488,6 +473,9 @@
           })
       }
 
+    },
+    components:{
+      SetUser
     }
   }
 

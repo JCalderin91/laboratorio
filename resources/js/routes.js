@@ -3,7 +3,7 @@ import Areas from './components/views/Areas'
 import Brands from './components/views/Brands'
 import Clients from './components/views/Clients'
 import Dashboard from './components/views/Dashboard'
-import Devices from './components/views/Devices'
+import Orders from './components/views/Orders'
 import Login from './components/views/Login'
 import Users from './components/views/Users'
 import Service from './components/views/Service'
@@ -42,9 +42,9 @@ const routes = [
 		component: Address,
 	},
 	{
-		path: '/dispositivos',
-		name: 'devices',
-		component: Devices,
+		path: '/ordenes',
+		name: 'orders',
+		component: Orders,
 	},
 	{
 		path: '/usuarios',
