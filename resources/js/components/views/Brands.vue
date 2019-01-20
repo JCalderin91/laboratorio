@@ -11,6 +11,13 @@
               {{devicesMeta.total}} Dispositivos registrados
               <a 
                 id="device-toggle" 
+                @click="searhDevice"
+                class="btn btn-info btn-sm text-white float-right ml-1">
+                <i v-if="!searhDevice" id="device-toggle" class="fas fa-search"></i>
+                <i v-else id="device-toggle" class="fas fa-minus"></i>
+              </a> 
+              <a 
+                id="device-toggle" 
                 @click="toggleForm"
                 class="btn btn-primary btn-sm text-white float-right">
                 <i v-if="!newDevice" id="device-toggle" class="fas fa-plus"></i>
@@ -168,6 +175,7 @@
 		name: 'Brands-View',
     data() {
       return {
+        searhDevice: false,
         newBrand: false,
         newDevice: false,
         brand: '',

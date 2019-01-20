@@ -7,7 +7,7 @@
 				<div class="col-12 pt-3">
 
 					<div class="form-group">
-						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar orden por cedula o dispositivo">
+						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar orden">
 					</div>
 						
 					<table class="table text-center table-striped table-hover table-sm">
@@ -353,26 +353,34 @@
 		},
 		computed:{
 			pendingCount: function() {
-				let pendingCount = this.allOrders.filter(order => order.estado === 'pending')
+				let pendingCount
+				if(this.searchOrder != ''){
+					pendingCount = this.filterOrders.filter(order => order.estado === 'pending')
+				}else{
+					pendingCount = this.allOrders.filter(order => order.estado === 'pending')
+				}
 				return Object.keys(pendingCount).length
 			},
 			revisedCount: function() {
-				let revisedCount = this.allOrders.filter(order => order.estado === 'revised')
+				let revisedCount
+				if(this.searchOrder != ''){
+					revisedCount = this.filterOrders.filter(order => order.estado === 'revised')
+				}else{
+					revisedCount = this.allOrders.filter(order => order.estado === 'revised')
+				}
+
 				return Object.keys(revisedCount).length
 			},
 			filterOrders: function(){
 				var expreg = /[0-9]+/;
   
 				if(this.searchOrder != ''){
-
-	          return this.allOrders.filter((item) => 
-		          	item.cliente.data.cedula.includes(this.searchOrder) ||
-		          	item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
-		          	item.estado.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
-		          	item.fechaCreacion.includes(this.searchOrder) 
-	          	);
-	        
-					
+          return this.allOrders.filter((item) => 
+	          	item.cliente.data.cedula.includes(this.searchOrder) ||
+	          	item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+	          	item.estado.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+	          	item.fechaCreacion.includes(this.searchOrder) 
+          	);					
 				}else{
 					return this.orders
 				}

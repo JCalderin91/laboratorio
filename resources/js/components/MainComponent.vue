@@ -15,6 +15,7 @@
         </transition>
       </div>
     </div>
+    <div class="about">Lineight &copy; 2018</div>
   </div>
 </template>
 
@@ -85,7 +86,7 @@
     }
   };
 </script>
-<style>
+<style lang="scss" >
   .fade-enter,
   .fade-leave-active{
     transition: opacity .1s;
@@ -93,6 +94,17 @@
   .fade-enter,
   .fade-leave-to{
     opacity: 0;
+  }
+  .about{
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+    color: #33333360;
+    font-style: italic;
+    transition: all .3s ease;
+    &:hover{
+      color: #333;
+    }
   }
 </style>
 
