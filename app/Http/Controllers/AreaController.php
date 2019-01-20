@@ -31,7 +31,7 @@ class AreaController extends ApiController
 
         if(request()->has('paginate')){
 
-            return $this->showAll($area, 200, true);
+            return $this->showAll($areas, 200, true);
         }
 
         return $this->showAll($areas);
