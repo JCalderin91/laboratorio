@@ -33,7 +33,7 @@
 									<a
 										@click="setOrder(order)"
 										data-toggle="modal" data-target="#reparar"
-										v-if="order.estado === 'pending'"
+										v-if="order.estado === 'pendiente'"
 										href="#" title="Reparar"
 										class="btn btn-primary btn-sm">
 										<i class="fa fa-wrench"></i>
