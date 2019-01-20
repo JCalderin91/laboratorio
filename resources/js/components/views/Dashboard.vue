@@ -13,6 +13,7 @@
 					<table class="table text-center table-striped table-hover table-sm">
 						<thead class="bg-dark text-white">
 							<tr>
+								<th>Código</th>
 								<th>Cedula</th>
 								<th>Equipo</th>
 								<th>Fecha</th>
@@ -22,6 +23,7 @@
 						</thead>
 						<tbody>
 							<tr v-for="order in filterOrders">
+								<td>LAB-{{order.codigo}}</td>
 								<td>{{order.cliente.data.cedula}}</td>
 								<td>{{order.equipo.data.nombre}}</td>
 								<td>{{order.fechaCreacion}}</td>
@@ -372,7 +374,6 @@
 				return Object.keys(revisedCount).length
 			},
 			filterOrders: function(){
-				var expreg = /[0-9]+/;
   
 				if(this.searchOrder != ''){
           return this.allOrders.filter((item) => 

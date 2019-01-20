@@ -8,14 +8,8 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              {{devicesMeta.total}} Dispositivos registrados
-              <a 
-                id="device-toggle" 
-                @click="searhDevice"
-                class="btn btn-info btn-sm text-white float-right ml-1">
-                <i v-if="!searhDevice" id="device-toggle" class="fas fa-search"></i>
-                <i v-else id="device-toggle" class="fas fa-minus"></i>
-              </a> 
+              <span v-if="device_nameSearch" >{{filterDevices.length}} Dispositivos</span> 
+              <span v-else>{{devicesMeta.total}} Dispositivos</span> 
               <a 
                 id="device-toggle" 
                 @click="toggleForm"
@@ -26,24 +20,22 @@
             </div>
             <div class="card-body p-0">
               <transition name="fade" mode="out-in">
-                <form v-if="newDevice" class="row m-2" @submit.prevent="deviceSubmit">
 
-                  
+                <form v-if="newDevice" class="row m-2" @submit.prevent="deviceSubmit">                  
                   <div class="input-group col-12">
                     <input type="text" class="form-control" placeholder="Nombre del dispositivo" required
                       v-model="device_name" >
                     <input type="submit" class="input-group-append btn btn-primary" value="Guardar"> 
-                  </div>
-                  
+                  </div>                  
                 </form>
 
-                <!--<div class="p-2" v-if="newDevice" >
-                  <div class="form-group">
-                    <input type="text" v-model="device" class="form-control">
-                  </div>
-                  <a @click.prevent="newDevice = false" href="#" class="btn btn-secondary">Cancelar</a>
-                  <a @click.prevent="createDevice" href="#" class="btn btn-primary">Guardar</a>
-                </div>-->
+                <form v-if="!newDevice" class="row m-2">                  
+                  <div class="input-group col-12">
+                    <input type="text" class="form-control" placeholder="Buscar dispositivo"
+                      v-model="device_nameSearch" >
+                  </div>                  
+                </form>
+
               </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
@@ -56,7 +48,7 @@
                   </tr>
                 </thead>
                 <tbody class="text-center">
-                  <tr v-for="device in devices">
+                  <tr v-for="device in filterDevices">
                     <td>{{ device.nombre }}</td>
                     <td>
                       <!-- <a href="#" class="btn bg-dark text-white btn-sm">
@@ -76,7 +68,7 @@
                   </tr>
                 </tbody>
               </table> 
-              <nav aria-label="Page navigation example" class="mx-2">
+              <nav v-if="!device_nameSearch" aria-label="Page navigation example" class="mx-2">
                 <ul class="pagination pagination-sm">
                   <li 
                     v-for="page in devicesMeta.total_pages"
@@ -93,7 +85,8 @@
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
-              {{brandsMeta.total}} Marcas registradas
+              <span v-if="brand_nameSearch" >{{filterBrands.length}} Marcas</span> 
+              <span v-else>{{brandsMeta.total}} Marcas</span> 
               <a 
                 id="brand-toggle" 
                 @click="toggleForm"
@@ -109,6 +102,13 @@
                     <input type="text" class="form-control" placeholder="Nombre de la Marca" required
                       v-model="brand_name" >
                     <input type="submit" class="input-group-append btn btn-primary" value="Guardar"> 
+                  </div>
+                </form>
+
+                <form v-if="!newBrand" class="row m-2" >                  
+                  <div class="input-group col-12">
+                    <input type="text" class="form-control" placeholder="Buscar marca" 
+                      v-model="brand_nameSearch" >
                   </div>
                 </form>
 
@@ -131,7 +131,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="text-center" v-for="brand in brands">
+                  <tr class="text-center" v-for="brand in filterBrands">
                     <td>{{ brand.nombre }}</td>
                     <td>
                       <!-- <a href="#" class="btn bg-dark text-white btn-sm">
@@ -151,7 +151,7 @@
                   </tr>
                 </tbody>
               </table>  
-              <nav aria-label="Page navigation example" class="mx-2">
+              <nav v-if="!brand_nameSearch" aria-label="Page navigation example" class="mx-2">
                 <ul class="pagination pagination-sm">
                   <li 
                     v-for="page in brandsMeta.total_pages"
@@ -167,6 +167,7 @@
         </div>       
       </div>
     </div>
+    <pre>{{ $data }}</pre>
 	</div>
 </template>
 
@@ -175,7 +176,8 @@
 		name: 'Brands-View',
     data() {
       return {
-        searhDevice: false,
+        sDevice: false,
+        sBrand: false,
         newBrand: false,
         newDevice: false,
         brand: '',
@@ -183,6 +185,8 @@
         brandsMeta: '',
         device: '',
         devices: '',
+        allDevices: '',
+        allBrands: '',
         selectedDevice: null,
         selectedBrand: null,
         devicesMeta: '',
@@ -191,10 +195,14 @@
         deviceUpdate: false,
 
         device_name: '',
+        device_nameSearch: '',
         brand_name: '',
+        brand_nameSearch: '',
       }
     },
     mounted() {
+      this.subDevicePaginate()
+      this.brandPaginate()
       this.getSubDevice()
       this.getBrands()
     },
@@ -238,11 +246,9 @@
 
       getBrands(){
         axios
-          .get("/api/brands?paginate=true")
+          .get("/api/brands")
           .then(response => {
-            this.brands = response.data.data
-            document.querySelectorAll('input[name="brand"]').forEach(r => {r.checked = false})
-            this.brandsMeta = response.data.meta.pagination
+            this.allBrands = response.data.data
           })
           .catch(error => {
             console.log(error)
@@ -254,6 +260,7 @@
           .get("/api/brands?paginate=true&page="+page)
           .then(response => {
             this.brands = response.data.data
+            document.querySelectorAll('input[name="brand"]').forEach(r => {r.checked = false})
             this.brandsMeta = response.data.meta.pagination
           })
           .catch(error => {
@@ -338,11 +345,9 @@
       // METODOS DE DISPOSITIVOS
       getSubDevice(){
         axios
-          .get("/api/sub-devices?paginate=true")
+          .get("/api/sub-devices")
           .then(response => {
-            this.devices = response.data.data
-            document.querySelectorAll('input[name="device"]').forEach(r => {r.checked = false})
-            this.devicesMeta = response.data.meta.pagination
+            this.allDevices = response.data.data
           })
           .catch(error => {
             console.log(error)
@@ -354,7 +359,8 @@
         axios
           .get("/api/sub-devices?paginate=true&page="+page)
           .then(response => {
-            this.devices = response.data.data
+            this.devices = response.data.data            
+            document.querySelectorAll('input[name="device"]').forEach(r => {r.checked = false})
             this.devicesMeta = response.data.meta.pagination
           })
           .catch(error => {
@@ -437,6 +443,27 @@
             this.$emit('error', error)
           })
       },
+    },computed:{
+      filterDevices: function(){  
+        if(this.device_nameSearch != ''){
+          return this.allDevices.filter((item) => 
+              item.nombre.toUpperCase().includes(this.device_nameSearch.toUpperCase()) 
+            );          
+        }else{
+          return this.devices
+        }
+        
+      },
+      filterBrands: function(){  
+        if(this.brand_nameSearch != ''){
+          return this.allBrands.filter((item) => 
+              item.nombre.toUpperCase().includes(this.brand_nameSearch.toUpperCase()) 
+            );          
+        }else{
+          return this.devices
+        }
+        
+      }
     }
 	}
 </script>
