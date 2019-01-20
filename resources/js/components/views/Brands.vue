@@ -167,7 +167,6 @@
         </div>       
       </div>
     </div>
-    <pre>{{ $data }}</pre>
 	</div>
 </template>
 
@@ -460,7 +459,7 @@
               item.nombre.toUpperCase().includes(this.brand_nameSearch.toUpperCase()) 
             );          
         }else{
-          return this.devices
+          return this.brands
         }
         
       }
