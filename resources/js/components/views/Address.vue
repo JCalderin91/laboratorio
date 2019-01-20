@@ -26,7 +26,7 @@
               <transition name="fade" mode="out-in">                
                 <form v-if="newAddress" class="row" @submit.prevent="addressSubmit">                  
                   <div class="input-group col-12">
-                    <input type="text" class="form-control rounded-0" placeholder="Nombre de la Direccione" required
+                    <input type="text" class="form-control rounded-0" placeholder="Nombre de la dirección" required
                       v-model="address_name" >
                     <input type="submit" class="input-group-append btn btn-primary rounded-0" value="Guardar"> 
                   </div>
@@ -34,7 +34,7 @@
 
                 <form v-if="!newAddress" class="row" >                  
                   <div class="input-group col-12">
-                    <input type="text" class="form-control rounded-0" placeholder="Buscar direccion.." 
+                    <input type="text" class="form-control rounded-0" placeholder="Buscar dirección.." 
                       v-model="address_nameSearch" >
                   </div>
                 </form>
@@ -52,8 +52,8 @@
                   <tr>
                     <th class=" text-center" style="vertical-align: middle">Nombre</th>
                     <th class="text-center">
-                      <button class="btn btn-outline-light btn-sm" title="Eliminar Marca(s)"  @click.prevent="deleteAddress"><i class="fas fa-trash"></i></button>
-                      <button class="btn btn-outline-light btn-sm" title="Editar Marca" @click.prevent="editAddress"><i class="fas fa-pen"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Eliminar Dirección"  @click.prevent="deleteAddress"><i class="fas fa-trash"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Editar Dirección" @click.prevent="editAddress"><i class="fas fa-pen"></i></button>
                     </th>
                   </tr>
                 </thead>
@@ -71,8 +71,8 @@
                         <input class="custom-control-input" type="radio" style="display: none;"
                           @change="selectAddress" 
                           name="address" 
-                          :id="address.identificador">
-                        <label class="custom-control-label" :for="address.identificador" style="vertical-align: top"></label>
+                          :id="'address-'+address.identificador">
+                        <label class="custom-control-label" :for="'address-'+address.identificador" style="vertical-align: top"></label>
                       </div>
                     </td>
                   </tr>
@@ -114,7 +114,7 @@
 
                 <form v-if="newArea" class="row" @submit.prevent="areaSubmit">                  
                   <div class="input-group col-12">
-                    <input type="text" class="form-control rounded-0" placeholder="Nombre del dispositivo" required
+                    <input type="text" class="form-control rounded-0" placeholder="Nombre del area" required
                       v-model="area_name" >
                     <input type="submit" class="input-group-append btn btn-primary rounded-0" value="Guardar"> 
                   </div>                  
@@ -133,8 +133,8 @@
                   <tr>
                     <th class=" text-center" style="vertical-align: middle">Nombre</th>
                     <th class="text-center">
-                      <button class="btn btn-outline-light btn-sm" title="Eliminar Dispositivo(s)"  @click.prevent="deleteArea"><i class="fas fa-trash"></i></button>
-                      <button class="btn btn-outline-light btn-sm" title="Editar Dispositivo" @click.prevent="editArea"><i class="fas fa-pen"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Eliminar Area"  @click.prevent="deleteArea"><i class="fas fa-trash"></i></button>
+                      <button class="btn btn-outline-light btn-sm" title="Editar Area" @click.prevent="editArea"><i class="fas fa-pen"></i></button>
                     </th>
                   </tr>
                 </thead>
@@ -151,9 +151,9 @@
                       <div class="custom-control custom-radio" style="cursor: pointer;">
                         <input class="custom-control-input" type="radio" style="display: none;"
                           @change="selectArea" 
-                          name="device" 
-                          :id="area.identificador">
-                        <label class="custom-control-label" :for="area.identificador" style="vertical-align: top"></label>
+                          name="area" 
+                          :id="'area-'+area.identificador">
+                        <label class="custom-control-label" :for="'area-'+area.identificador" style="vertical-align: top"></label>
                       </div>
                     </td>
                   </tr>
@@ -180,7 +180,7 @@
 
 <script>
   export default {
-    name: 'Brands-View',
+    name: 'Addresses-View',
     data() {
       return {
         sArea: false,
@@ -229,11 +229,11 @@
       },
 
       selectArea(event) {
-        this.selectedArea = event.target.id
+        this.selectedArea = event.target.id.replace('area-', '')
         this.area_name = this.areas.filter(area => area.identificador == this.selectedArea)[0].nombre
       },
       selectAddress(event) {
-        this.selectedAddress = event.target.id
+        this.selectedAddress = event.target.id.replace('address-', '')
         this.address_name = this.addresses.filter(address => address.identificador == this.selectedAddress)[0].nombre
       },
 
