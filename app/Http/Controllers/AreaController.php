@@ -46,7 +46,11 @@ class AreaController extends ApiController
     public function store(AreaStoreRequest $request)
     {
 
-        $area = Area::create($request->all());
+        $area = Area::withTrashed()->firstOrCreate(['name' => strtolower($request->name)]);
+
+        if($area->trashed()){
+            $area->restore();
+        }
 
         return $this->showOne($area);
 

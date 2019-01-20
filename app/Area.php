@@ -20,7 +20,13 @@ class Area extends Model
 	];
 	
 
-   
+  public function setNameAttribute($value){
+    $this->attributes['name'] = strtolower($value);
+  }
+
+  public function getNameAttribute($value){
+    return ucwords($value);
+  }
  
 
 }
