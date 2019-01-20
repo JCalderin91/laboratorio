@@ -26,7 +26,7 @@
 								<td>{{order.equipo.data.nombre}}</td>
 								<td>{{order.fechaCreacion}}</td>
 								<td>
-									<span v-if="order.estado === 'pending'" class="badge badge-danger">Pendiente</span>
+									<span v-if="order.estado === 'pendiente'" class="badge badge-danger">Pendiente</span>
 									<span v-else class="badge badge-primary">Revisado</span>
 								</td>
 								<td>
@@ -355,18 +355,18 @@
 			pendingCount: function() {
 				let pendingCount
 				if(this.searchOrder != ''){
-					pendingCount = this.filterOrders.filter(order => order.estado === 'pending')
+					pendingCount = this.filterOrders.filter(order => order.estado === 'pendiente')
 				}else{
-					pendingCount = this.allOrders.filter(order => order.estado === 'pending')
+					pendingCount = this.allOrders.filter(order => order.estado === 'pendiente')
 				}
 				return Object.keys(pendingCount).length
 			},
 			revisedCount: function() {
 				let revisedCount
 				if(this.searchOrder != ''){
-					revisedCount = this.filterOrders.filter(order => order.estado === 'revised')
+					revisedCount = this.filterOrders.filter(order => order.estado === 'revisado')
 				}else{
-					revisedCount = this.allOrders.filter(order => order.estado === 'revised')
+					revisedCount = this.allOrders.filter(order => order.estado === 'revisado')
 				}
 
 				return Object.keys(revisedCount).length
