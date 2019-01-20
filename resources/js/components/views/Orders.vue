@@ -3,14 +3,22 @@
 		<div class="card-content row">
 
 			<div class="card-title col-12 p-0">
-				<h4>Lista de las ordenes registradas</h4>
+				<h4>Lista de las ordenes registradas
+					<a v-if="editOrder" @click.prevent="editOrder = !editOrder" href="#" class="btn btn-success float-right">Listo</a>
+				</h4>
 			</div>
 
 			<edit-order v-if="editOrder" :order="order"></edit-order>	
 
 			<div v-if="!editOrder"  class="col-12 row">
-				<div class="form-group">
+
+				<div class="form-group col-6">
 					<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar orden">
+				</div>
+					
+				<div class="col-6 text-right">
+					<span v-if="searchOrder" >{{filterOrders.length}} Ordenes</span> 
+          <span v-else>{{allOrders.length}} Ordenes</span> 
 				</div>
 					
 				<table class="table text-center table-striped table-hover table-sm">
@@ -37,7 +45,7 @@
 							</td>
 							<td>
 								<a
-									@click.prevent="editingOrder(order.identificador)"
+									@click.prevent="getOrder(order.identificador)"
 									href="#" title="Editar"
 									class="btn btn-info btn-sm">
 									<i class="fas fa-pen"></i>
@@ -81,6 +89,7 @@
 				searchOrder: '',
 				orders: '',
 				order: '',
+				allOrders: '',
 				ordersMeta: '',
         device: {
           ci: '',
@@ -103,10 +112,6 @@
 			this.getOrders()
 		},
 		methods:{
-			editingOrder(order){
-				this.editOrder = true
-				this.order = order
-			},
 			getAllOrders(){
 				eventBus.$emit('loading', true)
 				axios
@@ -139,6 +144,13 @@
           })
           .catch(error => {console.log(error)})
       },
+      getOrder(id){
+      	this.editOrder = true
+				axios
+          .get("api/orders/"+id)
+          .then(response => {this.order = response.data.data})
+          .catch(error => {console.log(error)});
+			}
 		},
 		computed:{
 			filterOrders: function(){  
@@ -150,7 +162,7 @@
 	          	item.fechaCreacion.includes(this.searchOrder) 
           	);					
 				}else{
-					return this.orders
+					return this.allOrders
 				}
 				
 			}
