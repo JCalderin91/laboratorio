@@ -23,6 +23,7 @@ class OrderTransformer extends TransformerAbstract
     {
         return [
             'identificador' => (int)$order->id,
+            'codigo' => (string)$order->serial,
             'estado' => (string)$order->status,
             'detalle' => (string)$order->description,
             'fechaCreacion' => (string)$order->arrival_date,
@@ -33,6 +34,7 @@ class OrderTransformer extends TransformerAbstract
     public static function originalAttribute($index){
         $attributes = [
             'identificador' => 'id',
+            'codigo' => 'serial',
             'estado' => 'status',
             'detalle' => 'description',
             'fechaCreacion' => 'arrival_date',
@@ -57,6 +59,7 @@ class OrderTransformer extends TransformerAbstract
     public static function transformedAttribute($index){
         $attributes = [
             'id' => 'identificador',
+            'serial' => 'codigo',
             'status' => 'estado',
             'description' => 'detalle',
             'arrival_date' => 'fechaCreacion',

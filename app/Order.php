@@ -29,6 +29,7 @@ class Order extends Model
         'user_delivery_id',
         'client_name',
         'client_ci',
+        'serial',
     ];
     
     public function client(){
@@ -50,6 +51,14 @@ class Order extends Model
     public function getArrivalDateAttribute($value){
         $dateTime = Carbon::parse($value);
         return $dateTime->format('d-m-Y H:i:s');
+    }
+
+    public static function getSerial(){
+
+        $date = Carbon::now()->format('dmY');
+        $num = Order::whereYear('arrival_date', Carbon::now()->format('Y'))->get()->count() + 1;
+
+        return $date.$num;
     }
 
     public $timestamps = false;

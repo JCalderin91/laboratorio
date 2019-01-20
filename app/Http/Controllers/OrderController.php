@@ -84,6 +84,7 @@ class OrderController extends ApiController
                 'client_id' => $client->id,
                 'device_id' => $device->id,
                 'user_id' => $request->user_id,
+                'serial' => Order::getSerial(),
                 'description' => $request->description, 
                 'status' => Order::ORDER_PENDING, 
             ]);

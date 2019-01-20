@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('device_id');
             $table->unsignedInteger('user_id');
 
+            $table->string('serial');
             $table->dateTime('arrival_date');
             $table->string('description')->nullable();
             $table->enum('status', [Order::ORDER_PENDING, Order::ORDER_REVISED, Order::ORDER_DELIVERED ])->default(Order::ORDER_PENDING);
