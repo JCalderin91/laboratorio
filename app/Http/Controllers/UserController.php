@@ -32,11 +32,9 @@ class UserController extends ApiController{
 
         $user = new User;
 
-        $user->fill($request->except(['admin', 'password']));
+        $user->fill($request->except(['admin']));
 
         $user->admin = User::USER_REGULAR;
-
-        $user->password = bcrypt($request->password);
 
         $user->save();
 
