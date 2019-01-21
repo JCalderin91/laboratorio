@@ -13,7 +13,6 @@
 		</ul>
 		<div class="tab-content" id="myTabContent">
 		  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-		  	<p>{{order}}</p>
 		  	<div class="card">
 	        <div class="card-header bg-dark">
 	          <h6 class="m-0 text-white">
@@ -21,12 +20,12 @@
 	          </h6>
 	        </div>
 	        <div class="card-body">
-	          <div class="row">
-	       
+	          <div class="row">	       
 	            <div class="col-6"><!-- Cedula Nuevo Cliente -->
 	              <label>Cédula</label>
 	              <div class="input-group">
 	                <input
+	                	v-model="order.cliente.data.nombres"
 	                  type="text"
 	                  class="form-control"
 	                  placeholder="Cedula del cliente"
@@ -107,13 +106,16 @@
 		props: ['order'],
 		data(){
 			return {
-				data: order
+				data: ''
 			}
+		},
+		mounted(){
+			this.data = order
 		},
 
 		methods:{
 			finishEditing(){
-				eventBus.$emit('editingOrder', false)
+				eventBus.$emit('editingOrder', false).-,
 			},			
 		},
 	}
