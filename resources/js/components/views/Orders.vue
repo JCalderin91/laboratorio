@@ -4,11 +4,11 @@
 
 			<div class="card-title col-12 p-0">
 				<h4>Lista de las ordenes registradas
-					<a v-if="editOrder" @click.prevent="editOrder = !editOrder" href="#" class="btn btn-success float-right">Listo</a>
+					<a v-if="editOrder" @click.prevent="editOrder = !editOrder" href="#" class="btn btn-info float-right">Finalizar edición</a>
 				</h4>
 			</div>
 
-			<edit-order v-if="editOrder" :order="order"></edit-order>	
+			<edit-order v-if="editOrder" :id="idOrder"></edit-order>	
 
 			<div v-if="!editOrder"  class="col-12 row">
 
@@ -88,7 +88,7 @@
 				editOrder: false,
 				searchOrder: '',
 				orders: '',
-				order: '',
+				idOrder: '',
 				allOrders: '',
 				ordersMeta: '',
         device: {
@@ -145,12 +145,9 @@
           .catch(error => {console.log(error)})
       },
       getOrder(id){
-      	this.editOrder = true
-				axios
-          .get("api/orders/"+id)
-          .then(response => {this.order = response.data.data})
-          .catch(error => {console.log(error)});
-			}
+				this.idOrder = id
+				this.editOrder = true
+			},
 		},
 		computed:{
 			filterOrders: function(){  
