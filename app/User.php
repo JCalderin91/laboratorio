@@ -29,7 +29,6 @@ class User extends Model
         'first_name', 
         'last_name',
         'gender',
-        'password',
         'admin',
     ];
 
@@ -39,7 +38,7 @@ class User extends Model
      * @var array
      */
     protected $hidden = [
-        'password',
+        
     ];
 
     public function isAdmin(){
