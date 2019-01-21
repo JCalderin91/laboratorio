@@ -144,9 +144,9 @@
 					})
 			},
 			updateUser() {
-				console.log('update')
+				this.user.esAdministrador = (this.user.esAdministrador == 'true' || this.user.esAdministrador == true) ? 'true' : 'false'
 				axios
-					.put('api/users/'+this.user.cedula, this.user)
+					.put('api/users/'+this.user.identificador, this.user)
 					.then(response => {
 						Swal({
               type: 'success',
