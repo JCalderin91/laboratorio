@@ -2,7 +2,7 @@
 	<div class="card" style="margin: 10px;">
     <div class="card-content">      
 		  <div class="card-title mb-3">    
-		    <h4 class>Lista de los dispositivos y las marcas</h4>
+		    <h4 class>Dispositivos y Marcas</h4>
 		  </div>
       <div class="card-body p-0 row">
         <div class="col-md-6">
