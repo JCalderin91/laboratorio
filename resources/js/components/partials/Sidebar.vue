@@ -68,7 +68,7 @@
 						<li class="sidebar">
 							<router-link tag="a" to="/areas">
 								<i class="fa fa-directions"></i>
-							  <span class="toggle-item">Areas & Direcciones</span>
+							  <span class="toggle-item">Direcciones & Areas</span>
 							</router-link>
 						</li>
 

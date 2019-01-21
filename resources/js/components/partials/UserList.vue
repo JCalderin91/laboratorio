@@ -33,7 +33,7 @@
 				</td>
 				<td>
 					<a class="btn btn-sm">
-						<i class="fas fa-pen"></i>
+						<i  :id="user.cedula" @click.prevent="edit(user.cedula)" class="fas fa-pen"></i>
 					</a>
 				</td>
 			</tr>
@@ -45,22 +45,11 @@
 <script>
 	export default {
 		name: 'user-list',
+		props: ['users', 'edit'],
 		data () {
 			return {
 				isAdmin: this.$session.get('isAdmin'),
-				users: [],
 			}
 		},
-		mounted(){
-			this.list()
-		},
-		methods:{
-			list(){
-				axios
-					.get("/api/users")
-					.then(response => {this.users = response.data.data})
-					.catch(error => {console.log(error)});
-			}
-		}
 	}
 </script>

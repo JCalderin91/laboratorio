@@ -36,6 +36,10 @@
           }
         } 
       },
-		}
+		},
+    destroyed(){
+      this.nameUser = ''
+      this.idUser = ''
+    }
 	}
 </script>
