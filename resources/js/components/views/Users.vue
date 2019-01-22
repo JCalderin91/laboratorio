@@ -7,6 +7,7 @@
 					<span v-if="isAdmin">usuarios</span>
 					<span v-else >técnicos</span>
 				</h4>
+				<h4 v-else-if="userForm && update">Editar usuario</h4>
 				<h4 v-else>Registro de usuarios</h4>
 			</div>
 			<div class="col-12 row" v-if="!userForm">
@@ -18,35 +19,35 @@
 				</button>
 				
 				<input type="text" class="form-control col-4 ml-auto" placeholder="Buscar...">
-				<user-list></user-list>
+				<user-list :users="users" :edit="editUser" @edit.stop="toggleForm"></user-list>
 			</div>
 
-			<form v-else class="col-12 row" @submit.prevent="saveUser">
+			<form v-else class="col-12 row" @submit.prevent="submit">
 				<div class="form-group col-6">
 					<label for="ci">Cedula:</label>
-					<input class="form-control" type="text" name="ci" v-model="user.ci" placeholder="Cedula">
+					<input class="form-control" type="text" name="ci" v-model="user.cedula" :disabled="update" placeholder="Cedula">
 				</div>
 				<div class="form-group col-6">
 					<label for="first_name">Nombres:</label>
-					<input class="form-control" type="text" name="first_name" v-model="user.first_name" placeholder="Nombres">
+					<input class="form-control" type="text" name="first_name" v-model="user.nombre" placeholder="Nombres">
 				</div>
 				<div class="form-group col-6">
 					<label for="last_name">Apellidos:</label>
-					<input class="form-control" type="text" name="last_name" v-model="user.last_name" placeholder="Apellidos">
+					<input class="form-control" type="text" name="last_name" v-model="user.apellido" placeholder="Apellidos">
 				</div>
 
 				<div class="form-group col-6">
 					<label for="role">Rol:</label>
-					<select class="form-control" type="text" name="role" v-model="user.role" placeholder="direccion">
+					<select class="form-control" type="text" name="role" v-model="user.esAdministrador">
 						<option value="">Seleccione un rol</option>
-						<option value="teacher">Profesor</option>
-						<option value="tecnic">Técnico</option>
+						<option value="true">Profesor</option>
+						<option value="false">Técnico</option>
 					</select>
 				</div>
 
 				<div class="form-group col-6">
-					<label for="gender">generos:</label>
-					<select class="form-control" type="text" name="gender" v-model="user.gender" placeholder="direccion">
+					<label for="gender">Genero:</label>
+					<select class="form-control" type="text" name="gender" v-model="user.sexo">
 						<option value="">Seleccione un genero</option>
 						<option value="F">Femenino</option>
 						<option value="M">Masculino</option>
@@ -54,7 +55,9 @@
 				</div>
 
 				<div class="col-12 float-right d-flex justify-content-end">
-					<button type="button" class="btn btn-secondary" @click.prevent="userForm = !userForm">Cancelar</button>
+					<button v-if="update" type="button" class="btn btn-secondary" @click.prevent="toggleForm" id="update-cancel-button">Cancelar</button>
+					<button v-else type="button" class="btn btn-secondary" @click.prevent="toggleForm" id="create-cancel-button">Cancelar</button>
+
 					<button id="close-modal2" type="submit" class="btn btn-primary ml-3">Guardar</button>
 				</div>
 
@@ -69,36 +72,62 @@
 		name: 'users',
 		data() {
 			return {
-				isAdmin: this.$session.get('isAdmin'),
-				newUser: false,
 				userForm: false,
+				update: false,
+				users: [],
         user: {
-          ci: '',
-          first_name: '',
-          last_name: '',
-          role: '',
-          gender: ''
+          cedula: '',
+          nombres: '',
+          apellido: '',
+          esAdministrador: '',
+          sexo: '',
         }
 			}
 		},
+		computed: {
+			isAdmin() {
+				return this.$session.get('isAdmin')
+			}
+		},
+		mounted() {
+			this.getUsers()
+		},
 		methods: {
-			saveUser() {
-				if(this.user.role == 'teacher')
-					this.user.role = true
-				else
-					this.user.role = false
+			toggleForm(event) {
+				let id = event.target.id
 
-				let user = {
-					cedula: this.user.ci,
-					nombre: this.user.first_name,
-					apellido: this.user.last_name,
-					contraseña: '123',
-					esAdministrador: this.user.role,
-					sexo: this.user.gender,
+				if (id == 'update-cancel-button') {
+					this.$emit('prompt', {
+						title: '¡Atención!',
+						message: 'Los cambios realizados seran descartados.',
+						confirmHandler: () => {
+							this.userForm = false
+							this.update = false
+							this.clearUserData()
+						}
+					})
+				} else if (id == 'create-cancel-button') {
+					this.userForm = false
 				}
-				
+			},
+
+			editUser(id) {
+				this.update = true
+				this.userForm = true
+				this.user = this.users.filter(user => user.cedula == id)[0]
+			},
+
+			getUsers() {
 				axios
-					.post('api/users', user)
+					.get("/api/users")
+					.then(response => {this.users = response.data.data})
+					.catch(error => {
+						this.$emit('error', error)
+					});
+			},
+			createUser() {				
+				axios
+					.post('api/users', this.user)
 					.then(response => {
 						Swal({
               type: 'success',
@@ -106,17 +135,51 @@
               text: 'Datos guardados con exito',
               confirmButtonText: 'Continuar',
             }).then(() => {
-              this.$router.push('/')
+            	this.clearUserData()
+            	this.userForm = false
             })
 					})
 					.catch(error => {
+						this.$emit('error', error)
+					})
+			},
+			updateUser() {
+				this.user.esAdministrador = (this.user.esAdministrador == 'true' || this.user.esAdministrador == true) ? 'true' : 'false'
+				axios
+					.put('api/users/'+this.user.identificador, this.user)
+					.then(response => {
 						Swal({
-              type: 'error',
-              title: 'Alerta',
-              text: error,
+              type: 'success',
+              title: 'Excelente',
+              text: 'Datos guardados con exito',
               confirmButtonText: 'Continuar',
+            }).then(() => {
+            	this.clearUserData()
+            	this.userForm = false
             })
 					})
+					.catch(error => {
+						this.$emit('error', error)
+					})
+			},
+			submit() {
+				if (this.update) {
+					this.updateUser()
+				} else  {
+					this.createUser()
+				}
+
+				this.getUsers()
+			},
+			clearUserData() {
+				this.user = {
+          ci: '',
+          first_name: '',
+          last_name: '',
+          role: '',
+          gender: '',
+          password: ''
+				}
 			}
 		},
 		components: {

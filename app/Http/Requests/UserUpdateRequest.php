@@ -27,10 +27,9 @@ class UserUpdateRequest extends FormRequest
     {
         return [
             'ci'         =>  Rule::unique('users')->ignore($this->user),
-            'first_name' => 'required|max:128',
-            'last_name'  => 'required|max:128',
-            'gender'     => 'required|in:M,F',
-            'password'   => 'string|min:6|confirmed',
+            'first_name' => 'max:128',
+            'last_name'  => 'max:128',
+            'gender'     => 'in:M,F',
             'admin' => 'in:' . User::USER_REGULAR . ',' . User::USER_ADMIN, 
         ];
     }

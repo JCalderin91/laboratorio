@@ -313,7 +313,7 @@
             Swal({
               type: 'success',
               title: 'Excelente',
-              html:'<p>Datos guardados con exito</p><h3>Código de orden: <strong>LAB-'+response.data.data.codigo+'</strong></h3><small class="text-danger">Recuerde solicitar la firma de este código</small>',
+              html:'<p>Datos guardados con exito</p><h3>Código de orden: <strong>LAB-'+response.data.data.codigo+'</strong></h3><small class="text-danger font-weight-bold">Recuerde solicitar la firma de este código</small>',
               confirmButtonText: 'Continuar',
             }).then(() => {
               this.$router.push('/')
@@ -382,6 +382,7 @@
           return this.allOrders.filter((item) => 
 	          	item.cliente.data.cedula.includes(this.searchOrder) ||
 	          	item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+	          	item.codigo.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
 	          	item.estado.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
 	          	item.fechaCreacion.includes(this.searchOrder) 
           	);					

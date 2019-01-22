@@ -32,11 +32,9 @@ class UserController extends ApiController{
 
         $user = new User;
 
-        $user->fill($request->except(['admin', 'password']));
+        $user->fill($request->except(['admin']));
 
         $user->admin = User::USER_REGULAR;
-
-        $user->password = bcrypt($request->password);
 
         $user->save();
 
@@ -52,15 +50,9 @@ class UserController extends ApiController{
     }
 
 
-    public function update(UserUpdateRequest $request, $id){
+    public function update(UserUpdateRequest $request, User $user){
         
-        $user = User::findOrFail($id);
-
-        $user->fill($request->except(['password']));
-
-        if($request->has('password')){
-            $user->password = bcrypt($request->password);
-        }
+        $user->fill($request->all());
 
         if(!$user->isDirty()){
             return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar' , 422);     

@@ -33,7 +33,6 @@ class UserTransformer extends TransformerAbstract
             'cedula' => 'ci',
             'nombre' => 'first_name',
             'apellido' => 'last_name',
-            'password' => 'contraseña',
             'esAdministrador' => 'admin',
             'sexo' => 'gender',
         ];
@@ -48,8 +47,8 @@ class UserTransformer extends TransformerAbstract
             'ci' => 'cedula',
             'first_name' => 'nombre',
             'last_name' => 'apellido',
-            'password' => 'contraseña',
             'gender' => 'sexo',
+            'admin' => 'esAdministrador'
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
