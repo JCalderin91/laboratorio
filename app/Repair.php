@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use App\Transformers\RepairTransformer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -36,6 +37,11 @@ class Repair extends Model
 
     public function isRepair(){
         return $this->status == Repair::ORDER_REPAIRED;
+    }
+
+    public function getCreatedAttribute($value){
+        $dateTime = Carbon::parse($value);
+        return $dateTime->format('d-m-Y H:i:s');
     }
 
 }

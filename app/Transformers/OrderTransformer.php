@@ -27,6 +27,11 @@ class OrderTransformer extends TransformerAbstract
             'estado' => (string)$order->status,
             'detalle' => (string)$order->description,
             'fechaCreacion' => (string)$order->arrival_date,
+            'fechaEntrega' => isset($order->delivery_date) ? (string)$order->delivery_date : null,
+            'tecnicoEntrega' => isset($order->user_delivery_id) ? (int)$order->user_delivery_id : null,
+            'cedulaEntrega' => isset($order->client_ci) ? (string)$order->dclient_ci : null,
+            'nombreEntrega' => isset($order->client_name) ? (string)$order->client_name : null,
+
             // 'fechaEliminacion' => isset($order->deleted_at) ? (string)$order->deleted_at : null ,
         ];
     }
@@ -50,6 +55,11 @@ class OrderTransformer extends TransformerAbstract
             'area' =>  'area_id',
             'direccion' => 'address_id',
             'tecnico' => 'user_id',
+            'fechaEntrega' => 'delivery_date',
+            'tecnicoEntrega' => 'user_delivery_id',
+            'cedulaEntrega' => 'client_ci',
+            'nombreEntrega' => 'client_name',
+
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -75,6 +85,10 @@ class OrderTransformer extends TransformerAbstract
             'area_id' => 'area',
             'address_id' => 'direccion',
             'user_id' => 'tecnico',
+            'delivery_date' => 'fechaEntrega',
+            'user_delivery_id' => 'tecnicoEntrega',
+            'client_ci' => 'cedulaEntrega',
+            'client_name' => 'nombreEntrega',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

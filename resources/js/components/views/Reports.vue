@@ -63,8 +63,8 @@
 						<tbody>
 							<tr v-for="report in reports">
 								<td>
-									<span v-if="report.estado === 'pending'" >Pendiente</span>
-									<span v-else-if="report.estado === 'revised'" >Revisado</span>
+									<span v-if="report.estado === 'pendiente'" >Pendiente</span>
+									<span v-else-if="report.estado === 'revisado'" >Revisado</span>
 									<span v-else >Entregado</span>
 								</td>
 								<td>{{report.fechaCreacion}}</td>
@@ -129,16 +129,16 @@
       	if (this.user_id == 'all') {
       		this.filter_by = 'orders'
       		this.statuses = [
-						{value:'pending',name:'Pendiente'},
-						{value:'revised',name:'Revisado'},
-						{value:'delivered',name:'Entregado'},
+						{value:'pendiente',name:'Pendiente'},
+						{value:'revisado',name:'Revisado'},
+						{value:'entregado',name:'Entregado'},
 					]
       	} else {
       		this.filter_by = 'user'
       		this.statuses = [
-						{value:'pending',name:'Recibidos'},
-						{value:'revised',name:'Revisados'},
-						{value:'delivered',name:'Entregados'},
+						{value:'pendiente',name:'Recibidos'},
+						{value:'revisado',name:'Revisados'},
+						{value:'entregado',name:'Entregados'},
 					]
 
       	}

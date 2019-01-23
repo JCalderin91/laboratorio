@@ -53,6 +53,17 @@ class Order extends Model
         return $dateTime->format('d-m-Y H:i:s');
     }
 
+    public function getDeliveryDateAttribute($value){
+        
+        if($value){
+            $dateTime = Carbon::parse($value);   
+            return $dateTime->format('d-m-Y H:i:s');
+        }else{
+            return null;
+        }
+            
+    }
+
     public static function getSerial(){
 
         $date = Carbon::now()->format('dmY');

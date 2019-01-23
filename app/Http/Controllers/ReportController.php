@@ -19,13 +19,13 @@ class ReportController extends ApiController
         $query_order = Order::query();
    
 
-        $query_order->when(request('filter_by') == 'orders' && request('status') == 'pending', function ($q) use ($from, $to)  {
+        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_PENDING, function ($q) use ($from, $to)  {
             return $q->whereBetween('arrival_date', [$from, $to])
-                        ->where('status', 'pending')->get();
+                        ->where('status', Order::ORDER_PENDING)->get();
 
         });
 
-        $query_order->when(request('filter_by') == 'orders' && request('status') == 'revised', function ($q) use ($from, $to)  {
+        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_REVISED, function ($q) use ($from, $to)  {
             return $q->whereHas('repair', function ($query) use ($from, $to)  {
                     $query->whereBetween('created', [$from, $to]);
             })->get();
@@ -33,19 +33,19 @@ class ReportController extends ApiController
 
         });
 
-        $query_order->when(request('filter_by') == 'orders' && request('status') == 'delivered', function ($q) use ($from, $to)  {
+        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($from, $to)  {
             return $q->whereBetween('delivery_date', [$from, $to])->get();
 
         });
 
-        $query_order->when(request('filter_by') == 'user' && request('status') == 'pending', function ($q) use ($from, $to, $user)  {
+        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_PENDING, function ($q) use ($from, $to, $user)  {
             return $q->whereBetween('arrival_date', [$from, $to])
                         ->where('user_id', $user)
                         ->get();
 
         });
 
-        $query_order->when(request('filter_by') == 'user' && request('status') == 'revised', function ($q) use ($from, $to, $user)  {
+        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_REVISED, function ($q) use ($from, $to, $user)  {
             return $q->whereHas('repair', function ($query) use ($from, $to, $user)  {
                     $query->whereBetween('created', [$from, $to])
                     ->where('user_id', $user);
@@ -53,7 +53,7 @@ class ReportController extends ApiController
             
         });
 
-        $query_order->when(request('filter_by') == 'user' && request('status') == 'delivered', function ($q) use ($from, $to, $user)  {
+        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($from, $to, $user)  {
             return $q->whereBetween('delivery_date', [$from, $to])
                         ->where('user_delivery_id', $user)->get();
 
