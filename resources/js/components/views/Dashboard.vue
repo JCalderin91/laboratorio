@@ -382,6 +382,7 @@
           return this.allOrders.filter((item) => 
 	          	item.cliente.data.cedula.includes(this.searchOrder) ||
 	          	item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+	          	item.codigo.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
 	          	item.estado.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
 	          	item.fechaCreacion.includes(this.searchOrder) 
           	);					
