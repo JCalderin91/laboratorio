@@ -18,7 +18,7 @@
 					
 				<div class="col-6 text-right">
 					<span v-if="searchOrder" >{{filterOrders.length}} Ordenes</span> 
-          <span v-else>{{allOrders.length}} Ordenes</span> 
+          <span v-else>@{{allOrders.length}} Ordenes</span> 
 				</div>
 					
 				<table class="table text-center table-striped table-hover table-sm">

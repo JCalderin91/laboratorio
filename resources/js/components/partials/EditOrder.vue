@@ -10,7 +10,7 @@
 		  <li v-if="reparacion" class="nav-item">
 		    <a class="nav-link" id="repair-tab" data-toggle="tab" href="#repair" role="tab" aria-controls="repair" aria-selected="false">Revisión</a>
 		  </li>
-		  <li class="nav-item">
+		  <li v-if="fechaEntrega" class="nav-item">
 		    <a class="nav-link" id="delivery-tab" data-toggle="tab" href="#delivery" role="tab" aria-controls="delivery" aria-selected="false">Entrega</a>
 		  </li>
 		</ul>
@@ -138,11 +138,11 @@
 			return {
 				cliente: '',
 				equipo: '',
+				reparacion: '',
 				areas: '',
 				addresses: '',
 				brands: '',
 				devices: '',
-				reparacion: '',
 			}
 		},
 		mounted(){
