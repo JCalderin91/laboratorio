@@ -14,8 +14,8 @@
           <i class="fas fa-plus"></i>
         </button>
         
-        <input type="text" class="form-control col-4 ml-auto" placeholder="Buscar...">
-        <client-list :clients="clients" :editClickHandler="setClient"></client-list>
+        <input type="text" class="form-control col-4 ml-auto" placeholder="Buscar..." v-model="search">
+        <client-list :clients="filteredClients" :editClickHandler="setClient"></client-list>
       </div>
 
       <form v-else class="col-12 row" @submit.prevent="submit">
@@ -37,7 +37,7 @@
         </div>
         <div class="form-group col-6">
           <label for="address">Direcciòn:</label>
-          <select class="form-control" type="text" name="address" v-model="client.direccion" placeholder="direccion" @change="getAreas">
+          <select class="form-control" type="text" name="address" v-model="client.identificador_direccion" placeholder="direccion" @change="getAreas">
             <option value="">Seleccione Una</option>
             <option v-for="address in addresses" :value="address.identificador" :key="address.identificador">{{address.nombre}}</option>
           </select>
@@ -46,7 +46,7 @@
           <label for="area">Area:</label>
           <select class="form-control" type="text" name="area" v-model="client.identificador_area" placeholder="area">
             <option value="">Seleccione Una</option>
-            <option v-for="area in areas" :value="area.identificador">{{area.nombre}}</option>
+            <option v-for="area in areas" :value="area.identificador" :key="area.identificador">{{area.nombre}}</option>
           </select>
         </div>
 
@@ -74,22 +74,27 @@
           apellidos: '',
           telefono: '',
           identificador_area: '',
-          direccion: '',
+          identificador_direccion: '',
         },
         clients: [],
         areas: [],
         addresses: [],
         update: false,
-        clientName: ''
+        search: ''
       }
     },
-    mounted() {
+    created() {
      this.getAddresses()
+     this.getAreas()
      this.getClients()
    },
   computed: {
-    searchClient: function () {
-        return this.clients.filter((item) => item.nombre.includes(this.clientName));
+    filteredClients: function () {
+      return this.clients.filter((item) =>
+        item.cedula.includes(this.search) ||
+        item.nombres.toLowerCase().includes(this.search.toLowerCase()) ||
+        item.apellidos.toLowerCase().includes(this.search.toLowerCase()) 
+      )
     }
   },
    methods: {
@@ -109,7 +114,7 @@
 
     getAreas(){
       axios
-        .get(`api/addresses/${this.client.direccion}/areas`)
+        .get(`api/areas`)
         .then(response => this.areas = response.data.data)
         .catch(error => {
           console.log(error)

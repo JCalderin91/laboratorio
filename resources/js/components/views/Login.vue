@@ -47,7 +47,7 @@
 
 					<div class="btn-box">
 						<button v-if="!loading" type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
-						<button v-else-if="!loading" class="btn btn-primary btn-block" type="button" disabled>
+						<button v-else="!loading" class="btn btn-primary btn-block" type="button" disabled>
 						  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>CARGANDO...
 						</button>
 					</div>
