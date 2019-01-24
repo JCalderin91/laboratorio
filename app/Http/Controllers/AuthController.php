@@ -19,7 +19,7 @@ class AuthController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'changePassword']]);
+        $this->middleware('auth:api', ['except' => ['login']]);
         $this->middleware('transform.input:' . LoginTransformer::class)->only(['login']);
     }
 
@@ -92,23 +92,5 @@ class AuthController extends ApiController
         ]);
     }
 
-    public function changePassword(LoginUpdateRequest $request){
-
-        $account = Login::findOrFail($request->account_id);
-
-        if (!(Hash::check($request->current_password, $account->password))) {
-            // The passwords matches
-            return $this->errorResponse("Your current password does not matches with the password you provided. Please try again.", 401);
-        }
-        if(strcmp($request->current_password, $request->password) == 0){
-            //Current password and new password are same
-            return $this->errorResponse("New Password cannot be same as your current password. Please choose a different password.", 401);
-        }
-       
-        //Change Password
-      
-        $account->password = bcrypt($request->password);
-        $account->save();
-        return $this->showOne($account);
-    }
+   
 }
