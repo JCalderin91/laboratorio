@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Login;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Input;
 use App\Http\Controllers\ApiController;
+use App\Http\Requests\LoginUpdateRequest;
 use App\Transformers\Transformers\LoginTransformer;
 
 class AuthController extends ApiController
@@ -16,7 +19,7 @@ class AuthController extends ApiController
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login']]);
+        $this->middleware('auth:api', ['except' => ['login', 'changePassword']]);
         $this->middleware('transform.input:' . LoginTransformer::class)->only(['login']);
     }
 
@@ -89,23 +92,23 @@ class AuthController extends ApiController
         ]);
     }
 
-    public function changePassword(Request $request){
-        if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
+    public function changePassword(LoginUpdateRequest $request){
+
+        $account = Login::findOrFail($request->account_id);
+
+        if (!(Hash::check($request->current_password, $account->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return $this->errorResponse("Your current password does not matches with the password you provided. Please try again.", 401);
         }
-        if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
+        if(strcmp($request->current_password, $request->password) == 0){
             //Current password and new password are same
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return $this->errorResponse("New Password cannot be same as your current password. Please choose a different password.", 401);
         }
-        $validatedData = $request->validate([
-            'current-password' => 'required',
-            'new-password' => 'required|string|min:6|confirmed',
-        ]);
+       
         //Change Password
-        $user = Auth::user();
-        $user->password = bcrypt($request->get('new-password'));
-        $user->save();
-        return redirect()->back()->with("success","Password changed successfully !");
+      
+        $account->password = bcrypt($request->password);
+        $account->save();
+        return $this->showOne($account);
     }
 }

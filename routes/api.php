@@ -35,6 +35,9 @@ Route::group([
 
 ], function() {
 
+    
+    Route::post('changePassword', 'AuthController@changePassword');
+    
     //Direcciones
     Route::apiResource('/addresses', 'AddressController');
     
