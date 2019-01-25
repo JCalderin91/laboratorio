@@ -33,11 +33,12 @@
 					{{ client.telefono }}
 				</td>
 				<td>
-					<button :id="client.cedula" @click="editClickHandler" class=" btn btn-outline-dark btn-sm">
+					<button :id="client.cedula" @click="editClickHandler" class=" btn btn-outline-dark btn-sm" title="Modificar cliente">
 						<i :id="client.cedula" class="fas fa-pen"></i>
 					</button>
-					<button :id="client.cedula" class=" btn btn-outline-danger btn-sm">
-						<i :id="client.cedula" class="fas fa-trash"></i>
+					<button :id="client.identificador" class=" btn btn-outline-danger btn-sm" title="Eliminar cliente"
+						@click.prevent="deleteClickHandler">
+						<i :id="client.identificador" class="fas fa-trash"></i>
 					</button>
 				</td>
 			</tr>

@@ -10,12 +10,12 @@
         <button 
           @click.prevent="clientForm = !clientForm"
           v-if="!clientForm"
-          class="btn btn-primary text-white">
+          class="btn btn-primary text-white" title="Registrar un cliente">
           <i class="fas fa-plus"></i>
         </button>
         
         <input type="text" class="form-control col-4 ml-auto" placeholder="Buscar..." v-model="search">
-        <client-list :clients="filteredClients" :editClickHandler="setClient"></client-list>
+        <client-list :clients="filteredClients" :editClickHandler="setClient" :deleteClickHandler="deleteClient"></client-list>
       </div>
 
       <form v-else class="col-12 row" @submit.prevent="submit">
@@ -141,7 +141,7 @@
         apellidos: '',
         telefono: '',
         identificador_area: '',
-        direccion: '',
+        identificador_direccion: '',
       }
     },
 
@@ -196,6 +196,20 @@
             confirmButtonText: 'Continuar',
           })
         })
+    },
+
+    deleteClient(e) {
+      this.$emit('prompt', {
+        title: '¿Está seguro?',
+        message: '¡El registro sera elminado!',
+        confirmHandler: () => {
+          axios.delete('api/clients/'+e.target.id)
+            .then(() => {
+              this.getClients()
+            })
+            .catch(error => {this.$emit('error', error)})
+        }
+      })
     },
 
     submit() {
