@@ -90,10 +90,14 @@
    },
   computed: {
     filteredClients: function () {
-      return this.clients.filter((item) =>
-        item.cedula.includes(this.search) ||
-        item.nombres.toLowerCase().includes(this.search.toLowerCase()) ||
-        item.apellidos.toLowerCase().includes(this.search.toLowerCase()) 
+      return this.clients.filter((item) => {
+          let fullName = item.nombres + ' ' + item.apellidos
+
+          return (
+              fullName.toLowerCase().includes(this.search.toLowerCase()) ||
+              item.cedula.includes(this.search)
+            )
+        }
       )
     }
   },
