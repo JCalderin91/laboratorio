@@ -229,15 +229,16 @@
     },
 		methods: {
 			getAllOrders(){
-				eventBus.$emit('loading', true)
+				this.$emit('loading-data', true)
 				axios
           .get("api/orders")
           .then(response => {
 						this.allOrders = response.data.data
 					})
           .catch(error => {console.log(error)})
-          .then(() => {eventBus.$emit('loading', false)})
-
+          .then(() => {
+						this.$emit('loading-data', false)
+					})
 			},
 			getOrders(){
 				eventBus.$emit('loading', true)
