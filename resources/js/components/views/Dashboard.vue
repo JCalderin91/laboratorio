@@ -233,7 +233,7 @@
 				axios
           .get("api/orders")
           .then(response => {
-						this.allOrders = response.data.data
+          	this.allOrders = response.data.data.filter((item)=>item.estado != 'entregado')
 					})
           .catch(error => {console.log(error)})
           .then(() => {
@@ -245,8 +245,8 @@
 				axios
           .get("api/orders?paginate=true")
           .then(response => {
-						this.orders = response.data.data
-						this.ordersMeta = response.data.meta.pagination
+          	this.orders = response.data.data.filter((item)=>item.estado != 'entregado')
+          	this.ordersMeta = response.data.meta.pagination.filter((item)=>item.estado != 'entregado')
 					})
           .catch(error => {console.log(error)})
           .then(() => {this.$emit('loading-data', false)})
@@ -256,8 +256,8 @@
         axios
           .get("/api/orders?paginate=true&page="+page)
           .then(response => {
-            this.orders = response.data.data
-            this.ordersMeta = response.data.meta.pagination
+            this.orders = response.data.data.filter((item)=>item.estado != 'entregado')
+          	this.ordersMeta = response.data.meta.pagination.filter((item)=>item.estado != 'entregado')
           })
           .catch(error => {console.log(error)})
       },
@@ -303,6 +303,7 @@
           client_ci: this.client.ci ,
           client_name: this.client.name
         }
+        this.$emit('unsetUser', '')
 				axios
           .post(`api/orders/${this.order}/deliveries`, delivery)
   				.then(response => {
@@ -379,8 +380,9 @@
 				return Object.keys(revisedCount).length
 			},
 			filterOrders: function(){
-  
+  			
 				if(this.searchOrder != ''){
+					this.allOrders = this.allOrders.filter((item)=>item.estado != 'entregado')
           return this.allOrders.filter((item) => 
 	          	item.cliente.data.cedula.includes(this.searchOrder) ||
 	          	item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
@@ -389,7 +391,7 @@
 	          	item.fechaCreacion.includes(this.searchOrder) 
           	);					
 				}else{
-					return this.orders.filter((item)=>item.estado != 'entregado')
+					return this.allOrders.filter((item)=>item.estado != 'entregado')
 				}
 				
 			}
