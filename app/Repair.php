@@ -5,7 +5,6 @@ namespace App;
 use Carbon\Carbon;
 use App\Transformers\RepairTransformer;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Repair extends Model
 {
@@ -13,11 +12,10 @@ class Repair extends Model
     const ORDER_REPAIRED = 'repaired';
     const ORDER_WITHOUT_REPAIR = 'without repair';
 
-    use SoftDeletes;
 
     public $transformer = RepairTransformer::class;
 
-    protected $dates = ['deleted_at', 'created'];
+    protected $dates = ['created'];
     
     protected $fillable = [
         'user_id', 

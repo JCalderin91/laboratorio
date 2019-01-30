@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ApiController;
 use App\Transformers\RepairTransformer;
 use App\Http\Requests\RepairStoreRequest;
+use App\Http\Requests\RepairUpdateRequest;
 
 class OrderRepairController extends ApiController
 {
@@ -74,9 +75,7 @@ class OrderRepairController extends ApiController
             DB::rollback();
 
             return $this->errorResponse('Ha ocurrido un error, Intente de nuevo.', 409);
-            
-            
-            
+                  
         }
         
     }
@@ -101,9 +100,19 @@ class OrderRepairController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(RepairUpdateRequest $request, Order $order, Repair $repair)
     {
-        //
+        $repair->fill($request->except('created'));
+
+        if($request->has('created')){
+
+            $dateTime = Carbon::parse($request->created);
+            $repair->created = $dateTime->format('Y-m-d H:i:s');
+        }
+
+        $repair->save();
+
+        return $this->showOne($order);
     }
 
     /**
@@ -112,8 +121,25 @@ class OrderRepairController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order, Repair $repair)
     {
-        //
+        DB::beginTransaction();
+        
+        try{
+
+            $repair->delete();
+            $order->status = Order::ORDER_PENDING;
+            $order->save();
+
+            DB::commit();
+
+            return $this->showOne($repair);
+
+        }catch(\Exception $e){
+            
+            DB::rollback();
+
+            return $this->errorResponse('Ha ocurrido un error, Intente de nuevo.', 409);
+        }
     }
 }

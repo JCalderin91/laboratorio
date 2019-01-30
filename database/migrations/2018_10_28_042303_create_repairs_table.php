@@ -21,11 +21,10 @@ class CreateRepairsTable extends Migration
 
             $table->string('description');
             $table->enum('status',[Repair::ORDER_REPAIRED, Repair::ORDER_WITHOUT_REPAIR])->default(Repair::ORDER_REPAIRED);
-            $table->dateTime('created');
-            $table->softDeletes();   
+            $table->dateTime('created');         
             
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('order_id')->references('id')->on('orders');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 

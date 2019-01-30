@@ -5,17 +5,14 @@ namespace App;
 use Carbon\Carbon;
 use App\Transformers\OrderTransformer;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Order extends Model
 {
-    use SoftDeletes;
 
     const ORDER_PENDING = 'pendiente';
     const ORDER_REVISED = 'revisado';
     const ORDER_DELIVERED = 'entregado';
-
-    protected $dates = ['deleted_at'];
 
     public $transformer = OrderTransformer::class;
     
@@ -45,7 +42,7 @@ class Order extends Model
     }
 
     public function repair(){
-        return $this->hasOne('App\Repair')->withTrashed();
+        return $this->hasOne('App\Repair');
     }
 
     public function getArrivalDateAttribute($value){
