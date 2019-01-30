@@ -46,11 +46,10 @@
 					</div>
 
 					<div class="btn-box">
-						<button
-						type="submit"
-						class="btn btn-primary btn-block"
-						:disabled="loading"
-						>{{ texto }}</button>
+						<button v-if="!loading" type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
+						<button v-else="!loading" class="btn btn-primary btn-block" type="button" disabled>
+						  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>CARGANDO...
+						</button>
 					</div>
 				</div>
 			</form>
@@ -64,7 +63,6 @@
 		name: "login",
 		data() {
 			return {
-				texto: 'INICIAR SESION',
 				error: false,
 				usuario: "",
 				contrasena: "",
@@ -74,7 +72,6 @@
 		methods: {
 			login() {
 				this.loading = true;
-				this.texto = 'CARGANDO';
 				axios
 					.post("/auth/login", {usuario: this.usuario, contrasena: this.contrasena})
 					.then(response => {this.loginSuccessful(response.data)})
@@ -97,7 +94,6 @@
 			loginFailed() {
 				this.error = "Credenciales invalidas";
 				this.loading = false;
-				this.texto = 'INICIAR SESION';
 			}
 		}
 	};
