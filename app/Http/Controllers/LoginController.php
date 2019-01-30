@@ -47,4 +47,13 @@ class LoginController extends ApiController
         $account->save();
         return $this->showOne($account);
     }
+
+    public function changeUserName(Request $request){
+
+        $account = Login::findOrFail($request->account_id);
+        $account->username = $request->username;
+        $account->save();
+
+        return $this->showOne($account);
+    }
 }

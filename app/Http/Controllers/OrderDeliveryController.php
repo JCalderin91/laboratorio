@@ -64,10 +64,21 @@ class OrderDeliveryController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
-        //
+        $order->fill($request->except('delivery_date'));
+
+        if($request->has('delivery_date')){
+
+            $dateTime = Carbon::parse($request->delivery_date);
+            $order->delivery_date = $dateTime->format('Y-m-d H:i:s');
+        }
+
+        $order->save();
+
+        return $this->showOne($order);
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -75,8 +86,15 @@ class OrderDeliveryController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Order $order)
     {
-        //
+        $order->delivery_date = null;
+        $order->user_delivery_id = null;
+        $order->client_ci = null;
+        $order->client_name = null;
+        $order->status = Order::ORDER_REVISED;
+        $order->save();
+
+        return $this->showOne($order);
     }
 }
