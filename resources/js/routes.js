@@ -1,5 +1,4 @@
 import Address from './components/views/Address'
-import Areas from './components/views/Areas'
 import Brands from './components/views/Brands'
 import Clients from './components/views/Clients'
 import Dashboard from './components/views/Dashboard'
@@ -20,11 +19,6 @@ const routes = [
 		path: '/',
 		name: 'dashboard',
 		component: Dashboard,
-	},
-	{
-		path: '/areas',
-		name: 'areas',
-		component: Address,
 	},
 	{
 		path: '/marcas',

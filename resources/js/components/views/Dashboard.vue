@@ -22,7 +22,7 @@
 							</tr>
 						</thead>
 						<tbody>
-							<tr v-for="order in filterOrders">
+							<tr v-for="order in filterOrders" :key="order.identificador">
 								<td>LAB-{{order.codigo}}</td>
 								<td>{{order.cliente.data.cedula}}</td>
 								<td>{{order.equipo.data.nombre}}</td>
@@ -57,7 +57,7 @@
 					<nav v-if="!searchOrder" aria-label="Page navigation example" class="mx-2">
 						<ul class="pagination pagination-sm">
 							<li 
-								v-for="page in ordersMeta.total_pages"
+								v-for="page in ordersMeta.total_pages" :key="page"
 								v-bind:class="{'page-item pt-1':true, 'active':(page === ordersMeta.current_page)}">
 								<a @click.prevent="ordersPaginate(page)" class="page-link" href="#">
 									{{page}}
@@ -90,7 +90,7 @@
 			                <label>Estado del dispositivo</label>
 			                <select v-model="stateDevice" class="custom-select" required>
 			                  <option value="">Selecione el resultado de la revisión</option>
-			                  <option v-for="state in states" :value="state.value">{{ state.name }}</option>
+			                  <option v-for="state in states" :value="state.value" :key="state.name">{{ state.name }}</option>
 			                </select>
 			              </div>
 				      		</div>
@@ -241,7 +241,7 @@
 					})
 			},
 			getOrders(){
-				eventBus.$emit('loading', true)
+				this.$emit('loading-data', true)
 				axios
           .get("api/orders?paginate=true")
           .then(response => {
@@ -249,7 +249,7 @@
 						this.ordersMeta = response.data.meta.pagination
 					})
           .catch(error => {console.log(error)})
-          .then(() => {eventBus.$emit('loading', false)})
+          .then(() => {this.$emit('loading-data', false)})
 
 			},
       ordersPaginate(page){
