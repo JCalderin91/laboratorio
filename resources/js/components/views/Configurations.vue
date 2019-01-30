@@ -6,7 +6,7 @@
         <h4 >Configuraciones del sistema</h4>
       </div>
       <div class="card-body p-0">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover table-sm">
           <thead class="thead-dark">
             <tr class="text-center">
               <th>Tipo de usuario</th>
@@ -15,7 +15,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="text-center">
+            <tr v-for="acount in accounts" class="text-center">
               <td>Profesor</td>
               <td>
                 <span id="prof" @dblclick="enableField" style="width: 100%;">********* </span>
@@ -23,14 +23,14 @@
               </td>
               <td></td>
             </tr>
-            <tr class="text-center">
+            <!-- <tr class="text-center">
               <td>Tecnio</td>
               <td>
                 <span id="tec" @dblclick="enableField" style="width: 100%;">********* </span>
                 <input class="text-center" id="tec" type="password" name="pass" value="1234" style="display: none">
               </td>
               <td></td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>
@@ -44,8 +44,12 @@
     name: 'configurations',
     data() {
       return {
-        ci: ''
+        ci: '',
+        accounts: ''
       }
+    },
+    mounted(){
+      this.getAccounts()
     },
     methods: {
       enableField(e) {
@@ -54,6 +58,12 @@
         input.style.display = 'inherit'
         input.focus()
         input.select()
+      },
+      getAccounts(){
+        axios
+          .get("/api/acoounts")
+          .then(response => {this.accounts = response.data.data})
+          .catch(error => {console.log(error)});
       }
     }
   }
