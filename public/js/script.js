@@ -44,3 +44,45 @@ function copiar(id_elemento) {
   document.body.removeChild(aux);
 }
    
+
+$('input.daterange').daterangepicker({
+          autoUpdateInput: false,
+          locale: {
+            "format": "DD/MM/YYYY",
+            "separator": " / ",
+            "applyLabel": "Aceptar",
+            "cancelLabel": "Cancelar",
+            "fromLabel": "De",
+            "toLabel": "hasta",
+            "customRangeLabel": "Personalizar",
+            "weekLabel": "W",
+            "daysOfWeek": [
+              "Dom",
+              "Lun",
+              "Mar",
+              "Mie",
+              "Jue",
+              "Vie",
+              "Sab"
+            ],
+            "monthNames": [
+              "Enero",
+              "Febrero",
+              "Marzo",
+              "Abril",
+              "Mayo",
+              "Junio",
+              "Julio",
+              "Augosto",
+              "Septiembre",
+              "Octubre",
+              "Noviembre",
+              "Diciembre"
+            ],
+            "firstDay": 0
+          }
+        });
+      
+        $('input.daterange').on('apply.daterangepicker', function (ev, picker) {
+          $(this).val(picker.startDate.format('DD/MM/YYYY') + '-' + picker.endDate.format('DD/MM/YYYY'));
+        });
