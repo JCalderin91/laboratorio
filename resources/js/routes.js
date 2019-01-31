@@ -31,8 +31,8 @@ const routes = [
 		component: Clients,
 	},
 	{
-		path: '/direcciones',
-		name: 'addresses',
+		path: '/areas',
+		name: 'areas',
 		component: Address,
 	},
 	{
