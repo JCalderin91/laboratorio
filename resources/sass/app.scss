@@ -518,3 +518,7 @@ body {
 .fade-enter-active,.fad-leave-active{
   transition: all .1s ease;
 }
+
+th,td{
+  vertical-align: middle !important;
+}

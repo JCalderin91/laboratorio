@@ -645,3 +645,8 @@ body {
   transition: all .1s ease;
 }
 
+th,
+td {
+  vertical-align: middle !important;
+}
+

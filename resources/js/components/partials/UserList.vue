@@ -25,7 +25,7 @@
           <span v-else>Ténico</span>
         </td>
         <td>
-          <a title="Editar usuario">
+          <a class="btn-sm" title="Editar usuario">
             <small>
               <i
                 :id="user.cedula"
@@ -35,7 +35,7 @@
               ></i>
             </small>
           </a>
-          <a title="Eliminar usuario">
+          <a class="btn-sm" title="Eliminar usuario">
             <small>
               <i
                 :id="user.cedula"

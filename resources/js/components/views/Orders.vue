@@ -18,7 +18,7 @@
 					
 				<div class="col-6 text-right">
 					<span v-if="searchOrder" >{{filterOrders.length}} Ordenes</span> 
-          <span v-else>@{{allOrders.length}} Ordenes</span> 
+          <span v-else>{{allOrders.length}} Ordenes</span> 
 				</div>
 					
 				<table class="table text-center table-striped table-hover table-sm">
@@ -47,14 +47,18 @@
 								<a
 									@click.prevent="getOrder(order.identificador)"
 									href="#" title="Editar"
-									class="btn btn-info btn-sm">
-									<i class="fas fa-pen"></i>
+									class="btn text-info btn-sm">
+									<small>
+										<i class="fas fa-pen" style="cursor: pointer;"></i>
+									</small>
 								</a>
 
 								<a
 									href="#" title="Eliminar"
-									class="btn btn-danger btn-sm">
-									<i class="fas fa-trash"></i>
+									class="btn text-danger btn-sm">
+									<small>
+										<i class="fas fa-trash" style="cursor: pointer;"></i>
+									</small>
 								</a>
 							</td>
 						</tr>

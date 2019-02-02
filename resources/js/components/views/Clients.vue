@@ -9,7 +9,7 @@
         <button
           @click.prevent="clientForm = !clientForm"
           v-if="!clientForm"
-          class="btn btn-primary text-white"
+          class="btn btn-primary text-white btn-sm"
           title="Registrar un cliente"
         >
           <i class="fas fa-plus"></i>
