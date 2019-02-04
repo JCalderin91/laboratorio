@@ -7,8 +7,8 @@
 	    <div class="row mt-4">
 	    	<div class="col-md-4">
 					<div class="form-group">
-						<label >Rango de fecha</label>						
-	    			<input type="text" class="form-control daterange" placeholder="Rango de fecha" />
+						<label >Fechas</label>						
+	    			<input name="dates" type="text" class="form-control daterange" placeholder="Seleccione un rago de fechas" />
 					</div>
 				</div>
 
@@ -113,6 +113,7 @@
 		},
 		mounted(){
 			this.getUsers()
+			$('input[name="dates"]').daterangepicker();
 		},
 		methods: {
 			getUsers(){
