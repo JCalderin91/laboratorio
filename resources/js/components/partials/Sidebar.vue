@@ -24,7 +24,7 @@
 						</li>
 						<li class="sidebar">
 							<router-link tag="a" to="/">
-								<i class="fa fa-tachometer-alt"></i>
+								<i class="fa fa-home"></i>
 							  <span class="toggle-item">Principal</span>
 							</router-link>
 						</li>
@@ -60,7 +60,7 @@
 
 						<li class="sidebar">
 							<router-link tag="a" to="/marcas">
-								<i class="fa fa-tachometer-alt"></i>
+								<i class="fa fa-blender-phone"></i>
 							  <span class="toggle-item">Dispositivos & Marcas</span>
 							</router-link>
 						</li>
@@ -74,7 +74,7 @@
 
 						<li v-if="isAdmin" class="sidebar">
 							<router-link tag="a" to="/reportes">
-								<i class="fa fa-tachometer-alt"></i>
+								<i class="fa fa-table"></i>
 							  <span class="toggle-item">Reportes</span>
 							</router-link>
 						</li>
