@@ -62,7 +62,9 @@ Route::group([
     Route::apiResource('/hours', 'HourController');
 
     //Ordenes
+    Route::get('/orders-all', 'OrderController@all');
     Route::apiResource('/orders', 'OrderController');
+    
     Route::apiResource('/orders.repairs', 'OrderRepairController',  ['only' => ['store', 'update', 'destroy']]);
     Route::apiResource('/orders.deliveries', 'OrderDeliveryController',  ['only' => ['store', 'update', 'destroy']]);
 

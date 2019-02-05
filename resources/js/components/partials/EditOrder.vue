@@ -126,7 +126,6 @@
 				Datos de la reparación
 			</div>
 		</div>
-		<pre>{{$data}}</pre>
 	</div>
 </template>
 

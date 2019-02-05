@@ -248,7 +248,7 @@
       return {
         loading: false,
         client: {
-          ci: '10196016',
+          ci: '',
           first_name: '',
           last_name: '',
           phone: '',

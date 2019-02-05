@@ -65,6 +65,7 @@
 							</li>
 						</ul>
 					</nav>	
+
 							
 				</div>
 			</div>
@@ -103,16 +104,6 @@
 				      		</div>
 
 				      		<set-user class="col-12" :users="users"></set-user>
-
-				      		<!-- <div class="col-md-12">
-				      			<div class="form-group">
-			                <label>Cedula del técnico</label>
-			                <select v-model="idUser" class="custom-select" required>
-			                  <option value="">Selecione una cedula</option>
-			                  <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
-			                </select>
-			              </div>
-				      		</div> -->
 
 				      	</div>
 				      </div>
@@ -246,7 +237,7 @@
           .get("api/orders?paginate=true")
           .then(response => {
           	this.orders = response.data.data.filter((item)=>item.estado != 'entregado')
-          	this.ordersMeta = response.data.meta.pagination.filter((item)=>item.estado != 'entregado')
+          	this.ordersMeta = response.data.meta.pagination
 					})
           .catch(error => {console.log(error)})
           .then(() => {this.$emit('loading-data', false)})
@@ -257,7 +248,7 @@
           .get("/api/orders?paginate=true&page="+page)
           .then(response => {
             this.orders = response.data.data.filter((item)=>item.estado != 'entregado')
-          	this.ordersMeta = response.data.meta.pagination.filter((item)=>item.estado != 'entregado')
+          	this.ordersMeta = response.data.meta.pagination
           })
           .catch(error => {console.log(error)})
       },
@@ -270,8 +261,9 @@
 				axios
           .post(`api/orders/${this.order}/repairs`, repair)
   				.then(response => {
-  					this.getOrders()
-  					this.idUser = ''
+  					this.getAllOrders()
+						this.getOrders()
+						this.getUsers()
             this.state = ''
             this.datails = ''
             this.order = ''
@@ -307,8 +299,9 @@
 				axios
           .post(`api/orders/${this.order}/deliveries`, delivery)
   				.then(response => {
-  					this.getOrders()
-  					this.idUser = ''
+  					this.getAllOrders()
+						this.getOrders()
+						this.getUsers()
             this.client.ci  = ''
             this.client.name = ''
             this.sameClientCheck= false
@@ -317,10 +310,6 @@
               title: 'Excelente',
               html:'<p>Datos guardados con exito</p><h3>Código de orden: <strong id="code">LAB-'+response.data.data.codigo+'</strong></h3><small class="text-danger font-weight-bold">Recuerde solicitar la firma de este código</small>',
               confirmButtonText: 'Continuar',
-            }).then(() => {
-              this.$router.push('/')
-              this.getAllOrders()
-              this.getOrders()
             })
   				})
           .then(()=>{
@@ -391,7 +380,7 @@
 	          	item.fechaCreacion.includes(this.searchOrder) 
           	);					
 				}else{
-					return this.allOrders.filter((item)=>item.estado != 'entregado')
+					return this.orders.filter((item)=>item.estado != 'entregado')
 				}
 				
 			}

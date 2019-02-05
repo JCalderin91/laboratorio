@@ -44,22 +44,22 @@
 								<span v-else class="badge badge-success">Entregado</span>
 							</td>
 							<td>
-								<a
+
+								<!-- <a
 									@click.prevent="getOrder(order.identificador)"
 									href="#" title="Editar"
 									class="btn text-info btn-sm">
 									<small>
 										<i class="fas fa-pen" style="cursor: pointer;"></i>
 									</small>
-								</a>
+								</a> -->
 
-								<a
-									href="#" title="Eliminar"
-									class="btn text-danger btn-sm">
-									<small>
-										<i class="fas fa-trash" style="cursor: pointer;"></i>
-									</small>
-								</a>
+								<button
+									@click.prevent="deleteOrder(order.identificador)"
+									title="Eliminar"
+									class="btn text-danger btn-sm">	
+										<i class="fas fa-trash"></i>
+								</button>
 							</td>
 						</tr>
 					</tbody>
@@ -119,7 +119,7 @@
 			getAllOrders(){
 				eventBus.$emit('loading', true)
 				axios
-          .get("api/orders")
+          .get("api/orders-all")
           .then(response => {
 						this.allOrders = response.data.data
 					})
@@ -127,10 +127,36 @@
           .then(() => {eventBus.$emit('loading', false)})
 
 			},
+			deleteOrder(idOrder) {
+	      this.$emit("prompt", {
+	        title: "¿Está seguro?",
+	        message: "El resgistro sera Eliminado!",
+	        confirmHandler: this.deleteOrderHandler(idOrder)
+	      });
+	    },
+
+	    deleteOrderHandler(idOrder) {
+	      axios
+	        .delete("api/orders/" + idOrder)
+	        .then(response => {
+	          this.getOrders();
+	          this.getAllOrders();
+	          Swal({
+	            type: "success",
+	            title: "Excelente",
+	            text: "Datos borrados con exito",
+	            confirmButtonText: "Continuar"
+	          });
+	        })
+	        .catch(error => {
+	          console.log(error);
+	          this.$emit("error", error);
+	        });
+	    },
 			getOrders(){
 				eventBus.$emit('loading', true)
 				axios
-          .get("api/orders?paginate=true")
+          .get("api/orders-all?paginate=true")
           .then(response => {
 						this.orders = response.data.data
 						this.ordersMeta = response.data.meta.pagination
@@ -141,7 +167,7 @@
 			},
       ordersPaginate(page){
         axios
-          .get("/api/orders?paginate=true&page="+page)
+          .get("/api/orders-all?paginate=true&page="+page)
           .then(response => {
             this.orders = response.data.data
             this.ordersMeta = response.data.meta.pagination

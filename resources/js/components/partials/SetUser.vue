@@ -37,13 +37,8 @@
         } 
       },
 		},
-    destroyed(){
-      this.nameUser = ''
-      this.idUser = ''
-    },
     mounted(){
       eventBus.$on('unsetUser', (value) => {
-        alert('ffff')
         this.nameUser = value
         this.idUser = value
       })

@@ -6,22 +6,23 @@
         <h4 >Configuraciones del sistema</h4>
       </div>
       <div class="card-body p-0">
+        <h5>Cuentas registradas</h5>
         <table class="table table-striped table-hover table-sm">
           <thead class="thead-dark">
             <tr class="text-center">
               <th>Tipo de usuario</th>
               <th>Contraseña</th>
-              <th>Acción</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="acount in accounts" class="text-center">
-              <td>Profesor</td>
               <td>
-                <span id="prof" @dblclick="enableField" style="width: 100%;">********* </span>
-                <input class="text-center" id="prof" type="password" name="pass" value="1234" style="display: none">
+                <span v-if="acount.usuario === 'admin'">Profesor</span>
+                <span v-else >Técnico</span>
               </td>
-              <td></td>
+              <td>
+                <span id="prof" style="width: 100%;">********* </span>
+               </td>
             </tr>
             <!-- <tr class="text-center">
               <td>Tecnio</td>
@@ -34,7 +35,6 @@
           </tbody>
         </table>
       </div>
-      
     </div>
   </div>
 </template>
@@ -61,7 +61,7 @@
       },
       getAccounts(){
         axios
-          .get("/api/acoounts")
+          .get("/api/accounts")
           .then(response => {this.accounts = response.data.data})
           .catch(error => {console.log(error)});
       }

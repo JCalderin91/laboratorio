@@ -14,6 +14,7 @@ class ReportController extends ApiController
     {
         $from = Carbon::parse($request->from)->format('Y-m-d H:i:s');
         $to = Carbon::parse($request->to)->format('Y-m-d H:i:s');
+
         $user = $request->user_id;
 
         $query_order = Order::query();

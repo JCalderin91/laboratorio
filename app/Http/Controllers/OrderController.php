@@ -32,6 +32,19 @@ class OrderController extends ApiController
      */
     public function index()
     {
+        $orders = Order::orderBy('arrival_date', 'asc')->where('status','<>','entregado')->get();
+  
+        if(request()->has('paginate')){
+
+            return $this->showAll($orders, 200, true);
+        }
+        
+        return $this->showAll($orders);
+       
+    }
+
+    public function all()
+    {
         $orders = Order::orderBy('arrival_date', 'asc')->get();
   
         if(request()->has('paginate')){
