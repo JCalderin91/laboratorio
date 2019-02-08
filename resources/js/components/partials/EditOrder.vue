@@ -178,7 +178,7 @@
           <div class="col-6">
             <div class="form-group">
               <label>Fecha de Revisión</label>
-              <input type="date" v-model="reparacion.fechaCreacion" class="form-control" required>
+              <input type="date" v-model="f_revision" class="form-control" required>
             </div>
           </div>
 
@@ -217,7 +217,7 @@
           <div class="col-6">
             <div class="form-group">
               <label>Fecha de Entrega</label>
-              <input type="date" v-model="entrega.fechaEntrega" class="form-control" required>
+              <input type="date" v-model="f_entrega" class="form-control" required>
             </div>
           </div>
 
@@ -283,17 +283,26 @@ export default {
     };
   },
   mounted() {
-    this.data = order;
-  },
-
-  mounted() {
     this.getOrder();
     this.getAddresses();
     this.getAreas();
     this.getSubDevice();
     this.getBrands();
   },
+  computed: {
+    f_entrega() {
+      if (this.fechaEntrega == '' || this.fechaEntrega == null) return ''
+      let fecha = this.fechaEntrega.split(' ')[0].split('-')
 
+      return `${fecha[2]}-${fecha[1]}-${fecha[0]}`
+    },
+    f_revision() {
+      if (this.reparacion.fechaCreacion == '' || this.reparacion.fechaCreacion == null) return ''
+      let fecha = this.fechaEntrega.split(' ')[0].split('-')
+
+      return `${fecha[2]}-${fecha[1]}-${fecha[0]}`
+    }
+  },
   methods: {
     finishEditing() {
       eventBus.$emit("editingOrder", false);
@@ -315,11 +324,11 @@ export default {
           this.entrega = {
             cedulaEntrega: response.data.data.cedulaEntrega,
             nombreEntrega: response.data.data.nombreEntrega,
-            fechaEntrega: response.data.data.fechaEntrega,
+            fechaEntrega: (response.data.data.fechaEntrega),
             tecnicoEntrega: response.data.data.tecnicoEntrega
           };
 
-          console.log(response.data.data);
+          console.log(this.f_entrega);
         })
         .catch(error => {
           console.log(error);
