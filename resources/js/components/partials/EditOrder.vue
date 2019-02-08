@@ -291,16 +291,20 @@ export default {
   },
   computed: {
     f_entrega() {
-      if (this.fechaEntrega == '' || this.fechaEntrega == null) return ''
-      let fecha = this.fechaEntrega.split(' ')[0].split('-')
+      if (this.fechaEntrega == "" || this.fechaEntrega == null) return "";
+      let fecha = this.fechaEntrega.split(" ")[0].split("-");
 
-      return `${fecha[2]}-${fecha[1]}-${fecha[0]}`
+      return `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
     },
     f_revision() {
-      if (this.reparacion.fechaCreacion == '' || this.reparacion.fechaCreacion == null) return ''
-      let fecha = this.fechaEntrega.split(' ')[0].split('-')
+      if (
+        this.reparacion.fechaCreacion == "" ||
+        this.reparacion.fechaCreacion == null
+      )
+        return "";
+      let fecha = this.reparacion.fechaCreacion.split(" ")[0].split("-");
 
-      return `${fecha[2]}-${fecha[1]}-${fecha[0]}`
+      return `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
     }
   },
   methods: {
@@ -324,14 +328,29 @@ export default {
           this.entrega = {
             cedulaEntrega: response.data.data.cedulaEntrega,
             nombreEntrega: response.data.data.nombreEntrega,
-            fechaEntrega: (response.data.data.fechaEntrega),
+            fechaEntrega: response.data.data.fechaEntrega,
             tecnicoEntrega: response.data.data.tecnicoEntrega
           };
 
-          console.log(this.f_entrega);
+          this.getTec();
         })
         .catch(error => {
           console.log(error);
+        });
+    },
+    getTec() {
+      this.$emit("loading-data", true);
+      axios
+        .get("/api/users/" + this.entrega.tecnicoEntrega)
+        .then(response => {
+          console.log(response.data.data);
+          this.entrega.tecnicoEntrega =
+            response.data.data.nombre + " " + response.data.data.apellido;
+          this.$emit("loading-data", false);
+        })
+        .catch(error => {
+          this.$emit("error", error);
+          this.$emit("loading-data", false);
         });
     },
     getAreas() {
