@@ -33,11 +33,11 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="order in filterOrders">
+						<tr v-for="order in filterOrders" :key="'ord-'+order.identificador">
 							<td>LAB-{{order.codigo}}</td>
 							<td>{{order.cliente.data.cedula}}</td>
 							<td>{{order.equipo.data.nombre}}</td>
-							<td>{{order.fechaCreacion}}</td>
+							<td>{{order.fechaCreacion.split(' ')[0]}}</td>
 							<td>
 								<span v-if="order.estado === 'pendiente'" class="badge badge-danger">Pendiente</span>
 								<span v-else-if="order.estado === 'revisado'" class="badge badge-primary">Revisado</span>
@@ -48,18 +48,18 @@
 								<a
 									@click.prevent="getOrder(order.identificador)"
 									href="#" title="Editar"
-									class="btn text-info btn-sm">
+									class="text-dark">
 									<small>
 										<i class="fas fa-pen" style="cursor: pointer;"></i>
 									</small>
 								</a>
 
-								<button
+								<a
 									@click.prevent="deleteOrder(order.identificador)"
 									title="Eliminar"
-									class="btn text-danger btn-sm">	
-										<i class="fas fa-trash"></i>
-								</button>
+									class="text-danger">	
+										<small><i class="fas fa-trash" style="cursor: pointer;"></i></small>
+								</a>
 							</td>
 						</tr>
 					</tbody>
@@ -69,6 +69,7 @@
 					<ul class="pagination pagination-sm">
 						<li 
 							v-for="page in ordersMeta.total_pages"
+							:key="page"
 							v-bind:class="{'page-item pt-1':true, 'active':(page === ordersMeta.current_page)}">
 							<a @click.prevent="ordersPaginate(page)" class="page-link" href="#">
 								{{page}}

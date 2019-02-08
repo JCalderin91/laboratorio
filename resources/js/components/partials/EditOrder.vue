@@ -34,7 +34,7 @@
           aria-selected="false"
         >Revisión</a>
       </li>
-      <li v-if="fechaEntrega" class="nav-item">
+      <li v-if="entrega.fechaEntrega" class="nav-item">
         <a
           class="nav-link"
           id="delivery-tab"
@@ -74,7 +74,13 @@
             <!-- Nombres -->
             <div class="form-group">
               <label>Nombres</label>
-              <input v-model="cliente.nombres" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="cliente.nombres"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
           <!-- Nombres -->
@@ -82,7 +88,13 @@
             <!-- Apellidos -->
             <div class="form-group">
               <label>Apellidos</label>
-              <input v-model="cliente.apellidos" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="cliente.apellidos"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
           <!-- Apellidos -->
@@ -90,7 +102,13 @@
             <!-- Teléfono -->
             <div class="form-group">
               <label>Teléfono</label>
-              <input v-model="cliente.telefono" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="cliente.telefono"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
           <!-- Teléfono -->
@@ -98,10 +116,11 @@
             <!-- Direcciones -->
             <div class="form-group">
               <label>Dirección</label>
-              <select class="custom-select" required>
+              <select :disabled="!isAdmin" class="custom-select" required>
                 <option value>Selecione una dirección</option>
                 <option
                   v-for="address in addresses"
+                  :key="'addr-'+address.identificador"
                   :selected="address.nombre === cliente.nombre_direccion"
                   :value="address.identificador"
                 >{{address.nombre}}</option>
@@ -113,10 +132,11 @@
             <!-- Area -->
             <div class="form-group">
               <label>Área</label>
-              <select class="custom-select" required>
+              <select :disabled="!isAdmin" class="custom-select" required>
                 <option value>Selecione una area</option>
                 <option
                   v-for="area in areas"
+                  :key="'area-'+area.identificador"
                   :selected="area.nombre === cliente.nombre_area"
                   :value="area.identificador"
                 >{{area.nombre}}</option>
@@ -132,10 +152,11 @@
           <div class="col-6">
             <div class="form-group">
               <label>Equipo</label>
-              <select class="custom-select" required>
+              <select :disabled="!isAdmin" class="custom-select" required>
                 <option value>Selecione una dispositivo</option>
                 <option
                   v-for="device in devices"
+                  :key="'dev-'+device.identificador"
                   :selected="device.nombre === equipo.nombre"
                   :value="device.identificador"
                 >{{device.nombre}}</option>
@@ -146,10 +167,11 @@
           <div class="col-6">
             <div class="form-group">
               <label>Marca</label>
-              <select class="custom-select" required>
+              <select :disabled="!isAdmin" class="custom-select" required>
                 <option value>Selecione una marca</option>
                 <option
                   v-for="brand in brands"
+                  :key="'brand-'+brand.identificador"
                   :selected="brand.nombre === equipo.marca"
                   :value="brand.identificador"
                 >{{brand.nombre}}</option>
@@ -160,14 +182,26 @@
           <div class="col-6">
             <div class="form-group">
               <label>Modelo</label>
-              <input v-model="equipo.modelo" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="equipo.modelo"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
 
           <div v-if="equipo.bienNacional" class="col-6">
             <div class="form-group">
               <label>Bien nacional</label>
-              <input v-model="equipo.bienNacional" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="equipo.bienNacional"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
         </div>
@@ -178,21 +212,39 @@
           <div class="col-6">
             <div class="form-group">
               <label>Fecha de Revisión</label>
-              <input type="date" v-model="f_revision" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                type="date"
+                v-model="reparacion.fechaCreacion"
+                class="form-control"
+                required
+              >
             </div>
           </div>
 
           <div class="col-6">
             <div class="form-group">
               <label>Estado</label>
-              <input v-model="estados[reparacion.estado]" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="estados[reparacion.estado]"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
 
           <div class="col-6">
             <div class="form-group">
               <label>Tecnico</label>
-              <input v-model="tecnico" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="tecnico"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
 
@@ -217,7 +269,13 @@
           <div class="col-6">
             <div class="form-group">
               <label>Fecha de Entrega</label>
-              <input type="date" v-model="f_entrega" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                type="date"
+                v-model="entrega.fechaEntrega"
+                class="form-control"
+                required
+              >
             </div>
           </div>
 
@@ -231,21 +289,40 @@
                 class="form-control"
                 required
               >
-              <input v-else v-model="cliente.cedula" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-else
+                v-model="cliente.cedula"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
 
           <div class="col-6">
             <div class="form-group">
               <label>Nombre Retiro</label>
-              <input v-model="entrega.nombreEntrega" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="entrega.nombreEntrega"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
 
           <div class="col-6">
             <div class="form-group">
               <label>Tecnico</label>
-              <input v-model="entrega.tecnicoEntrega" type="text" class="form-control" required>
+              <input
+                :readonly="!isAdmin"
+                v-model="entrega.tecnicoEntrega"
+                type="text"
+                class="form-control"
+                required
+              >
             </div>
           </div>
         </div>
@@ -268,7 +345,6 @@ export default {
       addresses: "",
       brands: "",
       devices: "",
-      fechaEntrega: null,
       estados: {
         repaired: "Reparado",
         "without repair": "Sin reparación"
@@ -279,7 +355,8 @@ export default {
         nombreEntrega: null,
         cedulaEntrega: null,
         tecnicoEntrega: null
-      }
+      },
+      isAdmin: this.$session.get("isAdmin")
     };
   },
   mounted() {
@@ -289,25 +366,13 @@ export default {
     this.getSubDevice();
     this.getBrands();
   },
-  computed: {
-    f_entrega() {
-      if (this.fechaEntrega == "" || this.fechaEntrega == null) return "";
-      let fecha = this.fechaEntrega.split(" ")[0].split("-");
+  methods: {
+    formatDate(date) {
+      if (date == "" || date == null) return "";
+      let fecha = date.split(" ")[0].split("-");
 
       return `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
     },
-    f_revision() {
-      if (
-        this.reparacion.fechaCreacion == "" ||
-        this.reparacion.fechaCreacion == null
-      )
-        return "";
-      let fecha = this.reparacion.fechaCreacion.split(" ")[0].split("-");
-
-      return `${fecha[2]}-${fecha[1]}-${fecha[0]}`;
-    }
-  },
-  methods: {
     finishEditing() {
       eventBus.$emit("editingOrder", false);
     },
@@ -317,8 +382,11 @@ export default {
         .then(response => {
           this.cliente = response.data.data.cliente.data;
           this.equipo = response.data.data.equipo.data;
-          this.fechaEntrega = response.data.data.fechaEntrega;
           this.reparacion = response.data.data.reparacion.data;
+
+          this.reparacion.fechaCreacion = this.formatDate(
+            response.data.data.fechaCreacion
+          );
 
           this.tecnico =
             this.reparacion.tecnico.data.nombre +
@@ -328,7 +396,7 @@ export default {
           this.entrega = {
             cedulaEntrega: response.data.data.cedulaEntrega,
             nombreEntrega: response.data.data.nombreEntrega,
-            fechaEntrega: response.data.data.fechaEntrega,
+            fechaEntrega: this.formatDate(response.data.data.fechaEntrega),
             tecnicoEntrega: response.data.data.tecnicoEntrega
           };
 
@@ -343,7 +411,6 @@ export default {
       axios
         .get("/api/users/" + this.entrega.tecnicoEntrega)
         .then(response => {
-          console.log(response.data.data);
           this.entrega.tecnicoEntrega =
             response.data.data.nombre + " " + response.data.data.apellido;
           this.$emit("loading-data", false);
