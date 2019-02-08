@@ -45,14 +45,14 @@
 							</td>
 							<td>
 
-								<!-- <a
+								<a
 									@click.prevent="getOrder(order.identificador)"
 									href="#" title="Editar"
 									class="btn text-info btn-sm">
 									<small>
 										<i class="fas fa-pen" style="cursor: pointer;"></i>
 									</small>
-								</a> -->
+								</a>
 
 								<button
 									@click.prevent="deleteOrder(order.identificador)"
