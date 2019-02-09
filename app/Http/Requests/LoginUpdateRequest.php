@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class LoginUpdateRequest extends FormRequest
@@ -24,9 +25,8 @@ class LoginUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'id' => 'required',
-            'current_password' => 'required',
-            'password' => 'required|string|min:5|confirmed'
+            'password' => 'string|min:5|confirmed',
+            'username' => Rule::unique('logins')->ignore($this->account) 
         ];
     }
 }

@@ -35,8 +35,8 @@ Route::group([
 
 ], function() {
 
-    Route::get('/accounts', 'LoginController@index');
-    Route::post('/changePassword', 'LoginController@changePassword');
+    Route::apiResource('/accounts', 'LoginController', ['only' => ['index', 'update']]);
+    
     
     //Direcciones
     Route::apiResource('/addresses', 'AddressController');
