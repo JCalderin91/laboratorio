@@ -23,10 +23,12 @@ class LoginTransformer extends TransformerAbstract
 
     public static function originalAttribute($index){
         $attributes = [
+            'identificador' => 'id',
+            'contrasena_actual' => 'current_password',
+            'confirmacion' => 'password_confirmation',
             'usuario' => 'username',
             'esAdministrador' => 'admin',
             'contrasena' => 'password',
-            
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

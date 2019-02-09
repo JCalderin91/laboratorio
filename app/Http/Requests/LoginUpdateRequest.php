@@ -24,7 +24,7 @@ class LoginUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'account_id' => 'required',
+            'id' => 'required',
             'current_password' => 'required',
             'password' => 'required|string|min:5|confirmed'
         ];
