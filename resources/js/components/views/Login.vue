@@ -22,7 +22,7 @@
 
 					<div class="form-group">
 						<input
-						class="form-control"
+						class="form-control-lg w-100"
 						id="ci"
 						name="ci"
 						type="text"
@@ -34,7 +34,7 @@
 					</div>
 					<div class="form-group">
 						<input 
-						class="form-control" 
+						class="form-control-lg w-100" 
 						id="contraseña"
 						name="contraseña"
 						type="password"
@@ -48,7 +48,8 @@
 					<div class="btn-box">
 						<button v-if="!loading" type="submit" class="btn btn-primary btn-block">INICIAR SESIÓN</button>
 						<button v-else="!loading" class="btn btn-primary btn-block" type="button" disabled>
-						  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>CARGANDO...
+						  <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+						  <span class="ml-2">CARGANDO...</span>
 						</button>
 					</div>
 				</div>

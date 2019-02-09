@@ -307,7 +307,7 @@ export default {
           document.querySelectorAll('input[name="brand"]').forEach(r => {
             r.checked = false;
           });
-          this.brandsMeta = response.data.meta.pagination;
+          if (response.data.meta) this.brandsMeta = response.data.meta.pagination;
         })
         .catch(error => {
           console.log(error);
@@ -412,7 +412,7 @@ export default {
           document.querySelectorAll('input[name="device"]').forEach(r => {
             r.checked = false;
           });
-          this.devicesMeta = response.data.meta.pagination;
+          if (response.data.meta) this.devicesMeta = response.data.meta.pagination;
         })
         .catch(error => {
           console.log(error);

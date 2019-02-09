@@ -53,13 +53,6 @@
                   </div>
                 </form>
 
-                <!--<div class="p-2" v-if="newBrand" >
-                  <div class="form-group">
-                    <input type="text" v-model="brand" class="form-control">
-                  </div>
-                  <a @click.prevent="newBrand = false" href="#" class="btn btn-secondary">Cancelar</a>
-                  <a @click.prevent="createBrand" href="#" class="btn btn-primary">Guardar</a>
-                </div>-->
               </transition>
               <table class="table table-sm table-striped table-hover">
                 <thead class="thead-dark">
@@ -297,7 +290,7 @@ export default {
           document.querySelectorAll('input[name="address"]').forEach(r => {
             r.checked = false;
           });
-          this.addressesMeta = response.data.meta.pagination;
+          if (response.data.meta) this.addressesMeta = response.data.meta.pagination;
           this.$emit("loading-data", false);
         })
         .catch(error => {
@@ -409,7 +402,7 @@ export default {
           document.querySelectorAll('input[name="area"]').forEach(r => {
             r.checked = false;
           });
-          this.areasMeta = response.data.meta.pagination;
+          if (response.data.meta) this.areasMeta = response.data.meta.pagination;
         })
         .catch(error => {
           console.log(error);

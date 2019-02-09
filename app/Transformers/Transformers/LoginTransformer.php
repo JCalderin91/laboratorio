@@ -15,6 +15,7 @@ class LoginTransformer extends TransformerAbstract
     public function transform(Login $login)
     {
         return [
+            'identificador' => $login->id,
             'usuario' => (string)$login->username,
             'esAdministrador' => ($login->admin === 'true'),
         ];
@@ -23,10 +24,12 @@ class LoginTransformer extends TransformerAbstract
 
     public static function originalAttribute($index){
         $attributes = [
+            'identificador' => 'id',
+            'contrasena_actual' => 'current_password',
+            'confirmacion' => 'password_confirmation',
             'usuario' => 'username',
             'esAdministrador' => 'admin',
             'contrasena' => 'password',
-            
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
