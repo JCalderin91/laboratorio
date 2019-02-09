@@ -290,7 +290,7 @@ export default {
           document.querySelectorAll('input[name="address"]').forEach(r => {
             r.checked = false;
           });
-          this.addressesMeta = response.data.meta.pagination;
+          if (response.data.meta) this.addressesMeta = response.data.meta.pagination;
           this.$emit("loading-data", false);
         })
         .catch(error => {
@@ -402,7 +402,7 @@ export default {
           document.querySelectorAll('input[name="area"]').forEach(r => {
             r.checked = false;
           });
-          this.areasMeta = response.data.meta.pagination;
+          if (response.data.meta) this.areasMeta = response.data.meta.pagination;
         })
         .catch(error => {
           console.log(error);

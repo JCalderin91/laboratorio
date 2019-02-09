@@ -6,29 +6,73 @@
         <h4 >Configuraciones del sistema</h4>
       </div>
       <div class="card-body p-0">
-        <h5>Cuentas registradas</h5>
+        <h5 v-if="!editing" >Cuentas registradas</h5> 
+        <h5 v-else >Editar cuenta</h5> 
 
-        <table class="table table-striped table-hover table-sm">
+        <div v-if="editing" class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nombre de usuario</label>
+              <input
+                placeholder="Nombre de usuario"
+                v-model="editAccount.usuario"
+                type="text"
+                class="form-control">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Contraseña</label>
+              <input
+                placeholder="Contraseña"
+                v-model="editAccount.clave"
+                type="password"
+                class="form-control">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Nueva contraseña</label>
+              <input
+                v-model="newPass"
+                placeholder="Nueva contraseña"
+                type="password"
+                :class="[ verifyPassword == true ? 'is-valid' : 'is-invalid' ]"
+                class="form-control">
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Confirmar contraseña</label>
+              <input
+                v-model="verifyPass"
+                placeholder="Confirmar contraseña"
+                type="password"
+                :class="[ verifyPassword == true ? 'is-valid' : 'is-invalid' ]"
+                class="form-control">
+            </div>
+          </div>
+            
+          <div class="col-12">
+            <div class="d-flex justify-content-end">
+              <button @click.prevent="cancelEdit()" class="m-1 btn btn-secondary">Cancelar</button>
+              <button class="m-1 btn btn-primary">Guardar</button>
+            </div>
+          </div>
+        </div>
+               
+        <table v-else class="table table-striped table-hover table-sm">
           <thead class="thead-dark">
             <tr class="text-center">
-              <th>Tipo de usuario</th>
+              <th>Nombre de usuario</th>
               <th>Contraseña</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-if="editing">
-              <td>
-                <input :value="editAccount.usuario" type="text" class="form-control w-100">
-              </td>
-              <td>
-                <input :value="editAccount.clave" type="text" class="form-control w-100">
-              </td>
-              <td class="d-flex justify-content-around">
-                <button class="btn btn-success">Guardar</button>
-                <button @click.prevent="cancelEdit()" class="btn btn-danger">Cancelar</button>
-              </td>
-            </tr>
             <tr v-for="acount in accounts" class="text-center">
               <td>
                 <span>{{ acount.usuario }}</span>
@@ -65,7 +109,9 @@
         editAccount: {
           usuario: '',
           clave: '',
-        }
+        },
+        verifyPass: '',
+        newPass: ''
       }
     },
     mounted(){
@@ -81,12 +127,24 @@
         this.editing = false
         this.editAccount.usuario = ''
         this.editAccount.clave = ''
+        this.newPass = ''
+        this.verifyPass = ''
       },
       getAccounts(){
         axios
           .get("/api/accounts")
           .then(response => {this.accounts = response.data.data})
           .catch(error => {console.log(error)});
+      }
+    },
+    computed: {
+      verifyPassword: function () {
+        if(this.newPass === this.verifyPass && this.newPass != ''){
+          return true
+        }
+        else{
+          return false
+        }
       }
     }
   }
