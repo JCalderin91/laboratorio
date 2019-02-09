@@ -15,6 +15,7 @@ class LoginTransformer extends TransformerAbstract
     public function transform(Login $login)
     {
         return [
+            'identificador' => $login->id,
             'usuario' => (string)$login->username,
             'esAdministrador' => ($login->admin === 'true'),
         ];
