@@ -224,7 +224,7 @@
 				axios
           .get("api/orders")
           .then(response => {
-          	this.allOrders = response.data.data.filter((item)=>item.estado != 'entregado')
+          	this.allOrders = (response.data.data) ? response.data.data.filter((item)=>item.estado != 'entregado') : []
 					})
           .catch(error => {console.log(error)})
           .then(() => {
@@ -236,8 +236,8 @@
 				axios
           .get("api/orders?paginate=true")
           .then(response => {
-          	this.orders = response.data.data.filter((item)=>item.estado != 'entregado')
-          	this.ordersMeta = response.data.meta.pagination
+          	this.orders = (response.data.data) ? response.data.data.filter((item)=>item.estado != 'entregado') : []
+          	if (response.data.meta) this.ordersMeta = response.data.meta.pagination
 					})
           .catch(error => {console.log(error)})
           .then(() => {this.$emit('loading-data', false)})
@@ -248,7 +248,7 @@
           .get("/api/orders?paginate=true&page="+page)
           .then(response => {
             this.orders = response.data.data.filter((item)=>item.estado != 'entregado')
-          	this.ordersMeta = response.data.meta.pagination
+          	if (response.data.meta) this.ordersMeta = response.data.meta.pagination
           })
           .catch(error => {console.log(error)})
       },

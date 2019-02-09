@@ -16,7 +16,7 @@ class LoginController extends ApiController
     public function __construct(){
         //parent::__construct();
 
-        $this->middleware('transform.input:' . LoginTransformer::class)->only(['store', 'update']);
+        $this->middleware('transform.input:' . LoginTransformer::class)->only(['store', 'update', 'changePassword']);
     }
     
     public function index (){
@@ -30,7 +30,7 @@ class LoginController extends ApiController
 
     public function changePassword(LoginUpdateRequest $request){
 
-        $account = Login::findOrFail($request->account_id);
+        $account = Login::findOrFail($request->id);
 
         if (!(Hash::check($request->current_password, $account->password))) {
             // The passwords matches
@@ -50,7 +50,7 @@ class LoginController extends ApiController
 
     public function changeUserName(Request $request){
 
-        $account = Login::findOrFail($request->account_id);
+        $account = Login::findOrFail($request->id);
         $account->username = $request->username;
         $account->save();
 

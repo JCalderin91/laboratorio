@@ -51,7 +51,6 @@ export default {
   },
   methods: {
     setLoading(loading) {
-      console.log(this.loading, loading)
       this.loading = loading;
     },
     errorAlert(message) {
