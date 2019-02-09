@@ -178,7 +178,7 @@ export default {
         .get("/api/orders-all?paginate=true&page=" + page)
         .then(response => {
           this.orders = response.data.data;
-          this.ordersMeta = response.data.meta.pagination;
+          if (response.data.meta) this.ordersMeta = response.data.meta.pagination;
         })
         .catch(error => {
           console.log(error);
