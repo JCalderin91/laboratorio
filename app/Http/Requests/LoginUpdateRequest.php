@@ -25,7 +25,7 @@ class LoginUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'sometimes|string|min:5|confirmed',
+            'password' => 'nullable|string|min:5|confirmed',
             'username' => Rule::unique('logins')->ignore($this->account) 
         ];
     }

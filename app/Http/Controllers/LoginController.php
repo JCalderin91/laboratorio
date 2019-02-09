@@ -32,7 +32,7 @@ class LoginController extends ApiController
 
         $account->fill($request->only('username'));
 
-        if($request->has('password')){
+        if(!empty($request->password)){
             if (!(Hash::check($request->current_password, $account->password))) {
                 // The passwords matches
                 return $this->errorResponse("Your current password does not matches with the password you provided. Please try again.", 401);
