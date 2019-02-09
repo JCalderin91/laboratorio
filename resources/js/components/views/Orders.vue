@@ -55,10 +55,10 @@
 								</a>
 
 								<a
-									@click.prevent="deleteOrder(order.identificador)"
+									@click.prevent="deleteOrder"
 									title="Eliminar"
 									class="text-danger">	
-										<small><i class="fas fa-trash" style="cursor: pointer;"></i></small>
+										<small><i :id="order.identificador" class="fas fa-trash" style="cursor: pointer;"></i></small>
 								</a>
 							</td>
 						</tr>
@@ -128,17 +128,18 @@
           .then(() => {eventBus.$emit('loading', false)})
 
 			},
-			deleteOrder(idOrder) {
+			deleteOrder(event) {
+				this.selectedOrder = event.target.id
 	      this.$emit("prompt", {
 	        title: "¿Está seguro?",
 	        message: "El resgistro sera Eliminado!",
-	        confirmHandler: this.deleteOrderHandler(idOrder)
+	        confirmHandler: this.deleteOrderHandler
 	      });
 	    },
 
-	    deleteOrderHandler(idOrder) {
+	    deleteOrderHandler() {
 	      axios
-	        .delete("api/orders/" + idOrder)
+	        .delete("api/orders/"+ this.selectedOrder)
 	        .then(response => {
 	          this.getOrders();
 	          this.getAllOrders();

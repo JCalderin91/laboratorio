@@ -80,6 +80,7 @@
                 type="text"
                 class="form-control"
                 required
+                @input="setFlag(0)"
               >
             </div>
           </div>
@@ -94,6 +95,7 @@
                 type="text"
                 class="form-control"
                 required
+                @input="setFlag(0)"
               >
             </div>
           </div>
@@ -108,6 +110,7 @@
                 type="text"
                 class="form-control"
                 required
+                @input="setFlag(0)"
               >
             </div>
           </div>
@@ -116,7 +119,7 @@
             <!-- Direcciones -->
             <div class="form-group">
               <label>Dirección</label>
-              <select :disabled="!isAdmin" class="custom-select" required>
+              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
                 <option value>Selecione una dirección</option>
                 <option
                   v-for="address in addresses"
@@ -132,7 +135,7 @@
             <!-- Area -->
             <div class="form-group">
               <label>Área</label>
-              <select :disabled="!isAdmin" class="custom-select" required>
+              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
                 <option value>Selecione una area</option>
                 <option
                   v-for="area in areas"
@@ -145,7 +148,7 @@
           </div>
           <!-- Area -->
         </div>
-        <a @click.prevent="finishEditing" href="#" class="btn btn-success m-3 float-right">Guardar</a>
+        <a @click.prevent="saveChanges" href="#" class="btn btn-success m-3 float-right">Guardar</a>
       </div>
       <div class="tab-pane fade" id="reception" role="tabpanel" aria-labelledby="reception-tab">
         <div class="row p-3">
@@ -204,8 +207,34 @@
               >
             </div>
           </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Tecnico</label>
+              <input
+                :readonly="!isAdmin"
+                v-model="tecnicoRecepcion.nombre"
+                type="text"
+                class="form-control"
+                required
+              >
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Bien nacional</label>
+              <input
+                :readonly="!isAdmin"
+                v-model="equipo.bienNacional"
+                type="text"
+                class="form-control"
+                required
+              >
+            </div>
+          </div>
         </div>
-        <a @click.prevent="finishEditing" href="#" class="btn btn-success m-3 float-right">Guardar</a>
+        <a @click.prevent="saveChanges" href="#" class="btn btn-success m-3 float-right">Guardar</a>
       </div>
       <div class="tab-pane fade" id="repair" role="tabpanel" aria-labelledby="repair-tab">
         <div class="row p-3">
@@ -262,7 +291,7 @@
           </div>
         </div>
 
-        <a @click.prevent="finishEditing" href="#" class="btn btn-success m-3 float-right">Guardar</a>
+        <a @click.prevent="saveChanges" href="#" class="btn btn-success m-3 float-right">Guardar</a>
       </div>
       <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
         <div class="row p-3">
@@ -326,7 +355,7 @@
             </div>
           </div>
         </div>
-        <a @click.prevent="finishEditing" href="#" class="btn btn-success m-3 float-right">Guardar</a>
+        <a @click.prevent="saveChanges" href="#" class="btn btn-success m-3 float-right">Guardar</a>
       </div>
     </div>
   </div>
@@ -356,7 +385,8 @@ export default {
         cedulaEntrega: null,
         tecnicoEntrega: null
       },
-      isAdmin: this.$session.get("isAdmin")
+      isAdmin: this.$session.get("isAdmin"),
+      flags: [0, 0, 0, 0]
     };
   },
   mounted() {
@@ -365,6 +395,7 @@ export default {
     this.getAreas();
     this.getSubDevice();
     this.getBrands();
+    this.getUsers();
   },
   methods: {
     formatDate(date) {
@@ -380,6 +411,7 @@ export default {
       axios
         .get("api/orders/" + this.id)
         .then(response => {
+          console.log(response.data.data);
           this.cliente = response.data.data.cliente.data;
           this.equipo = response.data.data.equipo.data;
           this.reparacion = response.data.data.reparacion.data;
@@ -400,19 +432,20 @@ export default {
             tecnicoEntrega: response.data.data.tecnicoEntrega
           };
 
+          this.tecnicoRecepcion = response.data.data.tecnico.data;
+          this.tec;
+
           this.getTec();
         })
         .catch(error => {
           console.log(error);
         });
     },
-    getTec() {
+    getUsers() {
       this.$emit("loading-data", true);
       axios
-        .get("/api/users/" + this.entrega.tecnicoEntrega)
+        .get("/api/users/")
         .then(response => {
-          this.entrega.tecnicoEntrega =
-            response.data.data.nombre + " " + response.data.data.apellido;
           this.$emit("loading-data", false);
         })
         .catch(error => {
@@ -462,6 +495,19 @@ export default {
         .catch(error => {
           console.log(error);
         });
+    },
+
+    setFlag(tab) {
+      this.flags[tab] += 1;
+    },
+
+    saveChanges() {
+      console.log(this.flags);
+
+      if (this.flags[0]) this.updateClient();
+      if (this.flags[1]) this.updateRecepcion();
+      if (this.flags[2]) this.updateRevicion();
+      if (this.flags[3]) this.updateDelivery();
     }
   }
 };
