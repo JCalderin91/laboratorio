@@ -28,6 +28,7 @@ class UserStoreRequest extends FormRequest
             'first_name' => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'last_name'  => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'gender'     => 'required|in:M,F',
+            'admin'      => 'required'
         ];
     }
 
@@ -43,6 +44,8 @@ class UserStoreRequest extends FormRequest
             'last_name.regex' => 'El apellido solo puede contener letras.',
             'first_name.required' =>'El campo no puede estar vacío.',
             'last_name.required' => 'El campo no puede estar vacío.',
+            'gender.required' => 'El campo no puede estar vacío.',
+            'admin.required' => 'El campo no puede estar vacío.',
         ];
     }
 }
