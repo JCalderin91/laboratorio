@@ -24,10 +24,24 @@ class UserStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'ci'         => 'required|unique:users,ci|max:8',
-            'first_name' => 'required|max:128',
-            'last_name'  => 'required|max:128',
+            'ci'         => 'required|unique:users,ci|min:7|max:8',
+            'first_name' => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
+            'last_name'  => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'gender'     => 'required|in:M,F',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'ci.required' => 'El campo no puede estar vacio.',
+            'ci.regex' => 'La cedula solo debe contener numeros.',
+            'ci.min' => 'La cedula debe tener minimo :min caracteres.',
+            'ci.max' => 'La cedula debe tener maximo :max caracteres.',
+            'first_name.regex' =>'El nombre solo puede contener letras.',
+            'last_name.regex' => 'El apellido solo puede contener letras.',
+            'first_name.required' =>'El campo no puede estar vacio.',
+            'last_name.required' => 'El campo no puede estar vacio.',
         ];
     }
 }

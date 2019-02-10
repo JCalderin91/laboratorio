@@ -28,4 +28,13 @@ class AreaUpdateRequest extends FormRequest
             'name' => Rule::unique('areas')->ignore($this->area),
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'La area ya ha sido registrada',
+            
+        ];
+    }
+
 }

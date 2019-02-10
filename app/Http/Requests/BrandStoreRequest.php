@@ -27,4 +27,14 @@ class BrandStoreRequest extends FormRequest
             'title' => 'required|unique:brands,title',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.unique' => 'La marca ya ha sido registrada',
+            'title.required' => 'El campo no puede estar vacio',
+            
+        ];
+    }
+
 }

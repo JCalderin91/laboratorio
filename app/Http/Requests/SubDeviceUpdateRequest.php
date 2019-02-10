@@ -25,7 +25,15 @@ class SubDeviceUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => Rule::unique('sub_devices')->ignore($this->sub_devices),
+            'name' => Rule::unique('sub_devices')->ignore($this->sub_device),
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'El dispositivo ya esta registrado',
+            
         ];
     }
 }

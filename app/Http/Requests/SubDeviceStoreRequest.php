@@ -27,4 +27,12 @@ class SubDeviceStoreRequest extends FormRequest
             'name' => 'required|unique:sub_devices,name'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'El dispositivo ya esta registrado',
+            
+        ];
+    }
 }

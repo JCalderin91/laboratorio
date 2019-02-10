@@ -35,11 +35,11 @@ class LoginController extends ApiController
         if(!empty($request->password)){
             if (!(Hash::check($request->current_password, $account->password))) {
                 // The passwords matches
-                return $this->errorResponse("Your current password does not matches with the password you provided. Please try again.", 401);
+                return $this->errorResponse("Tu actual contraseña no coincide con la que has ingresado. Por favor, intenta de nuevo.", 401);
             }
             if(strcmp($request->current_password, $request->password) == 0){
                 //Current password and new password are same
-                return $this->errorResponse("New Password cannot be same as your current password. Please choose a different password.", 401);
+                return $this->errorResponse("La nueva contraseña no debe ser igual que la actual.", 401);
             }
            
             //Change Password

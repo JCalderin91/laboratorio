@@ -27,4 +27,13 @@ class AreaStoreRequest extends FormRequest
             'name' => 'required|unique:areas,name',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'La area ya ha sido registrada',
+            'name.required' => 'El campo no puede estar vacio',
+            
+        ];
+    }
 }

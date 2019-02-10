@@ -6,6 +6,8 @@ use App\SubDevice;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 use App\Transformers\SubDeviceTransformer;
+use App\Http\Requests\SubDeviceStoreRequest;
+use App\Http\Requests\SubDeviceUpdateRequest;
 
 class SubDeviceController extends ApiController
 {
@@ -35,7 +37,7 @@ class SubDeviceController extends ApiController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SubDeviceStoreRequest $request)
     {
         $subDevice = SubDevice::withTrashed()->firstOrCreate(['name' => strtolower($request->name)]);
 
@@ -66,7 +68,7 @@ class SubDeviceController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SubDevice $subDevice)
+    public function update(SubDeviceUpdateRequest $request, SubDevice $subDevice)
     {
         
         if($request->has('name')){

@@ -28,4 +28,13 @@ class BrandUpdateRequest extends FormRequest
             'title' => Rule::unique('brands')->ignore($this->brand),
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'title.unique' => 'La marca ya ha sido registrada',
+            'title.required' => 'El campo no puede estar vacio',
+            
+        ];
+    }
 }

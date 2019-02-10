@@ -28,4 +28,12 @@ class AddressUpdateRequest extends FormRequest
             'name' => Rule::unique('addresses')->ignore($this->address),
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'La direccion ya ha sido registrada',
+            
+        ];
+    }
 }

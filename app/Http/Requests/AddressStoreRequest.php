@@ -27,4 +27,13 @@ class AddressStoreRequest extends FormRequest
             'name' => 'required|unique:addresses,name',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'La direccion ya ha sido registrada',
+            'name.required' => 'El campo no puede estar vacio',
+            
+        ];
+    }
 }
