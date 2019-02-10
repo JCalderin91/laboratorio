@@ -166,7 +166,13 @@
           <div class="col-6">
             <div class="form-group">
               <label>Equipo</label>
-              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(1)">
+              <select
+                :disabled="!isAdmin"
+                class="custom-select"
+                v-model="equipo.nombre"
+                required
+                @change="setFlag(1)"
+              >
                 <option value>Selecione una dispositivo</option>
                 <option
                   v-for="device in devices"
@@ -181,7 +187,13 @@
           <div class="col-6">
             <div class="form-group">
               <label>Marca</label>
-              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(1)">
+              <select
+                :disabled="!isAdmin"
+                class="custom-select"
+                v-model="equipo.marca"
+                required
+                @change="setFlag(1)"
+              >
                 <option value>Selecione una marca</option>
                 <option
                   v-for="brand in brands"
@@ -465,6 +477,7 @@ export default {
           let data = response.data.data;
           this.cliente = data.cliente.data;
           this.equipo = data.equipo.data;
+          this.equipo.nombre = this.equipo.identificador;
 
           //REVISION
           if (data.reparacion) {
@@ -498,11 +511,12 @@ export default {
             tecnico: tecnicoEntrega,
             nombre: nombreEntrega
           };
-          console.log(data);
+
           //RECEPCION
           this.recepcion = {
-            tecnico: response.data.data.tecnico.data.identificador,
-            fecha: this.formatDate(response.data.data.fechaCreacion)
+            tecnico: data.tecnico.data.identificador,
+            fecha: this.formatDate(data.fechaCreacion),
+            orden: data.identificador
           };
         })
         .catch(error => {
@@ -571,23 +585,81 @@ export default {
     },
 
     updateClient() {
-      console.log(this.cliente);
-      return axios.patch(
-        "/api/clients/" + this.cliente.identificador,
-        this.cliente
-      );
+      axios
+        .patch("/api/clients/" + this.cliente.identificador, this.cliente)
+        .then(res => {
+          console.log("updated client");
+        })
+        .catch(err => {
+          console.log("failed to update client");
+        });
+    },
+
+    updateDevice() {
+      let equipo = { ...this.equipo, cliente: this.cliente.identificador };
+      console.log(equipo);
+      axios
+        .patch("/api/devices/" + this.equipo.identificador, equipo)
+        .then(res => {
+          console.log("updated device");
+        })
+        .catch(err => {
+          console.log("failed to update device");
+        });
+    },
+
+    updateRepair() {
+      axios
+        .patch(
+          "/api/orders/${this.recepcion.orden}/repairs/" +
+            this.revision.identificador,
+          { ...this.revision, orden: this.recepcion.orden }
+        )
+        .then(res => {
+          console.log("updated repair");
+        })
+        .catch(err => {
+          console.log("failed to update repair");
+        });
+    },
+
+    updateDelivery() {
+      console.log(this.entrega);
+      axios
+        .patch(
+          "/api/orders/" +
+            this.recepcion.orden +
+            "/deliveries/" +
+            this.entrega.identificador,
+          { ...this.entrega, orden: this.recepcion.orden }
+        )
+        .then(res => {
+          console.log("updated delivery");
+        })
+        .catch(err => {
+          console.log("failed to update delivery");
+        });
     },
 
     saveChanges() {
       this.$emit("loading-data", true);
       //Update Client
-      this.updateClient()
-        .then(resCli => {
-          console.log(resCli.data.data);
-        })
-        .catch(error => {
-          this.$emit('error', error)
-        });
+      if (this.flags[0]) {
+        this.updateClient();
+        this.flags[0] = 0;
+      }
+      if (this.flags[1]) {
+        this.updateDevice();
+        this.flags[1] = 0;
+      }
+      if (this.flags[2]) {
+        this.updateRepair();
+        this.flags[2] = 0;
+      }
+      if (this.flags[3]) {
+        this.updateDelivery();
+        this.flags[3] = 0;
+      }
     }
   }
 };
