@@ -197,10 +197,16 @@
 </template>
 
 <script>
+import MessageError from '../partials/messageError'
+
 export default {
+  components: {
+    MessageError
+  },
   name: "Addresses-View",
   data() {
     return {
+      errors: [],
       sArea: false,
       sAddress: false,
       newArea: false,

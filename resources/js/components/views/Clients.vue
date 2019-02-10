@@ -29,6 +29,7 @@
       </div>
 
       <form v-else class="col-12 row" @submit.prevent="submit">
+        <message-error v-if="errors.length" class="col-12 alert-danger alert" :message="errors"></message-error>        
         <div class="form-group col-6">
           <label for="ci">Cedula:</label>
           <input
@@ -38,7 +39,9 @@
             v-model="client.cedula"
             placeholder="cedula"
             :readonly="update"
+            :class="[ errors.cedula ? 'is-invalid' : '' ]"
           >
+          <message-error :message="errors.cedula"></message-error> 
         </div>
         <div class="form-group col-6">
           <label for="first_name">Nombre:</label>
@@ -48,7 +51,9 @@
             name="first_name"
             v-model="client.nombres"
             placeholder="nombre"
+            :class="[ errors.nombres ? 'is-invalid' : '' ]"
           >
+          <message-error :message="errors.nombres"></message-error> 
         </div>
         <div class="form-group col-6">
           <label for="last_name">Apellido:</label>
@@ -58,7 +63,9 @@
             name="last_name"
             v-model="client.apellidos"
             placeholder="apellido"
+            :class="[ errors.apellidos ? 'is-invalid' : '' ]"
           >
+          <message-error :message="errors.apellidos"></message-error> 
         </div>
         <div class="form-group col-6">
           <label for="phone">Teléfono:</label>
@@ -68,17 +75,18 @@
             name="phone"
             v-model="client.telefono"
             placeholder="teléfono"
+            :class="[ errors.telefono ? 'is-invalid' : '' ]"
           >
+          <message-error :message="errors.telefono"></message-error> 
         </div>
         <div class="form-group col-6">
           <label for="address">Direcciòn:</label>
           <select
-            class="form-control"
-            type="text"
+            class="custom-select"
             name="address"
             v-model="client.identificador_direccion"
-            placeholder="direccion"
             @change="getAreas"
+            :class="[ errors.identificador_direccion ? 'is-invalid' : '' ]"
           >
             <option value>Seleccione Una</option>
             <option
@@ -87,15 +95,15 @@
               :key="address.identificador"
             >{{address.nombre}}</option>
           </select>
+          <message-error :message="errors.identificador_direccion"></message-error> 
         </div>
         <div class="form-group col-6">
           <label for="area">Area:</label>
           <select
-            class="form-control"
-            type="text"
+            class="custom-select"
             name="area"
             v-model="client.identificador_area"
-            placeholder="area"
+            :class="[ errors.identificador_area ? 'is-invalid' : '' ]"
           >
             <option value>Seleccione Una</option>
             <option
@@ -104,10 +112,11 @@
               :key="area.identificador"
             >{{area.nombre}}</option>
           </select>
+          <message-error :message="errors.identificador_area"></message-error> 
         </div>
 
         <div class="form-group col-12 mt-5 d-flex justify-content-end">
-          <button class="btn btn-secondary m-2" @click.prevent="clientForm = !clientForm">Cancelar</button>
+          <button class="btn btn-secondary m-2" @click.prevent="toggleClientForm()">Cancelar</button>
           <input type="submit" class="btn btn-primary m-2" value="Guardar">
         </div>
       </form>
@@ -117,10 +126,13 @@
 
 <script>
 import ClientList from "../partials/ClientList";
+import MessageError from '../partials/messageError'
+
 export default {
   name: "clients",
   data() {
     return {
+      errors: [],
       newClient: false,
       clientForm: false,
       client: {
@@ -233,15 +245,20 @@ export default {
           }).then(() => {
             this.update = false;
             this.cleanAfterSubmit();
+            this.errors = []
           });
         })
         .catch(error => {
-          Swal({
-            type: "error",
-            title: "Alerta",
-            text: error,
-            confirmButtonText: "Continuar"
-          });
+          if (error.response) {
+            console.log('error.response')
+            console.log(error.response.data.error)
+            this.errors = error.response.data.error
+          } else if (error.request) {
+              console.log('error.request');
+              console.log(error.request);
+          } else {
+              console.log('Error', error.message);
+          }
         });
     },
 
@@ -256,15 +273,20 @@ export default {
             confirmButtonText: "Continuar"
           }).then(() => {
             this.cleanAfterSubmit();
+            this.errors = []
           });
         })
         .catch(error => {
-          Swal({
-            type: "error",
-            title: "Alerta",
-            text: error,
-            confirmButtonText: "Continuar"
-          });
+          if (error.response) {
+            console.log('error.response')
+            console.log(error.response.data.error)
+            this.errors = error.response.data.error
+          } else if (error.request) {
+              console.log('error.request');
+              console.log(error.request);
+          } else {
+              console.log('Error', error.message);
+          }
         });
     },
 
@@ -284,6 +306,10 @@ export default {
         }
       });
     },
+    toggleClientForm(){
+      this.clientForm = !this.clientForm
+      this.errors = []
+    },
 
     submit() {
       if (this.update) {
@@ -294,7 +320,8 @@ export default {
     }
   },
   components: {
-    ClientList
+    ClientList,
+    MessageError
   }
 };
 </script>
