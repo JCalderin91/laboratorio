@@ -14,8 +14,8 @@
     <tbody>
       <tr v-for="user in users" :key="user.identificador" class="text-center">
         <td>{{ user.cedula }}</td>
-        <td>{{ user.nombre }}</td>
-        <td>{{ user.apellido }}</td>
+        <td>{{ user.nombres }}</td>
+        <td>{{ user.apellidos }}</td>
         <td>
           <span v-if="user.sexo === 'F'">Femenino</span>
           <span v-else>Masculino</span>

@@ -21,11 +21,13 @@
           placeholder="Buscar..."
           v-model="search"
         >
+
         <client-list
           :clients="filteredClients"
           :editClickHandler="setClient"
           :deleteClickHandler="deleteClient"
         />
+        
       </div>
 
       <form v-else class="col-12 row" @submit.prevent="submit">
@@ -93,7 +95,7 @@
               v-for="address in addresses"
               :value="address.identificador"
               :key="address.identificador"
-            >{{address.nombre}}</option>
+            >{{address.nombre_direccion}}</option>
           </select>
           <message-error :message="errors.identificador_direccion"></message-error> 
         </div>
@@ -110,7 +112,7 @@
               v-for="area in areas"
               :value="area.identificador"
               :key="area.identificador"
-            >{{area.nombre}}</option>
+            >{{area.nombre_area}}</option>
           </select>
           <message-error :message="errors.identificador_area"></message-error> 
         </div>
@@ -163,7 +165,10 @@ export default {
 
         return (
           fullName.toLowerCase().includes(this.search.toLowerCase()) ||
-          item.cedula.includes(this.search)
+          item.cedula.includes(this.search) ||
+          item.nombre_area.toUpperCase().includes(this.search.toUpperCase()) ||
+          item.nombre_direccion.toUpperCase().includes(this.search.toUpperCase()) ||
+          item.telefono.includes(this.search) 
         );
       });
     }
