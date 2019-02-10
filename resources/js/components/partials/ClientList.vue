@@ -22,15 +22,11 @@
         <td>{{ client.nombre_direccion }}</td>
         <td>{{ client.telefono }}</td>
         <td>
-          <a class="btn" @click="editClickHandler" title="Modificar cliente">
-            <small>
-              <i :id="client.cedula" class="fas fa-pen" style="cursor: pointer;"></i>
-            </small>
+          <a class="btn btn-info" @click="editClickHandler" title="Modificar cliente">
+            <i :id="client.cedula" class="fas fa-pen" style="cursor: pointer;"></i>
           </a>
-          <a class="btn text-danger" title="Eliminar cliente" @click.prevent="deleteClickHandler">
-            <small>
-              <i :id="client.identificador" class="fas fa-trash" style="cursor: pointer;"></i>
-            </small>
+          <a class="btn btn-danger" title="Eliminar cliente" @click.prevent="deleteClickHandler">
+            <i :id="client.identificador" class="fas fa-trash"></i>
           </a>
         </td>
       </tr>

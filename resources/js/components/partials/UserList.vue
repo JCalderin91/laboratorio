@@ -25,24 +25,15 @@
           <span v-else>Ténico</span>
         </td>
         <td>
-          <a class="btn-sm" title="Editar usuario">
-            <small>
-              <i
+          <a class="btn btn-info" title="Editar usuario">
+            <i
                 :id="user.cedula"
                 @click.prevent="edit(user.cedula)"
-                class="fas fa-pen"
-                style="cursor: pointer;"
+                class="fas fa-pen text-white"
               ></i>
-            </small>
           </a>
-          <a class="btn-sm" title="Eliminar usuario">
-            <small>
-              <i
-                :id="user.cedula"
-                class="fas fa-trash text-danger"
-                style="cursor: pointer;"
-              ></i>
-            </small>
+          <a class="btn btn-danger" title="Eliminar usuario">
+            <i :id="user.cedula" class="fas fa-trash text-white"></i>
           </a>
         </td>
       </tr>

@@ -5,22 +5,25 @@
         <h4 v-if="!clientForm">Lista de los clientes</h4>
         <h4 v-else>Registro de clientes</h4>
       </div>
+
       <div class="col-12 row" v-if="!clientForm">
-        <button
-          @click.prevent="clientForm = !clientForm"
-          v-if="!clientForm"
-          class="btn btn-primary text-white btn-sm"
-          title="Registrar un cliente"
-        >
-          <i class="fas fa-plus"></i>
-        </button>
-        
         <input
           type="text"
-          class="form-control col-4 ml-auto"
+          class="form-control col-4"
           placeholder="Buscar..."
           v-model="search"
         >
+        <div class="col-8">
+          <button
+            @click.prevent="clientForm = !clientForm"
+            v-if="!clientForm"
+            class="btn btn-primary text-white float-right"
+            title="Registrar un cliente"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+        
 
         <client-list
           :clients="filteredClients"
@@ -40,7 +43,6 @@
             name="ci"
             v-model="client.cedula"
             placeholder="cedula"
-            :readonly="update"
             :class="[ errors.cedula ? 'is-invalid' : '' ]"
           >
           <message-error :message="errors.cedula"></message-error> 

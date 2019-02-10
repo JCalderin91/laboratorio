@@ -11,15 +11,20 @@
         <h4 v-else>Registro de usuarios</h4>
       </div>
       <div class="col-12 row" v-if="!userForm">
-        <button
-          @click.prevent="userForm = !userForm"
-          v-if="!userForm && isAdmin"
-          class="btn btn-primary text-white"
-        >
-          <i class="fas fa-plus"></i>
-        </button>
+
+        <input v-model="search" type="text" class="form-control col-4" placeholder="Buscar...">
+
+        <div class="col-8">
+          <button
+            @click.prevent="userForm = !userForm"
+            v-if="!userForm && isAdmin"
+            class="btn btn-primary text-white float-right"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
+
         
-        <input v-model="search" type="text" class="form-control col-4 ml-auto" placeholder="Buscar...">
 
         <user-list :users="filteredUsers" :edit="editUser" @edit.stop="toggleForm"></user-list>
 
@@ -34,7 +39,6 @@
             type="text"
             name="ci"
             v-model="user.cedula"
-            :disabled="update"
             placeholder="Cedula"
             :class="[ errors.cedula ? 'is-invalid' : '' ]"           
           >

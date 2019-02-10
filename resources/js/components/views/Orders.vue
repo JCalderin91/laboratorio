@@ -52,17 +52,15 @@
                   @click.prevent="getOrder(order.identificador)"
                   href="#"
                   title="Editar"
-                  class="text-dark"
-                >
-                  <small>
-                    <i class="fas fa-pen" style="cursor: pointer;"></i>
-                  </small>
+                  class="btn-info btn"
+                >  
+                  <i class="fas fa-pen"></i>
                 </a>
                 
-                <a @click.prevent="deleteOrder" title="Eliminar" class="text-danger">
-                  <small>
-                    <i :id="order.identificador" class="fas fa-trash" style="cursor: pointer;"></i>
-                  </small>
+                <a @click.prevent="deleteOrder" title="Eliminar" class="btn-danger btn">
+
+                    <i :id="order.identificador" class="fas fa-trash text-white"></i>
+    
                 </a>
               </td>
             </tr>

@@ -69,16 +69,16 @@
                   >
                     <td>{{ address.nombre_direccion }}</td>
                     <td>
-                      <a @click.prevent="editAddress" href="#" style="color: black;" title="Editar Dirección">
-                        <small><i :id="address.identificador" class="fas fa-pen"></i></small>
+                      <a class="btn btn-info" @click.prevent="editAddress" href="#"  title="Editar Dirección">
+                        <i :id="address.identificador" class="fas fa-pen"></i>
                       </a>
                       <a
                         @click.prevent="deleteAddress"
                         href="#"
-                        class="ml-1 text-danger"
+                        class="ml-1 btn-danger btn"
                         title="Eliminar Dirección"
                       >
-                        <small><i :id="address.identificador" class="fas fa-trash"></i></small>
+                        <i :id="address.identificador" class="fas fa-trash"></i>
                       </a>
                     </td>
                   </tr>
@@ -159,19 +159,19 @@
                     <td>
                       <a
                         href="#"
-                        style="color: black;"
+                        class="btn-info btn"
                         title="Editar Area"
                         @click.prevent="editArea"
                       >
-                        <small><i :id="area.identificador" class="fas fa-pen"></i></small>
+                        <i :id="area.identificador" class="fas fa-pen"></i>
                       </a>
                       <a
                         @click.prevent="deleteArea"
                         href="#"
-                        class="ml-1 text-danger"
+                        class="ml-1 btn-danger btn"
                         title="Eliminar Area"
                       >
-                        <small><i :id="area.identificador" class="fas fa-trash"></i></small>
+                        <i :id="area.identificador" class="fas fa-trash"></i>
                       </a>
                     </td>
                   </tr>

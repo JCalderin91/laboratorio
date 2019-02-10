@@ -67,22 +67,18 @@
                       <a
                         @click.prevent="editDevice"
                         href="#"
-                        class="text-dark"
+                        class="btn-info btn"
                         title="Modificar dispositivo"
                       >
-                        <small>
-                          <i :id="device.identificador" class="fas fa-pen"></i>
-                        </small>
+                        <i :id="device.identificador" class="fas fa-pen"></i>
                       </a>
                       <a
                         @click.prevent="deleteSubDevice"
                         href="#"
-                        class="text-danger"
+                        class="btn-danger btn"
                         title="Eliminar dispositivo"
                       >
-                        <small>
-                          <i :id="'device-'+device.identificador" class="fas fa-trash"></i>
-                        </small>
+                        <i :id="'device-'+device.identificador" class="fas fa-trash"></i>
                       </a>
                     </td>
                   </tr>
@@ -168,22 +164,18 @@
                       <a
                         @click.prevent="editBrand"
                         href="#"
-                        class="text-dark"
+                        class="btn-info btn"
                         title="Modificar marca"
                       >
-                        <small>
-                          <i :id="brand.identificador" class="fas fa-pen"></i>
-                        </small>
+                        <i :id="brand.identificador" class="fas fa-pen"></i>
                       </a>
                       <a
                         @click.prevent="deleteBrand"
                         href="#"
-                        class="text-danger"
+                        class="btn-danger btn"
                         title="Eliminar marca"
                       >
-                        <small>
-                          <i :id="'brand-'+brand.identificador" class="fas fa-trash"></i>
-                        </small>
+                        <i :id="'brand-'+brand.identificador" class="fas fa-trash"></i>
                       </a>
                     </td>
                   </tr>
