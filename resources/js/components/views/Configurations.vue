@@ -29,7 +29,7 @@
                 v-model="editAccount.contrasena_actual"
                 type="password"
                 class="form-control">
-                <message-error :message="errors.contrasena"></message-error>  
+                <message-error :message="errors.contrasena_actual"></message-error>  
             </div>
           </div>
 
@@ -40,8 +40,9 @@
                 v-model="editAccount.contrasena"
                 placeholder="Nueva contraseña"
                 type="password"
-                :class="[ varifyPass == true ? 'is-valid' : 'is-invalid' ]"
+                :class="[ varifyPass == true  ? 'is-valid' : 'is-invalid' ]"
                 class="form-control">
+                <message-error :message="errors.contrasena"></message-error>  
             </div>
           </div>
 
@@ -54,6 +55,7 @@
                 type="password"
                 :class="[ varifyPass == true ? 'is-valid' : 'is-invalid' ]"
                 class="form-control">
+                <message-error :message="errors.confirmacion"></message-error>  
             </div>
           </div>
             
