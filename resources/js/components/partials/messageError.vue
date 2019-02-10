@@ -1,6 +1,7 @@
 <template>
 	<div v-if="message" class="text-danger">
-     {{ message[0] }}
+		<span v-if="typeof message === 'string'">{{ message }}</span>
+		<span v-else>{{ message[0] }}</span>
   </div>
 </template>
 
