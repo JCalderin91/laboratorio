@@ -176,8 +176,8 @@
                 <option value>Selecione una dispositivo</option>
                 <option
                   v-for="device in devices"
-                  :key="'dev-'+device.identificador"
-                  :selected="device.identificador === equipo.nombre"
+                  :key="'dev-'+device.nombre"
+                  :selected="device.nombre === equipo.nombre"
                   :value="device.identificador"
                 >{{device.nombre}}</option>
               </select>
