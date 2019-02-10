@@ -32,7 +32,7 @@ class DeviceTransformer extends TransformerAbstract
      public static function originalAttribute($index){
         $attributes = [
             'identificador' => 'id',
-            'nombre' => 'subDevice_id',
+            'nombre' => 'sub_device_id',
             'marca' => 'brand_id',
             'cliente' => 'client_id',
             'modelo' => 'model',
@@ -46,7 +46,7 @@ class DeviceTransformer extends TransformerAbstract
     public static function transformedAttribute($index){
         $attributes = [
             'id' => 'identificador',
-            'subDevice_id' => 'nombre',
+            'sub_device_id' => 'nombre',
             'brand_id' => 'marca',
             'client_id' => 'cliente',
             'model' => 'modelo',

@@ -66,7 +66,7 @@ class OrderDeliveryController extends ApiController
      */
     public function update(Request $request, Order $order)
     {
-        $order->fill($request->except('delivery_date'));
+        $order->fill($request->except(['delivery_date', 'serial']));
 
         if($request->has('delivery_date')){
 

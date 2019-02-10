@@ -146,9 +146,19 @@ class OrderController extends ApiController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Order $order)
     {
-       
+       $order->fill($request->except(['arrival_date', 'serial']));
+
+       if($request->has('arrival_date')){
+
+            $dateTime = Carbon::parse($request->created);
+            $repair->created = $dateTime->format('Y-m-d H:i:s');
+        }
+
+        $order->save();
+
+        $this->showOne($order);
     }
 
     /**

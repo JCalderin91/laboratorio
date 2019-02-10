@@ -16,7 +16,7 @@ class AddressTransformer extends TransformerAbstract
     {
         return [
             'identificador' => (int)$address->id,
-            'nombre' => (string)$address->name,
+            'nombre_direccion' => (string)$address->name,
          /* 'fechaCreacion' => (string)$area->created_at,
             'fechaActualizacion' => (string)$area->updated_at,
             'fechaEliminacion' => isset($area->deleted_at) ? (string)$area->deleted_at : null , */
@@ -26,7 +26,7 @@ class AddressTransformer extends TransformerAbstract
     public static function originalAttribute($index){
         $attributes = [
             'identificador' => 'id',
-            'nombre' => 'name',
+            'nombre_direccion' => 'name',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -36,7 +36,7 @@ class AddressTransformer extends TransformerAbstract
     public static function transformedAttribute($index){
         $attributes = [
             'id' => 'identificador',
-            'name' => 'nombre',
+            'name' => 'nombre_direccion',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
