@@ -25,7 +25,7 @@ class LoginUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'password' => 'nullable|string|min:5|confirmed',
+            'password' => 'nullable|string|min:5',
             'username' => Rule::unique('logins')->ignore($this->account) 
         ];
 
@@ -35,7 +35,6 @@ class LoginUpdateRequest extends FormRequest
     {
         return [
             'password.min' => 'La contraseña debe ser minimo de :min caracteres.',
-            'password.confirmed' =>'La confirmacion de la contraseña no coincide.',
             'username.unique' => 'El nombre de usuario ya ha sido registrado.',
         ];
     }

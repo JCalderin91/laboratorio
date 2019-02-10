@@ -35,11 +35,18 @@ class LoginController extends ApiController
         if(!empty($request->password)){
             if (!(Hash::check($request->current_password, $account->password))) {
                 // The passwords matches
-                return $this->errorResponse(['contrasena' => "Tu actual contraseña no coincide con la que has ingresado. Por favor, intenta de nuevo."], 401);
+                return $this->errorResponse(['contrasena_actual' => ["Tu actual contraseña no coincide con la que has ingresado. Por favor, intenta de nuevo."]], 401);
+            }
+            if(empty($request->password_confirmation)){
+                return $this->errorResponse(['confirmacion' => ["Este campo no puede estar vacio"]], 401);
+            }else{
+                if(strcmp($request->password_confirmation, $request->password) != 0){
+                    return $this->errorResponse(['confirmacion' => ["La confirmacion no coincide con la nueva contraseña"]], 401);
+                }
             }
             if(strcmp($request->current_password, $request->password) == 0){
                 //Current password and new password are same
-                return $this->errorResponse(['contrasena' => "La nueva contraseña no debe ser igual que la actual."], 401);
+                return $this->errorResponse(['contrasena_nueva' => ["La nueva contraseña no debe ser igual a la actual."]], 401);
             }
            
             //Change Password

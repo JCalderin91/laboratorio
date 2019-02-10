@@ -17,7 +17,7 @@ class AreaTransformer extends TransformerAbstract
     {
         return [
             'identificador' => (int)$area->id,
-            'nombre' => (string)$area->name,
+            'nombre_area' => (string)$area->name,
             /* 'fechaCreacion' => (string)$area->created_at,
             'fechaActualizacion' => (string)$area->updated_at,
             'fechaEliminacion' => isset($area->deleted_at) ? (string)$area->deleted_at : null , */
@@ -28,7 +28,7 @@ class AreaTransformer extends TransformerAbstract
     public static function originalAttribute($index){
         $attributes = [
             'identificador' => 'id',
-            'nombre' => 'name',
+            'nombre_area' => 'name',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
@@ -38,7 +38,7 @@ class AreaTransformer extends TransformerAbstract
     public static function transformedAttribute($index){
         $attributes = [
             'id' => 'identificador',
-            'name' => 'nombre',
+            'name' => 'nombre_area',
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;

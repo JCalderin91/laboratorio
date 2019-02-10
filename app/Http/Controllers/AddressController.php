@@ -51,6 +51,7 @@ class AddressController extends ApiController
         if($address->trashed()){
             $address->restore();
         }
+        
         return $this->showOne($address, 201);
     }
     
