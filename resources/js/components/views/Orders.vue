@@ -86,7 +86,7 @@
 </template>
 
 <script>
-import EditOrder from "../partials/EditOrder";
+import EditOrder from "../partials/EditOrder.1";
 export default {
   name: "orders",
   data() {

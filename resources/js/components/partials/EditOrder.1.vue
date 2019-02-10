@@ -23,7 +23,7 @@
           aria-selected="false"
         >Recepción</a>
       </li>
-      <li v-if="true" class="nav-item">
+      <li v-if="revision.identificador" class="nav-item">
         <a
           class="nav-link"
           id="repair-tab"
@@ -32,9 +32,9 @@
           role="tab"
           aria-controls="repair"
           aria-selected="false"
-        >Revisión</a>
+        >Revision</a>
       </li>
-      <li v-if="true" class="nav-item">
+      <li v-if="entrega.fecha" class="nav-item">
         <a
           class="nav-link"
           id="delivery-tab"
@@ -119,7 +119,13 @@
             <!-- Direcciones -->
             <div class="form-group">
               <label>Dirección</label>
-              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
+              <select
+                :disabled="!isAdmin"
+                v-model="cliente.identificador_direccion"
+                class="custom-select"
+                required
+                @change="setFlag(0)"
+              >
                 <option value>Selecione una dirección</option>
                 <option
                   v-for="address in addresses"
@@ -135,7 +141,13 @@
             <!-- Area -->
             <div class="form-group">
               <label>Área</label>
-              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
+              <select
+                :disabled="!isAdmin"
+                class="custom-select"
+                v-model="cliente.identificador_area"
+                required
+                @change="setFlag(0)"
+              >
                 <option value>Selecione una area</option>
                 <option
                   v-for="area in areas"
@@ -148,8 +160,239 @@
           </div>
           <!-- Area -->
         </div>
-        <a @click.prevent="saveChanges" href="#" class="btn btn-success m-3 float-right">Guardar</a>
       </div>
+      <div class="tab-pane fade" id="reception" role="tabpanel" aria-labelledby="reception-tab">
+        <div class="row p-3">
+          <div class="col-6">
+            <div class="form-group">
+              <label>Equipo</label>
+              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(1)">
+                <option value>Selecione una dispositivo</option>
+                <option
+                  v-for="device in devices"
+                  :key="'dev-'+device.identificador"
+                  :selected="device.nombre === equipo.nombre"
+                  :value="device.identificador"
+                >{{device.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Marca</label>
+              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(1)">
+                <option value>Selecione una marca</option>
+                <option
+                  v-for="brand in brands"
+                  :key="'brand-'+brand.identificador"
+                  :selected="brand.nombre === equipo.marca"
+                  :value="brand.identificador"
+                >{{brand.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Modelo</label>
+              <input
+                :readonly="!isAdmin"
+                v-model="equipo.modelo"
+                type="text"
+                class="form-control"
+                required
+                @input="setFlag(1)"
+              >
+            </div>
+          </div>
+
+          <div v-if="equipo.bienNacional" class="col-6">
+            <div class="form-group">
+              <label>Bien nacional</label>
+              <input
+                :readonly="!isAdmin"
+                v-model="equipo.bienNacional"
+                type="text"
+                class="form-control"
+                required
+                @input="setFlag(1)"
+              >
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Tecnico</label>
+              <select
+                name="tecnico"
+                id="tecnico"
+                class="form-control"
+                v-model="recepcion.tecnico"
+                :disabled="!isAdmin"
+                @change="setFlag(1)"
+              >
+                <option
+                  v-for="tecnico in users"
+                  :key="tecnico.identificador"
+                  :value="tecnico.identificador"
+                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Fecha</label>
+              <input
+                :readonly="!isAdmin"
+                v-model="recepcion.fecha"
+                type="date"
+                class="form-control"
+                required
+                @input="setFlag(1)"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="repair" role="tabpanel" aria-labelledby="repair-tab">
+        <div class="row p-3">
+          <div class="col-6">
+            <div class="form-group">
+              <label>Fecha de Revisión</label>
+              <input
+                :readonly="!isAdmin"
+                type="date"
+                v-model="revision.fecha"
+                class="form-control"
+                required
+                @input="setFlag(2)"
+              >
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Estado</label>
+              <select
+                :readonly="!isAdmin"
+                v-model="revision.estado"
+                type="text"
+                class="form-control"
+                required
+                @change="setFlag(2)"
+              >
+                <option value="repaired">Reparado</option>
+                <option value="without repair">Sin reparar</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Tecnico</label>
+              <select
+                name="tecnico"
+                id="tecnico"
+                class="form-control"
+                v-model="revision.tecnico"
+                :disabled="!isAdmin"
+                @change="setFlag(2)"
+              >
+                <option
+                  v-for="tecnico in users"
+                  :key="tecnico.identificador"
+                  :value="tecnico.identificador"
+                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-12">
+            <div class="form-group">
+              <label>Detalle</label>
+              <textarea
+                v-model="revision.detalle"
+                type="text"
+                class="form-control"
+                required
+                style="resize: none"
+                @input="setFlag(2)"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="delivery" role="tabpanel" aria-labelledby="delivery-tab">
+        <div class="row p-3">
+          <div class="col-6">
+            <div class="form-group">
+              <label>Fecha de Entrega</label>
+              <input
+                :readonly="!isAdmin"
+                type="date"
+                v-model="entrega.fecha"
+                class="form-control"
+                required
+                @input="setFlag(3)"
+              >
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Tecnico</label>
+              <select name="tec-entrega" id="tec-entrega" class="form-control" @change="setFlag(3)">
+                <option
+                  v-for="tecnico in users"
+                  :value="tecnico.identificador"
+                  :key="'tec-'+tecnico.identificador"
+                >{{tecnico.apellido +', '+ tecnico.nombre}}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Cedula Retiro</label>
+              <input
+                v-if="entrega.cedula"
+                v-model="entrega.cedula"
+                type="text"
+                class="form-control"
+                required
+                @input="setFlag(3)"
+              >
+              <input
+                :readonly="!isAdmin"
+                v-else
+                v-model="cliente.cedula"
+                type="text"
+                class="form-control"
+                required
+                @input="setFlag(3)"
+              >
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group">
+              <label>Retirado por</label>
+              <input
+                :readonly="!isAdmin"
+                v-model="entrega.nombre"
+                type="text"
+                class="form-control"
+                required
+                @input="setFlag(3)"
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a @click.prevent="saveChanges" href="#" class="btn btn-success m-3 float-right">Guardar</a>
     </div>
   </div>
 </template>
@@ -160,12 +403,36 @@ export default {
   props: ["id"],
   data() {
     return {
-      cliente: null,
-      recepcion: null,
-      revision: null,
-      entrega: null,
+      estados: {
+        repaired: "Reparado",
+        "without repair": "Sin reparación"
+      },
+      cliente: {
+        identificador: "",
+        nombres: "",
+        apellidos: "",
+        telefono: "",
+        identificador_area: "",
+        nombre_area: "",
+        identificador_direccion: "",
+        nombre_direccion: ""
+      },
+      recepcion: {
+        tecnico: ""
+      },
+      revision: {
+        fecha: false
+      },
+      entrega: {
+        fecha: false
+      },
+      equipo: {
+        modelo: "",
+        nombre: "",
+        marca: ""
+      },
       addresses: [],
-      subDevices: [],
+      devices: [],
       brands: [],
       users: [],
       areas: [],
@@ -195,16 +462,48 @@ export default {
       axios
         .get("api/orders/" + this.id)
         .then(response => {
-          let data = response.data.data
-          this.cliente = data.cliente.data
-          this.equipo = data.equipo.data
-          this.tecnicoRecepcion = data.tecnico.data
-          
-          //reparacion
-          let { detalle, estado, fechaCreacion, identificador } = data.reparacion.data
-          this.reparacion = {detalle, estado, fechaCreacion, identificador}
-          this.reparacion.tecnico = data.reparacion.data.tecnico.data.identificador
-          console.log(this.reparacion)
+          let data = response.data.data;
+          this.cliente = data.cliente.data;
+          this.equipo = data.equipo.data;
+
+          //REVISION
+          if (data.reparacion) {
+            let {
+              detalle,
+              estado,
+              fechaCreacion,
+              identificador
+            } = data.reparacion.data;
+
+            this.revision = {
+              detalle,
+              estado,
+              fecha: this.formatDate(fechaCreacion),
+              identificador
+            };
+            this.revision.tecnico =
+              data.reparacion.data.tecnico.data.identificador;
+          }
+
+          //ENTREGA
+          let {
+            fechaEntrega,
+            cedulaEntrega,
+            tecnicoEntrega,
+            nombreEntrega
+          } = response.data.data;
+          this.entrega = {
+            fecha: this.formatDate(fechaEntrega),
+            cedula: cedulaEntrega,
+            tecnico: tecnicoEntrega,
+            nombre: nombreEntrega
+          };
+          console.log(data);
+          //RECEPCION
+          this.recepcion = {
+            tecnico: response.data.data.tecnico.data.identificador,
+            fecha: this.formatDate(response.data.data.fechaCreacion)
+          };
         })
         .catch(error => {
           console.log(error);
@@ -215,6 +514,7 @@ export default {
       axios
         .get("/api/users/")
         .then(response => {
+          this.users = response.data.data;
           this.$emit("loading-data", false);
         })
         .catch(error => {
@@ -270,13 +570,24 @@ export default {
       this.flags[tab] += 1;
     },
 
-    saveChanges() {
-      console.log(this.flags);
+    updateClient() {
+      console.log(this.cliente);
+      return axios.patch(
+        "/api/clients/" + this.cliente.identificador,
+        this.cliente
+      );
+    },
 
-      if (this.flags[0]) this.updateClient();
-      if (this.flags[1]) this.updateRecepcion();
-      if (this.flags[2]) this.updateRevicion();
-      if (this.flags[3]) this.updateDelivery();
+    saveChanges() {
+      this.$emit("loading-data", true);
+      //Update Client
+      this.updateClient()
+        .then(resCli => {
+          console.log(resCli.data.data);
+        })
+        .catch(error => {
+          this.$emit('error', error)
+        });
     }
   }
 };
