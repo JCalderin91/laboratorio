@@ -169,7 +169,7 @@
               <select
                 :disabled="!isAdmin"
                 class="custom-select"
-                v-model="equipo.nombre"
+                v-model="equipo.identificador_nombre"
                 required
                 @change="setFlag(2)"
               >
@@ -190,7 +190,7 @@
               <select
                 :disabled="!isAdmin"
                 class="custom-select"
-                v-model="equipo.marca"
+                v-model="equipo.identificador_marca"
                 required
                 @change="setFlag(2)"
               >
@@ -198,7 +198,7 @@
                 <option
                   v-for="brand in brands"
                   :key="'brand-'+brand.identificador"
-                  :selected="brand.nombre === equipo.marca"
+                  :selected="brand.identificador === equipo.identificador_marca"
                   :value="brand.identificador"
                 >{{brand.nombre}}</option>
               </select>
@@ -596,7 +596,14 @@ export default {
     },
 
     updateDevice() {
-      let equipo = { ...this.equipo, cliente: this.cliente.identificador };
+      let {identificador_marca, identificador_nombre, identificador, modelo} = this.equipo;
+      let equipo = {
+        marca: identificador_marca,
+        nombre: identificador_nombre,
+        identificador,
+        cliente: this.cliente.identificador,
+        modelo
+      }
       console.log(equipo);
       axios
         .patch("/api/devices/" + this.equipo.identificador, equipo)
@@ -644,7 +651,6 @@ export default {
     },
 
     updateOrder() {
-      console.log(this.recepcion);
       axios
         .patch("/api/orders/" + this.recepcion.orden, {
           fechaCreacion: this.recepcion.fecha,
@@ -661,6 +667,13 @@ export default {
     },
 
     saveChanges() {
+      this.$emit('prompt', {
+        title: '¿Seguro?',
+        message: 'los datos de la orden se modificaran de forma permanente',
+        confirmHandler:  () => {
+          console.log('actualizar orden')
+        }
+      })
       this.$emit("loading-data", true);
       //Update Client
       if (this.flags[0]) {
