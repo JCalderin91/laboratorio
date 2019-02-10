@@ -22,6 +22,10 @@
 							</tr>
 						</thead>
 						<tbody>
+							<tr v-if="!filterOrders.length">
+				        <td colspan="6" class="text-center">No se econtraron coincidencias.</td>
+				      </tr>
+
 							<tr v-for="order in filterOrders" :key="order.identificador">
 								<td>LAB-{{order.codigo}}</td>
 								<td>{{order.cliente.data.cedula}}</td>

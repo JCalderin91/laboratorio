@@ -20,3 +20,7 @@ mix.copy('node_modules/axios/dist/axios.min.js','public/js/axios.min.js');
 //Sweetalert2
 mix.copy('node_modules/sweetalert2/dist/sweetalert2.min.js','public/js/sweetalert2.min.js');
 mix.copy('node_modules/sweetalert2/dist/sweetalert2.min.css','public/css/sweetalert2.min.css');
+
+
+mix.copy('node_modules/air-datepicker/dist/js/datepicker.min.js','public/js/datepicker.min.js');
+mix.copy('node_modules/air-datepicker/dist/css/datepicker.min.css','public/css/datepicker.min.css');

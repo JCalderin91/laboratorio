@@ -26,9 +26,10 @@
               <label>Contraseña</label>
               <input
                 placeholder="Contraseña"
-                v-model="editAccount.clave"
+                v-model="editAccount.contrasena_actual"
                 type="password"
                 class="form-control">
+                <message-error :message="errors.contrasena"></message-error>  
             </div>
           </div>
 
@@ -36,10 +37,10 @@
             <div class="form-group">
               <label>Nueva contraseña</label>
               <input
-                v-model="newPass"
+                v-model="editAccount.contrasena"
                 placeholder="Nueva contraseña"
                 type="password"
-                :class="[ verifyPassword == true ? 'is-valid' : 'is-invalid' ]"
+                :class="[ varifyPass == true ? 'is-valid' : 'is-invalid' ]"
                 class="form-control">
             </div>
           </div>
@@ -48,10 +49,10 @@
             <div class="form-group">
               <label>Confirmar contraseña</label>
               <input
-                v-model="verifyPass"
+                v-model="editAccount.confirmacion"
                 placeholder="Confirmar contraseña"
                 type="password"
-                :class="[ verifyPassword == true ? 'is-valid' : 'is-invalid' ]"
+                :class="[ varifyPass == true ? 'is-valid' : 'is-invalid' ]"
                 class="form-control">
             </div>
           </div>
@@ -59,7 +60,7 @@
           <div class="col-12">
             <div class="d-flex justify-content-end">
               <button @click.prevent="cancelEdit()" class="m-1 btn btn-secondary">Cancelar</button>
-              <button class="m-1 btn btn-primary">Guardar</button>
+              <button @click.prevent="saveAccount()" class="m-1 btn btn-primary">Guardar</button>
             </div>
           </div>
         </div>
@@ -86,7 +87,7 @@
                   <a
                     @click.prevent="editHandler(acount)"
                     title="Editar cuenta"
-                    class="text-info">  
+                    class="text-dark">  
                       <small><i class="fas fa-pen" style="cursor: pointer;"></i></small>
                   </a>
                </td>
@@ -99,7 +100,12 @@
 </template>
 
 <script>
+  import MessageError from '../partials/messageError'
+
   export default {
+    components: {
+      MessageError
+    },
     name: 'configurations',
     data() {
       return {
@@ -107,11 +113,13 @@
         accounts: '',
         editing: false,
         editAccount: {
+          identificador: '',
           usuario: '',
-          clave: '',
+          contrasena_actual: '',
+          confirmacion: '',
+          contrasena: ''
         },
-        verifyPass: '',
-        newPass: ''
+        errors: []
       }
     },
     mounted(){
@@ -120,26 +128,57 @@
     methods: {
       editHandler(user) {
         this.editing = true
+        this.editAccount.identificador = user.identificador
         this.editAccount.usuario = user.usuario
-        this.editAccount.clave = '*******'
+        this.editAccount.contrasena_actual = '*******'
       },
       cancelEdit() {
         this.editing = false
+        this.identificador.usuario = ''
         this.editAccount.usuario = ''
-        this.editAccount.clave = ''
-        this.newPass = ''
-        this.verifyPass = ''
+        this.editAccount.contrasena_actual = ''
+        this.editAccount.contrasena = ''
+        this.editAccount.confirmacion = ''
       },
       getAccounts(){
         axios
           .get("/api/accounts")
           .then(response => {this.accounts = response.data.data})
           .catch(error => {console.log(error)});
+      },
+      saveAccount(){
+        axios
+          .put("/api/accounts/"+this.editAccount.identificador,this.editAccount)
+             .then((response) => {
+                   console.log(response.data)
+              })
+              .catch((error) => {
+                  // Error
+                  if (error.response) {
+                    console.log('error.response')
+                    console.log(error.response.data.error)
+                    this.errors = error.response.data.error
+                      // The request was made and the server responded with a status code
+                      // that falls out of the range of 2xx
+                      // console.log(error.response.data);
+                      // console.log(error.response.status);
+                      // console.log(error.response.headers);
+                  } else if (error.request) {
+                      // The request was made but no response was received
+                      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
+                      // http.ClientRequest in node.js
+                      console.log('error.request');
+                      console.log(error.request);
+                  } else {
+                      // Something happened in setting up the request that triggered an Error
+                      console.log('Error', error.message);
+                  }
+            });
       }
     },
     computed: {
-      verifyPassword: function () {
-        if(this.newPass === this.verifyPass && this.newPass != ''){
+      varifyPass: function () {
+        if(this.editAccount.contrasena === this.editAccount.confirmacion && this.editAccount.contrasena != ''){
           return true
         }
         else{
