@@ -52,7 +52,7 @@ class OrderRepairController extends ApiController
 
             $repair->order_id = $order->id;
 
-            if($request->has('created')){
+            if($request->has('created') && !empty($request->created)){
 
                 $dateTime = Carbon::parse($request->created);
                 $repair->created = $dateTime->format('Y-m-d H:i:s');
@@ -104,7 +104,7 @@ class OrderRepairController extends ApiController
     {
         $repair->fill($request->except('created'));
 
-        if($request->has('created')){
+        if($request->has('created') && !empty($request->created)){
 
             $dateTime = Carbon::parse($request->created);
             $repair->created = $dateTime->format('Y-m-d H:i:s');

@@ -48,8 +48,8 @@ class ClientStoreRequest extends FormRequest
             'phone.regex' => 'El telefono solo debe contener numeros.',
             'phone.max' => 'El telefono solo debe contener :max caracteres',
             'phone.min' => 'El telefono solo debe contener :min caracteres',
-            'area_id.required' => 'Esta campo no puede estar vacío',
-            'address_id.required' => 'Esta campo no puede estar vacío'
+            'area_id.required' => 'Elcampo no puede estar vacío',
+            'address_id.required' => 'El campo no puede estar vacío'
         ];
     }
 }

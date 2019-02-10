@@ -31,6 +31,7 @@ class ClientUpdateRequest extends FormRequest
             'last_name'  => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'phone'      => 'nullable|regex:/^[0-9]*$/|max:11|min:11',
             'area_id'    => 'required',
+            'address_id' => 'required',
         ];
     }
 
@@ -51,7 +52,8 @@ class ClientUpdateRequest extends FormRequest
             'phone.regex' => 'El telefono solo debe contener numeros.',
             'phone.max' => 'El telefono solo debe contener :max caracteres',
             'phone.min' => 'El telefono solo debe contener :min caracteres',
-            'area_id' => 'Esta campo no puede estar vacío'   
+            'area_id.required' => 'Elcampo no puede estar vacío',
+            'address_id.required' => 'El campo no puede estar vacío'   
         ];
     }
 }

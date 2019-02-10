@@ -30,7 +30,7 @@ class OrderDeliveryController extends ApiController
     {
         $order->fill($request->except('delivery_date'));
 
-        if($request->has('delivery_date')){
+        if($request->has('delivery_date') && !empty($request->delivery_date)){
 
             $dateTime = Carbon::parse($request->delivery_date);
             $order->delivery_date = $dateTime->format('Y-m-d H:i:s');
@@ -68,7 +68,7 @@ class OrderDeliveryController extends ApiController
     {
         $order->fill($request->except(['delivery_date', 'serial']));
 
-        if($request->has('delivery_date')){
+        if($request->has('delivery_date') && !empty($request->delivery_date)){
 
             $dateTime = Carbon::parse($request->delivery_date);
             $order->delivery_date = $dateTime->format('Y-m-d H:i:s');
