@@ -26,7 +26,7 @@ class RepairStoreRequest extends FormRequest
     {
         return [
             'user_id' => 'required|integer', 
-            'status' => 'in:' . Repair::ORDER_REPAIRED . ',' . Repair::ORDER_WITHOUT_REPAIR, 
+            'status' => 'required|in:' . Repair::ORDER_REPAIRED . ',' . Repair::ORDER_WITHOUT_REPAIR, 
             'description' => 'string', 
         ];
     }

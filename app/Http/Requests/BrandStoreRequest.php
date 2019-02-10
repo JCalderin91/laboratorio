@@ -32,7 +32,7 @@ class BrandStoreRequest extends FormRequest
     {
         return [
             'title.unique' => 'La marca ya ha sido registrada',
-            'title.required' => 'El campo no puede estar vacio',
+            'title.required' => 'El campo no puede estar vacío',
             
         ];
     }

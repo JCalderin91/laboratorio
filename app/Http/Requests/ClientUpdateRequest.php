@@ -38,6 +38,7 @@ class ClientUpdateRequest extends FormRequest
     {
         return [
             'ci.required' => 'El campo no puede estar vacío.',
+            'ci.unique' => 'La cedula ya ha sido registrada',
             'ci.regex' => 'La cedula solo debe contener numeros.',
             'ci.min' => 'La cedula debe tener minimo :min caracteres.',
             'ci.max' => 'La cedula debe tener maximo :max caracteres.',
@@ -50,7 +51,7 @@ class ClientUpdateRequest extends FormRequest
             'phone.regex' => 'El telefono solo debe contener numeros.',
             'phone.max' => 'El telefono solo debe contener :max caracteres',
             'phone.min' => 'El telefono solo debe contener :min caracteres',
-            'area_id' => 'Esta campo no puede estar vacio'   
+            'area_id' => 'Esta campo no puede estar vacío'   
         ];
     }
 }

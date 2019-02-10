@@ -25,7 +25,7 @@ class AreaUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => Rule::unique('areas')->ignore($this->area),
+            'name' => ['required',Rule::unique('areas')->ignore($this->area)],
         ];
     }
 
@@ -33,7 +33,8 @@ class AreaUpdateRequest extends FormRequest
     {
         return [
             'name.unique' => 'La area ya ha sido registrada',
-            
+            'name.required' => 'El campo no puede estar vacío',
+          
         ];
     }
 

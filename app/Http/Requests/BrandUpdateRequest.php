@@ -25,7 +25,7 @@ class BrandUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => Rule::unique('brands')->ignore($this->brand),
+            'title' => ['required',Rule::unique('brands')->ignore($this->brand)],
         ];
     }
 
@@ -33,7 +33,7 @@ class BrandUpdateRequest extends FormRequest
     {
         return [
             'title.unique' => 'La marca ya ha sido registrada',
-            'title.required' => 'El campo no puede estar vacio',
+            'title.required' => 'El campo no puede estar vacío',
             
         ];
     }
