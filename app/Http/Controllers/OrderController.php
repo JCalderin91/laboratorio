@@ -102,7 +102,7 @@ class OrderController extends ApiController
                 'status' => Order::ORDER_PENDING, 
             ]);
     
-            if($request->has('arrival_date')){
+            if($request->has('arrival_date') && !empty($request->arrival_date)){
     
                 $dateTime = Carbon::parse($request->arrival_date);
                 $order->arrival_date = $dateTime->format('Y-m-d H:i:s');
@@ -150,15 +150,15 @@ class OrderController extends ApiController
     {
        $order->fill($request->except(['arrival_date', 'serial']));
 
-       if($request->has('arrival_date')){
+       if($request->has('arrival_date') && !empty($request->arrival_date)){
 
-            $dateTime = Carbon::parse($request->created);
-            $repair->created = $dateTime->format('Y-m-d H:i:s');
+            $dateTime = Carbon::parse($request->arrival_date);
+            $order->arrival_date = $dateTime->format('Y-m-d H:i:s');
         }
 
         $order->save();
 
-        $this->showOne($order);
+        return $this->showOne($order);
     }
 
     /**
