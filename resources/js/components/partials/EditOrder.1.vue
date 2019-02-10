@@ -130,9 +130,9 @@
                 <option
                   v-for="address in addresses"
                   :key="'addr-'+address.identificador"
-                  :selected="address.nombre === cliente.nombre_direccion"
+                  :selected="address.nombre_direccion === cliente.nombre_direccion"
                   :value="address.identificador"
-                >{{address.nombre}}</option>
+                >{{address.nombre_direccion}}</option>
               </select>
             </div>
           </div>
@@ -152,9 +152,9 @@
                 <option
                   v-for="area in areas"
                   :key="'area-'+area.identificador"
-                  :selected="area.nombre === cliente.nombre_area"
+                  :selected="area.nombre_area === cliente.nombre_area"
                   :value="area.identificador"
-                >{{area.nombre}}</option>
+                >{{area.nombre_area}}</option>
               </select>
             </div>
           </div>
@@ -171,13 +171,13 @@
                 class="custom-select"
                 v-model="equipo.nombre"
                 required
-                @change="setFlag(1)"
+                @change="setFlag(2)"
               >
                 <option value>Selecione una dispositivo</option>
                 <option
                   v-for="device in devices"
                   :key="'dev-'+device.identificador"
-                  :selected="device.nombre === equipo.nombre"
+                  :selected="device.identificador === equipo.nombre"
                   :value="device.identificador"
                 >{{device.nombre}}</option>
               </select>
@@ -192,7 +192,7 @@
                 class="custom-select"
                 v-model="equipo.marca"
                 required
-                @change="setFlag(1)"
+                @change="setFlag(2)"
               >
                 <option value>Selecione una marca</option>
                 <option
@@ -214,7 +214,7 @@
                 type="text"
                 class="form-control"
                 required
-                @input="setFlag(1)"
+                @input="setFlag(2)"
               >
             </div>
           </div>
@@ -228,7 +228,7 @@
                 type="text"
                 class="form-control"
                 required
-                @input="setFlag(1)"
+                @input="setFlag(2)"
               >
             </div>
           </div>
@@ -449,7 +449,7 @@ export default {
       users: [],
       areas: [],
       isAdmin: this.$session.get("isAdmin"),
-      flags: [0, 0, 0, 0]
+      flags: [0, 0, 0, 0, 0]
     };
   },
   created() {
@@ -477,7 +477,7 @@ export default {
           let data = response.data.data;
           this.cliente = data.cliente.data;
           this.equipo = data.equipo.data;
-          this.equipo.nombre = this.equipo.identificador;
+          console.log(this.equipo)
 
           //REVISION
           if (data.reparacion) {
@@ -611,7 +611,9 @@ export default {
     updateRepair() {
       axios
         .patch(
-          "/api/orders/${this.recepcion.orden}/repairs/" +
+          "/api/orders/" +
+            this.recepcion.orden +
+            "/repairs/" +
             this.revision.identificador,
           { ...this.revision, orden: this.recepcion.orden }
         )
@@ -641,6 +643,23 @@ export default {
         });
     },
 
+    updateOrder() {
+      console.log(this.recepcion);
+      axios
+        .patch("/api/orders/" + this.recepcion.orden, {
+          fechaCreacion: this.recepcion.fecha,
+          tecnico: this.recepcion.tecnico
+        })
+        .then(res => {
+          console.log("updated order");
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.log("failed to update order")
+          console.log(err);
+        });
+    },
+
     saveChanges() {
       this.$emit("loading-data", true);
       //Update Client
@@ -649,16 +668,20 @@ export default {
         this.flags[0] = 0;
       }
       if (this.flags[1]) {
-        this.updateDevice();
+        this.updateOrder();
         this.flags[1] = 0;
       }
       if (this.flags[2]) {
-        this.updateRepair();
+        this.updateDevice();
         this.flags[2] = 0;
       }
       if (this.flags[3]) {
-        this.updateDelivery();
+        this.updateRepair();
         this.flags[3] = 0;
+      }
+      if (this.flags[4]) {
+        this.updateDelivery();
+        this.flags[4] = 0;
       }
     }
   }

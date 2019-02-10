@@ -61,7 +61,7 @@
                 <label>Direcciones</label>
                 <select class="custom-select" v-model="client.address" required>
                   <option value="">Selecione una dirección</option>
-                  <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre }}</option>
+                  <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre_direccion }}</option>
                 </select>
               </div>
             </div><!-- Direcciones -->
@@ -78,7 +78,7 @@
                 <label>Área</label>
                 <select class="custom-select" v-model="client.area" required>
                   <option value="">Selecione una area</option>
-                  <option v-for="area in areas" :value="area.identificador">{{ area.nombre }}</option>
+                  <option v-for="area in areas" :value="area.identificador">{{ area.nombre_area }}</option>
                 </select>
               </div>
             </div><!-- Area -->

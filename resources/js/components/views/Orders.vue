@@ -40,7 +40,7 @@
             <tr v-for="order in filterOrders" :key="'ord-'+order.identificador">
               <td>LAB-{{order.codigo}}</td>
               <td>{{order.cliente.data.cedula}}</td>
-              <td>{{order.equipo.data.nombre}}</td>
+              <td>{{order.equipo.data.subDevice}}</td>
               <td>{{order.fechaCreacion.split(' ')[0]}}</td>
               <td>
                 <span v-if="order.estado === 'pendiente'" class="badge badge-danger">Pendiente</span>

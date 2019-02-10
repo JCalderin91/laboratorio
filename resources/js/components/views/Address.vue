@@ -67,7 +67,7 @@
                     v-for="address in filterAddresses"
                     :key="address.identificador"
                   >
-                    <td>{{ address.nombre }}</td>
+                    <td>{{ address.nombre_direccion }}</td>
                     <td>
                       <a @click.prevent="editAddress" href="#" style="color: black;" title="Editar Dirección">
                         <small><i :id="address.identificador" class="fas fa-pen"></i></small>
@@ -155,7 +155,7 @@
                 </thead>
                 <tbody class="text-center">
                   <tr v-for="area in filterAreas" :key="area.identificador">
-                    <td>{{ area.nombre }}</td>
+                    <td>{{ area.nombre_area }}</td>
                     <td>
                       <a
                         href="#"
