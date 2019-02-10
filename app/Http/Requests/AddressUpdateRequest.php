@@ -25,7 +25,7 @@ class AddressUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => Rule::unique('addresses')->ignore($this->address),
+            'name' => ['required',Rule::unique('addresses')->ignore($this->address)],
         ];
     }
 
@@ -33,7 +33,7 @@ class AddressUpdateRequest extends FormRequest
     {
         return [
             'name.unique' => 'La direccion ya ha sido registrada',
-            
+            'name.required' => 'El campo no puede estar vacío',    
         ];
     }
 }

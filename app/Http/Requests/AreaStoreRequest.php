@@ -32,7 +32,7 @@ class AreaStoreRequest extends FormRequest
     {
         return [
             'name.unique' => 'La area ya ha sido registrada',
-            'name.required' => 'El campo no puede estar vacio',
+            'name.required' => 'El campo no puede estar vacío',
             
         ];
     }

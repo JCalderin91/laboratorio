@@ -37,14 +37,15 @@ class UserUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'ci.required' => 'El campo no puede estar vacio.',
+            'ci.required' => 'El campo no puede estar vacío.',
+            'ci.unique' => 'La cedula ya ha sido registrada',
             'ci.regex' => 'La cedula solo debe contener numeros.',
             'ci.min' => 'La cedula debe tener minimo :min caracteres.',
             'ci.max' => 'La cedula debe tener maximo :max caracteres.',
             'first_name.regex' =>'El nombre solo puede contener letras.',
             'last_name.regex' => 'El apellido solo puede contener letras.',
-            'first_name.required' =>'El campo no puede estar vacio.',
-            'last_name.required' => 'El campo no puede estar vacio.',
+            'first_name.required' =>'El campo no puede estar vacío.',
+            'last_name.required' => 'El campo no puede estar vacío.',
         ];
     }
 }

@@ -33,7 +33,8 @@ class OrderStoreRequest extends FormRequest
             'description' => 'string|nullable',
             'user_id'     => 'required|integer',
             'device_id'     => 'nullable|integer',
-
+            'name' => 'required',
+            'title' => 'required',
 
         ];
     }
@@ -41,19 +42,22 @@ class OrderStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'ci.required' => 'El campo no puede estar vacio.',
+            'ci.required' => 'El campo no puede estar vacío.',
             'ci.regex' => 'La cedula solo debe contener numeros.',
             'ci.min' => 'La cedula debe tener minimo :min caracteres.',
             'ci.max' => 'La cedula debe tener maximo :max caracteres.',
             'first_name.regex' =>'El nombre solo puede contener letras.',
             'last_name.regex' => 'El apellido solo puede contener letras.',
-            'first_name.required' =>'El campo no puede estar vacio.',
-            'last_name.required' => 'El campo no puede estar vacio.',
+            'first_name.required' =>'El campo no puede estar vacío.',
+            'last_name.required' => 'El campo no puede estar vacío.',
             'phone.regex' => 'El telefono solo debe contener numeros.',
             'phone.max' => 'El telefono solo debe contener :max caracteres',
             'phone.min' => 'El telefono solo debe contener :min caracteres',
-            'title.required' => 'El campo no puede estar vacio',
-            
+            'area_id.required' => 'Esta campo no puede estar vacío',
+            'address_id.required' => 'Esta campo no puede estar vacío',
+            'name.required' => 'Esta campo no puede estar vacío',
+            'title.required' => 'Esta campo no puede estar vacío',
+            'user_id.required'  => 'Esta campo no puede estar vacío',
         ];
     }
     
