@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/datatable.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/daterangepicker.min.css') }}">
   <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 </head>
@@ -23,8 +22,6 @@
 	<script src="{{asset('js/axios.min.js')}}"></script>
 	<script src="{{asset('js/bootstrap.min.js')}}"></script>
 	<script src="{{asset('js/sweetalert2.min.js')}}"></script>
-	<script src="{{asset('js/moment.min.js')}}"></script>
-	<script src="{{asset('js/daterangepicker.min.js')}}"></script>
 	<script src="{{asset('js/app.js')}}"></script>
 	<script src="{{asset('js/script.js')}}"></script>
 </body>

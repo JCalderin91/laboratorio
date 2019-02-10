@@ -14,14 +14,14 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label >Fecha Final</label>
-						<input v-model="to" type="date" class="form-control" placeholder="Selecione una fecha" required>
+						<input  v-model="to" type="date" class="form-control" placeholder="Selecione una fecha" required>
 					</div>
 				</div>
 
 				<div class="col-md-6">
 					<div class="form-group">
 						<label for="">Usuario resposable de las ordenes</label>
-						<select @change="changeUser" v-model="user_id" name="" id="" class="form-control" required>
+						<select @change="changeUser" v-model="user_id" name="" id="" class="custom-select" required>
 							<option value="">seleccione un usuario</option>
 							<option value="all">Todos</option>
 							<option v-for="user in users" :value="user.identificador">{{user.cedula}} - {{ user.nombre }}</option>
@@ -32,7 +32,7 @@
 				<div class="col-md-6">
 					<div class="form-group">
 						<label>Estado de orden</label>
-						<select v-model="status" name="" id="" class="form-control" required>
+						<select v-model="status" name="" id="" class="custom-select" required>
 							<option value="">Seleccione un estado</option>
 							<option v-for="item in statuses" :value="item.value">{{ item.name }}</option>
 						</select>

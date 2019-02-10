@@ -17,7 +17,7 @@
        
             <div class="col-6"><!-- Cedula Nuevo Cliente -->
               <label>Cédula</label>
-              <div class="input-group">
+              <div class="form-group">
                 <input
                   @keypress.enter.prevent="searchClient"
                   @blur="searchClient"
@@ -28,6 +28,7 @@
                   placeholder="Cedula del cliente"
                   aria-label="Cedula del cliente"
                   required>
+                  <message-error :message="errors.cedula"></message-error> 
               </div>
             </div><!-- Cedula Nuevo Cliente -->
 
@@ -35,6 +36,7 @@
               <div class="form-group">
                 <label>Nombres</label>
                 <input :disabled="!newClient" v-model="client.first_name" type="text" class="form-control" required>
+                <message-error :message="errors.nombres"></message-error> 
               </div>
             </div><!-- Nombres -->
 
@@ -42,6 +44,7 @@
               <div class="form-group">
                 <label>Apellidos</label>
                 <input :disabled="!newClient" v-model="client.last_name" type="text" class="form-control" required>
+                <message-error :message="errors.apellidos"></message-error> 
               </div>
             </div><!-- Apellidos -->
 
@@ -49,6 +52,7 @@
               <div class="form-group">
                 <label>Teléfono</label>
                 <input :disabled="!newClient" v-model="client.phone" type="text" class="form-control" required>
+                <message-error :message="errors.telefono"></message-error> 
               </div>
             </div><!-- Teléfono -->
     
@@ -121,6 +125,8 @@
                   <option value="">Selecione un dispositivo</option>
                   <option v-for="name in nameDevices" :value="name.nombre" >{{ name.nombre }}</option>
                 </select>
+                
+                <message-error :message="errors.nombre"></message-error> 
 
               </div>
             </div><!-- Nombre del dispositivo -->
@@ -242,7 +248,13 @@
 
 <script>
   import SetUser from '../partials/SetUser'
+  import MessageError from '../partials/messageError'
   export default {
+
+    components:{
+      SetUser,
+      MessageError
+    },
     name: 'Service',
     data(){
       return {
@@ -278,6 +290,7 @@
         nameDevices:'',
         brands:'',
         users: [],
+        errors: []
       }
     },
     created(){
@@ -462,20 +475,20 @@
             })
           })
           .catch(error => {
-            console.log(error)
-            Swal({
-              type: 'error',
-              title: 'Alerta',
-              text: error,
-              confirmButtonText: 'Continuar',
-            })
+            if (error.response) {
+              console.log('error.response')
+              console.log(error.response.data.error)
+              this.errors = error.response.data.error
+            } else if (error.request) {
+                console.log('error.request');
+                console.log(error.request);
+            } else {
+                console.log('Error', error.message);
+            }
           })
       }
 
     },
-    components:{
-      SetUser
-    }
   }
 
 </script>
