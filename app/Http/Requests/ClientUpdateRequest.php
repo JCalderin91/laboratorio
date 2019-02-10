@@ -50,7 +50,7 @@ class ClientUpdateRequest extends FormRequest
             'phone.regex' => 'El telefono solo debe contener numeros.',
             'phone.max' => 'El telefono solo debe contener :max caracteres',
             'phone.min' => 'El telefono solo debe contener :min caracteres',
-            
+            'area_id' => 'Esta campo no puede estar vacio'   
         ];
     }
 }

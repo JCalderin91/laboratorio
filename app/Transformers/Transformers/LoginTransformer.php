@@ -30,7 +30,7 @@ class LoginTransformer extends TransformerAbstract
             'usuario' => 'username',
             'esAdministrador' => 'admin',
             'contrasena' => 'password',
-            'confirmacion' => 'password_confirmation'
+           
         ];
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
