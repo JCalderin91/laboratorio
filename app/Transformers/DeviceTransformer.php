@@ -18,7 +18,9 @@ class DeviceTransformer extends TransformerAbstract
     {
         return [
             'identificador' => (int)$device->id,
+            'identificador_nombre' => $device->subDevice->id,
             'nombre' => $device->subDevice->name,
+            'identificador_marca' => $device->brand->id,
             'marca' => $device->brand->title,
             //'cliente' => (int)$device->client_id,
             'modelo' => $device->model,
