@@ -11,15 +11,19 @@
         <h4 v-else>Registro de usuarios</h4>
       </div>
       <div class="col-12 row" v-if="!userForm">
-        <button
-          @click.prevent="userForm = !userForm"
-          v-if="!userForm && isAdmin"
-          class="btn btn-primary text-white"
-        >
-          <i class="fas fa-plus"></i>
-        </button>
+          
+        <input type="text" class="form-control col-4" placeholder="Buscar...">
+        <div class="col-8">
+          <button
+            @click.prevent="userForm = !userForm"
+            v-if="!userForm && isAdmin"
+            class="btn btn-primary text-white"
+          >
+            <i class="fas fa-plus"></i>
+          </button>
+        </div>
         
-        <input type="text" class="form-control col-4 ml-auto" placeholder="Buscar...">
+
         <user-list :users="users" :edit="editUser" @edit.stop="toggleForm"></user-list>
       </div>
 

@@ -29,7 +29,7 @@
 			setNameUser(event){
         for (let i = 0; i <= this.users.length; i++) {
           if (this.users[i].identificador == this.idUser) {
-            this.nameUser = this.users[i].apellido+', '+this.users[i].nombre
+            this.nameUser = this.users[i].apellidos+', '+this.users[i].nombres
             this.idUser = this.users[i].identificador
             eventBus.$emit('idUser', this.users[i].identificador)
             break

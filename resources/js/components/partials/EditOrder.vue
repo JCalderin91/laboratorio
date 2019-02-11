@@ -64,9 +64,9 @@
                 class="form-control"
                 placeholder="Cedula del cliente"
                 aria-label="Cedula del cliente"
-                disabled
-                required
+                :class="[ errors.cedula ? 'is-invalid' : '' ]" 
               >
+              <message-error :message="errors.cedula"></message-error>
             </div>
           </div>
           <!-- Cedula Nuevo Cliente -->
@@ -79,9 +79,10 @@
                 v-model="cliente.nombres"
                 type="text"
                 class="form-control"
-                required
+                :class="[ errors.nombres ? 'is-invalid' : '' ]"  
                 @input="setFlag(0)"
               >
+              <message-error :message="errors.nombres"></message-error>
             </div>
           </div>
           <!-- Nombres -->
@@ -94,9 +95,10 @@
                 v-model="cliente.apellidos"
                 type="text"
                 class="form-control"
-                required
+                :class="[ errors.apellidos ? 'is-invalid' : '' ]"   
                 @input="setFlag(0)"
               >
+              <message-error :message="errors.apellidos"></message-error>
             </div>
           </div>
           <!-- Apellidos -->
@@ -109,9 +111,10 @@
                 v-model="cliente.telefono"
                 type="text"
                 class="form-control"
-                required
+                :class="[ errors.telefono ? 'is-invalid' : '' ]"  
                 @input="setFlag(0)"
               >
+               <message-error :message="errors.telefono"></message-error>
             </div>
           </div>
           <!-- Teléfono -->
@@ -119,7 +122,7 @@
             <!-- Direcciones -->
             <div class="form-group">
               <label>Dirección</label>
-              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
+              <select :disabled="!isAdmin" class="custom-select" :class="[ errors.identificador_direccion ? 'is-invalid' : '' ]"  @change="setFlag(0)">
                 <option value>Selecione una dirección</option>
                 <option
                   v-for="address in addresses"
@@ -128,6 +131,7 @@
                   :value="address.identificador"
                 >{{address.nombre}}</option>
               </select>
+              <message-error :message="errors.identificador_direccion"></message-error>
             </div>
           </div>
           <!-- Direcciones -->
@@ -135,7 +139,7 @@
             <!-- Area -->
             <div class="form-group">
               <label>Área</label>
-              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
+              <select :disabled="!isAdmin" class="custom-select"                 :class="[ errors.identificador_area ? 'is-invalid' : '' ]" @change="setFlag(0)">
                 <option value>Selecione una area</option>
                 <option
                   v-for="area in areas"
@@ -144,6 +148,7 @@
                   :value="area.identificador"
                 >{{area.nombre}}</option>
               </select>
+              <message-error :message="errors.identificador_area"></message-error>
             </div>
           </div>
           <!-- Area -->
@@ -363,10 +368,15 @@
 
 <script>
 export default {
+  import MessageError from '../partials/messageError';
   name: "edit-order",
   props: ["id"],
+  components:{
+    MessageError
+  },
   data() {
     return {
+      errors: [],
       cliente: "",
       equipo: "",
       reparacion: "",
@@ -421,9 +431,9 @@ export default {
           );
 
           this.tecnico =
-            this.reparacion.tecnico.data.nombre +
+            this.reparacion.tecnico.data.nombres +
             " " +
-            this.reparacion.tecnico.data.apellido;
+            this.reparacion.tecnico.data.apellidos;
 
           this.entrega = {
             cedulaEntrega: response.data.data.cedulaEntrega,
