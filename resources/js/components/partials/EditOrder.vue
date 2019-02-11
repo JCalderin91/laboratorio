@@ -64,9 +64,9 @@
                 class="form-control"
                 placeholder="Cedula del cliente"
                 aria-label="Cedula del cliente"
-                :class="[ errors.cedula ? 'is-invalid' : '' ]"           
+                disabled
+                required
               >
-              <message-error :message="errors.cedula"></message-error> 
             </div>
           </div>
           <!-- Cedula Nuevo Cliente -->
@@ -79,11 +79,9 @@
                 v-model="cliente.nombres"
                 type="text"
                 class="form-control"
-                
+                required
                 @input="setFlag(0)"
-                :class="[ errors.cedulanombres ? 'is-invalid' : '' ]"           
               >
-              <message-error :message="errors.nombres"></message-error> 
             </div>
           </div>
           <!-- Nombres -->
@@ -96,11 +94,9 @@
                 v-model="cliente.apellidos"
                 type="text"
                 class="form-control"
-                
+                required
                 @input="setFlag(0)"
-                :class="[ errors.apellidos ? 'is-invalid' : '' ]"           
               >
-              <message-error :message="errors.apellidos"></message-error> 
             </div>
           </div>
           <!-- Apellidos -->
@@ -113,11 +109,9 @@
                 v-model="cliente.telefono"
                 type="text"
                 class="form-control"
-                
+                required
                 @input="setFlag(0)"
-                :class="[ errors.telefono ? 'is-invalid' : '' ]"           
               >
-              <message-error :message="errors.telefono"></message-error> 
             </div>
           </div>
           <!-- Teléfono -->
@@ -125,11 +119,7 @@
             <!-- Direcciones -->
             <div class="form-group">
               <label>Dirección</label>
-              <select
-                :disabled="!isAdmin"
-                class="custom-select"
-                :class="[ errors.nombre_direccion ? 'is-invalid' : '' ]" 
-                 @change="setFlag(0)">
+              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
                 <option value>Selecione una dirección</option>
                 <option
                   v-for="address in addresses"
@@ -138,7 +128,6 @@
                   :value="address.identificador"
                 >{{address.nombre}}</option>
               </select>
-              <message-error :message="errors.nombre_direccion"></message-error> 
             </div>
           </div>
           <!-- Direcciones -->
@@ -146,12 +135,7 @@
             <!-- Area -->
             <div class="form-group">
               <label>Área</label>
-              <select
-                :disabled="!isAdmin"
-                class="custom-select"
-                :class="[ errors.nombre_direccion ? 'is-invalid' : '' ]" 
-                
-                @change="setFlag(0)">
+              <select :disabled="!isAdmin" class="custom-select" required @change="setFlag(0)">
                 <option value>Selecione una area</option>
                 <option
                   v-for="area in areas"
@@ -160,7 +144,6 @@
                   :value="area.identificador"
                 >{{area.nombre}}</option>
               </select>
-              <message-error :message="errors.nombre_direccion"></message-error> 
             </div>
           </div>
           <!-- Area -->
@@ -172,7 +155,7 @@
           <div class="col-6">
             <div class="form-group">
               <label>Equipo</label>
-              <select :disabled="!isAdmin" class="custom-select" >
+              <select :disabled="!isAdmin" class="custom-select" required>
                 <option value>Selecione una dispositivo</option>
                 <option
                   v-for="device in devices"
@@ -187,7 +170,7 @@
           <div class="col-6">
             <div class="form-group">
               <label>Marca</label>
-              <select :disabled="!isAdmin" class="custom-select" >
+              <select :disabled="!isAdmin" class="custom-select" required>
                 <option value>Selecione una marca</option>
                 <option
                   v-for="brand in brands"
@@ -207,7 +190,7 @@
                 v-model="equipo.modelo"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -220,7 +203,7 @@
                 v-model="equipo.bienNacional"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -233,7 +216,7 @@
                 v-model="tecnicoRecepcion.nombre"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -246,7 +229,7 @@
                 v-model="equipo.bienNacional"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -263,7 +246,7 @@
                 type="date"
                 v-model="reparacion.fechaCreacion"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -276,7 +259,7 @@
                 v-model="estados[reparacion.estado]"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -289,7 +272,7 @@
                 v-model="tecnico"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -301,7 +284,7 @@
                 v-model="reparacion.detalle"
                 type="text"
                 class="form-control"
-                
+                required
                 style="resize: none"
               ></textarea>
             </div>
@@ -320,7 +303,7 @@
                 type="date"
                 v-model="entrega.fechaEntrega"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -333,7 +316,7 @@
                 v-model="entrega.cedulaEntrega"
                 type="text"
                 class="form-control"
-                
+                required
               >
               <input
                 :readonly="!isAdmin"
@@ -341,7 +324,7 @@
                 v-model="cliente.cedula"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -354,7 +337,7 @@
                 v-model="entrega.nombreEntrega"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -367,7 +350,7 @@
                 v-model="entrega.tecnicoEntrega"
                 type="text"
                 class="form-control"
-                
+                required
               >
             </div>
           </div>
@@ -379,14 +362,11 @@
 </template>
 
 <script>
-
-import MessageError from '../partials/messageError';
 export default {
   name: "edit-order",
   props: ["id"],
   data() {
     return {
-      errors: '',
       cliente: "",
       equipo: "",
       reparacion: "",
@@ -458,16 +438,7 @@ export default {
           this.getTec();
         })
         .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+          console.log(error);
         });
     },
     getUsers() {
@@ -538,9 +509,6 @@ export default {
       if (this.flags[2]) this.updateRevicion();
       if (this.flags[3]) this.updateDelivery();
     }
-  },
-  components: {
-    MessageError
   }
 };
 </script>

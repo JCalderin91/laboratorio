@@ -32,7 +32,9 @@ class UserController extends ApiController{
 
         $user = new User;
 
-        $user->fill($request->all());
+        $user->fill($request->except(['admin']));
+
+        $user->admin = User::USER_REGULAR;
 
         $user->save();
 

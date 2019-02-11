@@ -11,27 +11,19 @@
         <h4 v-else>Registro de usuarios</h4>
       </div>
       <div class="col-12 row" v-if="!userForm">
-
-        <input v-model="search" type="text" class="form-control col-4" placeholder="Buscar...">
-
-        <div class="col-8">
-          <button
-            @click.prevent="userForm = !userForm"
-            v-if="!userForm && isAdmin"
-            class="btn btn-primary text-white float-right"
-          >
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-
+        <button
+          @click.prevent="userForm = !userForm"
+          v-if="!userForm && isAdmin"
+          class="btn btn-primary text-white"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
         
-
-        <user-list :users="filteredUsers" :edit="editUser" @edit.stop="toggleForm"></user-list>
-
+        <input type="text" class="form-control col-4 ml-auto" placeholder="Buscar...">
+        <user-list :users="users" :edit="editUser" @edit.stop="toggleForm"></user-list>
       </div>
 
       <form v-else class="col-12 row" @submit.prevent="submit">
-        <message-error v-if="errors.length" class="col-12 alert-danger alert" :message="errors"></message-error> 
         <div class="form-group col-6">
           <label for="ci">Cedula:</label>
           <input
@@ -39,10 +31,10 @@
             type="text"
             name="ci"
             v-model="user.cedula"
+            :disabled="update"
             placeholder="Cedula"
-            :class="[ errors.cedula ? 'is-invalid' : '' ]"           
+            required
           >
-          <message-error :message="errors.cedula"></message-error> 
         </div>
         <div class="form-group col-6">
           <label for="first_name">Nombres:</label>
@@ -50,11 +42,10 @@
             class="form-control"
             type="text"
             name="first_name"
-            v-model="user.nombres"
-            placeholder="Nombres"            
-            :class="[ errors.nombres ? 'is-invalid' : '' ]" 
+            v-model="user.nombre"
+            placeholder="Nombres"
+            required
           >
-          <message-error :message="errors.nombres"></message-error> 
         </div>
         <div class="form-group col-6">
           <label for="last_name">Apellidos:</label>
@@ -62,44 +53,34 @@
             class="form-control"
             type="text"
             name="last_name"
-            v-model="user.apellidos"
+            v-model="user.apellido"
             placeholder="Apellidos"
-            :class="[ errors.apellidos ? 'is-invalid' : '' ]" 
+            required
           >
-          <message-error :message="errors.apellidos"></message-error> 
         </div>
 
         <div class="form-group col-6">
           <label for="role">Rol:</label>
           <select
-            class="custom-select"
+            class="form-control"
+            type="text"
             name="role"
-            v-model="user.esAdministrador"  
-            placeholder="Rol"
-            :class="[ errors.esAdministrador ? 'is-invalid' : '' ]" 
-          >          
+            v-model="user.esAdministrador"
+            required
+          >
             <option value>Seleccione un rol</option>
             <option value="true">Profesor</option>
             <option value="false">Técnico</option>
           </select>
-          <message-error :message="errors.esAdministrador"></message-error> 
         </div>
 
         <div class="form-group col-6">
           <label for="gender">Genero:</label>
-          <select
-            class="custom-select"
-            name="gender"
-            placeholder="Genero"
-            v-model="user.sexo"
-            :class="[ errors.sexo ? 'is-invalid' : '' ]"
-           >
+          <select class="form-control" type="text" name="gender" v-model="user.sexo" required>
             <option value>Seleccione un genero</option>
             <option value="F">Femenino</option>
             <option value="M">Masculino</option>
-          </select>          
-          
-          <message-error :message="errors.sexo"></message-error> 
+          </select>
         </div>
 
         <div class="col-12 float-right d-flex justify-content-end">
@@ -127,14 +108,10 @@
 
 <script>
 import UserList from "../partials/UserList";
-import MessageError from '../partials/messageError';
-
 export default {
   name: "users",
   data() {
     return {
-      search: '',
-      errors: [],
       userForm: false,
       update: false,
       users: [],
@@ -150,15 +127,6 @@ export default {
   computed: {
     isAdmin() {
       return this.$session.get("isAdmin");
-    },
-    filteredUsers: function() {
-      return this.users.filter(item => {
-        return (
-          item.cedula.includes(this.search) ||
-          item.nombres.toLowerCase().includes(this.search.toLowerCase()) ||
-          item.apellidos.toLowerCase().includes(this.search.toLowerCase())
-        );
-      });
     }
   },
   mounted() {
@@ -176,7 +144,6 @@ export default {
             this.userForm = false;
             this.update = false;
             this.clearUserData();
-            this.errors = []
           }
         });
       } else if (id == "create-cancel-button") {
@@ -215,20 +182,10 @@ export default {
           }).then(() => {
             this.clearUserData();
             this.userForm = false;
-            this.errors = []
           });
         })
         .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+          this.$emit("error", error);
         });
     },
     updateUser() {
@@ -247,20 +204,10 @@ export default {
           }).then(() => {
             this.clearUserData();
             this.userForm = false;
-            this.errors = []
           });
         })
         .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+          this.$emit("error", error);
         });
     },
     submit() {
@@ -284,8 +231,7 @@ export default {
     }
   },
   components: {
-    UserList,
-    MessageError
+    UserList
   }
 };
 </script>

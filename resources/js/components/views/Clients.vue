@@ -5,32 +5,27 @@
         <h4 v-if="!clientForm">Lista de los clientes</h4>
         <h4 v-else>Registro de clientes</h4>
       </div>
-
       <div class="col-12 row" v-if="!clientForm">
+        <button
+          @click.prevent="clientForm = !clientForm"
+          v-if="!clientForm"
+          class="btn btn-primary text-white btn-sm"
+          title="Registrar un cliente"
+        >
+          <i class="fas fa-plus"></i>
+        </button>
+        
         <input
           type="text"
-          class="form-control col-4"
+          class="form-control col-4 ml-auto"
           placeholder="Buscar..."
           v-model="search"
         >
-        <div class="col-8">
-          <button
-            @click.prevent="clientForm = !clientForm"
-            v-if="!clientForm"
-            class="btn btn-primary text-white float-right"
-            title="Registrar un cliente"
-          >
-            <i class="fas fa-plus"></i>
-          </button>
-        </div>
-        
-
         <client-list
           :clients="filteredClients"
           :editClickHandler="setClient"
           :deleteClickHandler="deleteClient"
         />
-        
       </div>
 
       <form v-else class="col-12 row" @submit.prevent="submit">
@@ -43,6 +38,7 @@
             name="ci"
             v-model="client.cedula"
             placeholder="cedula"
+            :readonly="update"
             :class="[ errors.cedula ? 'is-invalid' : '' ]"
           >
           <message-error :message="errors.cedula"></message-error> 
@@ -97,7 +93,7 @@
               v-for="address in addresses"
               :value="address.identificador"
               :key="address.identificador"
-            >{{address.nombre_direccion}}</option>
+            >{{address.nombre}}</option>
           </select>
           <message-error :message="errors.identificador_direccion"></message-error> 
         </div>
@@ -114,7 +110,7 @@
               v-for="area in areas"
               :value="area.identificador"
               :key="area.identificador"
-            >{{area.nombre_area}}</option>
+            >{{area.nombre}}</option>
           </select>
           <message-error :message="errors.identificador_area"></message-error> 
         </div>
@@ -167,10 +163,7 @@ export default {
 
         return (
           fullName.toLowerCase().includes(this.search.toLowerCase()) ||
-          item.cedula.includes(this.search) ||
-          item.nombre_area.toUpperCase().includes(this.search.toUpperCase()) ||
-          item.nombre_direccion.toUpperCase().includes(this.search.toUpperCase()) ||
-          item.telefono.includes(this.search) 
+          item.cedula.includes(this.search)
         );
       });
     }

@@ -29,8 +29,8 @@ class UserUpdateRequest extends FormRequest
             'ci'         =>  ['required','regex:/^[0-9]*$/','min:7', 'max:10',  Rule::unique('users')->ignore($this->user)],
             'first_name' => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
             'last_name'  => 'required|regex:/^[a-zA-Z\s]*$/|max:128',
-            'gender'     => 'required|in:M,F',
-            'admin' => 'required|in:' . User::USER_REGULAR . ',' . User::USER_ADMIN, 
+            'gender'     => 'in:M,F',
+            'admin' => 'in:' . User::USER_REGULAR . ',' . User::USER_ADMIN, 
         ];
     }
 
@@ -46,8 +46,6 @@ class UserUpdateRequest extends FormRequest
             'last_name.regex' => 'El apellido solo puede contener letras.',
             'first_name.required' =>'El campo no puede estar vacío.',
             'last_name.required' => 'El campo no puede estar vacío.',
-            'gender.required' => 'El campo no puede estar vacío.',
-            'admin.required' => 'El campo no puede estar vacío.',
         ];
     }
 }

@@ -89,8 +89,8 @@
                   <a
                     @click.prevent="editHandler(acount)"
                     title="Editar cuenta"
-                    class="btn-info btn">  
-                      <i class="fas fa-pen text-white"></i>
+                    class="text-dark">  
+                      <small><i class="fas fa-pen" style="cursor: pointer;"></i></small>
                   </a>
                </td>
             </tr>

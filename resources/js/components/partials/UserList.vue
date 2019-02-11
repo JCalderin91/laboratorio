@@ -14,8 +14,8 @@
     <tbody>
       <tr v-for="user in users" :key="user.identificador" class="text-center">
         <td>{{ user.cedula }}</td>
-        <td>{{ user.nombres }}</td>
-        <td>{{ user.apellidos }}</td>
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.apellido }}</td>
         <td>
           <span v-if="user.sexo === 'F'">Femenino</span>
           <span v-else>Masculino</span>
@@ -25,15 +25,24 @@
           <span v-else>Ténico</span>
         </td>
         <td>
-          <a class="btn btn-info" title="Editar usuario">
-            <i
+          <a class="btn-sm" title="Editar usuario">
+            <small>
+              <i
                 :id="user.cedula"
                 @click.prevent="edit(user.cedula)"
-                class="fas fa-pen text-white"
+                class="fas fa-pen"
+                style="cursor: pointer;"
               ></i>
+            </small>
           </a>
-          <a class="btn btn-danger" title="Eliminar usuario">
-            <i :id="user.cedula" class="fas fa-trash text-white"></i>
+          <a class="btn-sm" title="Eliminar usuario">
+            <small>
+              <i
+                :id="user.cedula"
+                class="fas fa-trash text-danger"
+                style="cursor: pointer;"
+              ></i>
+            </small>
           </a>
         </td>
       </tr>

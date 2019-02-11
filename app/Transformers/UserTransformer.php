@@ -17,8 +17,8 @@ class UserTransformer extends TransformerAbstract
         return [
             'identificador' => (int)$user->id,
             'cedula' => (string)$user->ci,
-            'nombres' => (string)$user->first_name,
-            'apellidos' => (string)$user->last_name,
+            'nombre' => (string)$user->first_name,
+            'apellido' => (string)$user->last_name,
             'esAdministrador' => ($user->admin === 'true'),
             'sexo' => (string)$user->gender,
            /* 'fechaCreacion' => (string)$area->created_at,
@@ -31,8 +31,8 @@ class UserTransformer extends TransformerAbstract
         $attributes = [
             'identificador' => 'id',
             'cedula' => 'ci',
-            'nombres' => 'first_name',
-            'apellidos' => 'last_name',
+            'nombre' => 'first_name',
+            'apellido' => 'last_name',
             'esAdministrador' => 'admin',
             'sexo' => 'gender',
         ];
@@ -45,8 +45,8 @@ class UserTransformer extends TransformerAbstract
         $attributes = [
             'id' => 'identificador',
             'ci' => 'cedula',
-            'first_name' => 'nombres',
-            'last_name' => 'apellidos',
+            'first_name' => 'nombre',
+            'last_name' => 'apellido',
             'gender' => 'sexo',
             'admin' => 'esAdministrador'
         ];

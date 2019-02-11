@@ -64,9 +64,9 @@
                 class="form-control"
                 placeholder="Cedula del cliente"
                 aria-label="Cedula del cliente"
-                :class="[ errors.cedula ? 'is-invalid' : '' ]"           
+                disabled
+                required
               >
-              <message-error :message="errors.cedula"></message-error>
             </div>
           </div>
           <!-- Cedula Nuevo Cliente -->
@@ -79,10 +79,9 @@
                 v-model="cliente.nombres"
                 type="text"
                 class="form-control"
+                required
                 @input="setFlag(0)"
-                :class="[ errors.nombres ? 'is-invalid' : '' ]"           
               >
-              <message-error :message="errors.nombres"></message-error>
             </div>
           </div>
           <!-- Nombres -->
@@ -95,10 +94,9 @@
                 v-model="cliente.apellidos"
                 type="text"
                 class="form-control"
+                required
                 @input="setFlag(0)"
-                :class="[ errors.apellidos ? 'is-invalid' : '' ]"           
               >
-              <message-error :message="errors.apellidos"></message-error>
             </div>
           </div>
           <!-- Apellidos -->
@@ -111,10 +109,9 @@
                 v-model="cliente.telefono"
                 type="text"
                 class="form-control"
+                required
                 @input="setFlag(0)"
-                :class="[ errors.telefono ? 'is-invalid' : '' ]"           
               >
-              <message-error :message="errors.telefono"></message-error>
             </div>
           </div>
           <!-- Teléfono -->
@@ -126,7 +123,7 @@
                 :disabled="!isAdmin"
                 v-model="cliente.identificador_direccion"
                 class="custom-select"
-                :class="[ errors.identificador_direccion ? 'is-invalid' : '' ]" 
+                required
                 @change="setFlag(0)"
               >
                 <option value>Selecione una dirección</option>
@@ -137,7 +134,6 @@
                   :value="address.identificador"
                 >{{address.nombre_direccion}}</option>
               </select>
-              <message-error :message="errors.identificador_direccion"></message-error>
             </div>
           </div>
           <!-- Direcciones -->
@@ -149,7 +145,7 @@
                 :disabled="!isAdmin"
                 class="custom-select"
                 v-model="cliente.identificador_area"
-                :class="[ errors.identificador_area ? 'is-invalid' : '' ]"
+                required
                 @change="setFlag(0)"
               >
                 <option value>Selecione una area</option>
@@ -160,7 +156,6 @@
                   :value="area.identificador"
                 >{{area.nombre_area}}</option>
               </select>
-              <message-error :message="errors.identificador_area"></message-error>
             </div>
           </div>
           <!-- Area -->
@@ -253,7 +248,7 @@
                   v-for="tecnico in users"
                   :key="tecnico.identificador"
                   :value="tecnico.identificador"
-                >{{tecnico.apellidos + ', '+ tecnico.nombres}}</option>
+                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
               </select>
             </div>
           </div>
@@ -321,7 +316,7 @@
                   v-for="tecnico in users"
                   :key="tecnico.identificador"
                   :value="tecnico.identificador"
-                >{{tecnico.apellidos + ', '+ tecnico.nombres}}</option>
+                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
               </select>
             </div>
           </div>
@@ -365,7 +360,7 @@
                   v-for="tecnico in users"
                   :value="tecnico.identificador"
                   :key="'tec-'+tecnico.identificador"
-                >{{tecnico.apellidos +', '+ tecnico.nombres}}</option>
+                >{{tecnico.apellido +', '+ tecnico.nombre}}</option>
               </select>
             </div>
           </div>
@@ -415,16 +410,11 @@
 </template>
 
 <script>
-import MessageError from '../partials/messageError';
 export default {
   name: "edit-order",
   props: ["id"],
-  components:{
-    MessageError
-  },
   data() {
     return {
-      errors: [],
       estados: {
         repaired: "Reparado",
         "without repair": "Sin reparación"
@@ -600,17 +590,8 @@ export default {
         .then(res => {
           console.log("updated client");
         })
-        .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+        .catch(err => {
+          console.log("failed to update client");
         });
     },
 
@@ -629,17 +610,8 @@ export default {
         .then(res => {
           console.log("updated device");
         })
-        .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+        .catch(err => {
+          console.log("failed to update device");
         });
     },
 
@@ -655,17 +627,8 @@ export default {
         .then(res => {
           console.log("updated repair");
         })
-        .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+        .catch(err => {
+          console.log("failed to update repair");
         });
     },
 
@@ -682,17 +645,8 @@ export default {
         .then(res => {
           console.log("updated delivery");
         })
-        .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+        .catch(err => {
+          console.log("failed to update delivery");
         });
     },
 
@@ -706,17 +660,9 @@ export default {
           console.log("updated order");
           console.log(res.data);
         })
-        .catch(error => {
-          if (error.response) {
-            console.log('error.response')
-            console.log(error.response.data.error)
-            this.errors = error.response.data.error
-          } else if (error.request) {
-              console.log('error.request');
-              console.log(error.request);
-          } else {
-              console.log('Error', error.message);
-          }
+        .catch(err => {
+          console.log("failed to update order")
+          console.log(err);
         });
     },
 
