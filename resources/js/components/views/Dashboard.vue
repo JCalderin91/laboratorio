@@ -1,14 +1,25 @@
 <template>
 		<div class="card">
 			<div class="row">
-				<widget type="pendientes" icon="exclamation-triangle" :value="pendingCount"></widget>
-				<widget type="revisados" icon="wrench" :value="revisedCount"></widget>	
+				<widget clase="col-md-6" type="pendientes" icon="exclamation-triangle" :value="pendingCount"></widget>
+				<widget clase="col-md-6" type="revisados" icon="wrench" :value="revisedCount"></widget>	
 
-				<div class="col-12 pt-3">
+				<div class="mt-3 col-12"></div>
 
+				<div class="col-6">					
 					<div class="form-group">
 						<input type="text" class="form-control" v-model="searchOrder" placeholder="Buscar orden">
 					</div>
+				</div>	
+				<div class="col-md-6">
+					<router-link class="btn btn-success float-right" tag="a" to="/servicio">
+						<i class="fa fa-file-invoice "></i>
+						<span>Registrar servicio</span>
+					</router-link>
+				</div>
+
+				<div class="col-12">
+
 						
 					<table class="table text-center table-striped table-hover table-sm">
 						<thead class="bg-dark text-white">

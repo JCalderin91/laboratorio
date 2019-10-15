@@ -1,5 +1,5 @@
 <template>
-	<div class="col-md-6">
+	<div :class="[clase]">
 		<div :class="'widget rounded '+ type">
 			<div class="cover"></div>
 			<i :class="'fa fa-'+icon+' text-white'"></i>
@@ -13,7 +13,7 @@
 	// check-double
 	export default {
 		name: 'widget',
-		props: ['type', 'icon','value']
+		props: ['type', 'icon','value', 'clase']
 	}
 </script>
 
