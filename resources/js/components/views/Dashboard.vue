@@ -15,9 +15,9 @@
 							<tr>
 								<th>Código</th>
 								<th>Cedula</th>
+								<th>Nombres y Apellidos</th>
 								<th>Equipo</th>
 								<th>Fecha</th>
-								<th>Estado</th>
 								<th>Acciones</th>
 							</tr>
 						</thead>
@@ -29,12 +29,9 @@
 							<tr v-for="order in filterOrders" :key="order.identificador">
 								<td>LAB-{{order.codigo}}</td>
 								<td>{{order.cliente.data.cedula}}</td>
+								<td>{{order.cliente.data.nombres}} {{order.cliente.data.apellidos}}</td>
 								<td>{{order.equipo.data.nombre}}</td>
 								<td>{{order.fechaCreacion}}</td>
-								<td>
-									<span v-if="order.estado === 'pendiente'" class="badge badge-danger">Pendiente</span>
-									<span v-else class="badge badge-primary">Revisado</span>
-								</td>
 								<td>
 									<a
 										@click="setOrder(order)"
@@ -170,7 +167,7 @@
 			  </div>
 			</div>
 		</div>
-</template>
+	</template>
 
 <script>
 	import Modal from '../partials/Modal'
@@ -223,6 +220,10 @@
       })
     },
 		methods: {
+			checkStatus(status){
+				if(status==='pendiente') return true
+				return false
+			},
 			getAllOrders(){
 				this.$emit('loading-data', true)
 				axios

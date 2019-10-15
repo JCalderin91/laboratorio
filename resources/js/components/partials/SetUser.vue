@@ -4,13 +4,8 @@
         <label>Cedula</label>
         <select class="custom-select" required @change="setNameUser" v-model="idUser">
           <option value="">Selecione una cedula</option>
-          <option v-for="user in users" :value="user.identificador">{{ user.cedula }}</option>
+          <option v-for="user in users" :value="user.identificador">{{ user.cedula }} - {{user.apellido}}, {{ user.nombre }}</option>
         </select>
-      </div>
-
-      <div class="form-group">
-        <label>Datos</label>
-        <input disabled type="text" class="form-control" v-model="nameUser" required>   
       </div>
   </div>
 </template>
@@ -27,14 +22,11 @@
 		},
 		methods:{
 			setNameUser(event){
-        for (let i = 0; i <= this.users.length; i++) {
-          if (this.users[i].identificador == this.idUser) {
-            this.nameUser = this.users[i].apellidos+', '+this.users[i].nombres
-            this.idUser = this.users[i].identificador
-            eventBus.$emit('idUser', this.users[i].identificador)
-            break
-          }
-        } 
+        //EL YO DE AHORA
+        let user = this.users.find(item=>item.identificador === this.idUser)
+        this.nameUser = user.nombre+' '+user.apellido
+        this.idUser = user.identificador
+        eventBus.$emit('idUser', user.identificador)
       },
 		},
     mounted(){
