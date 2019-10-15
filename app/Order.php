@@ -4,11 +4,13 @@ namespace App;
 
 use Carbon\Carbon;
 use App\Transformers\OrderTransformer;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Order extends Model
 {
+    use SoftDeletes;
 
     const ORDER_PENDING = 'pendiente';
     const ORDER_REVISED = 'revisado';
@@ -63,10 +65,10 @@ class Order extends Model
 
     public static function getSerial(){
 
-        $date = Carbon::now()->format('dmY');
-        $num = Order::whereYear('arrival_date', Carbon::now()->format('Y'))->get()->count() + 1;
+        $date = Carbon::now();
+        $num = Order::withTrashed()->whereYear('arrival_date', $date->format('Y'))->get()->count() + 1;
 
-        return $date.$num;
+        return $date->format('dmY').$num;
     }
 
     public $timestamps = false;
