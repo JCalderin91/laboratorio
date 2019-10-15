@@ -389,10 +389,11 @@
 				if(this.searchOrder != ''){
 					this.allOrders = this.allOrders.filter((item)=>item.estado != 'entregado')
           return this.allOrders.filter((item) => 
-	          	item.cliente.data.cedula.includes(this.searchOrder) ||
+							item.cliente.data.cedula.includes(this.searchOrder) ||
+							item.cliente.data.nombres.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+							item.cliente.data.apellidos.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
 	          	item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
 	          	item.codigo.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
-	          	item.estado.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
 	          	item.fechaCreacion.includes(this.searchOrder) 
           	);					
 				}else{

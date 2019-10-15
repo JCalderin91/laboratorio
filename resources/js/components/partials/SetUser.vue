@@ -1,9 +1,9 @@
 <template>
 	<div>    
       <div class="form-group">
-        <label>Cedula</label>
+        <label>Responsables</label>
         <select class="custom-select" required @change="setNameUser" v-model="idUser">
-          <option value="">Selecione una cedula</option>
+          <option value="">Selecione un responsable</option>
           <option v-for="user in users" :value="user.identificador">{{ user.cedula }} - {{user.apellido}}, {{ user.nombre }}</option>
         </select>
       </div>
@@ -22,7 +22,6 @@
 		},
 		methods:{
 			setNameUser(event){
-        //EL YO DE AHORA
         let user = this.users.find(item=>item.identificador === this.idUser)
         this.nameUser = user.nombre+' '+user.apellido
         this.idUser = user.identificador
