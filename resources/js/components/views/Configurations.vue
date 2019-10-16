@@ -154,7 +154,10 @@
       },
       editPass() {
         this.changePassword = !this.changePassword
-        if(!this.changePassword) this.virified = false
+        if(!this.changePassword){
+          this.virified = false
+          this.editAccount.contrasena_actual = ''
+        }
         
       },
       editHandler(user) {
