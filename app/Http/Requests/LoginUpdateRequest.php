@@ -26,6 +26,7 @@ class LoginUpdateRequest extends FormRequest
     {
         return [
             'password' => 'nullable|string|min:5',
+            //'password_confirmation' =>'required',
             'username' => Rule::unique('logins')->ignore($this->account) 
         ];
 

@@ -35,6 +35,7 @@ Route::group([
 
 ], function() {
 
+    Route::post('check-password/{account}', 'LoginController@checkPassword');
     Route::apiResource('/accounts', 'LoginController', ['only' => ['index', 'update']]);
     
     

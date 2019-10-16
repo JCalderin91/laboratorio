@@ -33,10 +33,7 @@ class LoginController extends ApiController
         $account->fill($request->only('username'));
 
         if(!empty($request->password)){
-            if (!(Hash::check($request->current_password, $account->password))) {
-                // The passwords matches
-                return $this->errorResponse(['contrasena_actual' => ["Tu actual contraseña no coincide con la que has ingresado. Por favor, intenta de nuevo."]], 401);
-            }
+            
             if(empty($request->password_confirmation)){
                 return $this->errorResponse(['confirmacion' => ["Este campo no puede estar vacio"]], 401);
             }else{
@@ -56,6 +53,17 @@ class LoginController extends ApiController
         $account->save();
 
         return $this->showOne($account);
+    }
+
+    public function checkPassword(Login $account, Request $request){
+
+        if (!(Hash::check($request->current_password, $account->password))) {
+            // The passwords matches
+            //return $this->errorResponse(['contrasena_actual' => ["Tu actual contraseña no coincide con la que has ingresado. Por favor, intenta de nuevo."]], 401);
+            return false;
+        }else{
+            return true;
+        }
     }
 
 }
