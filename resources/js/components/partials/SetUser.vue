@@ -1,9 +1,9 @@
 <template>
 	<div>    
       <div class="form-group">
-        <label>Responsables</label>
+        <label>Técnicos <span class="text-danger">*</span></label>
         <select class="custom-select" required @change="setNameUser" v-model="idUser">
-          <option value="">Selecione un responsable</option>
+          <option value="">Selecione un técnico</option>
           <option v-for="user in users" :value="user.identificador">{{ user.cedula }} - {{user.apellido}}, {{ user.nombre }}</option>
         </select>
       </div>

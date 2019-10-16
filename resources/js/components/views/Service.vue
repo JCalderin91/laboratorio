@@ -16,7 +16,7 @@
           <div class="row">
        
             <div class="col-6"><!-- Cedula Nuevo Cliente -->
-              <label>Cédula</label>
+              <label>Cédula <span class="text-danger">*</span></label>
               <div class="form-group">
                 <input
                   @keypress.enter.prevent="searchClient"
@@ -34,7 +34,7 @@
 
             <div class="col-6"><!-- Nombres -->
               <div class="form-group">
-                <label>Nombres</label>
+                <label>Nombres <span class="text-danger">*</span></label>
                 <input :disabled="!newClient" v-model="client.first_name" type="text" class="form-control" required>
                 <message-error :message="errors.nombres"></message-error> 
               </div>
@@ -42,7 +42,7 @@
 
             <div class="col-6"><!-- Apellidos -->
               <div class="form-group">
-                <label>Apellidos</label>
+                <label>Apellidos <span class="text-danger">*</span></label>
                 <input :disabled="!newClient" v-model="client.last_name" type="text" class="form-control" required>
                 <message-error :message="errors.apellidos"></message-error> 
               </div>
@@ -50,7 +50,7 @@
 
             <div class="col-6"><!-- Teléfono -->
               <div class="form-group">
-                <label>Teléfono</label>
+                <label>Teléfono <span class="text-danger">*</span></label>
                 <input :disabled="!newClient" v-model="client.phone" type="text" class="form-control" required>
                 <message-error :message="errors.telefono"></message-error> 
               </div>
@@ -58,7 +58,7 @@
     
             <div v-if="newClient" class="col-6"><!-- Direcciones -->
               <div class="form-group">
-                <label>Direcciones</label>
+                <label>Direcciones <span class="text-danger">*</span></label>
                 <select class="custom-select" v-model="client.address" required>
                   <option value="">Selecione una dirección</option>
                   <option v-for="address in addresses" :value="address.identificador" >{{ address.nombre_direccion }}</option>
@@ -68,14 +68,14 @@
 
             <div v-else class="col-6"><!-- Dirección -->
               <div class="form-group">
-                <label>Dirección</label>
+                <label>Dirección <span class="text-danger">*</span></label>
                 <input :disabled="!newClient" v-model="client.address" type="text" class="form-control" required>
               </div>
             </div><!-- Dirección -->
            
             <div v-if="newClient" class="col-6"><!-- Area -->
               <div class="form-group" >
-                <label>Área</label>
+                <label>Área <span class="text-danger">*</span></label>
                 <select class="custom-select" v-model="client.area" required>
                   <option value="">Selecione una area</option>
                   <option v-for="area in areas" :value="area.identificador">{{ area.nombre_area }}</option>
@@ -85,7 +85,7 @@
 
             <div v-else class="col-6"><!-- Area -->
               <div class="form-group">
-                <label>Área</label>
+                <label>Área <span class="text-danger">*</span></label>
                 <input :disabled="!newClient" v-model="client.area" type="text" class="form-control" required>
               </div>
             </div><!-- Area -->
@@ -110,7 +110,7 @@
                 <label class="custom-control-label" for="nameRegister">Nuevo nombre</label>
               </div>
               <div class="form-group">
-                <label>Nombre</label>
+                <label>Nombre <span class="text-danger">*</span></label>
 
                 <input
                   @input="resetDevice"
@@ -137,7 +137,7 @@
                 <label class="custom-control-label" for="brandRegister">Nueva marca</label>
               </div>
               <div class="form-group">
-                <label>Marca</label>
+                <label>Marca <span class="text-danger">*</span></label>
 
                 <input
                   @input="resetDevice"
@@ -175,7 +175,7 @@
 
             <div class="col-12">
               <div class="form-group">
-                <label for="observaciones">Observaciones de recepción</label>
+                <label for="observaciones">Observaciones de recepción <span class="text-danger">*</span></label>
                 <textarea v-model="device.description" class="form-control" id="observaciones" rows="3" required></textarea>
               </div>
             </div>
