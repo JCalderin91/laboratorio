@@ -16,18 +16,13 @@
         <td>{{ user.cedula }}</td>
         <td>{{ user.nombre }}</td>
         <td>{{ user.apellido }}</td>
-        <td>
-          <span v-if="user.sexo === 'F'">Femenino</span>
-          <span v-else>Masculino</span>
-        </td>
-        <td v-if="isAdmin">
-          <span v-if="user.esAdministrador">Profesor</span>
-          <span v-else>Ténico</span>
-        </td>
+        <td>{{ (user.sexo === 'F'?'Femenino':'Masculino') }}</td>
+        <td v-if="isAdmin">{{ (user.esAdministrador) ? 'Profesor' : 'Técnico' }}</td>
         <td>
           <a class="btn-sm">
             <small>
               <i
+                title="Editar"
                 :id="user.cedula"
                 @click.prevent="edit(user.cedula)"
                 class="fas fa-pen"
@@ -40,7 +35,7 @@
               <i
                 @click.prevent="destroy(user.identificador)"
                 :id="user.cedula"
-                class="fas "
+                class="fas"
                 :class="{'text-danger fa-user-slash': user.fechaEliminacion == null,'text-success fa-user':user.fechaEliminacion!==null}"
                 style="cursor: pointer;"
               ></i>
@@ -60,6 +55,7 @@ export default {
     return {
       isAdmin: this.$session.get("isAdmin")
     };
-  }
+  },
+
 };
 </script>

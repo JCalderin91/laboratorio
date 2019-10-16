@@ -17,7 +17,7 @@
 						<span v-else class="user-name">Técnico</span>
 					</div>
 				</div>
-				<div class="sidebar-menu">
+				<div class="sidebar-menu mb-4">
 					<ul>
 						<li class="header-menu">
 							<span class="toggle-item">Menu</span>

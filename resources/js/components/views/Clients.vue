@@ -33,7 +33,7 @@
       <form v-else class="col-12 row" @submit.prevent="submit">
         <message-error v-if="errors.length" class="col-12 alert-danger alert" :message="errors"></message-error>        
         <div class="form-group col-6">
-          <label for="ci">Cedula:</label>
+          <label for="ci">Cedula <span class="text-danger">*</span></label>
           <input
             class="form-control"
             type="text"
@@ -46,7 +46,7 @@
           <message-error :message="errors.cedula"></message-error> 
         </div>
         <div class="form-group col-6">
-          <label for="first_name">Nombre:</label>
+          <label for="first_name">Nombre <span class="text-danger">*</span></label>
           <input
             class="form-control"
             type="text"
@@ -58,7 +58,7 @@
           <message-error :message="errors.nombres"></message-error> 
         </div>
         <div class="form-group col-6">
-          <label for="last_name">Apellido:</label>
+          <label for="last_name">Apellido <span class="text-danger">*</span></label>
           <input
             class="form-control"
             type="text"
@@ -70,7 +70,7 @@
           <message-error :message="errors.apellidos"></message-error> 
         </div>
         <div class="form-group col-6">
-          <label for="phone">Teléfono:</label>
+          <label for="phone">Teléfono</label>
           <input
             class="form-control"
             type="text"
@@ -83,7 +83,7 @@
         </div>
 
         <div class="form-group col-6">
-          <label for="address">Direcciòn:</label>
+          <label for="address">Dirección <span class="text-danger">*</span></label>
           <select
             class="custom-select"
             name="address"
@@ -102,7 +102,7 @@
           <message-error :message="errors.identificador_direccion"></message-error> 
         </div>
         <div class="form-group col-6">
-          <label for="area">Area:</label>
+          <label for="area">Area <span class="text-danger">*</span></label>
           <select
             class="custom-select"
             name="area"
@@ -121,9 +121,10 @@
         </div>
 
         <div class="form-group col-12 mt-5 d-flex justify-content-end">
-          <button class="btn btn-secondary m-2" @click.prevent="toggleClientForm()">Cancelar</button>
-          <input type="submit" class="btn btn-primary m-2" value="Guardar">
+          <button class="btn btn-light m-2" @click.prevent="toggleClientForm()">Cancelar</button>
+          <input type="submit" class="btn btn-success m-2" value="Guardar">
         </div>
+        <small class="text-danger">(*) Campos requeridos</small>
       </form>
     </div>
   </div>

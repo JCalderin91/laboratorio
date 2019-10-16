@@ -61,8 +61,8 @@
             
           <div class="col-12">
             <div class="d-flex justify-content-end">
-              <button @click.prevent="cancelEdit()" class="m-1 btn btn-secondary">Cancelar</button>
-              <button @click.prevent="saveAccount()" class="m-1 btn btn-primary">Guardar</button>
+              <button @click.prevent="cancelEdit()" class="m-1 btn btn-light">Cancelar</button>
+              <button @click.prevent="saveAccount()" class="m-1 btn btn-success">Guardar</button>
             </div>
           </div>
         </div>
@@ -128,12 +128,15 @@
         this.editAccount = {}
       },
       getAccounts(){
+        this.$emit("loading-data", true);
         axios
           .get("/api/accounts")
           .then(response => {this.accounts = response.data.data})
-          .catch(error => {console.log(error)});
+          .catch(error => {console.log(error)})
+          .then(()=>{this.$emit("loading-data", false)})
       },
       saveAccount(){
+        this.$emit("loading-data", true);
         axios
           .put("/api/accounts/"+this.editAccount.identificador, this.editAccount)
              .then((response) => {    
@@ -149,7 +152,8 @@
                   } else {
                       console.log('Error', error.message);
                   }
-            });
+            })
+            .then(()=>{this.$emit("loading-data", false)})
       }
     },
     computed: {
