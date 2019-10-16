@@ -359,7 +359,7 @@
 
       getUsers(){
         axios
-          .get("/api/users")
+          .get("/api/users-all")
           .then(response => {this.users = response.data.data})
           .catch(error => {console.log(error)});
       },

@@ -253,7 +253,7 @@
                   v-for="tecnico in users"
                   :key="tecnico.identificador"
                   :value="tecnico.identificador"
-                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
+                >{{tecnico.cedula}} - {{tecnico.apellido + ', '+ tecnico.nombre}}</option>
               </select>
             </div>
           </div>
@@ -321,7 +321,7 @@
                   v-for="tecnico in users"
                   :key="tecnico.identificador"
                   :value="tecnico.identificador"
-                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
+                >{{tecnico.cedula}} - {{tecnico.apellido + ', '+ tecnico.nombre}}</option>
               </select>
             </div>
           </div>
@@ -365,7 +365,7 @@
                   v-for="tecnico in users"
                   :value="tecnico.identificador"
                   :key="'tec-'+tecnico.identificador"
-                >{{tecnico.apellidos +', '+ tecnico.nombres}}</option>
+                >{{tecnico.cedula}} - {{tecnico.apellidos +', '+ tecnico.nombres}}</option>
               </select>
             </div>
           </div>
@@ -536,7 +536,7 @@ export default {
     getUsers() {
       this.$emit("loading-data", true);
       axios
-        .get("/api/users/")
+        .get("/api/users-all")
         .then(response => {
           this.users = response.data.data;
           this.$emit("loading-data", false);
