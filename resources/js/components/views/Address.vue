@@ -16,11 +16,11 @@
                 v-bind:class="{
                   'btn btn-sm text-white float-right':true,
                   'btn-primary': !newAddress,
-                  'btn-secondary': newAddress
+                  'btn-danger': newAddress
                 }"
               >
-                <i v-if="!newAddress" id="address-toggle" class="fas fa-plus"></i>
-                <i v-else id="address-toggle" class="fas fa-minus"></i>
+                <i title="Nuevo" v-if="!newAddress" id="address-toggle" class="fas fa-plus"></i>
+                <i title="Cancelar" v-else id="address-toggle" class="fas fa-times"></i>
               </a>
             </div>
             <div class="card-body p-0">
@@ -109,11 +109,11 @@
                 v-bind:class="{
                   'btn btn-sm text-white float-right':true,
                   'btn-primary': !newArea,
-                  'btn-secondary': newArea
+                  'btn-danger': newArea
                 }"
               >
-                <i v-if="!newArea" id="area-toggle" class="fas fa-plus"></i>
-                <i v-else id="area-toggle" class="fas fa-minus"></i>
+                <i title="Nuevo" v-if="!newArea" id="area-toggle" class="fas fa-plus"></i>
+                <i title="Cancelar" v-else id="area-toggle" class="fas fa-times"></i>
               </a>
             </div>
             <div class="card-body p-0">

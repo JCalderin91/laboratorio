@@ -26,7 +26,7 @@
 							<tr>
 								<th>Código</th>
 								<th>Cedula</th>
-								<th>Nombres y Apellidos</th>
+								<th>Nombre</th>
 								<th>Equipo</th>
 								<th>Fecha</th>
 								<th>Acciones</th>

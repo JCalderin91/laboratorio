@@ -16,11 +16,11 @@
                 v-bind:class="{
                   'btn btn-sm text-white float-right':true,
                   'btn-primary': !newDevice,
-                  'btn-secondary': newDevice
+                  'btn-danger': newDevice
                 }"
               >
-                <i v-if="!newDevice" id="device-toggle" class="fas fa-plus"></i>
-                <i v-else id="device-toggle" class="fas fa-minus"></i>
+                <i title="Nuevo" v-if="!newDevice" id="device-toggle" class="fas fa-plus"></i>
+                <i title="Cancelar" v-else id="device-toggle" class="fas fa-times"></i>
               </a>
             </div>
             <div class="card-body p-0">
@@ -112,12 +112,12 @@
                 @click="toggleForm"
                 v-bind:class="{
                   'btn btn-sm text-white float-right':true,
-                  'btn-primary': !newDevice,
-                  'btn-secondary': newDevice
+                  'btn-primary': !newBrand,
+                  'btn-danger': newBrand
                 }"
               >
-                <i v-if="!newBrand" id="brand-toggle" class="fas fa-plus"></i>
-                <i v-else id="brand-toggle" class="fas fa-minus"></i>
+                <i title="Nuevo" v-if="!newBrand" id="brand-toggle" class="fas fa-plus"></i>
+                <i title="Cancelar" v-else id="brand-toggle" class="fas fa-times"></i>
               </a>
             </div>
             <div class="card-body p-0">

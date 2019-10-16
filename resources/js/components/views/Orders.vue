@@ -25,49 +25,56 @@
           <span v-else>{{allOrders.length}} Ordenes</span>
         </div>
 
-        <table class="table text-center table-striped table-hover table-sm">
-          <thead class="bg-dark text-white">
-            <tr>
-              <th>Código</th>
-              <th>Cedula</th>
-              <th>Equipo</th>
-              <th>Fecha</th>
-              <th>Estado</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="order in filterOrders" :key="'ord-'+order.identificador">
-              <td>LAB-{{order.codigo}}</td>
-              <td>{{order.cliente.data.cedula}}</td>
-              <td>{{order.equipo.data.nombre}}</td>
-              <td>{{order.fechaCreacion.split(' ')[0]}}</td>
-              <td>
-                <span v-if="order.estado === 'pendiente'" class="badge badge-danger">Pendiente</span>
-                <span v-else-if="order.estado === 'revisado'" class="badge badge-primary">Revisado</span>
-                <span v-else class="badge badge-success">Entregado</span>
-              </td>
-              <td>
-                <a
-                  @click.prevent="getOrder(order.identificador)"
-                  href="#"
-                  title="Editar"
-                  class="text-dark"
-                >
-                  <small>
-                    <i class="fas fa-pen" style="cursor: pointer;"></i>
-                  </small>
-                </a>
-                
-                <a @click.prevent="deleteOrder" title="Eliminar" class="text-danger">
-                  <small>
-                    <i :id="order.identificador" class="fas fa-trash" style="cursor: pointer;"></i>
-                  </small>
-                </a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-responsive">
+          <table class="table text-center table-striped table-hover table-sm">
+            <thead class="bg-dark text-white">
+              <tr>
+                <th>Código</th>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Equipo</th>
+                <th>Fecha</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-if="!filterOrders">
+                <td colspan="7">No hay elementos en la lista</td>
+              </tr>
+              <tr v-for="order in filterOrders" :key="'ord-'+order.identificador">
+                <td>LAB-{{order.codigo}}</td>
+                <td>{{order.cliente.data.cedula}}</td>
+                <td>{{order.cliente.data.nombres}} {{order.cliente.data.apellidos}}</td>
+                <td>{{order.equipo.data.nombre}}</td>
+                <td>{{order.fechaCreacion.split(' ')[0]}}</td>
+                <td>
+                  <span v-if="order.estado === 'pendiente'" class="badge badge-danger">Pendiente</span>
+                  <span v-else-if="order.estado === 'revisado'" class="badge badge-primary">Revisado</span>
+                  <span v-else class="badge badge-success">Entregado</span>
+                </td>
+                <td>
+                  <a
+                    @click.prevent="getOrder(order.identificador)"
+                    href="#"
+                    title="Editar"
+                    class="text-dark"
+                  >
+                    <small>
+                      <i class="fas fa-pen" style="cursor: pointer;"></i>
+                    </small>
+                  </a>
+                  
+                  <a @click.prevent="deleteOrder" title="Eliminar" class="text-danger">
+                    <small>
+                      <i :id="order.identificador" class="fas fa-trash" style="cursor: pointer;"></i>
+                    </small>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div> 
 
         <nav v-if="!searchOrder" aria-label="Page navigation example" class="mx-2">
           <ul class="pagination pagination-sm">
@@ -163,7 +170,7 @@ export default {
       axios
         .get("api/orders-all?paginate=true")
         .then(response => {
-					this.orders = response.data.data;
+					this.allOrders = response.data.data;
           if (response.data.meta) this.ordersMeta = response.data.meta.pagination;
         })
         .catch(error => {
@@ -177,7 +184,7 @@ export default {
       axios
         .get("/api/orders-all?paginate=true&page=" + page)
         .then(response => {
-          this.orders = response.data.data;
+          this.allOrders = response.data.data;
           if (response.data.meta) this.ordersMeta = response.data.meta.pagination;
         })
         .catch(error => {
@@ -195,6 +202,12 @@ export default {
         return this.allOrders.filter(
           item =>
             item.cliente.data.cedula.includes(this.searchOrder) ||
+            item.cliente.data.nombres
+              .toUpperCase()
+              .includes(this.searchOrder.toUpperCase()) ||
+            item.cliente.data.apellidos
+              .toUpperCase()
+              .includes(this.searchOrder.toUpperCase()) ||
             item.equipo.data.nombre
               .toUpperCase()
               .includes(this.searchOrder.toUpperCase()) ||

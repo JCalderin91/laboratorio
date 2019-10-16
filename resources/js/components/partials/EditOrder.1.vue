@@ -253,7 +253,7 @@
                   v-for="tecnico in users"
                   :key="tecnico.identificador"
                   :value="tecnico.identificador"
-                >{{tecnico.apellidos + ', '+ tecnico.nombres}}</option>
+                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
               </select>
             </div>
           </div>
@@ -321,7 +321,7 @@
                   v-for="tecnico in users"
                   :key="tecnico.identificador"
                   :value="tecnico.identificador"
-                >{{tecnico.apellidos + ', '+ tecnico.nombres}}</option>
+                >{{tecnico.apellido + ', '+ tecnico.nombre}}</option>
               </select>
             </div>
           </div>

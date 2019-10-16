@@ -29,7 +29,7 @@
 
       <form v-else class="col-12 row" @submit.prevent="submit">
         <div class="form-group col-6">
-          <label for="ci">Cedula:</label>
+          <label for="ci">Cedula <span class="text-danger">*</span></label>
           <input
             class="form-control"
             type="text"
@@ -41,7 +41,7 @@
           >
         </div>
         <div class="form-group col-6">
-          <label for="first_name">Nombres:</label>
+          <label for="first_name">Nombres <span class="text-danger">*</span></label>
           <input
             class="form-control"
             type="text"
@@ -52,7 +52,7 @@
           >
         </div>
         <div class="form-group col-6">
-          <label for="last_name">Apellidos:</label>
+          <label for="last_name">Apellidos <span class="text-danger">*</span></label>
           <input
             class="form-control"
             type="text"
@@ -64,7 +64,7 @@
         </div>
 
         <div class="form-group col-6">
-          <label for="role">Rol:</label>
+          <label for="role">Rol <span class="text-danger">*</span></label>
           <select
             class="form-control"
             type="text"
@@ -79,7 +79,7 @@
         </div>
 
         <div class="form-group col-6">
-          <label for="gender">Genero:</label>
+          <label for="gender">Género <span class="text-danger">*</span></label>
           <select class="form-control" type="text" name="gender" v-model="user.sexo" required>
             <option value>Seleccione un genero</option>
             <option value="F">Femenino</option>
@@ -91,21 +91,23 @@
           <button
             v-if="update"
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-light"
             @click.prevent="toggleForm"
             id="update-cancel-button"
           >Cancelar</button>
           <button
             v-else
             type="button"
-            class="btn btn-secondary"
+            class="btn btn-light"
             @click.prevent="toggleForm"
             id="create-cancel-button"
           >Cancelar</button>
           
-          <button id="close-modal2" type="submit" class="btn btn-primary ml-3">Guardar</button>
+          <button id="close-modal2" type="submit" class="btn btn-success ml-3">Guardar</button>
         </div>
+        <small class="text-danger">(*) Campos requeridos</small>
       </form>
+
     </div>
   </div>
 </template>
@@ -141,15 +143,9 @@ export default {
       let id = event.target.id;
 
       if (id == "update-cancel-button") {
-        this.$emit("prompt", {
-          title: "¡Atención!",
-          message: "Los cambios realizados seran descartados.",
-          confirmHandler: () => {
-            this.userForm = false;
-            this.update = false;
-            this.clearUserData();
-          }
-        });
+        this.userForm = false;
+        this.update = false;
+        this.clearUserData();
       } else if (id == "create-cancel-button") {
         this.userForm = false;
       }

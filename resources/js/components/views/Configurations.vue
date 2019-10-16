@@ -78,12 +78,10 @@
           <tbody>
             <tr v-for="acount in accounts" class="text-center">
               <td>
-                <span>{{ acount.usuario }}</span>
-                
+                <span>{{ acount.usuario }}</span>                
               </td>
               <td>
-                <span id="prof" style="width: 100%;">********* </span>
-                
+                <span id="prof" style="width: 100%;">*********</span>                
                </td>
                <td>
                   <a
@@ -111,16 +109,9 @@
     name: 'configurations',
     data() {
       return {
-        ci: '',
         accounts: '',
         editing: false,
-        editAccount: {
-          identificador: '',
-          usuario: '',
-          contrasena_actual: '',
-          confirmacion: '',
-          contrasena: ''
-        },
+        editAccount: {},
         errors: []
       }
     },
@@ -130,17 +121,11 @@
     methods: {
       editHandler(user) {
         this.editing = true
-        this.editAccount.identificador = user.identificador
-        this.editAccount.usuario = user.usuario
-        this.editAccount.contrasena_actual = '*******'
+        this.editAccount = user
       },
       cancelEdit() {
         this.editing = false
-        this.identificador.usuario = ''
-        this.editAccount.usuario = ''
-        this.editAccount.contrasena_actual = ''
-        this.editAccount.contrasena = ''
-        this.editAccount.confirmacion = ''
+        this.editAccount = {}
       },
       getAccounts(){
         axios
@@ -150,29 +135,18 @@
       },
       saveAccount(){
         axios
-          .put("/api/accounts/"+this.editAccount.identificador,this.editAccount)
-             .then((response) => {
-                   console.log(response.data)
+          .put("/api/accounts/"+this.editAccount.identificador, this.editAccount)
+             .then((response) => {    
+                   this.getAccounts()
+                   this.editing = false
               })
               .catch((error) => {
                   // Error
                   if (error.response) {
-                    console.log('error.response')
-                    console.log(error.response.data.error)
                     this.errors = error.response.data.error
-                      // The request was made and the server responded with a status code
-                      // that falls out of the range of 2xx
-                      // console.log(error.response.data);
-                      // console.log(error.response.status);
-                      // console.log(error.response.headers);
                   } else if (error.request) {
-                      // The request was made but no response was received
-                      // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-                      // http.ClientRequest in node.js
-                      console.log('error.request');
                       console.log(error.request);
                   } else {
-                      // Something happened in setting up the request that triggered an Error
                       console.log('Error', error.message);
                   }
             });

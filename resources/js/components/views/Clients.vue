@@ -81,6 +81,7 @@
           >
           <message-error :message="errors.telefono"></message-error> 
         </div>
+
         <div class="form-group col-6">
           <label for="address">Direcciòn:</label>
           <select
@@ -92,10 +93,11 @@
           >
             <option value>Seleccione Una</option>
             <option
+              :checked="client.nombre_direccion == address.nombre_direccion"
               v-for="address in addresses"
               :value="address.identificador"
               :key="address.identificador"
-            >{{address.nombre}}</option>
+            >{{address.nombre_direccion}}</option>
           </select>
           <message-error :message="errors.identificador_direccion"></message-error> 
         </div>
@@ -109,14 +111,15 @@
           >
             <option value>Seleccione Una</option>
             <option
+              :checked="client.nombre_area == area.nombre_area"
               v-for="area in areas"
               :value="area.identificador"
               :key="area.identificador"
-            >{{area.nombre}}</option>
+            >{{area.nombre_area}}</option>
           </select>
           <message-error :message="errors.identificador_area"></message-error> 
         </div>
-{{client}}
+
         <div class="form-group col-12 mt-5 d-flex justify-content-end">
           <button class="btn btn-secondary m-2" @click.prevent="toggleClientForm()">Cancelar</button>
           <input type="submit" class="btn btn-primary m-2" value="Guardar">

@@ -38,6 +38,7 @@
           <a class="btn-sm" title="Eliminar usuario">
             <small>
               <i
+                @click.prevent="destroy(user.cedula)"
                 :id="user.cedula"
                 class="fas fa-trash text-danger"
                 style="cursor: pointer;"
