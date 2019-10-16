@@ -24,7 +24,7 @@
         </div>
         
 
-        <user-list :users="users" :edit="editUser" @edit.stop="toggleForm"></user-list>
+        <user-list :users="users" :destroy="destroyUser" :edit="editUser" @edit.stop="toggleForm"></user-list>
       </div>
 
       <form v-else class="col-12 row" @submit.prevent="submit">
@@ -107,7 +107,6 @@
         </div>
         <small class="text-danger">(*) Campos requeridos</small>
       </form>
-
     </div>
   </div>
 </template>
@@ -149,6 +148,19 @@ export default {
       } else if (id == "create-cancel-button") {
         this.userForm = false;
       }
+    },
+
+    destroyUser(id) {
+      axios
+        .delete("/api/users/"+id)
+        .then(response => {
+          this.getUsers();
+          this.$emit("loading-data", false);
+        })
+        .catch(error => {
+          this.$emit("error", error);
+          this.$emit("loading-data", false);
+        });
     },
 
     editUser(id) {

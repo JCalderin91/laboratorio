@@ -22,7 +22,7 @@ class UserController extends ApiController{
     
     public function index(){   
         
-        $users = User::all();
+        $users = User::withTrashed()->get();
 
         return $this->showAll($users);
     }

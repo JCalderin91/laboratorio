@@ -25,7 +25,7 @@
           <span v-else>Ténico</span>
         </td>
         <td>
-          <a class="btn-sm" title="Editar usuario">
+          <a class="btn-sm">
             <small>
               <i
                 :id="user.cedula"
@@ -35,12 +35,13 @@
               ></i>
             </small>
           </a>
-          <a class="btn-sm" title="Eliminar usuario">
+          <a class="btn-sm">
             <small>
               <i
-                @click.prevent="destroy(user.cedula)"
+                @click.prevent="destroy(user.identificador)"
                 :id="user.cedula"
-                class="fas fa-trash text-danger"
+                class="fas "
+                :class="{'text-danger fa-user-slash': user.fechaEliminacion == null,'text-success fa-user':user.fechaEliminacion!==null}"
                 style="cursor: pointer;"
               ></i>
             </small>
@@ -54,7 +55,7 @@
 <script>
 export default {
   name: "user-list",
-  props: ["users", "edit"],
+  props: ["users", "edit", "destroy"],
   data() {
     return {
       isAdmin: this.$session.get("isAdmin")
