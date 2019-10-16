@@ -130,7 +130,7 @@
         changePassword: false,
         editAccount: {},
         errors: []
-      }
+      } 
     },
     mounted(){
       this.getAccounts()
