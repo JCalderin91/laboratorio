@@ -151,16 +151,22 @@ export default {
     },
 
     destroyUser(id) {
-      axios
-        .delete("/api/users/"+id)
-        .then(response => {
-          this.getUsers();
-          this.$emit("loading-data", false);
-        })
-        .catch(error => {
-          this.$emit("error", error);
-          this.$emit("loading-data", false);
-        });
+      this.$emit("prompt", {
+        title: "Alerta",
+        message: "¿Desea cambiar el estatus de este registro?",
+        confirmHandler: () => {
+          axios
+            .delete("/api/users/"+id)
+            .then(response => {
+              this.getUsers();
+              this.$emit("loading-data", true);
+            })
+            .catch(error => {
+              this.$emit("error", error);
+              this.$emit("loading-data", false);
+            });
+        }
+      });
     },
 
     editUser(id) {
