@@ -181,8 +181,11 @@
         axios
           .put("/api/accounts/"+this.editAccount.identificador, this.editAccount)
              .then((response) => {    
-                   this.getAccounts()
-                   this.editing = false
+                this.getAccounts()
+                this.editing = false
+                this.changePassword = false
+                this.virified = false
+                this.editAccount.contrasena_actual = ''
               })
               .catch((error) => {
                   // Error
