@@ -22,8 +22,8 @@ class UserTransformer extends TransformerAbstract
             'esAdministrador' => ($user->admin === 'true'),
             'sexo' => (string)$user->gender,
            /* 'fechaCreacion' => (string)$area->created_at,
-            'fechaActualizacion' => (string)$area->updated_at,
-            'fechaEliminacion' => isset($area->deleted_at) ? (string)$area->deleted_at : null , */
+            'fechaActualizacion' => (string)$area->updated_at,*/
+            'fechaEliminacion' => isset($user->deleted_at) ? (string)$user->deleted_at : null , 
         ];
     }
 

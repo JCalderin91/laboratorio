@@ -66,10 +66,14 @@ class UserController extends ApiController{
 
     public function destroy($id){
 
-        $user = User::findOrFail($id);     
+        $user = User::withTrashed()->find($id);
 
-        $user->delete();
-
+        if($user->trashed()){
+            $user->restore();
+        }else{
+           $user->delete();
+        }
+        
         return $this->showOne($user);
         
            
