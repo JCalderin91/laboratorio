@@ -32,7 +32,7 @@ class AreaUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.unique' => 'La area ya ha sido registrada',
+            'name.unique' => 'El area ya ha sido registrada',
             'name.required' => 'El campo no puede estar vacío',
           
         ];
