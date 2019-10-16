@@ -167,6 +167,9 @@
       cancelEdit() {
         this.editing = false
         this.editAccount = {}
+        this.changePassword = false
+        this.virified = false
+
       },
       getAccounts(){
         this.$emit("loading-data", true);
