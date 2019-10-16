@@ -27,6 +27,13 @@ class UserController extends ApiController{
         return $this->showAll($users);
     }
 
+    public function all(){   
+        
+        $users = User::all();
+
+        return $this->showAll($users);
+    }
+
    
     public function store(UserStoreRequest $request){
 

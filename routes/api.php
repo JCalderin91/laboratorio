@@ -53,6 +53,7 @@ Route::group([
     Route::apiResource('/devices', 'DeviceController');
 
     //Usuarios-Tecnicos
+    Route::get('users-all', 'UserController@all');
     Route::apiResource('/users', 'UserController');
 
     //Marcas
