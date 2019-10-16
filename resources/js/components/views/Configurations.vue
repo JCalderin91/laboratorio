@@ -21,10 +21,22 @@
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-6 d-flex align-items-end">
             <div class="form-group">
-              <label>Contraseña</label>
+              <button 
+                @click="changePassword = !changePassword"
+                class="btn"
+                :class="{'btn-info':!changePassword, 'btn-danger':changePassword}">
+                {{ (changePassword)?'Cancelar':'Cambiar contraseña'}}
+              </button>
+            </div>
+          </div>
+
+          <div v-if="changePassword" class="col-md-6">
+            <div class="form-group">
+              <label>Contraseña <i v-if="loader" class="fas fa-spinner spin"></i></label>
               <input
+                @keyup="verificar"
                 placeholder="Contraseña"
                 v-model="editAccount.contrasena_actual"
                 type="password"
@@ -33,7 +45,9 @@
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div class="col-6"></div>
+
+          <div v-if="virified" class="col-md-6">
             <div class="form-group">
               <label>Nueva contraseña</label>
               <input
@@ -46,7 +60,7 @@
             </div>
           </div>
 
-          <div class="col-md-6">
+          <div v-if="virified" class="col-md-6">
             <div class="form-group">
               <label>Confirmar contraseña</label>
               <input
@@ -76,7 +90,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="acount in accounts" class="text-center">
+            <tr :key="key" v-for="(acount, key) in accounts" class="text-center">
               <td>
                 <span>{{ acount.usuario }}</span>                
               </td>
@@ -111,6 +125,9 @@
       return {
         accounts: '',
         editing: false,
+        loader: false,
+        virified: false,
+        changePassword: false,
         editAccount: {},
         errors: []
       }
@@ -119,9 +136,25 @@
       this.getAccounts()
     },
     methods: {
+      verificar(user) {
+        let current_password = this.editAccount.contrasena_actual
+        let cant = this.editAccount.contrasena_actual.length
+        if(cant >= 5) {
+          this.loader = true
+          axios
+            .post("/api/check-password/"+this.editAccount.identificador, {current_password} )
+            .then(response => {
+              this.virified = response.data
+            })
+            .catch(error => {console.log(error)})
+            .then(()=>{this.loader = false})
+        }else{
+          this.virified = false
+        }
+      },
       editHandler(user) {
         this.editing = true
-        this.editAccount = user
+        this.editAccount = JSON.parse(JSON.stringify(user))
       },
       cancelEdit() {
         this.editing = false
@@ -170,5 +203,18 @@
 </script>
 
 <style scoped>
-
+  .spin{
+    animation-name: spin;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(360deg);
+    }  
+  }
 </style>

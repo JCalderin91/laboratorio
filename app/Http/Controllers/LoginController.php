@@ -60,9 +60,9 @@ class LoginController extends ApiController
         if (!(Hash::check($request->current_password, $account->password))) {
             // The passwords matches
             //return $this->errorResponse(['contrasena_actual' => ["Tu actual contraseña no coincide con la que has ingresado. Por favor, intenta de nuevo."]], 401);
-            return false;
+            return 'false';
         }else{
-            return true;
+            return 'true';
         }
     }
 
