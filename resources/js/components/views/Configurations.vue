@@ -24,17 +24,17 @@
           <div class="col-6 d-flex align-items-end">
             <div class="form-group">
               <button 
-                @click="changePassword = !changePassword"
+                @click="editPass"
                 class="btn"
                 :class="{'btn-info':!changePassword, 'btn-danger':changePassword}">
-                {{ (changePassword)?'Cancelar':'Cambiar contraseña'}}
+                {{ (changePassword)?'Cancelar cambio':'Cambiar contraseña'}}
               </button>
             </div>
           </div>
 
           <div v-if="changePassword" class="col-md-6">
             <div class="form-group">
-              <label>Contraseña <i v-if="loader" class="fas fa-spinner spin"></i></label>
+              <label>Ingrese su contraseña actual <i v-if="loader" class="fas fa-spinner spin"></i></label>
               <input
                 @keyup="verificar"
                 placeholder="Contraseña"
@@ -152,6 +152,11 @@
           this.virified = false
         }
       },
+      editPass() {
+        this.changePassword = !this.changePassword
+        if(!this.changePassword) this.virified = false
+        
+      },
       editHandler(user) {
         this.editing = true
         this.editAccount = JSON.parse(JSON.stringify(user))
@@ -191,7 +196,7 @@
     },
     computed: {
       varifyPass: function () {
-        if(this.editAccount.contrasena === this.editAccount.confirmacion && this.editAccount.contrasena != ''){
+        if(this.editAccount.contrasena === this.editAccount.confirmacion && this.editAccount.contrasena && this.editAccount.contrasena != ''){
           return true
         }
         else{
