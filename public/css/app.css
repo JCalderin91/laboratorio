@@ -184,6 +184,7 @@ body {
   width: 35px;
   -webkit-transition-delay: 0.3s;
           transition-delay: 0.3s;
+  z-index: 1;
 }
 
 .page-wrapper.toggled #show-sidebar {
@@ -606,7 +607,6 @@ body {
 }
 
 .loader-wrapper {
-  background-color: rgba(0, 0, 0, 0.45);
   position: fixed;
   z-index: 10000;
   width: 100vw;
@@ -618,12 +618,12 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .pagination {
@@ -648,5 +648,12 @@ body {
 th,
 td {
   vertical-align: middle !important;
+}
+
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 

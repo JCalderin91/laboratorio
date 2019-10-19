@@ -1,5 +1,5 @@
 <template>
-  <div class="card" style="margin: 10px;">
+  <div class="card" style="margin-right: 10px;">
     <div class="card-content row">
       <div class="card-title col-12 p-0">
         <h4 v-if="!clientForm">Lista de los clientes</h4>
@@ -210,9 +210,9 @@ export default {
         });
     },
 
-    setClient(event) {
+    setClient(item) {
       for (let i = 0; i < this.clients.length; i++) {
-        if (this.clients[i].cedula == event.target.id) {
+        if (this.clients[i].cedula == item) {
           this.client = this.clients[i];
           this.clientForm = !this.clientForm;
           this.update = true;
@@ -296,13 +296,13 @@ export default {
         });
     },
 
-    deleteClient(e) {
+    deleteClient(item) {
       this.$emit("prompt", {
         title: "¿Está seguro?",
         message: "¡El registro sera elminado!",
         confirmHandler: () => {
           axios
-            .delete("api/clients/" + e.target.id)
+            .delete("api/clients/" + item)
             .then(() => {
               this.getClients();
             })

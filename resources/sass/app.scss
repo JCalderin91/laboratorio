@@ -100,6 +100,7 @@ body {
   border-radius: 0 4px 4px 0px;
   width: 35px;
   transition-delay: 0.3s;
+  z-index: 1;
 }
 .page-wrapper.toggled #show-sidebar {
   left: -40px;
@@ -495,15 +496,14 @@ body {
 }
 
 .loader-wrapper {
-  background-color: rgba(0,0,0,0.45);
   position: fixed;
   z-index: 10000;
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .pagination{
@@ -521,4 +521,10 @@ body {
 
 th,td{
   vertical-align: middle !important;
+}
+
+.btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: none;
 }

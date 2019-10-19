@@ -1,17 +1,17 @@
 <template>
   <Login v-if="!logged"/>
   <div v-else>
-    <div class="page-wrapper chiller-theme toggled">
+    <div class="bg-dark page-wrapper chiller-theme toggled">
       <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
         <i class="fas fa-bars"></i>
       </a>
       <Sidebar/>
       <div class="loader-wrapper" v-if="loading">
-        <div id="loader" class="spinner-border text-white" role="status">
+        <div id="loader" class="spinner-border text-info" role="status">
           <span class="sr-only">Loading...</span>
         </div>
       </div>
-      <div id="main" class="page-content">
+      <div id="main" class="bg-dark page-content pb-3">
         <transition name="fade" mode="out-in">
           <router-view @error="errorAlert" @prompt="promptAlert" @loading-data="setLoading"></router-view>
         </transition>
@@ -31,8 +31,6 @@ export default {
   name: "app",
   data() {
     return {
-      email: "jesuscaldeirn@gmail.com",
-      password: "123",
       error: false,
       loading: false
     };
@@ -45,8 +43,9 @@ export default {
   created() {
     if (this.logged) {
       axios.defaults.headers.common["X-CSRF-TOKEN"] = this.$session.get("xsrf");
-      axios.defaults.headers.common["Authorization"] =
-        "Bearer " + this.$session.get("token");
+      axios.defaults.headers.common["Authorization"] = "Bearer " + this.$session.get("token");
+    }else{
+      console.log('Session exprired')
     }
   },
   methods: {
@@ -103,8 +102,10 @@ export default {
   color: #33333360;
   font-style: italic;
   transition: all 0.3s ease;
+  text-shadow: 0px 0px 1px rgba(255,255,255,0.3);
   &:hover {
     color: #333;
+    text-shadow: 1px 1px 1px white;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 
-	<div class="card col-6" style="margin: 10px;">
+	<div class="card col-6" style="margin-right: 10px;">
 		<div class="card-content">
 
 			<div class="card-title">    
@@ -14,7 +14,7 @@
 			</a>
 			
 			<new-address v-if="newAddress" :newAddress="toggleForm"></new-address>
-			<table v-else class="table table-striped table-hover mt-2">
+			<table v-else class="table table-bordered table-hover mt-2">
 				<thead>
 					<tr>
 						<th>Nombre</th>

@@ -1,13 +1,13 @@
 <template>
-  <div class="card col-11" style="margin: 10px;">
+  <div class="card" style="margin-right: 10px;">
     <div class="card-content row">
 
       <div class="card-title col-12 p-0">
         <h4 >Configuraciones del sistema</h4>
       </div>
       <div class="card-body p-0">
-        <h5 v-if="!editing" >Cuentas registradas</h5> 
-        <h5 v-else >Editar cuenta</h5> 
+        <h6 v-if="!editing" >Cuentas registradas</h6> 
+        <h6 v-else >Editar cuenta</h6> 
 
         <div v-if="editing" class="row">
           <div class="col-md-6">
@@ -81,7 +81,7 @@
           </div>
         </div>
                
-        <table v-else class="table table-striped table-hover table-sm">
+        <table v-else class="table table-bordered table-hover table-sm">
           <thead class="thead-dark">
             <tr class="text-center">
               <th>Nombre de usuario</th>
@@ -90,7 +90,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr :key="key" v-for="(acount, key) in accounts" class="text-center">
+            <tr :key="acount.identificador" v-for="acount in accounts" class="text-center">
               <td>
                 <span>{{ acount.usuario }}</span>                
               </td>
@@ -98,12 +98,12 @@
                 <span id="prof" style="width: 100%;">*********</span>                
                </td>
                <td>
-                  <a
-                    @click.prevent="editHandler(acount)"
+                  <button
+                    @click="editHandler(acount)"
                     title="Editar cuenta"
-                    class="text-dark">  
-                      <small><i class="fas fa-pen" style="cursor: pointer;"></i></small>
-                  </a>
+                    class="btn btn-sm text-dark">  
+                      <i class="fas fa-pen"></i>
+                  </button>
                </td>
             </tr>
           </tbody>

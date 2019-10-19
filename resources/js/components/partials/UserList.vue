@@ -1,5 +1,5 @@
 <template>
-  <table class="table table-striped table-hover table-sm mt-4">
+  <table class="table table-bordered table-hover table-sm mt-4">
     <thead class="bg-dark text-white text-center">
       <tr>
         <th>Cedula</th>
@@ -19,28 +19,13 @@
         <td>{{ (user.sexo === 'F'?'Femenino':'Masculino') }}</td>
         <td v-if="isAdmin">{{ (user.esAdministrador) ? 'Profesor' : 'Técnico' }}</td>
         <td>
-          <a class="btn-sm">
-            <small>
-              <i
-                title="Editar"
-                :id="user.cedula"
-                @click.prevent="edit(user.cedula)"
-                class="fas fa-pen"
-                style="cursor: pointer;"
-              ></i>
-            </small>
-          </a>
-          <a class="btn-sm">
-            <small>
-              <i
-                @click.prevent="destroy(user.identificador)"
-                :id="user.cedula"
-                class="fas"
-                :class="{'text-danger fa-user-slash': user.fechaEliminacion == null,'text-success fa-user':user.fechaEliminacion!==null}"
-                style="cursor: pointer;"
-              ></i>
-            </small>
-          </a>
+          <button @click.prevent="edit(user.cedula)" class="btn btn-sm" title="Editar">
+            <i class="fas fa-pen"></i>
+          </button>
+          <button @click="destroy(user.identificador)" class="btn btn-sm" title="Eliminar">
+            <i class="fas"
+              :class="{'text-danger fa-user-slash': user.fechaEliminacion == null,'text-success fa-user':user.fechaEliminacion!==null}"></i>
+          </button>
         </td>
       </tr>
     </tbody>

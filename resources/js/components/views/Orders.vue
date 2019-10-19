@@ -1,15 +1,11 @@
 <template>
-  <div class="card col-11" style="margin: 10px;">
+  <div class="card" style="margin-right: 10px;">
     <div class="card-content row">
       <div class="card-title col-12 p-0">
         <h4>
           Lista de las ordenes registradas
-          <a
-            v-if="editOrder"
-            @click.prevent="editOrder = !editOrder"
-            href="#"
-            class="btn btn-info float-right"
-          >Finalizar edición</a>
+          <a v-if="editOrder" @click.prevent="editOrder = !editOrder" href="#"
+            class="btn btn-info float-right">Finalizar edición</a>
         </h4>
       </div>
 
@@ -26,7 +22,7 @@
         </div>
 
         <div class="table-responsive">
-          <table class="table text-center table-striped table-hover table-sm">
+          <table id="orders" class="table text-center table-bordered table-hover table-sm">
             <thead class="bg-dark text-white">
               <tr>
                 <th>Código</th>
@@ -54,35 +50,23 @@
                   <span v-else class="badge badge-success">Entregado</span>
                 </td>
                 <td>
-                  <a
-                    @click.prevent="getOrder(order.identificador)"
-                    href="#"
-                    title="Editar"
-                    class="text-dark"
-                  >
-                    <small>
-                      <i class="fas fa-pen" style="cursor: pointer;"></i>
-                    </small>
-                  </a>
-                  
-                  <a @click.prevent="deleteOrder" title="Eliminar" class="text-danger">
-                    <small>
-                      <i :id="order.identificador" class="fas fa-trash" style="cursor: pointer;"></i>
-                    </small>
-                  </a>
+                  <button @click="getOrder(order.identificador)" title="Editar" class="btn btn-sm text-dark">
+                    <i class="fas fa-pen"></i>
+                  </button>
+
+                  <button @click="deleteOrder(order.identificador)" title="Eliminar" class="btn btn-sm text-danger">
+                    <i class="fas fa-trash"></i>
+                  </button>
                 </td>
               </tr>
             </tbody>
           </table>
-        </div> 
+        </div>
 
         <nav v-if="!searchOrder" aria-label="Page navigation example" class="mx-2">
           <ul class="pagination pagination-sm">
-            <li
-              v-for="page in ordersMeta.total_pages"
-              :key="page"
-              v-bind:class="{'page-item pt-1':true, 'active':(page === ordersMeta.current_page)}"
-            >
+            <li v-for="page in ordersMeta.total_pages" :key="page"
+              v-bind:class="{'page-item pt-1':true, 'active':(page === ordersMeta.current_page)}">
               <a @click.prevent="ordersPaginate(page)" class="page-link" href="#">{{page}}</a>
             </li>
           </ul>
@@ -138,8 +122,8 @@ export default {
           this.$emit("loading-data", false);
         });
     },
-    deleteOrder(event) {
-      this.selectedOrder = event.target.id;
+    deleteOrder(identificador) {
+      this.selectedOrder = identificador;
       this.$emit("prompt", {
         title: "¿Está seguro?",
         message: "El resgistro sera Eliminado!",
@@ -170,7 +154,7 @@ export default {
       axios
         .get("api/orders-all?paginate=true")
         .then(response => {
-					this.allOrders = response.data.data;
+          this.allOrders = response.data.data;
           if (response.data.meta) this.ordersMeta = response.data.meta.pagination;
         })
         .catch(error => {
@@ -197,27 +181,27 @@ export default {
     }
   },
   computed: {
-    filterOrders: function() {
+    filterOrders: function () {
       if (this.searchOrder != "") {
         return this.allOrders.filter(
           item =>
-            item.cliente.data.cedula.includes(this.searchOrder) ||
-            item.cliente.data.nombres
-              .toUpperCase()
-              .includes(this.searchOrder.toUpperCase()) ||
-            item.cliente.data.apellidos
-              .toUpperCase()
-              .includes(this.searchOrder.toUpperCase()) ||
-            item.equipo.data.nombre
-              .toUpperCase()
-              .includes(this.searchOrder.toUpperCase()) ||
-            item.codigo
-              .toUpperCase()
-              .includes(this.searchOrder.toUpperCase()) ||
-            item.estado
-              .toUpperCase()
-              .includes(this.searchOrder.toUpperCase()) ||
-            item.fechaCreacion.includes(this.searchOrder)
+          item.cliente.data.cedula.includes(this.searchOrder) ||
+          item.cliente.data.nombres
+          .toUpperCase()
+          .includes(this.searchOrder.toUpperCase()) ||
+          item.cliente.data.apellidos
+          .toUpperCase()
+          .includes(this.searchOrder.toUpperCase()) ||
+          item.equipo.data.nombre
+          .toUpperCase()
+          .includes(this.searchOrder.toUpperCase()) ||
+          item.codigo
+          .toUpperCase()
+          .includes(this.searchOrder.toUpperCase()) ||
+          item.estado
+          .toUpperCase()
+          .includes(this.searchOrder.toUpperCase()) ||
+          item.fechaCreacion.includes(this.searchOrder)
         );
       } else {
         return this.allOrders;

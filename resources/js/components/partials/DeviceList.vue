@@ -1,6 +1,6 @@
 <template>
 
-	<table class="table table-striped table-hover mt-4">
+	<table class="table table-bordered table-hover mt-4">
 		<thead class="bg-dark text-white text-center">
 			<tr>
 				<th>Nombre</th>
