@@ -22,7 +22,7 @@ class ReportController extends ApiController
 
         $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_PENDING, function ($q) use ($type, $from, $to)  {
             return $q->when($type == 'today', function($query){
-                return $query->where('arrival_date', Carbon::now());
+                return $query->whereDate('arrival_date', Carbon::now());
             })
             ->when($type == 'range', function($query) use ($from, $to){
                 return $query->whereBetween('arrival_date', [$from, $to]);
@@ -45,7 +45,7 @@ class ReportController extends ApiController
         $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_REVISED, function ($q) use ($type,$from, $to)  {
             return $q->whereHas('repair', function ($q) use ($type, $from, $to)  {
                 return $q->when($type == 'today', function($query){
-                    return $query->where('created', Carbon::now());
+                    return $query->whereDate('created', Carbon::now());
                 })
                 ->when($type == 'range', function($query) use ($from, $to){
                     return $query->whereBetween('created', [$from, $to]);
@@ -68,7 +68,7 @@ class ReportController extends ApiController
 
         $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($type, $from, $to)  {
             return $q->when($type == 'today', function($query){
-                return $query->where('delivery_date', Carbon::now());
+                return $query->whereDate('delivery_date', Carbon::now());
             })
             ->when($type == 'range', function($query) use ($from, $to){
                 return $query->whereBetween('delivery_date', [$from, $to]);
@@ -90,7 +90,7 @@ class ReportController extends ApiController
 
         $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_PENDING, function ($q) use ($from, $to, $user, $type)  {
             return $q->when($type == 'today', function($query){
-                return $query->where('arrival_date', Carbon::now());
+                return $query->whereDate('arrival_date', Carbon::now());
             })
             ->when($type == 'range', function($query) use ($from, $to){
                 return $query->whereBetween('arrival_date', [$from, $to]);
@@ -114,7 +114,7 @@ class ReportController extends ApiController
         $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_REVISED, function ($q) use ($from, $to, $user, $type)  {
             return $q->whereHas('repair', function ($q) use ($from, $to, $user, $type)  {
                 return $q->when($type == 'today', function($query){
-                    return $query->where('created', Carbon::now());
+                    return $query->whereDate('created', Carbon::now());
                 })
                 ->when($type == 'range', function($query) use ($from, $to){
                     return $query->whereBetween('created', [$from, $to]);
@@ -137,7 +137,7 @@ class ReportController extends ApiController
 
         $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($from, $to, $user, $type)  {
             return $q->when($type == 'today', function($query){
-                return $query->where('delivery_date', Carbon::now());
+                return $query->whereDate('delivery_date', Carbon::now());
             })
             ->when($type == 'range', function($query) use ($from, $to){
                 return $query->whereBetween('delivery_date', [$from, $to]);
