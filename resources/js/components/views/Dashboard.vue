@@ -289,7 +289,7 @@
 		    },
 		    saveRepair() {
 		      let repair = {
-						created: this.dateCustom,
+						fechaCreacion: this.dateCustom,
 		        tecnico: this.idUser,
 		        estado: this.stateDevice,
 		        detalle: this.datails
@@ -327,7 +327,7 @@
 		    },
 		    saveDelivery() {
 		      let delivery = {
-						delivery_date: this.dateCustom,
+						fechaEntrega: this.dateCustom,
 		        user_delivery_id: this.idUser,
 		        client_ci: this.client.ci,
 		        client_name: this.client.name

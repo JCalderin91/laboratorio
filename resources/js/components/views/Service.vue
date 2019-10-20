@@ -471,7 +471,7 @@
         }
 
         let order = {
-          arrival_date: this.dateCustom,
+          fechaCreacion: this.dateCustom,
           // Datos del cliente
           cedula: this.client.ci,
           nombres: this.client.first_name,
