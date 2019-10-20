@@ -97,6 +97,9 @@
 				      <div class="modal-body">
 				      	<div class="row">
 
+									<date-custom class="col-6 offset-6" :date="dateCustom"></date-custom>
+
+
 				      		<div class="col-md-12">
 				      			<div class="form-group">
 			                <label>Estado del dispositivo</label>
@@ -116,13 +119,11 @@
 
 				      		<set-user class="col-12" :users="users"></set-user>
 
-									<date-custom class="col-12" :date="dateCustom"></date-custom>
-
 				      	</div>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				        <button type="submit" class="btn btn-primary">Guardar</button>
+				        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+				        <button type="submit" class="btn btn-success">Guardar</button>
 				      </div>
 			    	</form>
 			    </div>
@@ -142,6 +143,9 @@
 				      </div>
 				      <div class="modal-body">
 				      	<div class="row">
+
+									<date-custom class="col-6 offset-6" :date="dateCustom"></date-custom>
+
 
 				      		<div class="col-md-12">
 				      			<div class="form-group">
@@ -168,13 +172,11 @@
 
 				      		<set-user class="col-12" :users="users"></set-user>
 
-									<date-custom class="col-12" :date="dateCustom"></date-custom>
-
 				      	</div>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-				        <button type="submit" class="btn btn-primary">Guardar</button>
+				        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
+				        <button type="submit" class="btn btn-success">Guardar</button>
 				      </div>
 			    	</form>
 			    </div>
@@ -198,6 +200,7 @@
 		  },
 		  data() {
 		    return {
+					dateCustom: '',
 		      searchOrder: '',
 		      sameClientCheck: false,
 		      sameClient: {
@@ -228,9 +231,12 @@
 		  mounted() {
 		    this.getAllOrders()
 		    this.getOrders()
-		    this.getUsers()
+				this.getUsers()
 		  },
 		  created() {
+				eventBus.$on('date-custom', (value) => {
+					this.dateCustom = value
+				})
 		    eventBus.$on('idUser', (value) => {
 		      this.idUser = value
 		    })
@@ -283,6 +289,7 @@
 		    },
 		    saveRepair() {
 		      let repair = {
+						created: this.dateCustom,
 		        tecnico: this.idUser,
 		        estado: this.stateDevice,
 		        detalle: this.datails
@@ -320,6 +327,7 @@
 		    },
 		    saveDelivery() {
 		      let delivery = {
+						delivery_date: this.dateCustom,
 		        user_delivery_id: this.idUser,
 		        client_ci: this.client.ci,
 		        client_name: this.client.name

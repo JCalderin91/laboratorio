@@ -1,8 +1,13 @@
 <template>
   <div class="card">
 
-    <h2>Registro de una nueva orden de servicio</h2>
-    <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
+    <div class="card-header d-flex justify-content-between">
+      <div>
+        <h2>Registro de una nueva orden de servicio</h2>
+        <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
+      </div>
+      <div><date-custom :date="dateCustom"></date-custom></div>
+    </div>
 
     <form @submit.prevent="saveOrder" method="POST">
 
@@ -188,23 +193,11 @@
         </div>
         <div class="card-body">
           <set-user :users="users"></set-user>
-        </div>  
-      </div>
-
-      <div v-if="isAdmin" class="card mt-3">
-        <div class="card-header bg-dark">
-          <h6 class="m-0 text-white">
-            Datos fecha
-          </h6>
-        </div>
-        <div class="card-body">
-          <date-custom :date="dateCustom"></date-custom>
-        </div>
+        </div> 
         <div class="card-footer">
           <button type="submit" href="#" class="btn btn-success float-right">Registrar orden de servicio</button>
-        </div>
-      </div>
-      
+        </div> 
+      </div>    
 
     </form>
 
@@ -478,6 +471,7 @@
         }
 
         let order = {
+          arrival_date: this.dateCustom,
           // Datos del cliente
           cedula: this.client.ci,
           nombres: this.client.first_name,
@@ -495,6 +489,7 @@
           // Datos del tecnico
           tecnico: this.idUser
         }
+
 
         axios
           .post("api/orders", order)
