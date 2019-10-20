@@ -4,11 +4,21 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use Illuminate\Http\Request;
+use App\Transformers\OrderTransformer;
 use App\Http\Controllers\ApiController;
 Use Carbon\Carbon;
 
 class OrderDeliveryController extends ApiController
 {
+    
+    
+    public function __construct(){
+        
+        //parent::__construct();
+
+        $this->middleware('transform.input:' . OrderTransformer::class)->only(['store', 'update']);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -28,6 +38,7 @@ class OrderDeliveryController extends ApiController
      */
     public function store(Order $order, Request $request)
     {
+
         $order->fill($request->except('delivery_date'));
 
         if($request->has('delivery_date') && !empty($request->delivery_date)){

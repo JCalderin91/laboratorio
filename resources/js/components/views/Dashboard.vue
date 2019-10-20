@@ -328,9 +328,9 @@
 		    saveDelivery() {
 		      let delivery = {
 						fechaEntrega: this.dateCustom,
-		        user_delivery_id: this.idUser,
-		        client_ci: this.client.ci,
-		        client_name: this.client.name
+		        tecnicoEntrega: this.idUser,
+		        cedulaEntrega: this.client.ci,
+		        nombreEntrega: this.client.name
 		      }
 		      this.$emit('unsetUser', '')
 		      axios
