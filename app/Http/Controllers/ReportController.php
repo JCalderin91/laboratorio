@@ -18,45 +18,144 @@ class ReportController extends ApiController
         $user = $request->user_id;
 
         $query_order = Order::query();
+
+        $type = 'last_month';
    
 
-        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_PENDING, function ($q) use ($from, $to)  {
-            return $q->whereBetween('arrival_date', [$from, $to])
-                        ->where('status', Order::ORDER_PENDING)->get();
+        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_PENDING, function ($q) use ($type, $from, $to)  {
+            return $q->when($type == 'today', function($query){
+                return $query->where('arrival_date', Carbon::now());
+            })
+            ->when($type == 'range', function($query) use ($from, $to){
+                return $query->whereBetween('arrival_date', [$from, $to]);
+            })
+            ->when($type == 'current_month', function($query){
+                $date = Carbon::now();
+                return $query->whereMonth('arrival_date', $date->format('m'))
+                                ->whereYear('arrival_date', $date->format('Y'));
+            })
+            ->when($type == 'last_month', function($query){
+                $date = Carbon::now()->startOfMonth()->subMonth();
+                return $query->whereMonth('arrival_date', $date->format('m'))
+                                ->whereYear('arrival_date', $date->format('Y'));
+               
+            })
+            ->where('status', Order::ORDER_PENDING)->get();
 
         });
 
-        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_REVISED, function ($q) use ($from, $to)  {
-            return $q->whereHas('repair', function ($query) use ($from, $to)  {
-                    $query->whereBetween('created', [$from, $to]);
+        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_REVISED, function ($q) use ($type,$from, $to)  {
+            return $q->whereHas('repair', function ($q) use ($type, $from, $to)  {
+                return $q->when($type == 'today', function($query){
+                    return $query->where('created', Carbon::now());
+                })
+                ->when($type == 'range', function($query) use ($from, $to){
+                    return $query->whereBetween('created', [$from, $to]);
+                })
+                ->when($type == 'current_month', function($query){
+                    $date = Carbon::now();
+                    return $query->whereMonth('created', $date->format('m'))
+                                    ->whereYear('created', $date->format('Y'));
+                })
+                ->when($type == 'last_month', function($query){
+                    $date = Carbon::now()->startOfMonth()->subMonth();
+                    return $query->whereMonth('created', $date->format('m'))
+                                    ->whereYear('created', $date->format('Y'));
+                   
+                });
             })->get();
             
 
         });
 
-        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($from, $to)  {
-            return $q->whereBetween('delivery_date', [$from, $to])->get();
+        $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($type, $from, $to)  {
+            return $q->when($type == 'today', function($query){
+                return $query->where('delivery_date', Carbon::now());
+            })
+            ->when($type == 'range', function($query) use ($from, $to){
+                return $query->whereBetween('delivery_date', [$from, $to]);
+            })
+            ->when($type == 'current_month', function($query){
+                $date = Carbon::now();
+                return $query->whereMonth('delivery_date', $date->format('m'))
+                                ->whereYear('delivery_date', $date->format('Y'));
+            })
+            ->when($type == 'last_month', function($query){
+                $date = Carbon::now()->startOfMonth()->subMonth();
+                return $query->whereMonth('delivery_date', $date->format('m'))
+                                ->whereYear('delivery_date', $date->format('Y'));
+               
+            })
+            ->get();
 
         });
 
-        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_PENDING, function ($q) use ($from, $to, $user)  {
-            return $q->whereBetween('arrival_date', [$from, $to])
-                        ->where('user_id', $user)
-                        ->get();
+        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_PENDING, function ($q) use ($from, $to, $user, $type)  {
+            return $q->when($type == 'today', function($query){
+                return $query->where('arrival_date', Carbon::now());
+            })
+            ->when($type == 'range', function($query) use ($from, $to){
+                return $query->whereBetween('arrival_date', [$from, $to]);
+            })
+            ->when($type == 'current_month', function($query){
+                $date = Carbon::now();
+                return $query->whereMonth('arrival_date', $date->format('m'))
+                                ->whereYear('arrival_date', $date->format('Y'));
+            })
+            ->when($type == 'last_month', function($query){
+                $date = Carbon::now()->startOfMonth()->subMonth();
+                return $query->whereMonth('arrival_date', $date->format('m'))
+                                ->whereYear('arrival_date', $date->format('Y'));
+               
+            })
+            ->where('user_id', $user)
+            ->get();
 
         });
 
-        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_REVISED, function ($q) use ($from, $to, $user)  {
-            return $q->whereHas('repair', function ($query) use ($from, $to, $user)  {
-                    $query->whereBetween('created', [$from, $to])
-                    ->where('user_id', $user);
+        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_REVISED, function ($q) use ($from, $to, $user, $type)  {
+            return $q->whereHas('repair', function ($q) use ($from, $to, $user, $type)  {
+                return $q->when($type == 'today', function($query){
+                    return $query->where('created', Carbon::now());
+                })
+                ->when($type == 'range', function($query) use ($from, $to){
+                    return $query->whereBetween('created', [$from, $to]);
+                })
+                ->when($type == 'current_month', function($query){
+                    $date = Carbon::now();
+                    return $query->whereMonth('created', $date->format('m'))
+                                    ->whereYear('created', $date->format('Y'));
+                })
+                ->when($type == 'last_month', function($query){
+                    $date = Carbon::now()->startOfMonth()->subMonth();
+                    return $query->whereMonth('created', $date->format('m'))
+                                    ->whereYear('created', $date->format('Y'));
+                   
+                })
+                ->where('user_id', $user);
             })->get();
             
         });
 
-        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($from, $to, $user)  {
-            return $q->whereBetween('delivery_date', [$from, $to])
-                        ->where('user_delivery_id', $user)->get();
+        $query_order->when(request('filter_by') == 'user' && request('status') == Order::ORDER_DELIVERED, function ($q) use ($from, $to, $user, $type)  {
+            return $q->when($type == 'today', function($query){
+                return $query->where('delivery_date', Carbon::now());
+            })
+            ->when($type == 'range', function($query) use ($from, $to){
+                return $query->whereBetween('delivery_date', [$from, $to]);
+            })
+            ->when($type == 'current_month', function($query){
+                $date = Carbon::now();
+                return $query->whereMonth('delivery_date', $date->format('m'))
+                                ->whereYear('delivery_date', $date->format('Y'));
+            })
+            ->when($type == 'last_month', function($query){
+                $date = Carbon::now()->startOfMonth()->subMonth();
+                return $query->whereMonth('delivery_date', $date->format('m'))
+                                ->whereYear('delivery_date', $date->format('Y'));
+               
+            })
+            ->where('user_delivery_id', $user)->get();
 
         });
 
