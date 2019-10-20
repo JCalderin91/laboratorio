@@ -16,11 +16,9 @@ class ReportController extends ApiController
         $to = Carbon::parse($request->to)->format('Y-m-d H:i:s');
 
         $user = $request->user_id;
+        $type = $request->type;
 
         $query_order = Order::query();
-
-        $type = 'last_month';
-   
 
         $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_PENDING, function ($q) use ($type, $from, $to)  {
             return $q->when($type == 'today', function($query){
