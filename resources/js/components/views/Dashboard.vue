@@ -116,6 +116,8 @@
 
 				      		<set-user class="col-12" :users="users"></set-user>
 
+									<date-custom class="col-12" :date="dateCustom"></date-custom>
+
 				      	</div>
 				      </div>
 				      <div class="modal-footer">
@@ -166,6 +168,8 @@
 
 				      		<set-user class="col-12" :users="users"></set-user>
 
+									<date-custom class="col-12" :date="dateCustom"></date-custom>
+
 				      	</div>
 				      </div>
 				      <div class="modal-footer">
@@ -183,237 +187,239 @@
 	import Modal from '../partials/Modal'
 	import Widget from '../partials/Widget'
 	import SetUser from '../partials/SetUser'
+  import DateCustom from '../partials/DateCustom'
 	export default {
-	  name: 'dashboard',
-	  data() {
-	    return {
-	      searchOrder: '',
-	      sameClientCheck: false,
-	      sameClient: {
-	        ci: '',
-	        name: ''
-	      },
-	      client: {
-	        ci: '',
-	        name: ''
-	      },
-	      datails: '',
-	      stateDevice: '',
-	      order: '',
-	      idUser: '',
-	      users: '',
-	      states: [{
-	        value: 'without repair',
-	        name: 'Sin reparación'
-	      }, {
-	        value: 'repaired',
-	        name: 'Reparado'
-	      }],
-	      orders: [],
-	      allOrders: [],
-	      ordersMeta: [],
-	    }
-	  },
-	  components: {
-	    Widget,
-	    Modal,
-	    SetUser
-	  },
-	  mounted() {
-	    this.getAllOrders()
-	    this.getOrders()
-	    this.getUsers()
-	  },
-	  created() {
-	    eventBus.$on('idUser', (value) => {
-	      this.idUser = value
-	    })
-	  },
-	  methods: {
-	    checkStatus(status) {
-	      if (status === 'pendiente') return true
-	      return false
-	    },
-	    getAllOrders() {
-	      this.$emit('loading-data', true)
-	      axios
-	        .get("api/orders")
-	        .then(response => {
-	          this.allOrders = (response.data.data) ? response.data.data.filter((item) => item.estado != 'entregado') : []
-	        })
-	        .catch(error => {
-	          console.log(error)
-	        })
-	        .then(() => {
-	          this.$emit('loading-data', false)
-	        })
-	    },
-	    getOrders() {
-	      this.$emit('loading-data', true)
-	      axios
-	        .get("api/orders?paginate=true")
-	        .then(response => {
-	          this.orders = (response.data.data) ? response.data.data.filter((item) => item.estado != 'entregado') : []
-	          if (response.data.meta) this.ordersMeta = response.data.meta.pagination
-	        })
-	        .catch(error => {
-	          console.log(error)
-	        })
-	        .then(() => {
-	          this.$emit('loading-data', false)
-	        })
+		name: 'dashboard',
+		  components: {
+		    Widget,
+		    Modal,
+		    SetUser,
+		    DateCustom
+		  },
+		  data() {
+		    return {
+		      searchOrder: '',
+		      sameClientCheck: false,
+		      sameClient: {
+		        ci: '',
+		        name: ''
+		      },
+		      client: {
+		        ci: '',
+		        name: ''
+		      },
+		      datails: '',
+		      stateDevice: '',
+		      order: '',
+		      idUser: '',
+		      users: '',
+		      states: [{
+		        value: 'without repair',
+		        name: 'Sin reparación'
+		      }, {
+		        value: 'repaired',
+		        name: 'Reparado'
+		      }],
+		      orders: [],
+		      allOrders: [],
+		      ordersMeta: [],
+		    }
+		  },
+		  mounted() {
+		    this.getAllOrders()
+		    this.getOrders()
+		    this.getUsers()
+		  },
+		  created() {
+		    eventBus.$on('idUser', (value) => {
+		      this.idUser = value
+		    })
+		  },
+		  methods: {
+		    checkStatus(status) {
+		      if (status === 'pendiente') return true
+		      return false
+		    },
+		    getAllOrders() {
+		      this.$emit('loading-data', true)
+		      axios
+		        .get("api/orders")
+		        .then(response => {
+		          this.allOrders = (response.data.data) ? response.data.data.filter((item) => item.estado != 'entregado') : []
+		        })
+		        .catch(error => {
+		          console.log(error)
+		        })
+		        .then(() => {
+		          this.$emit('loading-data', false)
+		        })
+		    },
+		    getOrders() {
+		      this.$emit('loading-data', true)
+		      axios
+		        .get("api/orders?paginate=true")
+		        .then(response => {
+		          this.orders = (response.data.data) ? response.data.data.filter((item) => item.estado != 'entregado') : []
+		          if (response.data.meta) this.ordersMeta = response.data.meta.pagination
+		        })
+		        .catch(error => {
+		          console.log(error)
+		        })
+		        .then(() => {
+		          this.$emit('loading-data', false)
+		        })
 
-	    },
-	    ordersPaginate(page) {
-	      axios
-	        .get("/api/orders?paginate=true&page=" + page)
-	        .then(response => {
-	          this.orders = response.data.data.filter((item) => item.estado != 'entregado')
-	          if (response.data.meta) this.ordersMeta = response.data.meta.pagination
-	        })
-	        .catch(error => {
-	          console.log(error)
-	        })
-	    },
-	    saveRepair() {
-	      let repair = {
-	        tecnico: this.idUser,
-	        estado: this.stateDevice,
-	        detalle: this.datails
-	      }
-	      axios
-	        .post(`api/orders/${this.order}/repairs`, repair)
-	        .then(response => {
-	          this.getAllOrders()
-	          this.getOrders()
-	          this.getUsers()
-	          this.state = ''
-	          this.datails = ''
-	          this.order = ''
-	          Swal({
-	            type: 'success',
-	            title: 'Excelente',
-	            text: 'Datos guardados con exito',
-	            confirmButtonText: 'Continuar',
-	          }).then(() => {
-	            this.$router.push('/')
-	            this.getAllOrders()
-	          })
-	        })
-	        .catch(error => {
-	          Swal({
-	            type: 'error',
-	            title: 'Alerta',
-	            text: error,
-	            confirmButtonText: 'Continuar',
-	          })
-	        }).then(() => {
-	          $('#reparar').modal('hide')
-	        })
+		    },
+		    ordersPaginate(page) {
+		      axios
+		        .get("/api/orders?paginate=true&page=" + page)
+		        .then(response => {
+		          this.orders = response.data.data.filter((item) => item.estado != 'entregado')
+		          if (response.data.meta) this.ordersMeta = response.data.meta.pagination
+		        })
+		        .catch(error => {
+		          console.log(error)
+		        })
+		    },
+		    saveRepair() {
+		      let repair = {
+		        tecnico: this.idUser,
+		        estado: this.stateDevice,
+		        detalle: this.datails
+		      }
+		      axios
+		        .post(`api/orders/${this.order}/repairs`, repair)
+		        .then(response => {
+		          this.getAllOrders()
+		          this.getOrders()
+		          this.getUsers()
+		          this.state = ''
+		          this.datails = ''
+		          this.order = ''
+		          Swal({
+		            type: 'success',
+		            title: 'Excelente',
+		            text: 'Datos guardados con exito',
+		            confirmButtonText: 'Continuar',
+		          }).then(() => {
+		            this.$router.push('/')
+		            this.getAllOrders()
+		          })
+		        })
+		        .catch(error => {
+		          Swal({
+		            type: 'error',
+		            title: 'Alerta',
+		            text: error,
+		            confirmButtonText: 'Continuar',
+		          })
+		        }).then(() => {
+		          $('#reparar').modal('hide')
+		        })
 
-	    },
-	    saveDelivery() {
-	      let delivery = {
-	        user_delivery_id: this.idUser,
-	        client_ci: this.client.ci,
-	        client_name: this.client.name
-	      }
-	      this.$emit('unsetUser', '')
-	      axios
-	        .post(`api/orders/${this.order}/deliveries`, delivery)
-	        .then(response => {
-	          this.getAllOrders()
-	          this.getOrders()
-	          this.getUsers()
-	          this.client.ci = ''
-	          this.client.name = ''
-	          this.sameClientCheck = false
-	          Swal({
-	            type: 'success',
-	            title: 'Excelente',
-	            html: '<p>Datos guardados con exito</p><h3>Código de orden: <strong id="code">LAB-' + response.data.data.codigo + '</strong></h3><small class="text-danger font-weight-bold">Recuerde solicitar la firma de este código</small>',
-	            confirmButtonText: 'Continuar',
-	          })
-	        })
-	        .then(() => {
-	          $('#entregar').modal('hide')
-	        })
-	        .catch(error => {
-	          Swal({
-	            type: 'error',
-	            title: 'Alerta',
-	            text: error,
-	            confirmButtonText: 'Continuar',
-	          })
-	        })
+		    },
+		    saveDelivery() {
+		      let delivery = {
+		        user_delivery_id: this.idUser,
+		        client_ci: this.client.ci,
+		        client_name: this.client.name
+		      }
+		      this.$emit('unsetUser', '')
+		      axios
+		        .post(`api/orders/${this.order}/deliveries`, delivery)
+		        .then(response => {
+		          this.getAllOrders()
+		          this.getOrders()
+		          this.getUsers()
+		          this.client.ci = ''
+		          this.client.name = ''
+		          this.sameClientCheck = false
+		          Swal({
+		            type: 'success',
+		            title: 'Excelente',
+		            html: '<p>Datos guardados con exito</p><h3>Código de orden: <strong id="code">LAB-' + response.data.data.codigo + '</strong></h3><small class="text-danger font-weight-bold">Recuerde solicitar la firma de este código</small>',
+		            confirmButtonText: 'Continuar',
+		          })
+		        })
+		        .then(() => {
+		          $('#entregar').modal('hide')
+		        })
+		        .catch(error => {
+		          Swal({
+		            type: 'error',
+		            title: 'Alerta',
+		            text: error,
+		            confirmButtonText: 'Continuar',
+		          })
+		        })
 
-	    },
-	    setClient() {
-	      if (this.sameClientCheck) {
-	        this.client.ci = this.sameClient.ci
-	        this.client.name = this.sameClient.name
-	      } else {
-	        this.client.ci = ''
-	        this.client.name = ''
-	      }
-	    },
+		    },
+		    setClient() {
+		      if (this.sameClientCheck) {
+		        this.client.ci = this.sameClient.ci
+		        this.client.name = this.sameClient.name
+		      } else {
+		        this.client.ci = ''
+		        this.client.name = ''
+		      }
+		    },
 
-	    setOrder(order) {
-	      this.order = order.identificador
-	      this.sameClient.ci = order.cliente.data.cedula
-	      this.sameClient.name = order.cliente.data.nombres + ' ' + order.cliente.data.apellidos
-	    },
+		    setOrder(order) {
+		      this.order = order.identificador
+		      this.sameClient.ci = order.cliente.data.cedula
+		      this.sameClient.name = order.cliente.data.nombres + ' ' + order.cliente.data.apellidos
+		    },
 
-	    getUsers() {
-	      axios
-	        .get("/api/users-all")
-	        .then(response => {
-	          this.users = response.data.data
-	        })
-	        .catch(error => {
-	          console.log(error)
-	        });
-	    },
-	  },
-	  computed: {
-	    pendingCount: function () {
-	      let pendingCount
-	      if (this.searchOrder != '') {
-	        pendingCount = this.filterOrders.filter(order => order.estado === 'pendiente')
-	      } else {
-	        pendingCount = this.allOrders.filter(order => order.estado === 'pendiente')
-	      }
-	      return Object.keys(pendingCount).length
-	    },
-	    revisedCount: function () {
-	      let revisedCount
-	      if (this.searchOrder != '') {
-	        revisedCount = this.filterOrders.filter(order => order.estado === 'revisado')
-	      } else {
-	        revisedCount = this.allOrders.filter(order => order.estado === 'revisado')
-	      }
+		    getUsers() {
+		      axios
+		        .get("/api/users-all")
+		        .then(response => {
+		          this.users = response.data.data
+		        })
+		        .catch(error => {
+		          console.log(error)
+		        });
+		    },
+		  },
+		  computed: {
+		    pendingCount: function () {
+		      let pendingCount
+		      if (this.searchOrder != '') {
+		        pendingCount = this.filterOrders.filter(order => order.estado === 'pendiente')
+		      } else {
+		        pendingCount = this.allOrders.filter(order => order.estado === 'pendiente')
+		      }
+		      return Object.keys(pendingCount).length
+		    },
+		    revisedCount: function () {
+		      let revisedCount
+		      if (this.searchOrder != '') {
+		        revisedCount = this.filterOrders.filter(order => order.estado === 'revisado')
+		      } else {
+		        revisedCount = this.allOrders.filter(order => order.estado === 'revisado')
+		      }
 
-	      return Object.keys(revisedCount).length
-	    },
-	    filterOrders: function () {
+		      return Object.keys(revisedCount).length
+		    },
+		    filterOrders: function () {
 
-	      if (this.searchOrder != '') {
-	        this.allOrders = this.allOrders.filter((item) => item.estado != 'entregado')
-	        return this.allOrders.filter((item) =>
-	          item.cliente.data.cedula.includes(this.searchOrder) ||
-	          item.cliente.data.nombres.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
-	          item.cliente.data.apellidos.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
-	          item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
-	          item.codigo.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
-	          item.fechaCreacion.includes(this.searchOrder)
-	        );
-	      } else {
-	        return this.orders.filter((item) => item.estado != 'entregado')
-	      }
+		      if (this.searchOrder != '') {
+		        this.allOrders = this.allOrders.filter((item) => item.estado != 'entregado')
+		        return this.allOrders.filter((item) =>
+		          item.cliente.data.cedula.includes(this.searchOrder) ||
+		          item.cliente.data.nombres.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+		          item.cliente.data.apellidos.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+		          item.equipo.data.nombre.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+		          item.codigo.toUpperCase().includes(this.searchOrder.toUpperCase()) ||
+		          item.fechaCreacion.includes(this.searchOrder)
+		        );
+		      } else {
+		        return this.orders.filter((item) => item.estado != 'entregado')
+		      }
 
-	    }
-	  }
-	}
+		    }
+		  }
+		}
 </script>
 
 <style>

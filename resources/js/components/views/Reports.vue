@@ -3,16 +3,37 @@
     <h4>Reportes y estadisticas</h4>
     <form @submit.prevent="getReport" action="post">
       <div class="row mt-3">
-				
-        
-        <div class="col-md-6">
+
+        <div class="col-12 d-flex justify-content-around mb-3">
+          <div class="custom-control custom-radio mr-2">
+            <input v-model="type" value="today" type="radio" class="custom-control-input" id="today">
+            <label class="custom-control-label" for="today">Hoy</label>
+          </div>
+
+          <div class="custom-control custom-radio mr-2">
+            <input v-model="type" value="current_month" type="radio" class="custom-control-input" id="current_month">
+            <label class="custom-control-label" for="current_month">Mes actual</label>
+          </div>
+
+          <div class="custom-control custom-radio mr-2">
+            <input v-model="type" value="last_month" type="radio" class="custom-control-input" id="last_month">
+            <label class="custom-control-label" for="last_month">Mes anterior</label>
+          </div>
+
+          <div class="custom-control custom-radio mr-2">
+            <input v-model="type" value="range" type="radio" class="custom-control-input" id="range">
+            <label class="custom-control-label" for="range">Rango de fechas</label>
+          </div>
+        </div>				
+                
+        <div class="col-md-6" v-if="type=='range'">
           <div class="form-group">
             <label>Fecha inicial</label>
             <input v-model="from" type="date" class="form-control" placeholder="Seleccione una fecha" required>
           </div>
         </div>
 
-        <div class="col-md-6">
+        <div class="col-md-6" v-if="type=='range'">
           <div class="form-group">
             <label>Fecha Final</label>
             <input v-model="to" type="date" class="form-control" placeholder="Selecione una fecha" required>
@@ -44,7 +65,7 @@
       <button type="submit" class="btn btn-success float-right">Consultar</button>
     </form>
 
-    <div v-if="reports.length" class="mt-3">
+    <div class="mt-3">
       <div class="table-responsive">
         <table class="table table-bordered text-center table-sm">
           <thead class="bg-dark text-white">
@@ -62,7 +83,10 @@
             </tr>
           </thead>
           <tbody>
-            <tr :key="key" v-for="(report, key) in reports">
+            <tr v-if="!reports">
+              <td colspan="10">No se encontraron resultados</td>
+            </tr>
+            <tr v-else :key="key" v-for="(report, key) in reports">
               <td>
                 <span v-if="report.estado === 'pendiente'">Pendiente</span>
                 <span v-else-if="report.estado === 'revisado'">Revisado</span>
@@ -109,6 +133,7 @@
         to: '',
         status: '',
         user_id: '',
+        type: 'today',
         filter_by: 'user',
         users: '',
         reports: [],
@@ -170,6 +195,7 @@
           status: this.status,
           user_id: this.user_id,
           filter_by: this.filter_by,
+          type: this.type,
         }
         axios
           .post("api/reports", filters)

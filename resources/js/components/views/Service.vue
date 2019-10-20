@@ -188,11 +188,23 @@
         </div>
         <div class="card-body">
           <set-user :users="users"></set-user>
+        </div>  
+      </div>
+
+      <div v-if="isAdmin" class="card mt-3">
+        <div class="card-header bg-dark">
+          <h6 class="m-0 text-white">
+            Datos fecha
+          </h6>
+        </div>
+        <div class="card-body">
+          <date-custom :date="dateCustom"></date-custom>
         </div>
         <div class="card-footer">
           <button type="submit" href="#" class="btn btn-success float-right">Registrar orden de servicio</button>
         </div>
       </div>
+      
 
     </form>
 
@@ -237,21 +249,26 @@
         </div>
       </div>
     </div>
+
   </div>
 </template>
 
 <script>
   import SetUser from '../partials/SetUser'
   import MessageError from '../partials/messageError'
+  import DateCustom from '../partials/DateCustom'
   export default {
 
     components: {
       SetUser,
-      MessageError
+      MessageError,
+      DateCustom
     },
     name: 'Service',
     data() {
       return {
+        isAdmin: this.$session.get('isAdmin'),
+        dateCustom: '',
         loading: false,
         client: {
           ci: '',
@@ -290,6 +307,9 @@
     created() {
       eventBus.$on('idUser', (value) => {
         this.idUser = value
+      })
+      eventBus.$on('date-custom', (value) => {
+        this.dateCustom = value
       })
     },
     mounted() {
