@@ -80,4 +80,6 @@ Route::group([
 
     Route::post('/reports', 'ReportController@index');
 
+    Route::post('report-export', 'ReportExportController@reportExport');
+
 });
