@@ -7,7 +7,7 @@
         <th>apellido</th>
         <th>Genero</th>
         <th v-if="isAdmin">Rol</th>
-        <th>Opciones</th>
+        <th v-if="isAdmin">Opciones</th>
       </tr>
     </thead>
 
@@ -18,7 +18,7 @@
         <td>{{ user.apellido }}</td>
         <td>{{ (user.sexo === 'F'?'Femenino':'Masculino') }}</td>
         <td v-if="isAdmin">{{ (user.esAdministrador) ? 'Profesor' : 'Técnico' }}</td>
-        <td>
+        <td v-if="isAdmin">
           <button @click.prevent="edit(user.cedula)" class="btn btn-sm" title="Editar">
             <i class="fas fa-pen"></i>
           </button>

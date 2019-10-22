@@ -31,7 +31,7 @@
                 <th>Equipo</th>
                 <th>Fecha</th>
                 <th>Estado</th>
-                <th>Acciones</th>
+                <th v-if="isAdmin">Acciones</th>
               </tr>
             </thead>
             <tbody>
@@ -49,7 +49,7 @@
                   <span v-else-if="order.estado === 'revisado'" class="badge badge-primary">Revisado</span>
                   <span v-else class="badge badge-success">Entregado</span>
                 </td>
-                <td>
+                <td v-if="isAdmin">
                   <button @click="getOrder(order.identificador)" title="Editar" class="btn btn-sm text-dark">
                     <i class="fas fa-pen"></i>
                   </button>
@@ -82,6 +82,7 @@ export default {
   name: "orders",
   data() {
     return {
+      isAdmin: this.$session.get('isAdmin'),
       editOrder: false,
       searchOrder: "",
       orders: "",
