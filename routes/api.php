@@ -41,12 +41,12 @@ Route::group([
     
     
     //Direcciones
-    Route::apiResource('/addresses', 'AddressController')
-                ->middleware('auth.role:admin');
+    Route::apiResource('/addresses', 'AddressController');
+                
     
     //Areas
-    Route::apiResource('/areas', 'AreaController')
-                ->middleware('auth.role:admin');
+    Route::apiResource('/areas', 'AreaController');
+                
 
     //Clientes
 
@@ -54,16 +54,16 @@ Route::group([
     Route::apiResource('/clients.devices', 'ClientDeviceController', ['only' => ['index']]);
 
     //Equipos
-    Route::apiResource('/devices', 'DeviceController')
-                ->middleware('auth.role:admin');
-
+    Route::apiResource('/devices', 'DeviceController');
+                
     //Usuarios-Tecnicos
     Route::get('users-all', 'UserController@all');
-    Route::apiResource('/users', 'UserController');
+    Route::apiResource('/users', 'UserController')
+                ->middleware('auth.role:admin');
 
     //Marcas
-    Route::apiResource('/brands', 'BrandController')
-                ->middleware('auth.role:admin');
+    Route::apiResource('/brands', 'BrandController');
+                
 
     //Horas
     Route::apiResource('/hours', 'HourController');
