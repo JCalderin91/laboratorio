@@ -29,21 +29,24 @@ Route::group([
 
 Route::group([
     
-   // 'middleware' => 'jwt.auth',
+    'middleware' => 'jwt.auth',
     'prefix' => 'api'
 
 
 ], function() {
 
     Route::post('check-password/{account}', 'LoginController@checkPassword');
-    Route::apiResource('/accounts', 'LoginController', ['only' => ['index', 'update']]);
+    Route::apiResource('/accounts', 'LoginController', ['only' => ['index', 'update']])
+                ->middleware('auth.role:admin');
     
     
     //Direcciones
     Route::apiResource('/addresses', 'AddressController');
+                
     
     //Areas
     Route::apiResource('/areas', 'AreaController');
+                
 
     //Clientes
 
@@ -52,13 +55,15 @@ Route::group([
 
     //Equipos
     Route::apiResource('/devices', 'DeviceController');
-
+                
     //Usuarios-Tecnicos
     Route::get('users-all', 'UserController@all');
-    Route::apiResource('/users', 'UserController');
+    Route::apiResource('/users', 'UserController')
+                ->middleware('auth.role:admin');
 
     //Marcas
     Route::apiResource('/brands', 'BrandController');
+                
 
     //Horas
     Route::apiResource('/hours', 'HourController');
