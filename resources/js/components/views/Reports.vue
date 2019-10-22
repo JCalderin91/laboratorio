@@ -147,6 +147,7 @@
         reports: [],
         statuses: [],
         loading: false,
+        exporting: false,
       }
     },
     mounted() {
@@ -220,7 +221,7 @@
           .then(() => this.loading = false)
       },
       exportReport() {
-        if(this.loading) return false
+        if(this.exporting) return false
         let filters = {
           from: this.from + ' 00:00',
           to: this.to + ' 24:00',
@@ -229,7 +230,7 @@
           filter_by: this.filter_by,
           type: this.type,
         }
-        this.loading = true
+        this.exporting = true
         
         axios({
           url: '/api/report-export',
