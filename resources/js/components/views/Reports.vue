@@ -128,7 +128,11 @@
     </div>
 
     <div v-if="reports.length" class="col-12-mt-2">
-      <button @click="exportReport" title="Exportar en formato excel" class="btn bg-excel"><i class="fa fa-file-excel"></i> Exportar</button>
+      <button @click="exportReport" title="Exportar en formato excel" class="btn bg-excel">
+        <i v-if="exporting" class="fas fa-spinner spin"></i>
+        <i v-else class="fa fa-file-excel"></i>
+         Exportar
+      </button>
     </div>  
   </div>
 </template>
@@ -249,6 +253,7 @@
           document.body.appendChild(link);
           link.click();
           link.remove();
+          this.exporting = false
         });
 
       },
@@ -262,7 +267,8 @@
   background-color: #107c41;
   color: white;
   &:hover{
-    color: white
+    color: white;
+    background-color: #005a20;
   }
 }
 
