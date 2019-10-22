@@ -24,8 +24,8 @@
             <input v-model="type" value="range" type="radio" class="custom-control-input" id="range">
             <label class="custom-control-label" for="range">Rango de fechas</label>
           </div>
-        </div>				
-                
+        </div>
+
         <div class="col-md-6" v-if="type=='range'">
           <div class="form-group">
             <label>Fecha inicial</label>
@@ -44,9 +44,10 @@
           <div class="form-group">
             <label for="">Usuario resposable de las ordenes</label>
             <select @change="changeUser" v-model="user_id" name="" id="" class="custom-select" required>
-              <option value="">seleccione un usuario</option>
+              <option value="">Seleccione un usuario</option>
               <option value="all">Todos</option>
-              <option :key="key" v-for="(user, key) in users" :value="user.identificador">{{user.cedula}} - {{ user.nombre }}</option>
+              <option :key="key" v-for="(user, key) in users" :value="user.identificador">{{user.cedula}} -
+                {{ user.nombre }}</option>
             </select>
           </div>
         </div>
@@ -62,7 +63,10 @@
         </div>
 
       </div>
-      <button type="submit" class="btn btn-success float-right">Consultar</button>
+      <button type="submit" class="btn btn-success float-right">
+        <i v-if="loading" class="fas fa-spinner spin"></i>
+        <span v-else>Consultar</span>
+      </button>
     </form>
 
     <div class="mt-3">
@@ -83,7 +87,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-if="!reports">
+            <tr v-if="!reports.length">
               <td colspan="10">No se encontraron resultados</td>
             </tr>
             <tr v-else :key="key" v-for="(report, key) in reports">
@@ -104,7 +108,7 @@
               <td>{{report.equipo.data.nombre}}</td>
               <td>{{report.equipo.data.marca}}</td>
               <td>{{report.equipo.data.modelo}}</td>
-              <td> 
+              <td>
                 <span v-if="report.equipo.data.bienNacional">{{report.equipo.data.bienNacional}}</span>
                 <span v-else>Propio</span>
               </td>
@@ -122,6 +126,10 @@
         </table>
       </div>
     </div>
+
+    <div v-if="reports.length" class="col-12-mt-2">
+      <button @click="exportReport" title="Exportar en formato excel" class="btn bg-excel"><i class="fa fa-file-excel"></i> Exportar</button>
+    </div>  
   </div>
 </template>
 <script>
@@ -137,7 +145,9 @@
         filter_by: 'user',
         users: '',
         reports: [],
-        statuses: []
+        statuses: [],
+        loading: false,
+        exporting: false,
       }
     },
     mounted() {
@@ -189,6 +199,7 @@
         }
       },
       getReport() {
+        if(this.loading) return false
         let filters = {
           from: this.from + ' 00:00',
           to: this.to + ' 24:00',
@@ -197,15 +208,62 @@
           filter_by: this.filter_by,
           type: this.type,
         }
+        this.loading = true
         axios
           .post("api/reports", filters)
           .then(response => {
-            this.reports = response.data.data
+            if(response.data.data)
+              this.reports = response.data.data
+            else
+              this.reports = []
           })
           .catch(error => console.log(error))
+          .then(() => this.loading = false)
+      },
+      exportReport() {
+        if(this.exporting) return false
+        let filters = {
+          from: this.from + ' 00:00',
+          to: this.to + ' 24:00',
+          status: this.status,
+          user_id: this.user_id,
+          filter_by: this.filter_by,
+          type: this.type,
+        }
+        this.exporting = true
+        
+        axios({
+          url: '/api/report-export',
+          method: 'POST',
+          responseType: 'blob', // important
+          data: filters
+        }).then((response) => {
+          const url = window.URL.createObjectURL(new Blob([response.data]));
+          const link = document.createElement('a');
+          var hoy = new Date();
+          var fecha = hoy.getDate() + '-' + ( hoy.getMonth() + 1 ) + '-' + hoy.getFullYear();
+          var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+          var fechaYHora = fecha + ' ' + hora;
+          link.href = url;
+          link.setAttribute('download', 'Reporte '+fechaYHora+'.xlsx'); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        });
+
       },
     }
   }
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+
+.bg-excel{
+  background-color: #107c41;
+  color: white;
+  &:hover{
+    color: white
+  }
+}
+
+</style>

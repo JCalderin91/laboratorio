@@ -13,14 +13,19 @@
       <div class="col-12 row" v-if="!userForm">
           
         <input type="text" class="form-control col-4" placeholder="Buscar...">
-        <div class="col-8">
+
+        <div class="col-4">
           <button
-            @click.prevent="userForm = !userForm"
+            @click="userForm = !userForm"
             v-if="!userForm && isAdmin"
             class="btn btn-primary text-white"
           >
             <i class="fas fa-plus"></i>
           </button>
+        </div>
+
+        <div class="col-4 text-right">
+          <span>{{users.length}} Usuario</span>
         </div>
         
 

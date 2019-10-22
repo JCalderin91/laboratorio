@@ -43,4 +43,10 @@ function copiar(id_elemento) {
   document.execCommand("copy");
   document.body.removeChild(aux);
 }
+
+Date.prototype.toDateInputValue = (function () {
+  var local = new Date(this);
+  local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+  return local
+});
    

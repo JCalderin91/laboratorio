@@ -45,16 +45,14 @@
 								<td>{{order.fechaCreacion}}</td>
 								<td>
 									<button
-										@click="setOrder(order)"
-										data-toggle="modal" data-target="#reparar"
+										@click="setOrder(order, 'repair')"
 										v-if="order.estado === 'pendiente'"
 										title="Reparar"
 										class="btn btn-sm">
 										<i class="fa fa-wrench text-danger"></i>
 									</button>
 									<button
-										@click="setOrder(order)"
-										data-toggle="modal" data-target="#entregar"
+										@click="setOrder(order, 'delivery')"
 										v-else
 										title="Entregar"
 										class="btn btn-sm">
@@ -83,105 +81,110 @@
 
 		
 
-			<!-- Modal de reparar -->
-			<div class="modal fade" id="reparar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			    	<form @submit.prevent="saveRepair" method="POST">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLabel">Atender orden de revisión</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body">
-				      	<div class="row">
+			<transition name="fade">
+				<!-- Modal de reparar -->
+				<div v-if="repair" class="modal fade show" id="reparar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				    	<form @submit.prevent="saveRepair" method="POST">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Atender orden de revisión</h5>
+					        <button type="button" class="close" @click="closeModal('repair')">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					      	<div class="row">
+	
+										<date-custom class="col-6 offset-6" :date="dateCustom"></date-custom>
+	
+	
+					      		<div class="col-md-12">
+					      			<div class="form-group">
+				                <label>Estado del dispositivo</label>
+				                <select v-model="stateDevice" class="custom-select" required>
+				                  <option value="">Selecione el resultado de la revisión</option>
+				                  <option v-for="state in states" :value="state.value" :key="state.name">{{ state.name }}</option>
+				                </select>
+				              </div>
+					      		</div>
+	
+					      		<div class="col-md-12">
+					      			<div class="form-group">
+				                <label for="observaciones">Observaciones de atencion de orden</label>
+				                <textarea v-model="datails" class="form-control" id="observaciones" rows="3" required></textarea>
+				              </div>
+					      		</div>
+	
+					      		<set-user class="col-12" :users="users"></set-user>
+	
+					      	</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-light" @click="closeModal('repair')">Cancelar</button>
+					        <button type="submit" class="btn btn-success">Guardar</button>
+					      </div>
+				    	</form>
+				    </div>
+				  </div>
+				</div>
+			</transition>
 
-									<date-custom class="col-6 offset-6" :date="dateCustom"></date-custom>
+			<transition name="fade">
+				<!-- Modal de Entregar -->
+				<div v-if="delivery" class="modal fade show" id="entregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				    	<form @submit.prevent="saveDelivery" method="POST">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Entregar dispositivo</h5>
+					        <button type="button" class="close" @click="closeModal('delivery')">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+					      <div class="modal-body">
+					      	<div class="row">
+	
+										<date-custom class="col-6 offset-6" :date="dateCustom"></date-custom>
+	
+	
+					      		<div class="col-md-12">
+					      			<div class="form-group">
+				                <div class="custom-control custom-checkbox">
+				                  <input @change="setClient" type="checkbox" class="custom-control-input" id="bn" v-model="sameClientCheck">
+				                  <label class="custom-control-label" for="bn">Lo retira la misma persona que lo ingresó</label>
+				                </div>
+				              </div>
+					      		</div>
+	
+					      		<div class="col-md-4 pr-1">
+					      			<div class="form-group">
+				                <label>Cedula</label>
+				                <input v-model="client.ci" type="text" class="form-control" :disabled="sameClientCheck" required>
+				              </div>
+					      		</div>
+	
+					      		<div class="col-md-8 pl-1">
+					      			<div class="form-group">
+				                <label>Nombres y apellidos</label>
+				                <input v-model="client.name" type="text" class="form-control" :disabled="sameClientCheck" required>
+				              </div>
+					      		</div>
+	
+					      		<set-user class="col-12" :users="users"></set-user>
+	
+					      	</div>
+					      </div>
+					      <div class="modal-footer">
+					        <button type="button" class="btn btn-light" @click="closeModal('delivery')">Cancelar</button>
+					        <button type="submit" class="btn btn-success">Guardar</button>
+					      </div>
+				    	</form>
+				    </div>
+				  </div>
+				</div>
+			</transition>
 
-
-				      		<div class="col-md-12">
-				      			<div class="form-group">
-			                <label>Estado del dispositivo</label>
-			                <select v-model="stateDevice" class="custom-select" required>
-			                  <option value="">Selecione el resultado de la revisión</option>
-			                  <option v-for="state in states" :value="state.value" :key="state.name">{{ state.name }}</option>
-			                </select>
-			              </div>
-				      		</div>
-
-				      		<div class="col-md-12">
-				      			<div class="form-group">
-			                <label for="observaciones">Observaciones de atencion de orden</label>
-			                <textarea v-model="datails" class="form-control" id="observaciones" rows="3" required></textarea>
-			              </div>
-				      		</div>
-
-				      		<set-user class="col-12" :users="users"></set-user>
-
-				      	</div>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-				        <button type="submit" class="btn btn-success">Guardar</button>
-				      </div>
-			    	</form>
-			    </div>
-			  </div>
-			</div>
-
-			<!-- Modal de Entregar -->
-			<div class="modal fade" id="entregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			  <div class="modal-dialog" role="document">
-			    <div class="modal-content">
-			    	<form @submit.prevent="saveDelivery" method="POST">
-				      <div class="modal-header">
-				        <h5 class="modal-title" id="exampleModalLabel">Entregar dispositivo</h5>
-				        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				          <span aria-hidden="true">&times;</span>
-				        </button>
-				      </div>
-				      <div class="modal-body">
-				      	<div class="row">
-
-									<date-custom class="col-6 offset-6" :date="dateCustom"></date-custom>
-
-
-				      		<div class="col-md-12">
-				      			<div class="form-group">
-			                <div class="custom-control custom-checkbox">
-			                  <input @change="setClient" type="checkbox" class="custom-control-input" id="bn" v-model="sameClientCheck">
-			                  <label class="custom-control-label" for="bn">Lo retira la misma persona que lo ingresó</label>
-			                </div>
-			              </div>
-				      		</div>
-
-				      		<div class="col-md-4 pr-1">
-				      			<div class="form-group">
-			                <label>Cedula</label>
-			                <input v-model="client.ci" type="text" class="form-control" :disabled="sameClientCheck" required>
-			              </div>
-				      		</div>
-
-				      		<div class="col-md-8 pl-1">
-				      			<div class="form-group">
-			                <label>Nombres y apellidos</label>
-			                <input v-model="client.name" type="text" class="form-control" :disabled="sameClientCheck" required>
-			              </div>
-				      		</div>
-
-				      		<set-user class="col-12" :users="users"></set-user>
-
-				      	</div>
-				      </div>
-				      <div class="modal-footer">
-				        <button type="button" class="btn btn-light" data-dismiss="modal">Cancelar</button>
-				        <button type="submit" class="btn btn-success">Guardar</button>
-				      </div>
-			    	</form>
-			    </div>
-			  </div>
-			</div>
 		</div>
 	</template>
 
@@ -200,6 +203,8 @@
 		  },
 		  data() {
 		    return {
+					repair: false,
+					delivery: false,
 					dateCustom: '',
 		      searchOrder: '',
 		      sameClientCheck: false,
@@ -242,10 +247,11 @@
 		    })
 		  },
 		  methods: {
-		    checkStatus(status) {
-		      if (status === 'pendiente') return true
-		      return false
-		    },
+				closeModal(type){
+					if(type==='delivery') { this.delivery = false }
+					else { this.repair = false }
+					eventBus.$emit('modal-state', false )
+				},
 		    getAllOrders() {
 		      this.$emit('loading-data', true)
 		      axios
@@ -371,13 +377,14 @@
 		        this.client.name = ''
 		      }
 		    },
-
-		    setOrder(order) {
-		      this.order = order.identificador
+		    setOrder(order, type) {
+					console.log(order)
+					this.order = order.identificador
 		      this.sameClient.ci = order.cliente.data.cedula
 		      this.sameClient.name = order.cliente.data.nombres + ' ' + order.cliente.data.apellidos
+					if(type==='delivery') { this.delivery = true }
+					else { this.repair = true }
 		    },
-
 		    getUsers() {
 		      axios
 		        .get("/api/users-all")

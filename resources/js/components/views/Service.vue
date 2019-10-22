@@ -3,7 +3,7 @@
 
     <div class="card-header d-flex justify-content-between">
       <div>
-        <h2>Registro de una nueva orden de servicio</h2>
+        <h4>Registro de una nueva orden de servicio</h4>
         <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
       </div>
       <div><date-custom :date="dateCustom"></date-custom></div>

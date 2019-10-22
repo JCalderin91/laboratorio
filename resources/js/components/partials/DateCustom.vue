@@ -34,13 +34,19 @@
         eventBus.$emit('date-custom', this.dateCustom )
       },
       setToday(){
-        var today = new Date();
+        this.disabled = true
+        var today = new Date().toDateInputValue();
         this.dateCustom = today.toISOString().substr(0, 10);
         eventBus.$emit('date-custom', this.dateCustom )
       }
 		},
     mounted(){
       this.setToday()
+    },
+    created(){
+      eventBus.$on('modal-state', (value) => {
+        this.setToday()
+      })
     }
 	}
 </script>
