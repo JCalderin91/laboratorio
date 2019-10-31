@@ -3,14 +3,16 @@
 namespace App\Exports;
 
 use App\Order;
+use Maatwebsite\Excel\Events\AfterSheet;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
 use Maatwebsite\Excel\Concerns\Exportable;
+use Maatwebsite\Excel\Concerns\WithEvents;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 
-class ReportExport implements FromCollection, WithMapping, WithHeadings, ShouldAutoSize
+class ReportExport implements FromCollection, WithMapping, WithHeadings, ShouldAutoSize, WithEvents
 {
     
     use Exportable;
@@ -60,6 +62,27 @@ class ReportExport implements FromCollection, WithMapping, WithHeadings, ShouldA
             'Modelo',
             'Bien nacional',
             'Estado de dispositivo'
+        ];
+    }
+
+    public function registerEvents(): array
+    {
+        $styleArray = [
+            'borders' => [
+                'outline' => [
+                    'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK,
+                    'color' => ['argb' => 'FFFF0000'],
+                ],
+            ],
+        ];
+        
+        
+        return [
+            AfterSheet::class    => function(AfterSheet $event) use($styleArray) {
+                $cellRange = 'A1:J1'; // All headers
+                $event->sheet->getDelegate()->getStyle($cellRange)
+                                ->applyFromArray($styleArray);
+            },
         ];
     }
 }

@@ -27,6 +27,10 @@ class Area extends Model
   public function getNameAttribute($value){
     return ucwords($value);
   }
+
+  public function clients(){
+    return $this->hasMany('App\Client');
+  }
  
 
 }

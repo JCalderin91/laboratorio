@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Area;
 use App\Order;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -81,6 +82,7 @@ trait ApiResponser{
         $type = $request->type;
 
         $query_order = Order::query();
+        $query_area = Area::query();
 
         $query_order->when(request('filter_by') == 'orders' && request('status') == Order::ORDER_PENDING, function ($q) use ($type, $from, $to)  {
             return $q->when($type == 'today', function($query){
@@ -217,6 +219,37 @@ trait ApiResponser{
             })
             ->where('user_delivery_id', $user)->get();
 
+        });
+
+        $query_area->when(request('filter_by') == 'client', function($q) use ($from, $to, $type){
+            return $q->when($type == 'today', function($query){
+               $areas = $query::with(['clients' => function($q){
+                   return $q->whereHas('orders', function($q){
+                       $q->whereDate('delivery_date', Carbon::now()); 
+                   });   
+               }])->get();
+
+               $data = $areas->map(function($item){
+                    $data['name'] = $item->name;
+                    //$data['cant'] = 
+               });
+               
+            })
+            ->when($type == 'range', function($query) use ($from, $to){
+                return $query->whereBetween('delivery_date', [$from, $to]);
+            })
+            ->when($type == 'current_month', function($query){
+                $date = Carbon::now();
+                return $query->whereMonth('delivery_date', $date->format('m'))
+                                ->whereYear('delivery_date', $date->format('Y'));
+            })
+            ->when($type == 'last_month', function($query){
+                $date = Carbon::now()->startOfMonth()->subMonth();
+                return $query->whereMonth('delivery_date', $date->format('m'))
+                                ->whereYear('delivery_date', $date->format('Y'));
+               
+            })
+            ->get();
         });
 
         return $orders = $query_order->get();
