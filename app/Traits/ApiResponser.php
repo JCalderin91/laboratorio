@@ -221,37 +221,82 @@ trait ApiResponser{
 
         });
 
-        $query_area->when(request('filter_by') == 'client', function($q) use ($from, $to, $type){
-            return $q->when($type == 'today', function($query){
-               $areas = $query::with(['clients' => function($q){
-                   return $q->whereHas('orders', function($q){
-                       $q->whereDate('delivery_date', Carbon::now()); 
-                   });   
-               }])->get();
+        
+        if(request('filter_by') == 'clients'){
+            
+            if($type == 'today'){
+                $areas = $query_area->with(['clients' => function($q){
+                    return $q->whereHas('orders', function($q){
+                        $q->whereDate('arrival_date', Carbon::now()); 
+                    })->with(['orders' => function($q){
+                         $q->whereDate('arrival_date', Carbon::now())
+                             ->with('device.subDevice'); 
+                    }]);   
+                }])->get();
+ 
+                return $this->getData($areas);
+            }
 
-               $data = $areas->map(function($item){
-                    $data['name'] = $item->name;
-                    //$data['cant'] = 
-               });
+            if($type == 'range'){
+                $areas = $query_area->with(['clients' => function($q) use ($from, $to){
+                    return $q->whereHas('orders', function($q) use ($from, $to) {
+                        $q->whereBetween('arrival_date',[$from, $to]); 
+                    })->with(['orders' => function($q) use ($from, $to){
+                         $q->whereBetween('arrival_date', [$from, $to])
+                             ->with('device.subDevice'); 
+                    }]);   
+                }])->get();
                
-            })
-            ->when($type == 'range', function($query) use ($from, $to){
-                return $query->whereBetween('delivery_date', [$from, $to]);
-            })
-            ->when($type == 'current_month', function($query){
-                $date = Carbon::now();
-                return $query->whereMonth('delivery_date', $date->format('m'))
-                                ->whereYear('delivery_date', $date->format('Y'));
-            })
-            ->when($type == 'last_month', function($query){
-                $date = Carbon::now()->startOfMonth()->subMonth();
-                return $query->whereMonth('delivery_date', $date->format('m'))
-                                ->whereYear('delivery_date', $date->format('Y'));
-               
-            })
-            ->get();
+                return $this->getData($areas);
+            }
+
+            if($type == 'current_month' || $type == 'last_month'){
+                
+                $date = $type == 'current_month' ? Carbon::now() : Carbon::now()->startOfMonth()->subMonth();
+                
+                $areas = $query_area->with(['clients' => function($q) use ($date){
+                    return $q->whereHas('orders', function($q) use ($date){
+                        $q->whereMonth('arrival_date', $date->format('m'))
+                        ->whereYear('arrival_date', $date->format('Y')); 
+                    })->with(['orders' => function($q) use ($date){
+                            $q->whereMonth('arrival_date', $date->format('m'))
+                            ->whereYear('arrival_date', $date->format('Y'));
+                    }]);   
+                }])->get();
+
+                return $this->getData($areas);
+            }
+            
+        }
+
+        return $query_order->get();
+
+        
+    }
+
+    public function getData($collection){
+
+        $d = $collection->map(function($item){
+                $data['nombre'] = $item->name;
+                $data['cantidad'] = $item->clients->count();
+                $devices = $item->clients->map(function($c){
+                    $d =  $c->orders->map(function($d){
+                        return $d->device->subDevice;
+                    });
+                    return $d;
+                });
+
+                $group = $devices->map(function ($item) {    
+                    return ['nombre' => $item->first()->name, 
+                            'cantidad' => $item->count()
+                        ];
+                    })->values();
+
+                $data['dispositivos'] = $group;
+
+                return $data;
         });
 
-        return $orders = $query_order->get();
+        return $d;
     }
 }

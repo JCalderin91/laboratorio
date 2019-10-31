@@ -15,8 +15,11 @@ class ReportController extends ApiController
     
     public function index(Request $request)
     {
-        
-        return $this->showAll($this->queryReport($request));
+        if($request->filter_by != 'clients'){
+            return $this->showAll($this->queryReport($request));
+        }
+
+        return $this->queryReport($request);
         
      
     }

@@ -29,7 +29,7 @@ Route::group([
 
 Route::group([
     
-    'middleware' => 'jwt.auth',
+    //'middleware' => 'jwt.auth',
     'prefix' => 'api'
 
 
