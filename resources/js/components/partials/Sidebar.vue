@@ -72,7 +72,7 @@
 							</router-link>
 						</li>
 
-						<li v-if="isAdmin" class="sidebar">
+						<li class="sidebar">
 							<router-link tag="a" to="/reportes">
 								<i class="fa fa-table"></i>
 							  <span class="toggle-item">Reportes</span>

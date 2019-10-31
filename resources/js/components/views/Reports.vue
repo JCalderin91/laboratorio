@@ -3,26 +3,50 @@
     <h4>Reportes y estadisticas</h4>
     <form @submit.prevent="getReport" action="post">
       <div class="row mt-3">
+        
 
-        <div class="col-12 d-flex justify-content-around mb-3">
-          <div class="custom-control custom-radio mr-2">
-            <input v-model="type" value="today" type="radio" class="custom-control-input" id="today">
-            <label class="custom-control-label" for="today">Hoy</label>
+        <h6>Reportes</h6>
+        <div class="col-12 mb-4">
+          <div class="row">
+            <div class="custom-control custom-radio col-md-3">
+              <input v-model="type" value="today" type="radio" class="custom-control-input" id="today">
+              <label class="custom-control-label" for="today">Hoy</label>
+            </div>
+  
+            <div class="custom-control custom-radio col-md-3">
+              <input v-model="type" value="current_month" type="radio" class="custom-control-input" id="current_month">
+              <label class="custom-control-label" for="current_month">Mes actual</label>
+            </div>
+  
+            <div class="custom-control custom-radio col-md-3">
+              <input v-model="type" value="last_month" type="radio" class="custom-control-input" id="last_month">
+              <label class="custom-control-label" for="last_month">Mes anterior</label>
+            </div>
+  
+            <div class="custom-control custom-radio col-md-3">
+              <input v-model="type" value="range" type="radio" class="custom-control-input" id="range">
+              <label class="custom-control-label" for="range">Rango de fechas</label>
+            </div>
           </div>
+        </div>        
 
-          <div class="custom-control custom-radio mr-2">
-            <input v-model="type" value="current_month" type="radio" class="custom-control-input" id="current_month">
-            <label class="custom-control-label" for="current_month">Mes actual</label>
-          </div>
-
-          <div class="custom-control custom-radio mr-2">
-            <input v-model="type" value="last_month" type="radio" class="custom-control-input" id="last_month">
-            <label class="custom-control-label" for="last_month">Mes anterior</label>
-          </div>
-
-          <div class="custom-control custom-radio mr-2">
-            <input v-model="type" value="range" type="radio" class="custom-control-input" id="range">
-            <label class="custom-control-label" for="range">Rango de fechas</label>
+        <h6>Filtrar por</h6>
+        <div class="col-12 mb-4">
+          <div class="row">
+            <div class="custom-control custom-radio col-md-3">
+              <input v-model="filterBy" value="byUser" type="radio" class="custom-control-input" id="filterByUser">
+              <label class="custom-control-label" for="filterByUser">Usuario</label>
+            </div>
+  
+            <div class="custom-control custom-radio col-md-3">
+              <input v-model="filterBy" value="byClient" type="radio" class="custom-control-input" id="filterByClient">
+              <label class="custom-control-label" for="filterByClient">Tipo de cliente</label>
+            </div>
+  
+            <div class="custom-control custom-radio col-md-3">
+              <input v-model="filterBy" value="byDevice" type="radio" class="custom-control-input" id="filterByDevice">
+              <label class="custom-control-label" for="filterByDevice">Tipo de dispositivo</label>
+            </div>
           </div>
         </div>
 
@@ -63,6 +87,9 @@
         </div>
 
       </div>
+
+      
+
       <button type="submit" class="btn btn-success float-right">
         <i v-if="loading" class="fas fa-spinner spin"></i>
         <span v-else>Consultar</span>
@@ -147,6 +174,7 @@
         user_id: '',
         type: 'today',
         filter_by: 'user',
+        filterBy: 'byUser',
         users: '',
         reports: [],
         statuses: [],
