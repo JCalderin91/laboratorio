@@ -278,15 +278,18 @@ trait ApiResponser{
 
         $d = $collection->map(function($item){
                 $data['nombre'] = $item->name;
-                $data['cantidad'] = $item->clients->count();
+               
                 $devices = $item->clients->map(function($c){
                     $d =  $c->orders->map(function($d){
                         return $d->device->subDevice;
                     });
                     return $d;
-                });
+                })
+                ->collapse();
 
-                $group = $devices->map(function ($item) {    
+                $data['cantidad'] = $devices->count();
+                
+                $group = $devices->groupBy('name')->map(function ($item) {    
                     return ['nombre' => $item->first()->name, 
                             'cantidad' => $item->count()
                         ];
