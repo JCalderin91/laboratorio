@@ -34,17 +34,17 @@
         <div class="col-12 mb-4">
           <div class="row">
             <div class="custom-control custom-radio col-md-3">
-              <input v-model="filterBy" value="byUser" type="radio" class="custom-control-input" id="filterByUser">
+              <input v-model="otroFiltro" value="byUsers" type="radio" class="custom-control-input" id="filterByUser">
               <label class="custom-control-label" for="filterByUser">Usuario</label>
             </div>
   
             <div class="custom-control custom-radio col-md-3">
-              <input v-model="filterBy" value="byClient" type="radio" class="custom-control-input" id="filterByClient">
+              <input v-model="otroFiltro" value="byClient" type="radio" class="custom-control-input" id="filterByClient">
               <label class="custom-control-label" for="filterByClient">Tipo de cliente</label>
             </div>
   
             <div class="custom-control custom-radio col-md-3">
-              <input v-model="filterBy" value="byDevice" type="radio" class="custom-control-input" id="filterByDevice">
+              <input v-model="otroFiltro" value="byDevice" type="radio" class="custom-control-input" id="filterByDevice">
               <label class="custom-control-label" for="filterByDevice">Tipo de dispositivo</label>
             </div>
           </div>
@@ -160,7 +160,8 @@
         <i v-else class="fa fa-file-excel"></i>
          Exportar
       </button>
-    </div>  
+    </div> 
+    <pre>{{$data}}</pre> 
   </div>
 </template>
 <script>
@@ -173,8 +174,8 @@
         status: '',
         user_id: '',
         type: 'today',
-        filter_by: 'user',
-        filterBy: 'byUser',
+        filter_by: 'users',
+        otroFiltro: 'byUsers',
         users: '',
         reports: [],
         statuses: [],
@@ -245,7 +246,8 @@
           .post("api/reports", filters)
           .then(response => {
             if(response.data.data)
-              this.reports = response.data.data
+              //this.reports = response.data.data
+              console.console.log(response.data.data)              
             else
               this.reports = []
           })
