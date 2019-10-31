@@ -83,7 +83,7 @@
 
 			<transition name="fade">
 				<!-- Modal de reparar -->
-				<div v-if="repair" class="modal fade show" id="reparar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div v-if="repair" class="modal vue fade show" id="reparar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				    	<form @submit.prevent="saveRepair" method="POST">
@@ -132,7 +132,7 @@
 
 			<transition name="fade">
 				<!-- Modal de Entregar -->
-				<div v-if="delivery" class="modal fade show" id="entregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div v-if="delivery" class="modal vue fade show" id="entregar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 				  <div class="modal-dialog" role="document">
 				    <div class="modal-content">
 				    	<form @submit.prevent="saveDelivery" method="POST">
