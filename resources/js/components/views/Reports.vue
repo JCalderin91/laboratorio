@@ -245,10 +245,11 @@
         axios
           .post("api/reports", filters)
           .then(response => {
-            if(response.data.data)
-              //this.reports = response.data.data
-              console.console.log(response.data.data)              
-            else
+            if(response.data.data){
+
+              this.reports = response.data.data
+              //console.console.log(response.data.data)              
+            }else
               this.reports = []
           })
           .catch(error => console.log(error))

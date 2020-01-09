@@ -11,7 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 //     return json_encode($data);
 // });
 
-Auth::routes();
+//Auth::routes();
 
 //Route::get('/', 'HomeController@index')->name('home');
 

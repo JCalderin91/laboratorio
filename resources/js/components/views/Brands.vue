@@ -50,7 +50,7 @@
                       <button @click="editDevice(device.identificador)" class="btn btn-sm text-dark" title="Modificar dispositivo">
                         <i class="fas fa-pen"></i>
                       </button>
-                      <button @click="deleteSubDevice" class="btn btn-sm text-danger" title="Eliminar dispositivo">
+                      <button @click="deleteSubDevice(device.identificador)" class="btn btn-sm text-danger" title="Eliminar dispositivo">
                         <i :id="'device-'+device.identificador" class="fas fa-trash"></i>
                       </button>
                     </td>
@@ -411,8 +411,8 @@ export default {
         });
     },
 
-    deleteSubDevice(event) {
-      this.selectedDevice = event.target.id.replace("device-", "");
+    deleteSubDevice(id) {
+      this.selectedDevice = id;
       this.$emit("prompt", {
         title: "¿Seguro?",
         message: "¡El registro sera elminado!",

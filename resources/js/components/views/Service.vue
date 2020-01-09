@@ -4,7 +4,7 @@
     <div class="card-header d-flex justify-content-between">
       <div>
         <h4>Registro de una nueva orden de servicio</h4>
-        <h6>Registre los datos de un nuevo servicio de reparación o revición</h6>
+        <h6>Registre los datos de un nuevo servicio de reparación o revisión</h6>
       </div>
       <div><date-custom :date="dateCustom"></date-custom></div>
     </div>
@@ -24,8 +24,11 @@
               <!-- Cedula Nuevo Cliente -->
               <label>Cédula <span class="text-danger">*</span></label>
               <div class="form-group">
-                <input @keypress.enter.prevent="searchClient" @blur="searchClient" @input="resetClient"
-                  v-model="client.ci" type="text" class="form-control" placeholder="Cedula del cliente"
+                <input
+                  @keypress.enter.prevent="searchClient"
+                  @blur="searchClient"
+                  @input="resetClient"
+                  v-model="client.ci" type="text" class="form-control first" placeholder="Cedula del cliente"
                   aria-label="Cedula del cliente" required>
                 <message-error :message="errors.cedula"></message-error>
               </div>
@@ -297,14 +300,14 @@
         errors: []
       }
     },
-    created() {
+    created() {     
       eventBus.$on('idUser', (value) => {
         this.idUser = value
       })
       eventBus.$on('date-custom', (value) => {
         this.dateCustom = value
       })
-    },
+    }, 
     mounted() {
       this.getAddress()
       this.getAreas()

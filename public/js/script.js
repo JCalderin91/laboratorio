@@ -50,3 +50,15 @@ Date.prototype.toDateInputValue = (function () {
   return local
 });
    
+
+$('input').on('keyup',function (e) {
+  console.log(e.keyCode)
+  if (e.keyCode == 13) {
+    console.info('Pess enter')
+    $(this).next('input').focus();
+  }
+});
+
+
+
+ 

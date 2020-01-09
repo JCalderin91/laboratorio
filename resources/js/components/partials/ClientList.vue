@@ -22,7 +22,7 @@
         <td>{{ client.nombre_direccion }}</td>
         <td>{{ client.telefono }}</td>
         <td>
-          <button @click="editClickHandler(client.cedula)" class="btn btn-sm " title="Modificar cliente">
+          <button @click="editClickHandler(client)" class="btn btn-sm " title="Modificar cliente">
             <i class="fas fa-pen"></i>
           </button>
           <button class="btn btn-sm text-danger" title="Eliminar cliente" @click="deleteClickHandler(client.identificador)">

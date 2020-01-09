@@ -23,7 +23,7 @@
 							<span class="toggle-item">Menu</span>
 						</li>
 						<li class="sidebar">
-							<router-link tag="a" to="/">
+							<router-link tag="a" :to="{name:'dashboard'}">
 								<i class="fa fa-home"></i>
 							  <span class="toggle-item">Principal</span>
 							</router-link>
@@ -124,7 +124,7 @@
 			},
 			logout() {
 				this.$session.destroy()
-				window.location = '/'
+				this.$router.push({name: 'login'})
 			},
 			toggleModal(event) {
 				event.preventDefault()

@@ -210,15 +210,10 @@ export default {
         });
     },
 
-    setClient(item) {
-      for (let i = 0; i < this.clients.length; i++) {
-        if (this.clients[i].cedula == item) {
-          this.client = this.clients[i];
-          this.clientForm = !this.clientForm;
-          this.update = true;
-          break;
-        }
-      }
+    setClient(client) {
+      this.client = client
+      this.clientForm = !this.clientForm;
+      this.update = true;
     },
 
     resetClient() {
